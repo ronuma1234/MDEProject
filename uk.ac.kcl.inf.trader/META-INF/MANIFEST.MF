@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: uk.ac.kcl.inf.trader
+Bundle-ManifestVersion: 2
+Bundle-Name: uk.ac.kcl.inf.trader
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: uk.ac.kcl.inf.trader; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.14.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Export-Package: uk.ac.kcl.inf.trader.serializer,
+ uk.ac.kcl.inf.trader.trader,
+ uk.ac.kcl.inf.trader.parser.antlr.internal,
+ uk.ac.kcl.inf.trader.scoping,
+ uk.ac.kcl.inf.trader.trader.impl,
+ uk.ac.kcl.inf.trader.generator,
+ uk.ac.kcl.inf.trader,
+ uk.ac.kcl.inf.trader.services,
+ uk.ac.kcl.inf.trader.parser.antlr,
+ uk.ac.kcl.inf.trader.validation,
+ uk.ac.kcl.inf.trader.trader.util
+Import-Package: org.apache.log4j

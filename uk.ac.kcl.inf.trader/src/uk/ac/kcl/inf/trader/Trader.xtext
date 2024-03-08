@@ -1,0 +1,9 @@
+grammar uk.ac.kcl.inf.trader.Trader with org.eclipse.xtext.common.Terminals
+
+generate trader "http://www.ac.uk/kcl/inf/trader/Trader"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
