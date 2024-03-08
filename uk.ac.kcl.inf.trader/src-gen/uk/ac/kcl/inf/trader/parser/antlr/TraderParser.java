@@ -27,7 +27,7 @@ public class TraderParser extends AbstractAntlrParser {
 
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "TraderProgram";
 	}
 
 	public TraderGrammarAccess getGrammarAccess() {

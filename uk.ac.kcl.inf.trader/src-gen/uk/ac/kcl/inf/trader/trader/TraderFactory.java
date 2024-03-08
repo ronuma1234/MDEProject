@@ -24,22 +24,148 @@ public interface TraderFactory extends EFactory
   TraderFactory eINSTANCE = uk.ac.kcl.inf.trader.trader.impl.TraderFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Model</em>'.
+   * Returns a new object of class '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Model</em>'.
+   * @return a new object of class '<em>Program</em>'.
    * @generated
    */
-  Model createModel();
+  TraderProgram createTraderProgram();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>Statement</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  Statement createStatement();
+
+  /**
+   * Returns a new object of class '<em>Connect</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Connect</em>'.
+   * @generated
+   */
+  Connect createConnect();
+
+  /**
+   * Returns a new object of class '<em>Connect Parameters</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Connect Parameters</em>'.
+   * @generated
+   */
+  ConnectParameters createConnectParameters();
+
+  /**
+   * Returns a new object of class '<em>Trading Bot</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Trading Bot</em>'.
+   * @generated
+   */
+  TradingBot createTradingBot();
+
+  /**
+   * Returns a new object of class '<em>Execute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Execute</em>'.
+   * @generated
+   */
+  Execute createExecute();
+
+  /**
+   * Returns a new object of class '<em>Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Variable Declaration</em>'.
+   * @generated
+   */
+  VariableDeclaration createVariableDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Loop Statement</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Loop Statement</em>'.
+   * @generated
+   */
+  LoopStatement createLoopStatement();
+
+  /**
+   * Returns a new object of class '<em>Int Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Expression</em>'.
+   * @generated
+   */
+  IntExpression createIntExpression();
+
+  /**
+   * Returns a new object of class '<em>Int Literal</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Literal</em>'.
+   * @generated
+   */
+  IntLiteral createIntLiteral();
+
+  /**
+   * Returns a new object of class '<em>Int Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Var Expression</em>'.
+   * @generated
+   */
+  IntVarExpression createIntVarExpression();
+
+  /**
+   * Returns a new object of class '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Action</em>'.
+   * @generated
+   */
+  Action createAction();
+
+  /**
+   * Returns a new object of class '<em>Buy</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Buy</em>'.
+   * @generated
+   */
+  Buy createBuy();
+
+  /**
+   * Returns a new object of class '<em>Sell</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sell</em>'.
+   * @generated
+   */
+  Sell createSell();
+
+  /**
+   * Returns a new object of class '<em>Addition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Addition</em>'.
+   * @generated
+   */
+  Addition createAddition();
+
+  /**
+   * Returns a new object of class '<em>Multiplication</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Multiplication</em>'.
+   * @generated
+   */
+  Multiplication createMultiplication();
 
   /**
    * Returns the package supported by this factory.

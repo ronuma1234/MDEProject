@@ -17,41 +17,41 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uk.ac.kcl.inf.trader.trader.Greeting;
-import uk.ac.kcl.inf.trader.trader.Model;
+import uk.ac.kcl.inf.trader.trader.Statement;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
+import uk.ac.kcl.inf.trader.trader.TraderProgram;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model</b></em>'.
+ * An implementation of the model object '<em><b>Program</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ModelImpl#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.TraderProgramImpl#getStatements <em>Statements</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ModelImpl extends MinimalEObjectImpl.Container implements Model
+public class TraderProgramImpl extends MinimalEObjectImpl.Container implements TraderProgram
 {
   /**
-   * The cached value of the '{@link #getGreetings() <em>Greetings</em>}' containment reference list.
+   * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGreetings()
+   * @see #getStatements()
    * @generated
    * @ordered
    */
-  protected EList<Greeting> greetings;
+  protected EList<Statement> statements;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ModelImpl()
+  protected TraderProgramImpl()
   {
     super();
   }
@@ -64,7 +64,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.MODEL;
+    return TraderPackage.Literals.TRADER_PROGRAM;
   }
 
   /**
@@ -73,13 +73,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EList<Greeting> getGreetings()
+  public EList<Statement> getStatements()
   {
-    if (greetings == null)
+    if (statements == null)
     {
-      greetings = new EObjectContainmentEList<Greeting>(Greeting.class, this, TraderPackage.MODEL__GREETINGS);
+      statements = new EObjectContainmentEList<Statement>(Statement.class, this, TraderPackage.TRADER_PROGRAM__STATEMENTS);
     }
-    return greetings;
+    return statements;
   }
 
   /**
@@ -92,8 +92,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TraderPackage.MODEL__GREETINGS:
-        return ((InternalEList<?>)getGreetings()).basicRemove(otherEnd, msgs);
+      case TraderPackage.TRADER_PROGRAM__STATEMENTS:
+        return ((InternalEList<?>)getStatements()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -108,8 +108,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TraderPackage.MODEL__GREETINGS:
-        return getGreetings();
+      case TraderPackage.TRADER_PROGRAM__STATEMENTS:
+        return getStatements();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,9 +125,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TraderPackage.MODEL__GREETINGS:
-        getGreetings().clear();
-        getGreetings().addAll((Collection<? extends Greeting>)newValue);
+      case TraderPackage.TRADER_PROGRAM__STATEMENTS:
+        getStatements().clear();
+        getStatements().addAll((Collection<? extends Statement>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,8 +143,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TraderPackage.MODEL__GREETINGS:
-        getGreetings().clear();
+      case TraderPackage.TRADER_PROGRAM__STATEMENTS:
+        getStatements().clear();
         return;
     }
     super.eUnset(featureID);
@@ -160,10 +160,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case TraderPackage.MODEL__GREETINGS:
-        return greetings != null && !greetings.isEmpty();
+      case TraderPackage.TRADER_PROGRAM__STATEMENTS:
+        return statements != null && !statements.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ModelImpl
+} //TraderProgramImpl

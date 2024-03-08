@@ -73,17 +73,126 @@ public class TraderSwitch<T> extends Switch<T>
   {
     switch (classifierID)
     {
-      case TraderPackage.MODEL:
+      case TraderPackage.TRADER_PROGRAM:
       {
-        Model model = (Model)theEObject;
-        T result = caseModel(model);
+        TraderProgram traderProgram = (TraderProgram)theEObject;
+        T result = caseTraderProgram(traderProgram);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.GREETING:
+      case TraderPackage.STATEMENT:
       {
-        Greeting greeting = (Greeting)theEObject;
-        T result = caseGreeting(greeting);
+        Statement statement = (Statement)theEObject;
+        T result = caseStatement(statement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.CONNECT:
+      {
+        Connect connect = (Connect)theEObject;
+        T result = caseConnect(connect);
+        if (result == null) result = caseStatement(connect);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.CONNECT_PARAMETERS:
+      {
+        ConnectParameters connectParameters = (ConnectParameters)theEObject;
+        T result = caseConnectParameters(connectParameters);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.TRADING_BOT:
+      {
+        TradingBot tradingBot = (TradingBot)theEObject;
+        T result = caseTradingBot(tradingBot);
+        if (result == null) result = caseStatement(tradingBot);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.EXECUTE:
+      {
+        Execute execute = (Execute)theEObject;
+        T result = caseExecute(execute);
+        if (result == null) result = caseStatement(execute);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.VARIABLE_DECLARATION:
+      {
+        VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
+        T result = caseVariableDeclaration(variableDeclaration);
+        if (result == null) result = caseStatement(variableDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.LOOP_STATEMENT:
+      {
+        LoopStatement loopStatement = (LoopStatement)theEObject;
+        T result = caseLoopStatement(loopStatement);
+        if (result == null) result = caseStatement(loopStatement);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.INT_EXPRESSION:
+      {
+        IntExpression intExpression = (IntExpression)theEObject;
+        T result = caseIntExpression(intExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.INT_LITERAL:
+      {
+        IntLiteral intLiteral = (IntLiteral)theEObject;
+        T result = caseIntLiteral(intLiteral);
+        if (result == null) result = caseIntExpression(intLiteral);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.INT_VAR_EXPRESSION:
+      {
+        IntVarExpression intVarExpression = (IntVarExpression)theEObject;
+        T result = caseIntVarExpression(intVarExpression);
+        if (result == null) result = caseIntExpression(intVarExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.ACTION:
+      {
+        Action action = (Action)theEObject;
+        T result = caseAction(action);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.BUY:
+      {
+        Buy buy = (Buy)theEObject;
+        T result = caseBuy(buy);
+        if (result == null) result = caseAction(buy);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.SELL:
+      {
+        Sell sell = (Sell)theEObject;
+        T result = caseSell(sell);
+        if (result == null) result = caseAction(sell);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.ADDITION:
+      {
+        Addition addition = (Addition)theEObject;
+        T result = caseAddition(addition);
+        if (result == null) result = caseIntExpression(addition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.MULTIPLICATION:
+      {
+        Multiplication multiplication = (Multiplication)theEObject;
+        T result = caseMultiplication(multiplication);
+        if (result == null) result = caseIntExpression(multiplication);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -92,33 +201,257 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Program</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Program</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModel(Model object)
+  public T caseTraderProgram(TraderProgram object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Greeting</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGreeting(Greeting object)
+  public T caseStatement(Statement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Connect</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Connect</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConnect(Connect object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Connect Parameters</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Connect Parameters</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConnectParameters(ConnectParameters object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Trading Bot</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Trading Bot</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTradingBot(TradingBot object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Execute</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Execute</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExecute(Execute object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseVariableDeclaration(VariableDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Loop Statement</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Loop Statement</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLoopStatement(LoopStatement object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntExpression(IntExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntLiteral(IntLiteral object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Var Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntVarExpression(IntVarExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Action</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAction(Action object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Buy</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Buy</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBuy(Buy object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Sell</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Sell</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSell(Sell object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Addition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Addition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAddition(Addition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Multiplication</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Multiplication</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMultiplication(Multiplication object)
   {
     return null;
   }

@@ -4,6 +4,7 @@
 package uk.ac.kcl.inf.trader.trader.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -65,8 +66,22 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
   {
     switch (eClass.getClassifierID())
     {
-      case TraderPackage.MODEL: return createModel();
-      case TraderPackage.GREETING: return createGreeting();
+      case TraderPackage.TRADER_PROGRAM: return createTraderProgram();
+      case TraderPackage.STATEMENT: return createStatement();
+      case TraderPackage.CONNECT: return createConnect();
+      case TraderPackage.CONNECT_PARAMETERS: return createConnectParameters();
+      case TraderPackage.TRADING_BOT: return createTradingBot();
+      case TraderPackage.EXECUTE: return createExecute();
+      case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
+      case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
+      case TraderPackage.INT_EXPRESSION: return createIntExpression();
+      case TraderPackage.INT_LITERAL: return createIntLiteral();
+      case TraderPackage.INT_VAR_EXPRESSION: return createIntVarExpression();
+      case TraderPackage.ACTION: return createAction();
+      case TraderPackage.BUY: return createBuy();
+      case TraderPackage.SELL: return createSell();
+      case TraderPackage.ADDITION: return createAddition();
+      case TraderPackage.MULTIPLICATION: return createMultiplication();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -78,10 +93,15 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Model createModel()
+  public Object createFromString(EDataType eDataType, String initialValue)
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    switch (eDataType.getClassifierID())
+    {
+      case TraderPackage.STRATEGY_DEF:
+        return createStrategyDefFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
   }
 
   /**
@@ -90,10 +110,229 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Greeting createGreeting()
+  public String convertToString(EDataType eDataType, Object instanceValue)
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    switch (eDataType.getClassifierID())
+    {
+      case TraderPackage.STRATEGY_DEF:
+        return convertStrategyDefToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TraderProgram createTraderProgram()
+  {
+    TraderProgramImpl traderProgram = new TraderProgramImpl();
+    return traderProgram;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Statement createStatement()
+  {
+    StatementImpl statement = new StatementImpl();
+    return statement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Connect createConnect()
+  {
+    ConnectImpl connect = new ConnectImpl();
+    return connect;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ConnectParameters createConnectParameters()
+  {
+    ConnectParametersImpl connectParameters = new ConnectParametersImpl();
+    return connectParameters;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TradingBot createTradingBot()
+  {
+    TradingBotImpl tradingBot = new TradingBotImpl();
+    return tradingBot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Execute createExecute()
+  {
+    ExecuteImpl execute = new ExecuteImpl();
+    return execute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public VariableDeclaration createVariableDeclaration()
+  {
+    VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
+    return variableDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LoopStatement createLoopStatement()
+  {
+    LoopStatementImpl loopStatement = new LoopStatementImpl();
+    return loopStatement;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntExpression createIntExpression()
+  {
+    IntExpressionImpl intExpression = new IntExpressionImpl();
+    return intExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntLiteral createIntLiteral()
+  {
+    IntLiteralImpl intLiteral = new IntLiteralImpl();
+    return intLiteral;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntVarExpression createIntVarExpression()
+  {
+    IntVarExpressionImpl intVarExpression = new IntVarExpressionImpl();
+    return intVarExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Action createAction()
+  {
+    ActionImpl action = new ActionImpl();
+    return action;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Buy createBuy()
+  {
+    BuyImpl buy = new BuyImpl();
+    return buy;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Sell createSell()
+  {
+    SellImpl sell = new SellImpl();
+    return sell;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Addition createAddition()
+  {
+    AdditionImpl addition = new AdditionImpl();
+    return addition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Multiplication createMultiplication()
+  {
+    MultiplicationImpl multiplication = new MultiplicationImpl();
+    return multiplication;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StrategyDef createStrategyDefFromString(EDataType eDataType, String initialValue)
+  {
+    StrategyDef result = StrategyDef.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertStrategyDefToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

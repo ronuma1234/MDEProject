@@ -31,9 +31,56 @@ public class TraderParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TraderGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
-			builder.put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-			builder.put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
+			builder.put(grammarAccess.getAdditionAccess().getOperatorAlternatives_1_1_0(), "rule__Addition__OperatorAlternatives_1_1_0");
+			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAlternatives_1_1_0(), "rule__Multiplication__OperatorAlternatives_1_1_0");
+			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
+			builder.put(grammarAccess.getActionAccess().getAlternatives(), "rule__Action__Alternatives");
+			builder.put(grammarAccess.getStrategyDefAccess().getAlternatives(), "rule__StrategyDef__Alternatives");
+			builder.put(grammarAccess.getConnectAccess().getGroup(), "rule__Connect__Group__0");
+			builder.put(grammarAccess.getConnectAccess().getGroup_3(), "rule__Connect__Group_3__0");
+			builder.put(grammarAccess.getConnectParametersAccess().getGroup(), "rule__ConnectParameters__Group__0");
+			builder.put(grammarAccess.getTradingBotAccess().getGroup(), "rule__TradingBot__Group__0");
+			builder.put(grammarAccess.getExecuteAccess().getGroup(), "rule__Execute__Group__0");
+			builder.put(grammarAccess.getExecuteAccess().getGroup_3(), "rule__Execute__Group_3__0");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
+			builder.put(grammarAccess.getLoopStatementAccess().getGroup(), "rule__LoopStatement__Group__0");
+			builder.put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
+			builder.put(grammarAccess.getAdditionAccess().getGroup(), "rule__Addition__Group__0");
+			builder.put(grammarAccess.getAdditionAccess().getGroup_1(), "rule__Addition__Group_1__0");
+			builder.put(grammarAccess.getMultiplicationAccess().getGroup(), "rule__Multiplication__Group__0");
+			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1(), "rule__Multiplication__Group_1__0");
+			builder.put(grammarAccess.getPrimaryAccess().getGroup_2(), "rule__Primary__Group_2__0");
+			builder.put(grammarAccess.getBuyAccess().getGroup(), "rule__Buy__Group__0");
+			builder.put(grammarAccess.getSellAccess().getGroup(), "rule__Sell__Group__0");
+			builder.put(grammarAccess.getTraderProgramAccess().getStatementsAssignment(), "rule__TraderProgram__StatementsAssignment");
+			builder.put(grammarAccess.getConnectAccess().getBrokerNameAssignment_2(), "rule__Connect__BrokerNameAssignment_2");
+			builder.put(grammarAccess.getConnectAccess().getParametersAssignment_3_1(), "rule__Connect__ParametersAssignment_3_1");
+			builder.put(grammarAccess.getConnectParametersAccess().getUsernameAssignment_2(), "rule__ConnectParameters__UsernameAssignment_2");
+			builder.put(grammarAccess.getConnectParametersAccess().getPasswordAssignment_6(), "rule__ConnectParameters__PasswordAssignment_6");
+			builder.put(grammarAccess.getConnectParametersAccess().getLeverageAssignment_10(), "rule__ConnectParameters__LeverageAssignment_10");
+			builder.put(grammarAccess.getConnectParametersAccess().getMoneyAssignment_14(), "rule__ConnectParameters__MoneyAssignment_14");
+			builder.put(grammarAccess.getConnectParametersAccess().getTimeframeAssignment_18(), "rule__ConnectParameters__TimeframeAssignment_18");
+			builder.put(grammarAccess.getTradingBotAccess().getStrategyAssignment_3(), "rule__TradingBot__StrategyAssignment_3");
+			builder.put(grammarAccess.getTradingBotAccess().getFundsAssignment_7(), "rule__TradingBot__FundsAssignment_7");
+			builder.put(grammarAccess.getExecuteAccess().getBotsAssignment_2(), "rule__Execute__BotsAssignment_2");
+			builder.put(grammarAccess.getExecuteAccess().getBotsAssignment_3_1(), "rule__Execute__BotsAssignment_3_1");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getValueAssignment_3(), "rule__VariableDeclaration__ValueAssignment_3");
+			builder.put(grammarAccess.getLoopStatementAccess().getCountAssignment_0(), "rule__LoopStatement__CountAssignment_0");
+			builder.put(grammarAccess.getLoopStatementAccess().getStatementsAssignment_3(), "rule__LoopStatement__StatementsAssignment_3");
+			builder.put(grammarAccess.getAdditionAccess().getOperatorAssignment_1_1(), "rule__Addition__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_2(), "rule__Addition__RightAssignment_1_2");
+			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAssignment_1_1(), "rule__Multiplication__OperatorAssignment_1_1");
+			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_2(), "rule__Multiplication__RightAssignment_1_2");
+			builder.put(grammarAccess.getIntLiteralAccess().getValAssignment(), "rule__IntLiteral__ValAssignment");
+			builder.put(grammarAccess.getIntVarExpressionAccess().getVarAssignment(), "rule__IntVarExpression__VarAssignment");
+			builder.put(grammarAccess.getBuyAccess().getQuantityAssignment_1(), "rule__Buy__QuantityAssignment_1");
+			builder.put(grammarAccess.getBuyAccess().getTickerAssignment_2(), "rule__Buy__TickerAssignment_2");
+			builder.put(grammarAccess.getBuyAccess().getPriceAssignment_5(), "rule__Buy__PriceAssignment_5");
+			builder.put(grammarAccess.getSellAccess().getQuantityAssignment_1(), "rule__Sell__QuantityAssignment_1");
+			builder.put(grammarAccess.getSellAccess().getTickerAssignment_2(), "rule__Sell__TickerAssignment_2");
+			builder.put(grammarAccess.getSellAccess().getPriceAssignment_5(), "rule__Sell__PriceAssignment_5");
 		}
 	}
 	

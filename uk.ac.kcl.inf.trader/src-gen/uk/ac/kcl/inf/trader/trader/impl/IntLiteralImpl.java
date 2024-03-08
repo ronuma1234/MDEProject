@@ -8,52 +8,51 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import uk.ac.kcl.inf.trader.trader.Greeting;
+import uk.ac.kcl.inf.trader.trader.IntLiteral;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Greeting</b></em>'.
+ * An implementation of the model object '<em><b>Int Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.GreetingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl#getVal <em>Val</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeting
+public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
 {
   /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVal()
    * @generated
    * @ordered
    */
-  protected static final String NAME_EDEFAULT = null;
+  protected static final int VAL_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getVal()
    * @generated
    * @ordered
    */
-  protected String name = NAME_EDEFAULT;
+  protected int val = VAL_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GreetingImpl()
+  protected IntLiteralImpl()
   {
     super();
   }
@@ -66,7 +65,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.GREETING;
+    return TraderPackage.Literals.INT_LITERAL;
   }
 
   /**
@@ -75,9 +74,9 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
    * @generated
    */
   @Override
-  public String getName()
+  public int getVal()
   {
-    return name;
+    return val;
   }
 
   /**
@@ -86,12 +85,12 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
    * @generated
    */
   @Override
-  public void setName(String newName)
+  public void setVal(int newVal)
   {
-    String oldName = name;
-    name = newName;
+    int oldVal = val;
+    val = newVal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.GREETING__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.INT_LITERAL__VAL, oldVal, val));
   }
 
   /**
@@ -104,8 +103,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case TraderPackage.GREETING__NAME:
-        return getName();
+      case TraderPackage.INT_LITERAL__VAL:
+        return getVal();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +119,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case TraderPackage.GREETING__NAME:
-        setName((String)newValue);
+      case TraderPackage.INT_LITERAL__VAL:
+        setVal((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +136,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case TraderPackage.GREETING__NAME:
-        setName(NAME_EDEFAULT);
+      case TraderPackage.INT_LITERAL__VAL:
+        setVal(VAL_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +153,8 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case TraderPackage.GREETING__NAME:
-        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+      case TraderPackage.INT_LITERAL__VAL:
+        return val != VAL_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +170,10 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (name: ");
-    result.append(name);
+    result.append(" (val: ");
+    result.append(val);
     result.append(')');
     return result.toString();
   }
 
-} //GreetingImpl
+} //IntLiteralImpl
