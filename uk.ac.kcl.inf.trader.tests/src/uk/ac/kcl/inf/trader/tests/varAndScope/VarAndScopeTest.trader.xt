@@ -23,7 +23,7 @@ loopCounter times do
 	create bot with favStrategy strategy using allocatedFund from money
 end
 
-confirm bots
+see registered bots
 
 execute bots
 

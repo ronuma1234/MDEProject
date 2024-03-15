@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import uk.ac.kcl.inf.trader.trader.TraderProgram
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +17,27 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class TraderGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val model = resource.contents.head as TraderProgram
+		
+		val className = resource.deriveClassName
+		fsa.generateFile(className + '.py', model.doGenerateClass(className))
 //		fsa.generateFile('greetings.txt', 'People to greet: ' + 
 //			resource.allContents
 //				.filter(Greeting)
 //				.map[name]
 //				.join(', '))
 	}
+	
+	
+	
+	def deriveClassName(Resource resource) {
+		val origFilename = resource.URI.lastSegment
+		
+		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'Trader'
+	}
+	
+	def CharSequence doGenerateClass(TraderProgram program, String string) '''
+	
+	'''
+	
 }

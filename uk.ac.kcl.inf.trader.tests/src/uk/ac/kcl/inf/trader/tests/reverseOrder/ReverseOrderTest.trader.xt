@@ -4,7 +4,7 @@ stop bots
 
 execute bots
 
-confirm bots
+see registered bots
 
 create bot with buyAndHold strategy using 60.15 from money
 

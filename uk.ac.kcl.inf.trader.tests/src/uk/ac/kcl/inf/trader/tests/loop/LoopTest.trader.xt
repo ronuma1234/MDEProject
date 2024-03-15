@@ -10,7 +10,7 @@ create bot with meanReversion strategy using 40.05 from money
 	create bot with buyAndHold strategy using 100.10 from money
 end
 
-confirm bots
+see registered bots
 
 execute bots
 
