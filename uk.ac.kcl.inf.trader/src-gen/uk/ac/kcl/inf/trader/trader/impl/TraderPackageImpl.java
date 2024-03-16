@@ -16,7 +16,6 @@ import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.Buy;
 import uk.ac.kcl.inf.trader.trader.Connect;
 import uk.ac.kcl.inf.trader.trader.ConnectParameters;
-import uk.ac.kcl.inf.trader.trader.Execute;
 import uk.ac.kcl.inf.trader.trader.IntExpression;
 import uk.ac.kcl.inf.trader.trader.IntLiteral;
 import uk.ac.kcl.inf.trader.trader.IntVarExpression;
@@ -73,13 +72,6 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   private EClass tradingBotEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass executeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -383,28 +375,6 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
   public EAttribute getTradingBot_Funds()
   {
     return (EAttribute)tradingBotEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getExecute()
-  {
-    return executeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getExecute_Bots()
-  {
-    return (EReference)executeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -744,9 +714,6 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     createEAttribute(tradingBotEClass, TRADING_BOT__STRATEGY);
     createEAttribute(tradingBotEClass, TRADING_BOT__FUNDS);
 
-    executeEClass = createEClass(EXECUTE);
-    createEReference(executeEClass, EXECUTE__BOTS);
-
     variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
     createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__NAME);
     createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__VALUE);
@@ -817,7 +784,6 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     // Add supertypes to classes
     connectEClass.getESuperTypes().add(this.getStatement());
     tradingBotEClass.getESuperTypes().add(this.getStatement());
-    executeEClass.getESuperTypes().add(this.getStatement());
     variableDeclarationEClass.getESuperTypes().add(this.getStatement());
     loopStatementEClass.getESuperTypes().add(this.getStatement());
     intLiteralEClass.getESuperTypes().add(this.getIntExpression());
@@ -847,9 +813,6 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     initEClass(tradingBotEClass, TradingBot.class, "TradingBot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTradingBot_Strategy(), this.getStrategyDef(), "strategy", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTradingBot_Funds(), ecorePackage.getEFloat(), "funds", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(executeEClass, Execute.class, "Execute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getExecute_Bots(), this.getTradingBot(), null, "bots", null, 0, -1, Execute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

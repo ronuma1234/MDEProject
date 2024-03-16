@@ -110,14 +110,6 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.EXECUTE:
-      {
-        Execute execute = (Execute)theEObject;
-        T result = caseExecute(execute);
-        if (result == null) result = caseStatement(execute);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case TraderPackage.VARIABLE_DECLARATION:
       {
         VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
@@ -276,22 +268,6 @@ public class TraderSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseTradingBot(TradingBot object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Execute</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Execute</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseExecute(Execute object)
   {
     return null;
   }

@@ -19,7 +19,6 @@ import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.Buy;
 import uk.ac.kcl.inf.trader.trader.Connect;
 import uk.ac.kcl.inf.trader.trader.ConnectParameters;
-import uk.ac.kcl.inf.trader.trader.Execute;
 import uk.ac.kcl.inf.trader.trader.IntLiteral;
 import uk.ac.kcl.inf.trader.trader.IntVarExpression;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
@@ -55,9 +54,6 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case TraderPackage.CONNECT_PARAMETERS:
 				sequence_ConnectParameters(context, (ConnectParameters) semanticObject); 
-				return; 
-			case TraderPackage.EXECUTE:
-				sequence_Execute(context, (Execute) semanticObject); 
 				return; 
 			case TraderPackage.INT_LITERAL:
 				sequence_IntLiteral(context, (IntLiteral) semanticObject); 
@@ -156,11 +152,11 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__TIMEFRAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConnectParametersAccess().getUsernameSTRINGTerminalRuleCall_2_0(), semanticObject.getUsername());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getPasswordSTRINGTerminalRuleCall_6_0(), semanticObject.getPassword());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getLeverageREALParserRuleCall_10_0(), semanticObject.getLeverage());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getMoneyREALParserRuleCall_14_0(), semanticObject.getMoney());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getTimeframeSTRINGTerminalRuleCall_18_0(), semanticObject.getTimeframe());
+		feeder.accept(grammarAccess.getConnectParametersAccess().getUsernameSTRINGTerminalRuleCall_1_0(), semanticObject.getUsername());
+		feeder.accept(grammarAccess.getConnectParametersAccess().getPasswordSTRINGTerminalRuleCall_4_0(), semanticObject.getPassword());
+		feeder.accept(grammarAccess.getConnectParametersAccess().getLeverageREALParserRuleCall_7_0(), semanticObject.getLeverage());
+		feeder.accept(grammarAccess.getConnectParametersAccess().getMoneyREALParserRuleCall_10_0(), semanticObject.getMoney());
+		feeder.accept(grammarAccess.getConnectParametersAccess().getTimeframeSTRINGTerminalRuleCall_13_0(), semanticObject.getTimeframe());
 		feeder.finish();
 	}
 	
@@ -176,21 +172,6 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 * </pre>
 	 */
 	protected void sequence_Connect(ISerializationContext context, Connect semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Statement returns Execute
-	 *     Execute returns Execute
-	 *
-	 * Constraint:
-	 *     (bots+=[TradingBot|ID] bots+=[TradingBot|ID]*)
-	 * </pre>
-	 */
-	protected void sequence_Execute(ISerializationContext context, Execute semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -338,7 +319,7 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTradingBotAccess().getStrategyStrategyDefEnumRuleCall_3_0(), semanticObject.getStrategy());
-		feeder.accept(grammarAccess.getTradingBotAccess().getFundsREALParserRuleCall_7_0(), semanticObject.getFunds());
+		feeder.accept(grammarAccess.getTradingBotAccess().getFundsREALParserRuleCall_6_0(), semanticObject.getFunds());
 		feeder.finish();
 	}
 	

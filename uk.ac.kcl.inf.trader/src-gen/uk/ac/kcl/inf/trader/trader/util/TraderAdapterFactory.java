@@ -101,11 +101,6 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createTradingBotAdapter();
       }
       @Override
-      public Adapter caseExecute(Execute object)
-      {
-        return createExecuteAdapter();
-      }
-      @Override
       public Adapter caseVariableDeclaration(VariableDeclaration object)
       {
         return createVariableDeclarationAdapter();
@@ -248,21 +243,6 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createTradingBotAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Execute <em>Execute</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Execute
-   * @generated
-   */
-  public Adapter createExecuteAdapter()
   {
     return null;
   }

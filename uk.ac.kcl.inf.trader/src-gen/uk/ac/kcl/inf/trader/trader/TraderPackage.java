@@ -244,34 +244,6 @@ public interface TraderPackage extends EPackage
   int TRADING_BOT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
-   * @generated
-   */
-  int EXECUTE = 5;
-
-  /**
-   * The feature id for the '<em><b>Bots</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXECUTE__BOTS = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Execute</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXECUTE_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -279,7 +251,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getVariableDeclaration()
    * @generated
    */
-  int VARIABLE_DECLARATION = 6;
+  int VARIABLE_DECLARATION = 5;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -316,7 +288,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getLoopStatement()
    * @generated
    */
-  int LOOP_STATEMENT = 7;
+  int LOOP_STATEMENT = 6;
 
   /**
    * The feature id for the '<em><b>Count</b></em>' containment reference.
@@ -353,7 +325,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntExpression()
    * @generated
    */
-  int INT_EXPRESSION = 8;
+  int INT_EXPRESSION = 7;
 
   /**
    * The number of structural features of the '<em>Int Expression</em>' class.
@@ -372,7 +344,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 9;
+  int INT_LITERAL = 8;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -400,7 +372,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVarExpression()
    * @generated
    */
-  int INT_VAR_EXPRESSION = 10;
+  int INT_VAR_EXPRESSION = 9;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -428,7 +400,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 11;
+  int ACTION = 10;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -474,7 +446,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
    * @generated
    */
-  int BUY = 12;
+  int BUY = 11;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -520,7 +492,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
    * @generated
    */
-  int SELL = 13;
+  int SELL = 12;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -566,7 +538,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 14;
+  int ADDITION = 13;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -612,7 +584,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 15;
+  int MULTIPLICATION = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -658,7 +630,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStrategyDef()
    * @generated
    */
-  int STRATEGY_DEF = 16;
+  int STRATEGY_DEF = 15;
 
 
   /**
@@ -820,27 +792,6 @@ public interface TraderPackage extends EPackage
    * @generated
    */
   EAttribute getTradingBot_Funds();
-
-  /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Execute <em>Execute</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Execute</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Execute
-   * @generated
-   */
-  EClass getExecute();
-
-  /**
-   * Returns the meta object for the reference list '{@link uk.ac.kcl.inf.trader.trader.Execute#getBots <em>Bots</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Bots</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Execute#getBots()
-   * @see #getExecute()
-   * @generated
-   */
-  EReference getExecute_Bots();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration <em>Variable Declaration</em>}'.
@@ -1269,24 +1220,6 @@ public interface TraderPackage extends EPackage
      * @generated
      */
     EAttribute TRADING_BOT__FUNDS = eINSTANCE.getTradingBot_Funds();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
-     * @generated
-     */
-    EClass EXECUTE = eINSTANCE.getExecute();
-
-    /**
-     * The meta object literal for the '<em><b>Bots</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXECUTE__BOTS = eINSTANCE.getExecute_Bots();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
