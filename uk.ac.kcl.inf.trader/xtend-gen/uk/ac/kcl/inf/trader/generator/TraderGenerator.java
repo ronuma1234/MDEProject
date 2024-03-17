@@ -3,10 +3,15 @@
  */
 package uk.ac.kcl.inf.trader.generator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
+import uk.ac.kcl.inf.trader.trader.TraderProgram;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +22,26 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class TraderGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+    final TraderProgram model = ((TraderProgram) _head);
+    final String className = this.deriveClassName(resource);
+    fsa.generateFile((className + ".py"), this.doGenerateClass(model, className));
+  }
+
+  public String deriveClassName(final Resource resource) {
+    String _xblockexpression = null;
+    {
+      final String origFilename = resource.getURI().lastSegment();
+      String _firstUpper = StringExtensions.toFirstUpper(origFilename.substring(0, origFilename.indexOf(".")));
+      _xblockexpression = (_firstUpper + "Trader");
+    }
+    return _xblockexpression;
+  }
+
+  public CharSequence doGenerateClass(final TraderProgram program, final String string) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder;
   }
 }

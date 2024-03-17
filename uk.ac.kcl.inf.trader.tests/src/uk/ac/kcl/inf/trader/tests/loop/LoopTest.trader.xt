@@ -1,0 +1,17 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.loop.LoopTest END_SETUP */
+
+connect to broker SwissBank with username "personA", password "passwordA", leverage 0.02, money 500.50, timeframe "1HR"
+
+create bot with buyAndHold strategy using 60.15 from money
+
+create bot with meanReversion strategy using 40.05 from money
+
+3 times do 
+	create bot with buyAndHold strategy using 100.10 from money
+end
+
+see registered bots
+
+execute bots
+
+stop bots

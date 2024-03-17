@@ -9,32 +9,39 @@ TraderProgram:
 ;
 
 Statement:
-    Connect | TradingBot | Execute | VariableDeclaration | LoopStatement
+    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 ;
 
 Connect:
-    "connect" "broker" brokerName=ID ("," parameters=ConnectParameters)?
+    "connect" "to" "broker" brokerName=ID "with" ( parameters=ConnectParameters)?
 ; 
 
 ConnectParameters:
-    "username" "=" username=STRING ","
-    "password" "=" password=STRING ","
-    "leverage" "=" leverage=REAL ","
-    "money" "=" money=REAL ","
-    "timeframe" "=" timeframe=STRING
+    "username" username=STRING ","
+    "password" password=STRING ","
+    "leverage" leverage=REAL ","
+    "money" money=REAL ","
+    "timeframe" timeframe=STRING
 ;
 
 TradingBot:
-    "tradingBot" "strategy" "=" strategy = StrategyDef ","
-    "funds" "=" funds = REAL
+    "create" "bot" "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
 ;
 
 enum StrategyDef:
     buyAndHold | meanReversion
 ;
 
+ListBots:
+	listCommand = "see" "registered" "bots"
+;
+
 Execute:
-    "execute" "bots" bots+=[TradingBot] ("," bots+=[TradingBot])*
+    executeCommand = "execute" "bots"
+;
+
+Stop:
+	stopCommand = "stop" "bots"
 ;
 
 VariableDeclaration:
