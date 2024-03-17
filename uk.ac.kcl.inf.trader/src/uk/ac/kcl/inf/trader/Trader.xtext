@@ -9,7 +9,7 @@ TraderProgram:
 ;
 
 Statement:
-    Connect | TradingBot | Show | Execute | Stop | VariableDeclaration | LoopStatement
+    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 ;
 
 Connect:
@@ -32,16 +32,16 @@ enum StrategyDef:
     buyAndHold | meanReversion
 ;
 
-Show:
-	"see" "registered" "bots"
+ListBots:
+	listCommand = "see" "registered" "bots"
 ;
 
 Execute:
-    "execute" "bots"
+    executeCommand = "execute" "bots"
 ;
 
 Stop:
-	"stop" "bots"
+	stopCommand = "stop" "bots"
 ;
 
 VariableDeclaration:

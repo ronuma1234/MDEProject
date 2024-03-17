@@ -71,6 +71,9 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
       case TraderPackage.CONNECT: return createConnect();
       case TraderPackage.CONNECT_PARAMETERS: return createConnectParameters();
       case TraderPackage.TRADING_BOT: return createTradingBot();
+      case TraderPackage.LIST_BOTS: return createListBots();
+      case TraderPackage.EXECUTE: return createExecute();
+      case TraderPackage.STOP: return createStop();
       case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
       case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
       case TraderPackage.INT_EXPRESSION: return createIntExpression();
@@ -178,6 +181,42 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
   {
     TradingBotImpl tradingBot = new TradingBotImpl();
     return tradingBot;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ListBots createListBots()
+  {
+    ListBotsImpl listBots = new ListBotsImpl();
+    return listBots;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Execute createExecute()
+  {
+    ExecuteImpl execute = new ExecuteImpl();
+    return execute;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Stop createStop()
+  {
+    StopImpl stop = new StopImpl();
+    return stop;
   }
 
   /**

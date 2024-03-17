@@ -19,11 +19,14 @@ import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.Buy;
 import uk.ac.kcl.inf.trader.trader.Connect;
 import uk.ac.kcl.inf.trader.trader.ConnectParameters;
+import uk.ac.kcl.inf.trader.trader.Execute;
 import uk.ac.kcl.inf.trader.trader.IntLiteral;
 import uk.ac.kcl.inf.trader.trader.IntVarExpression;
+import uk.ac.kcl.inf.trader.trader.ListBots;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.Multiplication;
 import uk.ac.kcl.inf.trader.trader.Sell;
+import uk.ac.kcl.inf.trader.trader.Stop;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
 import uk.ac.kcl.inf.trader.trader.TradingBot;
@@ -55,11 +58,17 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case TraderPackage.CONNECT_PARAMETERS:
 				sequence_ConnectParameters(context, (ConnectParameters) semanticObject); 
 				return; 
+			case TraderPackage.EXECUTE:
+				sequence_Execute(context, (Execute) semanticObject); 
+				return; 
 			case TraderPackage.INT_LITERAL:
 				sequence_IntLiteral(context, (IntLiteral) semanticObject); 
 				return; 
 			case TraderPackage.INT_VAR_EXPRESSION:
 				sequence_IntVarExpression(context, (IntVarExpression) semanticObject); 
+				return; 
+			case TraderPackage.LIST_BOTS:
+				sequence_ListBots(context, (ListBots) semanticObject); 
 				return; 
 			case TraderPackage.LOOP_STATEMENT:
 				sequence_LoopStatement(context, (LoopStatement) semanticObject); 
@@ -69,6 +78,9 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				return; 
 			case TraderPackage.SELL:
 				sequence_Sell(context, (Sell) semanticObject); 
+				return; 
+			case TraderPackage.STOP:
+				sequence_Stop(context, (Stop) semanticObject); 
 				return; 
 			case TraderPackage.TRADER_PROGRAM:
 				sequence_TraderProgram(context, (TraderProgram) semanticObject); 
@@ -179,6 +191,27 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Statement returns Execute
+	 *     Execute returns Execute
+	 *
+	 * Constraint:
+	 *     executeCommand='execute'
+	 * </pre>
+	 */
+	protected void sequence_Execute(ISerializationContext context, Execute semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.EXECUTE__EXECUTE_COMMAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.EXECUTE__EXECUTE_COMMAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0(), semanticObject.getExecuteCommand());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Addition returns IntLiteral
 	 *     Addition.Addition_1_0 returns IntLiteral
 	 *     Multiplication returns IntLiteral
@@ -222,6 +255,27 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIntVarExpressionAccess().getVarVariableDeclarationIDTerminalRuleCall_0_1(), semanticObject.eGet(TraderPackage.Literals.INT_VAR_EXPRESSION__VAR, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Statement returns ListBots
+	 *     ListBots returns ListBots
+	 *
+	 * Constraint:
+	 *     listCommand='see'
+	 * </pre>
+	 */
+	protected void sequence_ListBots(ISerializationContext context, ListBots semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.LIST_BOTS__LIST_COMMAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.LIST_BOTS__LIST_COMMAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0(), semanticObject.getListCommand());
 		feeder.finish();
 	}
 	
@@ -282,6 +336,27 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 		feeder.accept(grammarAccess.getSellAccess().getQuantityREALParserRuleCall_1_0(), semanticObject.getQuantity());
 		feeder.accept(grammarAccess.getSellAccess().getTickerIDTerminalRuleCall_2_0(), semanticObject.getTicker());
 		feeder.accept(grammarAccess.getSellAccess().getPriceREALParserRuleCall_5_0(), semanticObject.getPrice());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Statement returns Stop
+	 *     Stop returns Stop
+	 *
+	 * Constraint:
+	 *     stopCommand='stop'
+	 * </pre>
+	 */
+	protected void sequence_Stop(ISerializationContext context, Stop semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.STOP__STOP_COMMAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.STOP__STOP_COMMAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0(), semanticObject.getStopCommand());
 		feeder.finish();
 	}
 	

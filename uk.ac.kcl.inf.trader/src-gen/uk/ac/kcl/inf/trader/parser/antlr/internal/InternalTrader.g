@@ -132,26 +132,29 @@ ruleStatement returns [EObject current=null]
 		}
 		    |
 		{
-			newCompositeNode(grammarAccess.getStatementAccess().getShowParserRuleCall_2());
+			newCompositeNode(grammarAccess.getStatementAccess().getListBotsParserRuleCall_2());
 		}
-		ruleShow
+		this_ListBots_2=ruleListBots
 		{
+			$current = $this_ListBots_2.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getStatementAccess().getExecuteParserRuleCall_3());
 		}
-		ruleExecute
+		this_Execute_3=ruleExecute
 		{
+			$current = $this_Execute_3.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
 		{
 			newCompositeNode(grammarAccess.getStatementAccess().getStopParserRuleCall_4());
 		}
-		ruleStop
+		this_Stop_4=ruleStop
 		{
+			$current = $this_Stop_4.current;
 			afterParserOrEnumRuleCall();
 		}
 		    |
@@ -479,15 +482,15 @@ ruleTradingBot returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleShow
-entryRuleShow returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getShowRule()); }
-	iv_ruleShow=ruleShow
-	{ $current=$iv_ruleShow.current.getText(); }
+// Entry rule entryRuleListBots
+entryRuleListBots returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getListBotsRule()); }
+	iv_ruleListBots=ruleListBots
+	{ $current=$iv_ruleListBots.current; }
 	EOF;
 
-// Rule Show
-ruleShow returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+// Rule ListBots
+ruleListBots returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -495,33 +498,40 @@ ruleShow returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	leaveRule();
 }:
 	(
-		kw='see'
+		(
+			(
+				lv_listCommand_0_0='see'
+				{
+					newLeafNode(lv_listCommand_0_0, grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getListBotsRule());
+					}
+					setWithLastConsumed($current, "listCommand", lv_listCommand_0_0, "see");
+				}
+			)
+		)
+		otherlv_1='registered'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getShowAccess().getSeeKeyword_0());
+			newLeafNode(otherlv_1, grammarAccess.getListBotsAccess().getRegisteredKeyword_1());
 		}
-		kw='registered'
+		otherlv_2='bots'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getShowAccess().getRegisteredKeyword_1());
-		}
-		kw='bots'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getShowAccess().getBotsKeyword_2());
+			newLeafNode(otherlv_2, grammarAccess.getListBotsAccess().getBotsKeyword_2());
 		}
 	)
 ;
 
 // Entry rule entryRuleExecute
-entryRuleExecute returns [String current=null]:
+entryRuleExecute returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getExecuteRule()); }
 	iv_ruleExecute=ruleExecute
-	{ $current=$iv_ruleExecute.current.getText(); }
+	{ $current=$iv_ruleExecute.current; }
 	EOF;
 
 // Rule Execute
-ruleExecute returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleExecute returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -529,28 +539,36 @@ ruleExecute returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()
 	leaveRule();
 }:
 	(
-		kw='execute'
+		(
+			(
+				lv_executeCommand_0_0='execute'
+				{
+					newLeafNode(lv_executeCommand_0_0, grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getExecuteRule());
+					}
+					setWithLastConsumed($current, "executeCommand", lv_executeCommand_0_0, "execute");
+				}
+			)
+		)
+		otherlv_1='bots'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getExecuteAccess().getExecuteKeyword_0());
-		}
-		kw='bots'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getExecuteAccess().getBotsKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getExecuteAccess().getBotsKeyword_1());
 		}
 	)
 ;
 
 // Entry rule entryRuleStop
-entryRuleStop returns [String current=null]:
+entryRuleStop returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getStopRule()); }
 	iv_ruleStop=ruleStop
-	{ $current=$iv_ruleStop.current.getText(); }
+	{ $current=$iv_ruleStop.current; }
 	EOF;
 
 // Rule Stop
-ruleStop returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+ruleStop returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -558,15 +576,23 @@ ruleStop returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
 	leaveRule();
 }:
 	(
-		kw='stop'
+		(
+			(
+				lv_stopCommand_0_0='stop'
+				{
+					newLeafNode(lv_stopCommand_0_0, grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getStopRule());
+					}
+					setWithLastConsumed($current, "stopCommand", lv_stopCommand_0_0, "stop");
+				}
+			)
+		)
+		otherlv_1='bots'
 		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getStopAccess().getStopKeyword_0());
-		}
-		kw='bots'
-		{
-			$current.merge(kw);
-			newLeafNode(kw, grammarAccess.getStopAccess().getBotsKeyword_1());
+			newLeafNode(otherlv_1, grammarAccess.getStopAccess().getBotsKeyword_1());
 		}
 	)
 ;

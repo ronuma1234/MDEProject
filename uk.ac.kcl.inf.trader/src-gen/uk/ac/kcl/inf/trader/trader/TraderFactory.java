@@ -69,6 +69,33 @@ public interface TraderFactory extends EFactory
   TradingBot createTradingBot();
 
   /**
+   * Returns a new object of class '<em>List Bots</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Bots</em>'.
+   * @generated
+   */
+  ListBots createListBots();
+
+  /**
+   * Returns a new object of class '<em>Execute</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Execute</em>'.
+   * @generated
+   */
+  Execute createExecute();
+
+  /**
+   * Returns a new object of class '<em>Stop</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Stop</em>'.
+   * @generated
+   */
+  Stop createStop();
+
+  /**
    * Returns a new object of class '<em>Variable Declaration</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

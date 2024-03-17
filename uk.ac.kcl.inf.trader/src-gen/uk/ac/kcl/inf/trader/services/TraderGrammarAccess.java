@@ -47,18 +47,18 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cConnectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTradingBotParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cShowParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cListBotsParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cExecuteParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		private final RuleCall cStopParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
 		private final RuleCall cVariableDeclarationParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
 		private final RuleCall cLoopStatementParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Statement:
-		//    Connect | TradingBot | Show | Execute | Stop | VariableDeclaration | LoopStatement
+		//    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Connect | TradingBot | Show | Execute | Stop | VariableDeclaration | LoopStatement
+		//Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Connect
@@ -67,8 +67,8 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//TradingBot
 		public RuleCall getTradingBotParserRuleCall_1() { return cTradingBotParserRuleCall_1; }
 		
-		//Show
-		public RuleCall getShowParserRuleCall_2() { return cShowParserRuleCall_2; }
+		//ListBots
+		public RuleCall getListBotsParserRuleCall_2() { return cListBotsParserRuleCall_2; }
 		
 		//Execute
 		public RuleCall getExecuteParserRuleCall_3() { return cExecuteParserRuleCall_3; }
@@ -278,23 +278,27 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"money"
 		public Keyword getMoneyKeyword_8() { return cMoneyKeyword_8; }
 	}
-	public class ShowElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Show");
+	public class ListBotsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.ListBots");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cSeeKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cListCommandAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cListCommandSeeKeyword_0_0 = (Keyword)cListCommandAssignment_0.eContents().get(0);
 		private final Keyword cRegisteredKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cBotsKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//Show:
-		//    "see" "registered" "bots"
+		//ListBots:
+		//    listCommand = "see" "registered" "bots"
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"see" "registered" "bots"
+		//listCommand = "see" "registered" "bots"
 		public Group getGroup() { return cGroup; }
 		
+		//listCommand = "see"
+		public Assignment getListCommandAssignment_0() { return cListCommandAssignment_0; }
+		
 		//"see"
-		public Keyword getSeeKeyword_0() { return cSeeKeyword_0; }
+		public Keyword getListCommandSeeKeyword_0_0() { return cListCommandSeeKeyword_0_0; }
 		
 		//"registered"
 		public Keyword getRegisteredKeyword_1() { return cRegisteredKeyword_1; }
@@ -305,19 +309,23 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	public class ExecuteElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Execute");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cExecuteKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExecuteCommandAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cExecuteCommandExecuteKeyword_0_0 = (Keyword)cExecuteCommandAssignment_0.eContents().get(0);
 		private final Keyword cBotsKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Execute:
-		//    "execute" "bots"
+		//    executeCommand = "execute" "bots"
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"execute" "bots"
+		//executeCommand = "execute" "bots"
 		public Group getGroup() { return cGroup; }
 		
+		//executeCommand = "execute"
+		public Assignment getExecuteCommandAssignment_0() { return cExecuteCommandAssignment_0; }
+		
 		//"execute"
-		public Keyword getExecuteKeyword_0() { return cExecuteKeyword_0; }
+		public Keyword getExecuteCommandExecuteKeyword_0_0() { return cExecuteCommandExecuteKeyword_0_0; }
 		
 		//"bots"
 		public Keyword getBotsKeyword_1() { return cBotsKeyword_1; }
@@ -325,19 +333,23 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	public class StopElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Stop");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cStopKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cStopCommandAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cStopCommandStopKeyword_0_0 = (Keyword)cStopCommandAssignment_0.eContents().get(0);
 		private final Keyword cBotsKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//Stop:
-		//    "stop" "bots"
+		//    stopCommand = "stop" "bots"
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"stop" "bots"
+		//stopCommand = "stop" "bots"
 		public Group getGroup() { return cGroup; }
 		
+		//stopCommand = "stop"
+		public Assignment getStopCommandAssignment_0() { return cStopCommandAssignment_0; }
+		
 		//"stop"
-		public Keyword getStopKeyword_0() { return cStopKeyword_0; }
+		public Keyword getStopCommandStopKeyword_0_0() { return cStopCommandStopKeyword_0_0; }
 		
 		//"bots"
 		public Keyword getBotsKeyword_1() { return cBotsKeyword_1; }
@@ -768,7 +780,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	private final ConnectParametersElements pConnectParameters;
 	private final TradingBotElements pTradingBot;
 	private final StrategyDefElements eStrategyDef;
-	private final ShowElements pShow;
+	private final ListBotsElements pListBots;
 	private final ExecuteElements pExecute;
 	private final StopElements pStop;
 	private final VariableDeclarationElements pVariableDeclaration;
@@ -798,7 +810,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		this.pConnectParameters = new ConnectParametersElements();
 		this.pTradingBot = new TradingBotElements();
 		this.eStrategyDef = new StrategyDefElements();
-		this.pShow = new ShowElements();
+		this.pListBots = new ListBotsElements();
 		this.pExecute = new ExecuteElements();
 		this.pStop = new StopElements();
 		this.pVariableDeclaration = new VariableDeclarationElements();
@@ -853,7 +865,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//Statement:
-	//    Connect | TradingBot | Show | Execute | Stop | VariableDeclaration | LoopStatement
+	//    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 	//;
 	public StatementElements getStatementAccess() {
 		return pStatement;
@@ -911,19 +923,19 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getStrategyDefAccess().getRule();
 	}
 	
-	//Show:
-	//    "see" "registered" "bots"
+	//ListBots:
+	//    listCommand = "see" "registered" "bots"
 	//;
-	public ShowElements getShowAccess() {
-		return pShow;
+	public ListBotsElements getListBotsAccess() {
+		return pListBots;
 	}
 	
-	public ParserRule getShowRule() {
-		return getShowAccess().getRule();
+	public ParserRule getListBotsRule() {
+		return getListBotsAccess().getRule();
 	}
 	
 	//Execute:
-	//    "execute" "bots"
+	//    executeCommand = "execute" "bots"
 	//;
 	public ExecuteElements getExecuteAccess() {
 		return pExecute;
@@ -934,7 +946,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//Stop:
-	//    "stop" "bots"
+	//    stopCommand = "stop" "bots"
 	//;
 	public StopElements getStopAccess() {
 		return pStop;

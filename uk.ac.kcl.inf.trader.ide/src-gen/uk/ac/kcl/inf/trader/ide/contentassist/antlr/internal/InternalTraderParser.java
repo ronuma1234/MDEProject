@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalTraderParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'+'", "'-'", "'*'", "'/'", "'buyAndHold'", "'meanReversion'", "'connect'", "'to'", "'broker'", "'with'", "'username'", "','", "'password'", "'leverage'", "'money'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'from'", "'see'", "'registered'", "'bots'", "'execute'", "'stop'", "'var'", "'='", "'times'", "'do'", "'end'", "'.'", "'('", "')'", "'buy'", "'at'", "'price'", "'sell'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'+'", "'-'", "'*'", "'/'", "'buyAndHold'", "'meanReversion'", "'connect'", "'to'", "'broker'", "'with'", "'username'", "','", "'password'", "'leverage'", "'money'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'from'", "'registered'", "'bots'", "'var'", "'='", "'times'", "'do'", "'end'", "'.'", "'('", "')'", "'buy'", "'at'", "'price'", "'sell'", "'see'", "'execute'", "'stop'"
     };
     public static final int T__19=19;
     public static final int T__15=15;
@@ -156,7 +156,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( ((LA1_0>=RULE_INT && LA1_0<=RULE_ID)||LA1_0==17||LA1_0==27||LA1_0==32||(LA1_0>=35 && LA1_0<=37)||LA1_0==43) ) {
+                if ( ((LA1_0>=RULE_INT && LA1_0<=RULE_ID)||LA1_0==17||LA1_0==27||LA1_0==34||LA1_0==40||(LA1_0>=46 && LA1_0<=48)) ) {
                     alt1=1;
                 }
 
@@ -509,20 +509,20 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "ruleTradingBot"
 
 
-    // $ANTLR start "entryRuleShow"
-    // InternalTrader.g:178:1: entryRuleShow : ruleShow EOF ;
-    public final void entryRuleShow() throws RecognitionException {
+    // $ANTLR start "entryRuleListBots"
+    // InternalTrader.g:178:1: entryRuleListBots : ruleListBots EOF ;
+    public final void entryRuleListBots() throws RecognitionException {
         try {
-            // InternalTrader.g:179:1: ( ruleShow EOF )
-            // InternalTrader.g:180:1: ruleShow EOF
+            // InternalTrader.g:179:1: ( ruleListBots EOF )
+            // InternalTrader.g:180:1: ruleListBots EOF
             {
-             before(grammarAccess.getShowRule()); 
+             before(grammarAccess.getListBotsRule()); 
             pushFollow(FOLLOW_1);
-            ruleShow();
+            ruleListBots();
 
             state._fsp--;
 
-             after(grammarAccess.getShowRule()); 
+             after(grammarAccess.getListBotsRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -536,35 +536,35 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "entryRuleShow"
+    // $ANTLR end "entryRuleListBots"
 
 
-    // $ANTLR start "ruleShow"
-    // InternalTrader.g:187:1: ruleShow : ( ( rule__Show__Group__0 ) ) ;
-    public final void ruleShow() throws RecognitionException {
+    // $ANTLR start "ruleListBots"
+    // InternalTrader.g:187:1: ruleListBots : ( ( rule__ListBots__Group__0 ) ) ;
+    public final void ruleListBots() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:191:2: ( ( ( rule__Show__Group__0 ) ) )
-            // InternalTrader.g:192:2: ( ( rule__Show__Group__0 ) )
+            // InternalTrader.g:191:2: ( ( ( rule__ListBots__Group__0 ) ) )
+            // InternalTrader.g:192:2: ( ( rule__ListBots__Group__0 ) )
             {
-            // InternalTrader.g:192:2: ( ( rule__Show__Group__0 ) )
-            // InternalTrader.g:193:3: ( rule__Show__Group__0 )
+            // InternalTrader.g:192:2: ( ( rule__ListBots__Group__0 ) )
+            // InternalTrader.g:193:3: ( rule__ListBots__Group__0 )
             {
-             before(grammarAccess.getShowAccess().getGroup()); 
-            // InternalTrader.g:194:3: ( rule__Show__Group__0 )
-            // InternalTrader.g:194:4: rule__Show__Group__0
+             before(grammarAccess.getListBotsAccess().getGroup()); 
+            // InternalTrader.g:194:3: ( rule__ListBots__Group__0 )
+            // InternalTrader.g:194:4: rule__ListBots__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__Show__Group__0();
+            rule__ListBots__Group__0();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getShowAccess().getGroup()); 
+             after(grammarAccess.getListBotsAccess().getGroup()); 
 
             }
 
@@ -583,7 +583,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "ruleShow"
+    // $ANTLR end "ruleListBots"
 
 
     // $ANTLR start "entryRuleExecute"
@@ -1566,13 +1566,13 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Statement__Alternatives"
-    // InternalTrader.g:526:1: rule__Statement__Alternatives : ( ( ruleConnect ) | ( ruleTradingBot ) | ( ruleShow ) | ( ruleExecute ) | ( ruleStop ) | ( ruleVariableDeclaration ) | ( ruleLoopStatement ) );
+    // InternalTrader.g:526:1: rule__Statement__Alternatives : ( ( ruleConnect ) | ( ruleTradingBot ) | ( ruleListBots ) | ( ruleExecute ) | ( ruleStop ) | ( ruleVariableDeclaration ) | ( ruleLoopStatement ) );
     public final void rule__Statement__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:530:1: ( ( ruleConnect ) | ( ruleTradingBot ) | ( ruleShow ) | ( ruleExecute ) | ( ruleStop ) | ( ruleVariableDeclaration ) | ( ruleLoopStatement ) )
+            // InternalTrader.g:530:1: ( ( ruleConnect ) | ( ruleTradingBot ) | ( ruleListBots ) | ( ruleExecute ) | ( ruleStop ) | ( ruleVariableDeclaration ) | ( ruleLoopStatement ) )
             int alt2=7;
             switch ( input.LA(1) ) {
             case 17:
@@ -1585,29 +1585,29 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 alt2=2;
                 }
                 break;
-            case 32:
+            case 46:
                 {
                 alt2=3;
                 }
                 break;
-            case 35:
+            case 47:
                 {
                 alt2=4;
                 }
                 break;
-            case 36:
+            case 48:
                 {
                 alt2=5;
                 }
                 break;
-            case 37:
+            case 34:
                 {
                 alt2=6;
                 }
                 break;
             case RULE_INT:
             case RULE_ID:
-            case 43:
+            case 40:
                 {
                 alt2=7;
                 }
@@ -1659,18 +1659,18 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 3 :
-                    // InternalTrader.g:543:2: ( ruleShow )
+                    // InternalTrader.g:543:2: ( ruleListBots )
                     {
-                    // InternalTrader.g:543:2: ( ruleShow )
-                    // InternalTrader.g:544:3: ruleShow
+                    // InternalTrader.g:543:2: ( ruleListBots )
+                    // InternalTrader.g:544:3: ruleListBots
                     {
-                     before(grammarAccess.getStatementAccess().getShowParserRuleCall_2()); 
+                     before(grammarAccess.getStatementAccess().getListBotsParserRuleCall_2()); 
                     pushFollow(FOLLOW_2);
-                    ruleShow();
+                    ruleListBots();
 
                     state._fsp--;
 
-                     after(grammarAccess.getStatementAccess().getShowParserRuleCall_2()); 
+                     after(grammarAccess.getStatementAccess().getListBotsParserRuleCall_2()); 
 
                     }
 
@@ -1932,7 +1932,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 alt5=2;
                 }
                 break;
-            case 43:
+            case 40:
                 {
                 alt5=3;
                 }
@@ -4369,23 +4369,23 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TradingBot__Group__8__Impl"
 
 
-    // $ANTLR start "rule__Show__Group__0"
-    // InternalTrader.g:1450:1: rule__Show__Group__0 : rule__Show__Group__0__Impl rule__Show__Group__1 ;
-    public final void rule__Show__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__0"
+    // InternalTrader.g:1450:1: rule__ListBots__Group__0 : rule__ListBots__Group__0__Impl rule__ListBots__Group__1 ;
+    public final void rule__ListBots__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1454:1: ( rule__Show__Group__0__Impl rule__Show__Group__1 )
-            // InternalTrader.g:1455:2: rule__Show__Group__0__Impl rule__Show__Group__1
+            // InternalTrader.g:1454:1: ( rule__ListBots__Group__0__Impl rule__ListBots__Group__1 )
+            // InternalTrader.g:1455:2: rule__ListBots__Group__0__Impl rule__ListBots__Group__1
             {
             pushFollow(FOLLOW_21);
-            rule__Show__Group__0__Impl();
+            rule__ListBots__Group__0__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Show__Group__1();
+            rule__ListBots__Group__1();
 
             state._fsp--;
 
@@ -4404,25 +4404,35 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__0"
+    // $ANTLR end "rule__ListBots__Group__0"
 
 
-    // $ANTLR start "rule__Show__Group__0__Impl"
-    // InternalTrader.g:1462:1: rule__Show__Group__0__Impl : ( 'see' ) ;
-    public final void rule__Show__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__0__Impl"
+    // InternalTrader.g:1462:1: rule__ListBots__Group__0__Impl : ( ( rule__ListBots__ListCommandAssignment_0 ) ) ;
+    public final void rule__ListBots__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1466:1: ( ( 'see' ) )
-            // InternalTrader.g:1467:1: ( 'see' )
+            // InternalTrader.g:1466:1: ( ( ( rule__ListBots__ListCommandAssignment_0 ) ) )
+            // InternalTrader.g:1467:1: ( ( rule__ListBots__ListCommandAssignment_0 ) )
             {
-            // InternalTrader.g:1467:1: ( 'see' )
-            // InternalTrader.g:1468:2: 'see'
+            // InternalTrader.g:1467:1: ( ( rule__ListBots__ListCommandAssignment_0 ) )
+            // InternalTrader.g:1468:2: ( rule__ListBots__ListCommandAssignment_0 )
             {
-             before(grammarAccess.getShowAccess().getSeeKeyword_0()); 
-            match(input,32,FOLLOW_2); 
-             after(grammarAccess.getShowAccess().getSeeKeyword_0()); 
+             before(grammarAccess.getListBotsAccess().getListCommandAssignment_0()); 
+            // InternalTrader.g:1469:2: ( rule__ListBots__ListCommandAssignment_0 )
+            // InternalTrader.g:1469:3: rule__ListBots__ListCommandAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__ListBots__ListCommandAssignment_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getListBotsAccess().getListCommandAssignment_0()); 
 
             }
 
@@ -4441,26 +4451,26 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__0__Impl"
+    // $ANTLR end "rule__ListBots__Group__0__Impl"
 
 
-    // $ANTLR start "rule__Show__Group__1"
-    // InternalTrader.g:1477:1: rule__Show__Group__1 : rule__Show__Group__1__Impl rule__Show__Group__2 ;
-    public final void rule__Show__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__1"
+    // InternalTrader.g:1477:1: rule__ListBots__Group__1 : rule__ListBots__Group__1__Impl rule__ListBots__Group__2 ;
+    public final void rule__ListBots__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1481:1: ( rule__Show__Group__1__Impl rule__Show__Group__2 )
-            // InternalTrader.g:1482:2: rule__Show__Group__1__Impl rule__Show__Group__2
+            // InternalTrader.g:1481:1: ( rule__ListBots__Group__1__Impl rule__ListBots__Group__2 )
+            // InternalTrader.g:1482:2: rule__ListBots__Group__1__Impl rule__ListBots__Group__2
             {
             pushFollow(FOLLOW_22);
-            rule__Show__Group__1__Impl();
+            rule__ListBots__Group__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Show__Group__2();
+            rule__ListBots__Group__2();
 
             state._fsp--;
 
@@ -4479,12 +4489,12 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__1"
+    // $ANTLR end "rule__ListBots__Group__1"
 
 
-    // $ANTLR start "rule__Show__Group__1__Impl"
-    // InternalTrader.g:1489:1: rule__Show__Group__1__Impl : ( 'registered' ) ;
-    public final void rule__Show__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__1__Impl"
+    // InternalTrader.g:1489:1: rule__ListBots__Group__1__Impl : ( 'registered' ) ;
+    public final void rule__ListBots__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -4495,9 +4505,9 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1494:1: ( 'registered' )
             // InternalTrader.g:1495:2: 'registered'
             {
-             before(grammarAccess.getShowAccess().getRegisteredKeyword_1()); 
-            match(input,33,FOLLOW_2); 
-             after(grammarAccess.getShowAccess().getRegisteredKeyword_1()); 
+             before(grammarAccess.getListBotsAccess().getRegisteredKeyword_1()); 
+            match(input,32,FOLLOW_2); 
+             after(grammarAccess.getListBotsAccess().getRegisteredKeyword_1()); 
 
             }
 
@@ -4516,21 +4526,21 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__1__Impl"
+    // $ANTLR end "rule__ListBots__Group__1__Impl"
 
 
-    // $ANTLR start "rule__Show__Group__2"
-    // InternalTrader.g:1504:1: rule__Show__Group__2 : rule__Show__Group__2__Impl ;
-    public final void rule__Show__Group__2() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__2"
+    // InternalTrader.g:1504:1: rule__ListBots__Group__2 : rule__ListBots__Group__2__Impl ;
+    public final void rule__ListBots__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1508:1: ( rule__Show__Group__2__Impl )
-            // InternalTrader.g:1509:2: rule__Show__Group__2__Impl
+            // InternalTrader.g:1508:1: ( rule__ListBots__Group__2__Impl )
+            // InternalTrader.g:1509:2: rule__ListBots__Group__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Show__Group__2__Impl();
+            rule__ListBots__Group__2__Impl();
 
             state._fsp--;
 
@@ -4549,12 +4559,12 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__2"
+    // $ANTLR end "rule__ListBots__Group__2"
 
 
-    // $ANTLR start "rule__Show__Group__2__Impl"
-    // InternalTrader.g:1515:1: rule__Show__Group__2__Impl : ( 'bots' ) ;
-    public final void rule__Show__Group__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__ListBots__Group__2__Impl"
+    // InternalTrader.g:1515:1: rule__ListBots__Group__2__Impl : ( 'bots' ) ;
+    public final void rule__ListBots__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -4565,9 +4575,9 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1520:1: ( 'bots' )
             // InternalTrader.g:1521:2: 'bots'
             {
-             before(grammarAccess.getShowAccess().getBotsKeyword_2()); 
-            match(input,34,FOLLOW_2); 
-             after(grammarAccess.getShowAccess().getBotsKeyword_2()); 
+             before(grammarAccess.getListBotsAccess().getBotsKeyword_2()); 
+            match(input,33,FOLLOW_2); 
+             after(grammarAccess.getListBotsAccess().getBotsKeyword_2()); 
 
             }
 
@@ -4586,7 +4596,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end "rule__Show__Group__2__Impl"
+    // $ANTLR end "rule__ListBots__Group__2__Impl"
 
 
     // $ANTLR start "rule__Execute__Group__0"
@@ -4628,21 +4638,31 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Execute__Group__0__Impl"
-    // InternalTrader.g:1543:1: rule__Execute__Group__0__Impl : ( 'execute' ) ;
+    // InternalTrader.g:1543:1: rule__Execute__Group__0__Impl : ( ( rule__Execute__ExecuteCommandAssignment_0 ) ) ;
     public final void rule__Execute__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1547:1: ( ( 'execute' ) )
-            // InternalTrader.g:1548:1: ( 'execute' )
+            // InternalTrader.g:1547:1: ( ( ( rule__Execute__ExecuteCommandAssignment_0 ) ) )
+            // InternalTrader.g:1548:1: ( ( rule__Execute__ExecuteCommandAssignment_0 ) )
             {
-            // InternalTrader.g:1548:1: ( 'execute' )
-            // InternalTrader.g:1549:2: 'execute'
+            // InternalTrader.g:1548:1: ( ( rule__Execute__ExecuteCommandAssignment_0 ) )
+            // InternalTrader.g:1549:2: ( rule__Execute__ExecuteCommandAssignment_0 )
             {
-             before(grammarAccess.getExecuteAccess().getExecuteKeyword_0()); 
-            match(input,35,FOLLOW_2); 
-             after(grammarAccess.getExecuteAccess().getExecuteKeyword_0()); 
+             before(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0()); 
+            // InternalTrader.g:1550:2: ( rule__Execute__ExecuteCommandAssignment_0 )
+            // InternalTrader.g:1550:3: rule__Execute__ExecuteCommandAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__Execute__ExecuteCommandAssignment_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0()); 
 
             }
 
@@ -4711,7 +4731,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1575:2: 'bots'
             {
              before(grammarAccess.getExecuteAccess().getBotsKeyword_1()); 
-            match(input,34,FOLLOW_2); 
+            match(input,33,FOLLOW_2); 
              after(grammarAccess.getExecuteAccess().getBotsKeyword_1()); 
 
             }
@@ -4773,21 +4793,31 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Stop__Group__0__Impl"
-    // InternalTrader.g:1597:1: rule__Stop__Group__0__Impl : ( 'stop' ) ;
+    // InternalTrader.g:1597:1: rule__Stop__Group__0__Impl : ( ( rule__Stop__StopCommandAssignment_0 ) ) ;
     public final void rule__Stop__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:1601:1: ( ( 'stop' ) )
-            // InternalTrader.g:1602:1: ( 'stop' )
+            // InternalTrader.g:1601:1: ( ( ( rule__Stop__StopCommandAssignment_0 ) ) )
+            // InternalTrader.g:1602:1: ( ( rule__Stop__StopCommandAssignment_0 ) )
             {
-            // InternalTrader.g:1602:1: ( 'stop' )
-            // InternalTrader.g:1603:2: 'stop'
+            // InternalTrader.g:1602:1: ( ( rule__Stop__StopCommandAssignment_0 ) )
+            // InternalTrader.g:1603:2: ( rule__Stop__StopCommandAssignment_0 )
             {
-             before(grammarAccess.getStopAccess().getStopKeyword_0()); 
-            match(input,36,FOLLOW_2); 
-             after(grammarAccess.getStopAccess().getStopKeyword_0()); 
+             before(grammarAccess.getStopAccess().getStopCommandAssignment_0()); 
+            // InternalTrader.g:1604:2: ( rule__Stop__StopCommandAssignment_0 )
+            // InternalTrader.g:1604:3: rule__Stop__StopCommandAssignment_0
+            {
+            pushFollow(FOLLOW_2);
+            rule__Stop__StopCommandAssignment_0();
+
+            state._fsp--;
+
+
+            }
+
+             after(grammarAccess.getStopAccess().getStopCommandAssignment_0()); 
 
             }
 
@@ -4856,7 +4886,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1629:2: 'bots'
             {
              before(grammarAccess.getStopAccess().getBotsKeyword_1()); 
-            match(input,34,FOLLOW_2); 
+            match(input,33,FOLLOW_2); 
              after(grammarAccess.getStopAccess().getBotsKeyword_1()); 
 
             }
@@ -4931,7 +4961,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1657:2: 'var'
             {
              before(grammarAccess.getVariableDeclarationAccess().getVarKeyword_0()); 
-            match(input,37,FOLLOW_2); 
+            match(input,34,FOLLOW_2); 
              after(grammarAccess.getVariableDeclarationAccess().getVarKeyword_0()); 
 
             }
@@ -5091,7 +5121,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1711:2: '='
             {
              before(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2()); 
-            match(input,38,FOLLOW_2); 
+            match(input,35,FOLLOW_2); 
              after(grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2()); 
 
             }
@@ -5331,7 +5361,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1792:2: 'times'
             {
              before(grammarAccess.getLoopStatementAccess().getTimesKeyword_1()); 
-            match(input,39,FOLLOW_2); 
+            match(input,36,FOLLOW_2); 
              after(grammarAccess.getLoopStatementAccess().getTimesKeyword_1()); 
 
             }
@@ -5406,7 +5436,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1819:2: 'do'
             {
              before(grammarAccess.getLoopStatementAccess().getDoKeyword_2()); 
-            match(input,40,FOLLOW_2); 
+            match(input,37,FOLLOW_2); 
              after(grammarAccess.getLoopStatementAccess().getDoKeyword_2()); 
 
             }
@@ -5509,7 +5539,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
 
-                if ( ((LA8_0>=RULE_INT && LA8_0<=RULE_ID)||LA8_0==17||LA8_0==27||LA8_0==32||(LA8_0>=35 && LA8_0<=37)||LA8_0==43) ) {
+                if ( ((LA8_0>=RULE_INT && LA8_0<=RULE_ID)||LA8_0==17||LA8_0==27||LA8_0==34||LA8_0==40||(LA8_0>=46 && LA8_0<=48)) ) {
                     alt8=1;
                 }
 
@@ -5604,7 +5634,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1879:2: 'end'
             {
              before(grammarAccess.getLoopStatementAccess().getEndKeyword_4()); 
-            match(input,41,FOLLOW_2); 
+            match(input,38,FOLLOW_2); 
              after(grammarAccess.getLoopStatementAccess().getEndKeyword_4()); 
 
             }
@@ -5771,7 +5801,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:1934:2: '.'
             {
              before(grammarAccess.getREALAccess().getFullStopKeyword_1()); 
-            match(input,42,FOLLOW_2); 
+            match(input,39,FOLLOW_2); 
              after(grammarAccess.getREALAccess().getFullStopKeyword_1()); 
 
             }
@@ -6750,7 +6780,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2258:2: '('
             {
              before(grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0()); 
-            match(input,43,FOLLOW_2); 
+            match(input,40,FOLLOW_2); 
              after(grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0()); 
 
             }
@@ -6899,7 +6929,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2311:2: ')'
             {
              before(grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_2_2()); 
-            match(input,44,FOLLOW_2); 
+            match(input,41,FOLLOW_2); 
              after(grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_2_2()); 
 
             }
@@ -6974,7 +7004,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2339:2: 'buy'
             {
              before(grammarAccess.getBuyAccess().getBuyKeyword_0()); 
-            match(input,45,FOLLOW_2); 
+            match(input,42,FOLLOW_2); 
              after(grammarAccess.getBuyAccess().getBuyKeyword_0()); 
 
             }
@@ -7219,7 +7249,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2420:2: 'at'
             {
              before(grammarAccess.getBuyAccess().getAtKeyword_3()); 
-            match(input,46,FOLLOW_2); 
+            match(input,43,FOLLOW_2); 
              after(grammarAccess.getBuyAccess().getAtKeyword_3()); 
 
             }
@@ -7294,7 +7324,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2447:2: 'price'
             {
              before(grammarAccess.getBuyAccess().getPriceKeyword_4()); 
-            match(input,47,FOLLOW_2); 
+            match(input,44,FOLLOW_2); 
              after(grammarAccess.getBuyAccess().getPriceKeyword_4()); 
 
             }
@@ -7449,7 +7479,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2501:2: 'sell'
             {
              before(grammarAccess.getSellAccess().getSellKeyword_0()); 
-            match(input,48,FOLLOW_2); 
+            match(input,45,FOLLOW_2); 
              after(grammarAccess.getSellAccess().getSellKeyword_0()); 
 
             }
@@ -7694,7 +7724,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2582:2: 'at'
             {
              before(grammarAccess.getSellAccess().getAtKeyword_3()); 
-            match(input,46,FOLLOW_2); 
+            match(input,43,FOLLOW_2); 
              after(grammarAccess.getSellAccess().getAtKeyword_3()); 
 
             }
@@ -7769,7 +7799,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             // InternalTrader.g:2609:2: 'price'
             {
              before(grammarAccess.getSellAccess().getPriceKeyword_4()); 
-            match(input,47,FOLLOW_2); 
+            match(input,44,FOLLOW_2); 
              after(grammarAccess.getSellAccess().getPriceKeyword_4()); 
 
             }
@@ -8266,18 +8296,153 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
     // $ANTLR end "rule__TradingBot__FundsAssignment_6"
 
 
+    // $ANTLR start "rule__ListBots__ListCommandAssignment_0"
+    // InternalTrader.g:2795:1: rule__ListBots__ListCommandAssignment_0 : ( ( 'see' ) ) ;
+    public final void rule__ListBots__ListCommandAssignment_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalTrader.g:2799:1: ( ( ( 'see' ) ) )
+            // InternalTrader.g:2800:2: ( ( 'see' ) )
+            {
+            // InternalTrader.g:2800:2: ( ( 'see' ) )
+            // InternalTrader.g:2801:3: ( 'see' )
+            {
+             before(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); 
+            // InternalTrader.g:2802:3: ( 'see' )
+            // InternalTrader.g:2803:4: 'see'
+            {
+             before(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); 
+            match(input,46,FOLLOW_2); 
+             after(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); 
+
+            }
+
+             after(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__ListBots__ListCommandAssignment_0"
+
+
+    // $ANTLR start "rule__Execute__ExecuteCommandAssignment_0"
+    // InternalTrader.g:2814:1: rule__Execute__ExecuteCommandAssignment_0 : ( ( 'execute' ) ) ;
+    public final void rule__Execute__ExecuteCommandAssignment_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalTrader.g:2818:1: ( ( ( 'execute' ) ) )
+            // InternalTrader.g:2819:2: ( ( 'execute' ) )
+            {
+            // InternalTrader.g:2819:2: ( ( 'execute' ) )
+            // InternalTrader.g:2820:3: ( 'execute' )
+            {
+             before(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); 
+            // InternalTrader.g:2821:3: ( 'execute' )
+            // InternalTrader.g:2822:4: 'execute'
+            {
+             before(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); 
+            match(input,47,FOLLOW_2); 
+             after(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); 
+
+            }
+
+             after(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Execute__ExecuteCommandAssignment_0"
+
+
+    // $ANTLR start "rule__Stop__StopCommandAssignment_0"
+    // InternalTrader.g:2833:1: rule__Stop__StopCommandAssignment_0 : ( ( 'stop' ) ) ;
+    public final void rule__Stop__StopCommandAssignment_0() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+        	
+        try {
+            // InternalTrader.g:2837:1: ( ( ( 'stop' ) ) )
+            // InternalTrader.g:2838:2: ( ( 'stop' ) )
+            {
+            // InternalTrader.g:2838:2: ( ( 'stop' ) )
+            // InternalTrader.g:2839:3: ( 'stop' )
+            {
+             before(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); 
+            // InternalTrader.g:2840:3: ( 'stop' )
+            // InternalTrader.g:2841:4: 'stop'
+            {
+             before(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); 
+            match(input,48,FOLLOW_2); 
+             after(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); 
+
+            }
+
+             after(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end "rule__Stop__StopCommandAssignment_0"
+
+
     // $ANTLR start "rule__VariableDeclaration__NameAssignment_1"
-    // InternalTrader.g:2795:1: rule__VariableDeclaration__NameAssignment_1 : ( RULE_ID ) ;
+    // InternalTrader.g:2852:1: rule__VariableDeclaration__NameAssignment_1 : ( RULE_ID ) ;
     public final void rule__VariableDeclaration__NameAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2799:1: ( ( RULE_ID ) )
-            // InternalTrader.g:2800:2: ( RULE_ID )
+            // InternalTrader.g:2856:1: ( ( RULE_ID ) )
+            // InternalTrader.g:2857:2: ( RULE_ID )
             {
-            // InternalTrader.g:2800:2: ( RULE_ID )
-            // InternalTrader.g:2801:3: RULE_ID
+            // InternalTrader.g:2857:2: ( RULE_ID )
+            // InternalTrader.g:2858:3: RULE_ID
             {
              before(grammarAccess.getVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8304,17 +8469,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableDeclaration__ValueAssignment_3"
-    // InternalTrader.g:2810:1: rule__VariableDeclaration__ValueAssignment_3 : ( RULE_INT ) ;
+    // InternalTrader.g:2867:1: rule__VariableDeclaration__ValueAssignment_3 : ( RULE_INT ) ;
     public final void rule__VariableDeclaration__ValueAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2814:1: ( ( RULE_INT ) )
-            // InternalTrader.g:2815:2: ( RULE_INT )
+            // InternalTrader.g:2871:1: ( ( RULE_INT ) )
+            // InternalTrader.g:2872:2: ( RULE_INT )
             {
-            // InternalTrader.g:2815:2: ( RULE_INT )
-            // InternalTrader.g:2816:3: RULE_INT
+            // InternalTrader.g:2872:2: ( RULE_INT )
+            // InternalTrader.g:2873:3: RULE_INT
             {
              before(grammarAccess.getVariableDeclarationAccess().getValueINTTerminalRuleCall_3_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -8341,17 +8506,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LoopStatement__CountAssignment_0"
-    // InternalTrader.g:2825:1: rule__LoopStatement__CountAssignment_0 : ( ruleAddition ) ;
+    // InternalTrader.g:2882:1: rule__LoopStatement__CountAssignment_0 : ( ruleAddition ) ;
     public final void rule__LoopStatement__CountAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2829:1: ( ( ruleAddition ) )
-            // InternalTrader.g:2830:2: ( ruleAddition )
+            // InternalTrader.g:2886:1: ( ( ruleAddition ) )
+            // InternalTrader.g:2887:2: ( ruleAddition )
             {
-            // InternalTrader.g:2830:2: ( ruleAddition )
-            // InternalTrader.g:2831:3: ruleAddition
+            // InternalTrader.g:2887:2: ( ruleAddition )
+            // InternalTrader.g:2888:3: ruleAddition
             {
              before(grammarAccess.getLoopStatementAccess().getCountAdditionParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
@@ -8382,17 +8547,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__LoopStatement__StatementsAssignment_3"
-    // InternalTrader.g:2840:1: rule__LoopStatement__StatementsAssignment_3 : ( ruleStatement ) ;
+    // InternalTrader.g:2897:1: rule__LoopStatement__StatementsAssignment_3 : ( ruleStatement ) ;
     public final void rule__LoopStatement__StatementsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2844:1: ( ( ruleStatement ) )
-            // InternalTrader.g:2845:2: ( ruleStatement )
+            // InternalTrader.g:2901:1: ( ( ruleStatement ) )
+            // InternalTrader.g:2902:2: ( ruleStatement )
             {
-            // InternalTrader.g:2845:2: ( ruleStatement )
-            // InternalTrader.g:2846:3: ruleStatement
+            // InternalTrader.g:2902:2: ( ruleStatement )
+            // InternalTrader.g:2903:3: ruleStatement
             {
              before(grammarAccess.getLoopStatementAccess().getStatementsStatementParserRuleCall_3_0()); 
             pushFollow(FOLLOW_2);
@@ -8423,21 +8588,21 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Addition__OperatorAssignment_1_1"
-    // InternalTrader.g:2855:1: rule__Addition__OperatorAssignment_1_1 : ( ( rule__Addition__OperatorAlternatives_1_1_0 ) ) ;
+    // InternalTrader.g:2912:1: rule__Addition__OperatorAssignment_1_1 : ( ( rule__Addition__OperatorAlternatives_1_1_0 ) ) ;
     public final void rule__Addition__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2859:1: ( ( ( rule__Addition__OperatorAlternatives_1_1_0 ) ) )
-            // InternalTrader.g:2860:2: ( ( rule__Addition__OperatorAlternatives_1_1_0 ) )
+            // InternalTrader.g:2916:1: ( ( ( rule__Addition__OperatorAlternatives_1_1_0 ) ) )
+            // InternalTrader.g:2917:2: ( ( rule__Addition__OperatorAlternatives_1_1_0 ) )
             {
-            // InternalTrader.g:2860:2: ( ( rule__Addition__OperatorAlternatives_1_1_0 ) )
-            // InternalTrader.g:2861:3: ( rule__Addition__OperatorAlternatives_1_1_0 )
+            // InternalTrader.g:2917:2: ( ( rule__Addition__OperatorAlternatives_1_1_0 ) )
+            // InternalTrader.g:2918:3: ( rule__Addition__OperatorAlternatives_1_1_0 )
             {
              before(grammarAccess.getAdditionAccess().getOperatorAlternatives_1_1_0()); 
-            // InternalTrader.g:2862:3: ( rule__Addition__OperatorAlternatives_1_1_0 )
-            // InternalTrader.g:2862:4: rule__Addition__OperatorAlternatives_1_1_0
+            // InternalTrader.g:2919:3: ( rule__Addition__OperatorAlternatives_1_1_0 )
+            // InternalTrader.g:2919:4: rule__Addition__OperatorAlternatives_1_1_0
             {
             pushFollow(FOLLOW_2);
             rule__Addition__OperatorAlternatives_1_1_0();
@@ -8470,17 +8635,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Addition__RightAssignment_1_2"
-    // InternalTrader.g:2870:1: rule__Addition__RightAssignment_1_2 : ( ruleMultiplication ) ;
+    // InternalTrader.g:2927:1: rule__Addition__RightAssignment_1_2 : ( ruleMultiplication ) ;
     public final void rule__Addition__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2874:1: ( ( ruleMultiplication ) )
-            // InternalTrader.g:2875:2: ( ruleMultiplication )
+            // InternalTrader.g:2931:1: ( ( ruleMultiplication ) )
+            // InternalTrader.g:2932:2: ( ruleMultiplication )
             {
-            // InternalTrader.g:2875:2: ( ruleMultiplication )
-            // InternalTrader.g:2876:3: ruleMultiplication
+            // InternalTrader.g:2932:2: ( ruleMultiplication )
+            // InternalTrader.g:2933:3: ruleMultiplication
             {
              before(grammarAccess.getAdditionAccess().getRightMultiplicationParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -8511,21 +8676,21 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplication__OperatorAssignment_1_1"
-    // InternalTrader.g:2885:1: rule__Multiplication__OperatorAssignment_1_1 : ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) ) ;
+    // InternalTrader.g:2942:1: rule__Multiplication__OperatorAssignment_1_1 : ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) ) ;
     public final void rule__Multiplication__OperatorAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2889:1: ( ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) ) )
-            // InternalTrader.g:2890:2: ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) )
+            // InternalTrader.g:2946:1: ( ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) ) )
+            // InternalTrader.g:2947:2: ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) )
             {
-            // InternalTrader.g:2890:2: ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) )
-            // InternalTrader.g:2891:3: ( rule__Multiplication__OperatorAlternatives_1_1_0 )
+            // InternalTrader.g:2947:2: ( ( rule__Multiplication__OperatorAlternatives_1_1_0 ) )
+            // InternalTrader.g:2948:3: ( rule__Multiplication__OperatorAlternatives_1_1_0 )
             {
              before(grammarAccess.getMultiplicationAccess().getOperatorAlternatives_1_1_0()); 
-            // InternalTrader.g:2892:3: ( rule__Multiplication__OperatorAlternatives_1_1_0 )
-            // InternalTrader.g:2892:4: rule__Multiplication__OperatorAlternatives_1_1_0
+            // InternalTrader.g:2949:3: ( rule__Multiplication__OperatorAlternatives_1_1_0 )
+            // InternalTrader.g:2949:4: rule__Multiplication__OperatorAlternatives_1_1_0
             {
             pushFollow(FOLLOW_2);
             rule__Multiplication__OperatorAlternatives_1_1_0();
@@ -8558,17 +8723,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Multiplication__RightAssignment_1_2"
-    // InternalTrader.g:2900:1: rule__Multiplication__RightAssignment_1_2 : ( rulePrimary ) ;
+    // InternalTrader.g:2957:1: rule__Multiplication__RightAssignment_1_2 : ( rulePrimary ) ;
     public final void rule__Multiplication__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2904:1: ( ( rulePrimary ) )
-            // InternalTrader.g:2905:2: ( rulePrimary )
+            // InternalTrader.g:2961:1: ( ( rulePrimary ) )
+            // InternalTrader.g:2962:2: ( rulePrimary )
             {
-            // InternalTrader.g:2905:2: ( rulePrimary )
-            // InternalTrader.g:2906:3: rulePrimary
+            // InternalTrader.g:2962:2: ( rulePrimary )
+            // InternalTrader.g:2963:3: rulePrimary
             {
              before(grammarAccess.getMultiplicationAccess().getRightPrimaryParserRuleCall_1_2_0()); 
             pushFollow(FOLLOW_2);
@@ -8599,17 +8764,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IntLiteral__ValAssignment"
-    // InternalTrader.g:2915:1: rule__IntLiteral__ValAssignment : ( RULE_INT ) ;
+    // InternalTrader.g:2972:1: rule__IntLiteral__ValAssignment : ( RULE_INT ) ;
     public final void rule__IntLiteral__ValAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2919:1: ( ( RULE_INT ) )
-            // InternalTrader.g:2920:2: ( RULE_INT )
+            // InternalTrader.g:2976:1: ( ( RULE_INT ) )
+            // InternalTrader.g:2977:2: ( RULE_INT )
             {
-            // InternalTrader.g:2920:2: ( RULE_INT )
-            // InternalTrader.g:2921:3: RULE_INT
+            // InternalTrader.g:2977:2: ( RULE_INT )
+            // InternalTrader.g:2978:3: RULE_INT
             {
              before(grammarAccess.getIntLiteralAccess().getValINTTerminalRuleCall_0()); 
             match(input,RULE_INT,FOLLOW_2); 
@@ -8636,21 +8801,21 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__IntVarExpression__VarAssignment"
-    // InternalTrader.g:2930:1: rule__IntVarExpression__VarAssignment : ( ( RULE_ID ) ) ;
+    // InternalTrader.g:2987:1: rule__IntVarExpression__VarAssignment : ( ( RULE_ID ) ) ;
     public final void rule__IntVarExpression__VarAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2934:1: ( ( ( RULE_ID ) ) )
-            // InternalTrader.g:2935:2: ( ( RULE_ID ) )
+            // InternalTrader.g:2991:1: ( ( ( RULE_ID ) ) )
+            // InternalTrader.g:2992:2: ( ( RULE_ID ) )
             {
-            // InternalTrader.g:2935:2: ( ( RULE_ID ) )
-            // InternalTrader.g:2936:3: ( RULE_ID )
+            // InternalTrader.g:2992:2: ( ( RULE_ID ) )
+            // InternalTrader.g:2993:3: ( RULE_ID )
             {
              before(grammarAccess.getIntVarExpressionAccess().getVarVariableDeclarationCrossReference_0()); 
-            // InternalTrader.g:2937:3: ( RULE_ID )
-            // InternalTrader.g:2938:4: RULE_ID
+            // InternalTrader.g:2994:3: ( RULE_ID )
+            // InternalTrader.g:2995:4: RULE_ID
             {
              before(grammarAccess.getIntVarExpressionAccess().getVarVariableDeclarationIDTerminalRuleCall_0_1()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8681,17 +8846,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Buy__QuantityAssignment_1"
-    // InternalTrader.g:2949:1: rule__Buy__QuantityAssignment_1 : ( ruleREAL ) ;
+    // InternalTrader.g:3006:1: rule__Buy__QuantityAssignment_1 : ( ruleREAL ) ;
     public final void rule__Buy__QuantityAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2953:1: ( ( ruleREAL ) )
-            // InternalTrader.g:2954:2: ( ruleREAL )
+            // InternalTrader.g:3010:1: ( ( ruleREAL ) )
+            // InternalTrader.g:3011:2: ( ruleREAL )
             {
-            // InternalTrader.g:2954:2: ( ruleREAL )
-            // InternalTrader.g:2955:3: ruleREAL
+            // InternalTrader.g:3011:2: ( ruleREAL )
+            // InternalTrader.g:3012:3: ruleREAL
             {
              before(grammarAccess.getBuyAccess().getQuantityREALParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -8722,17 +8887,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Buy__TickerAssignment_2"
-    // InternalTrader.g:2964:1: rule__Buy__TickerAssignment_2 : ( RULE_ID ) ;
+    // InternalTrader.g:3021:1: rule__Buy__TickerAssignment_2 : ( RULE_ID ) ;
     public final void rule__Buy__TickerAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2968:1: ( ( RULE_ID ) )
-            // InternalTrader.g:2969:2: ( RULE_ID )
+            // InternalTrader.g:3025:1: ( ( RULE_ID ) )
+            // InternalTrader.g:3026:2: ( RULE_ID )
             {
-            // InternalTrader.g:2969:2: ( RULE_ID )
-            // InternalTrader.g:2970:3: RULE_ID
+            // InternalTrader.g:3026:2: ( RULE_ID )
+            // InternalTrader.g:3027:3: RULE_ID
             {
              before(grammarAccess.getBuyAccess().getTickerIDTerminalRuleCall_2_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8759,17 +8924,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Buy__PriceAssignment_5"
-    // InternalTrader.g:2979:1: rule__Buy__PriceAssignment_5 : ( ruleREAL ) ;
+    // InternalTrader.g:3036:1: rule__Buy__PriceAssignment_5 : ( ruleREAL ) ;
     public final void rule__Buy__PriceAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2983:1: ( ( ruleREAL ) )
-            // InternalTrader.g:2984:2: ( ruleREAL )
+            // InternalTrader.g:3040:1: ( ( ruleREAL ) )
+            // InternalTrader.g:3041:2: ( ruleREAL )
             {
-            // InternalTrader.g:2984:2: ( ruleREAL )
-            // InternalTrader.g:2985:3: ruleREAL
+            // InternalTrader.g:3041:2: ( ruleREAL )
+            // InternalTrader.g:3042:3: ruleREAL
             {
              before(grammarAccess.getBuyAccess().getPriceREALParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -8800,17 +8965,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Sell__QuantityAssignment_1"
-    // InternalTrader.g:2994:1: rule__Sell__QuantityAssignment_1 : ( ruleREAL ) ;
+    // InternalTrader.g:3051:1: rule__Sell__QuantityAssignment_1 : ( ruleREAL ) ;
     public final void rule__Sell__QuantityAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2998:1: ( ( ruleREAL ) )
-            // InternalTrader.g:2999:2: ( ruleREAL )
+            // InternalTrader.g:3055:1: ( ( ruleREAL ) )
+            // InternalTrader.g:3056:2: ( ruleREAL )
             {
-            // InternalTrader.g:2999:2: ( ruleREAL )
-            // InternalTrader.g:3000:3: ruleREAL
+            // InternalTrader.g:3056:2: ( ruleREAL )
+            // InternalTrader.g:3057:3: ruleREAL
             {
              before(grammarAccess.getSellAccess().getQuantityREALParserRuleCall_1_0()); 
             pushFollow(FOLLOW_2);
@@ -8841,17 +9006,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Sell__TickerAssignment_2"
-    // InternalTrader.g:3009:1: rule__Sell__TickerAssignment_2 : ( RULE_ID ) ;
+    // InternalTrader.g:3066:1: rule__Sell__TickerAssignment_2 : ( RULE_ID ) ;
     public final void rule__Sell__TickerAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:3013:1: ( ( RULE_ID ) )
-            // InternalTrader.g:3014:2: ( RULE_ID )
+            // InternalTrader.g:3070:1: ( ( RULE_ID ) )
+            // InternalTrader.g:3071:2: ( RULE_ID )
             {
-            // InternalTrader.g:3014:2: ( RULE_ID )
-            // InternalTrader.g:3015:3: RULE_ID
+            // InternalTrader.g:3071:2: ( RULE_ID )
+            // InternalTrader.g:3072:3: RULE_ID
             {
              before(grammarAccess.getSellAccess().getTickerIDTerminalRuleCall_2_0()); 
             match(input,RULE_ID,FOLLOW_2); 
@@ -8878,17 +9043,17 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__Sell__PriceAssignment_5"
-    // InternalTrader.g:3024:1: rule__Sell__PriceAssignment_5 : ( ruleREAL ) ;
+    // InternalTrader.g:3081:1: rule__Sell__PriceAssignment_5 : ( ruleREAL ) ;
     public final void rule__Sell__PriceAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:3028:1: ( ( ruleREAL ) )
-            // InternalTrader.g:3029:2: ( ruleREAL )
+            // InternalTrader.g:3085:1: ( ( ruleREAL ) )
+            // InternalTrader.g:3086:2: ( ruleREAL )
             {
-            // InternalTrader.g:3029:2: ( ruleREAL )
-            // InternalTrader.g:3030:3: ruleREAL
+            // InternalTrader.g:3086:2: ( ruleREAL )
+            // InternalTrader.g:3087:3: ruleREAL
             {
              before(grammarAccess.getSellAccess().getPriceREALParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
@@ -8924,7 +9089,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
     public static final BitSet FOLLOW_1 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_2 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0000083908020032L});
+    public static final BitSet FOLLOW_3 = new BitSet(new long[]{0x0001C10408020032L});
     public static final BitSet FOLLOW_4 = new BitSet(new long[]{0x0000000000040000L});
     public static final BitSet FOLLOW_5 = new BitSet(new long[]{0x0000000000080000L});
     public static final BitSet FOLLOW_6 = new BitSet(new long[]{0x0000000000000020L});
@@ -8934,7 +9099,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_10 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000000000800000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000040000000010L});
+    public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000008000000010L});
     public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000004000000L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000010000000L});
@@ -8942,20 +9107,20 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_18 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_19 = new BitSet(new long[]{0x0000000040000000L});
     public static final BitSet FOLLOW_20 = new BitSet(new long[]{0x0000000080000000L});
-    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000400000000L});
-    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_21 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_22 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_23 = new BitSet(new long[]{0x0000000800000000L});
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000083908020030L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0000002000000000L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0001C10408020030L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000004000000000L});
     public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000001800L});
     public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000001802L});
     public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000006000L});
     public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000006002L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000100000000000L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000400000000000L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000800000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000020000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000080000000000L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000100000000000L});
 
 }

@@ -10,7 +10,6 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
-import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -23,59 +22,19 @@ public class TraderSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected TraderGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_2_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_2_0_p;
-	protected AbstractElementAlias match_Statement_ExecuteParserRuleCall_3_or_ShowParserRuleCall_2_or_StopParserRuleCall_4;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (TraderGrammarAccess) access;
 		match_Primary_LeftParenthesisKeyword_2_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0());
 		match_Primary_LeftParenthesisKeyword_2_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_2_0());
-		match_Statement_ExecuteParserRuleCall_3_or_ShowParserRuleCall_2_or_StopParserRuleCall_4 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getStatementAccess().getExecuteParserRuleCall_3()), new TokenAlias(false, false, grammarAccess.getStatementAccess().getShowParserRuleCall_2()), new TokenAlias(false, false, grammarAccess.getStatementAccess().getStopParserRuleCall_4()));
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getExecuteRule())
-			return getExecuteToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getShowRule())
-			return getShowToken(semanticObject, ruleCall, node);
-		else if (ruleCall.getRule() == grammarAccess.getStopRule())
-			return getStopToken(semanticObject, ruleCall, node);
 		return "";
 	}
 	
-	/**
-	 * Execute:
-	 *     "execute" "bots"
-	 * ;
-	 */
-	protected String getExecuteToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "execute bots";
-	}
-	
-	/**
-	 * Show:
-	 * 	"see" "registered" "bots"
-	 * ;
-	 */
-	protected String getShowToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "see registered bots";
-	}
-	
-	/**
-	 * Stop:
-	 * 	"stop" "bots"
-	 * ;
-	 */
-	protected String getStopToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (node != null)
-			return getTokenText(node);
-		return "stop bots";
-	}
 	
 	@Override
 	protected void emitUnassignedTokens(EObject semanticObject, ISynTransition transition, INode fromNode, INode toNode) {
@@ -87,8 +46,6 @@ public class TraderSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Primary_LeftParenthesisKeyword_2_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_2_0_p.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_2_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Statement_ExecuteParserRuleCall_3_or_ShowParserRuleCall_2_or_StopParserRuleCall_4.equals(syntax))
-				emit_Statement_ExecuteParserRuleCall_3_or_ShowParserRuleCall_2_or_StopParserRuleCall_4(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -122,20 +79,6 @@ public class TraderSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_2_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     Show | Execute | Stop
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     (rule start) (ambiguity) (rule start)
-	 
-	 * </pre>
-	 */
-	protected void emit_Statement_ExecuteParserRuleCall_3_or_ShowParserRuleCall_2_or_StopParserRuleCall_4(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

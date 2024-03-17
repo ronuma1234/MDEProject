@@ -16,13 +16,16 @@ import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.Buy;
 import uk.ac.kcl.inf.trader.trader.Connect;
 import uk.ac.kcl.inf.trader.trader.ConnectParameters;
+import uk.ac.kcl.inf.trader.trader.Execute;
 import uk.ac.kcl.inf.trader.trader.IntExpression;
 import uk.ac.kcl.inf.trader.trader.IntLiteral;
 import uk.ac.kcl.inf.trader.trader.IntVarExpression;
+import uk.ac.kcl.inf.trader.trader.ListBots;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.Multiplication;
 import uk.ac.kcl.inf.trader.trader.Sell;
 import uk.ac.kcl.inf.trader.trader.Statement;
+import uk.ac.kcl.inf.trader.trader.Stop;
 import uk.ac.kcl.inf.trader.trader.StrategyDef;
 import uk.ac.kcl.inf.trader.trader.TraderFactory;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
@@ -72,6 +75,27 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   private EClass tradingBotEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listBotsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass executeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass stopEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -375,6 +399,72 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
   public EAttribute getTradingBot_Funds()
   {
     return (EAttribute)tradingBotEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getListBots()
+  {
+    return listBotsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getListBots_ListCommand()
+  {
+    return (EAttribute)listBotsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExecute()
+  {
+    return executeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getExecute_ExecuteCommand()
+  {
+    return (EAttribute)executeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getStop()
+  {
+    return stopEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getStop_StopCommand()
+  {
+    return (EAttribute)stopEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -714,6 +804,15 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     createEAttribute(tradingBotEClass, TRADING_BOT__STRATEGY);
     createEAttribute(tradingBotEClass, TRADING_BOT__FUNDS);
 
+    listBotsEClass = createEClass(LIST_BOTS);
+    createEAttribute(listBotsEClass, LIST_BOTS__LIST_COMMAND);
+
+    executeEClass = createEClass(EXECUTE);
+    createEAttribute(executeEClass, EXECUTE__EXECUTE_COMMAND);
+
+    stopEClass = createEClass(STOP);
+    createEAttribute(stopEClass, STOP__STOP_COMMAND);
+
     variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
     createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__NAME);
     createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__VALUE);
@@ -784,6 +883,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     // Add supertypes to classes
     connectEClass.getESuperTypes().add(this.getStatement());
     tradingBotEClass.getESuperTypes().add(this.getStatement());
+    listBotsEClass.getESuperTypes().add(this.getStatement());
+    executeEClass.getESuperTypes().add(this.getStatement());
+    stopEClass.getESuperTypes().add(this.getStatement());
     variableDeclarationEClass.getESuperTypes().add(this.getStatement());
     loopStatementEClass.getESuperTypes().add(this.getStatement());
     intLiteralEClass.getESuperTypes().add(this.getIntExpression());
@@ -813,6 +915,15 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     initEClass(tradingBotEClass, TradingBot.class, "TradingBot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTradingBot_Strategy(), this.getStrategyDef(), "strategy", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getTradingBot_Funds(), ecorePackage.getEFloat(), "funds", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listBotsEClass, ListBots.class, "ListBots", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getListBots_ListCommand(), ecorePackage.getEString(), "listCommand", null, 0, 1, ListBots.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(executeEClass, Execute.class, "Execute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getExecute_ExecuteCommand(), ecorePackage.getEString(), "executeCommand", null, 0, 1, Execute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stopEClass, Stop.class, "Stop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStop_StopCommand(), ecorePackage.getEString(), "stopCommand", null, 0, 1, Stop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

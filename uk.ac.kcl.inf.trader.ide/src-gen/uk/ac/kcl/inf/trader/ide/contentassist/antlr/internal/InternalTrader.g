@@ -174,25 +174,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleShow
-entryRuleShow
+// Entry rule entryRuleListBots
+entryRuleListBots
 :
-{ before(grammarAccess.getShowRule()); }
-	 ruleShow
-{ after(grammarAccess.getShowRule()); } 
+{ before(grammarAccess.getListBotsRule()); }
+	 ruleListBots
+{ after(grammarAccess.getListBotsRule()); } 
 	 EOF 
 ;
 
-// Rule Show
-ruleShow 
+// Rule ListBots
+ruleListBots 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getShowAccess().getGroup()); }
-		(rule__Show__Group__0)
-		{ after(grammarAccess.getShowAccess().getGroup()); }
+		{ before(grammarAccess.getListBotsAccess().getGroup()); }
+		(rule__ListBots__Group__0)
+		{ after(grammarAccess.getListBotsAccess().getGroup()); }
 	)
 ;
 finally {
@@ -541,9 +541,9 @@ rule__Statement__Alternatives
 	)
 	|
 	(
-		{ before(grammarAccess.getStatementAccess().getShowParserRuleCall_2()); }
-		ruleShow
-		{ after(grammarAccess.getStatementAccess().getShowParserRuleCall_2()); }
+		{ before(grammarAccess.getStatementAccess().getListBotsParserRuleCall_2()); }
+		ruleListBots
+		{ after(grammarAccess.getStatementAccess().getListBotsParserRuleCall_2()); }
 	)
 	|
 	(
@@ -1447,80 +1447,80 @@ finally {
 }
 
 
-rule__Show__Group__0
+rule__ListBots__Group__0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Show__Group__0__Impl
-	rule__Show__Group__1
+	rule__ListBots__Group__0__Impl
+	rule__ListBots__Group__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Show__Group__0__Impl
+rule__ListBots__Group__0__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getShowAccess().getSeeKeyword_0()); }
-	'see'
-	{ after(grammarAccess.getShowAccess().getSeeKeyword_0()); }
+	{ before(grammarAccess.getListBotsAccess().getListCommandAssignment_0()); }
+	(rule__ListBots__ListCommandAssignment_0)
+	{ after(grammarAccess.getListBotsAccess().getListCommandAssignment_0()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Show__Group__1
+rule__ListBots__Group__1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Show__Group__1__Impl
-	rule__Show__Group__2
+	rule__ListBots__Group__1__Impl
+	rule__ListBots__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Show__Group__1__Impl
+rule__ListBots__Group__1__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getShowAccess().getRegisteredKeyword_1()); }
+	{ before(grammarAccess.getListBotsAccess().getRegisteredKeyword_1()); }
 	'registered'
-	{ after(grammarAccess.getShowAccess().getRegisteredKeyword_1()); }
+	{ after(grammarAccess.getListBotsAccess().getRegisteredKeyword_1()); }
 )
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Show__Group__2
+rule__ListBots__Group__2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
-	rule__Show__Group__2__Impl
+	rule__ListBots__Group__2__Impl
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Show__Group__2__Impl
+rule__ListBots__Group__2__Impl
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 (
-	{ before(grammarAccess.getShowAccess().getBotsKeyword_2()); }
+	{ before(grammarAccess.getListBotsAccess().getBotsKeyword_2()); }
 	'bots'
-	{ after(grammarAccess.getShowAccess().getBotsKeyword_2()); }
+	{ after(grammarAccess.getListBotsAccess().getBotsKeyword_2()); }
 )
 ;
 finally {
@@ -1546,9 +1546,9 @@ rule__Execute__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getExecuteAccess().getExecuteKeyword_0()); }
-	'execute'
-	{ after(grammarAccess.getExecuteAccess().getExecuteKeyword_0()); }
+	{ before(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0()); }
+	(rule__Execute__ExecuteCommandAssignment_0)
+	{ after(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0()); }
 )
 ;
 finally {
@@ -1600,9 +1600,9 @@ rule__Stop__Group__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getStopAccess().getStopKeyword_0()); }
-	'stop'
-	{ after(grammarAccess.getStopAccess().getStopKeyword_0()); }
+	{ before(grammarAccess.getStopAccess().getStopCommandAssignment_0()); }
+	(rule__Stop__StopCommandAssignment_0)
+	{ after(grammarAccess.getStopAccess().getStopCommandAssignment_0()); }
 )
 ;
 finally {
@@ -2786,6 +2786,63 @@ rule__TradingBot__FundsAssignment_6
 		{ before(grammarAccess.getTradingBotAccess().getFundsREALParserRuleCall_6_0()); }
 		ruleREAL
 		{ after(grammarAccess.getTradingBotAccess().getFundsREALParserRuleCall_6_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__ListBots__ListCommandAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); }
+			'see'
+			{ after(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getListBotsAccess().getListCommandSeeKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Execute__ExecuteCommandAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); }
+			'execute'
+			{ after(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getExecuteAccess().getExecuteCommandExecuteKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__Stop__StopCommandAssignment_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); }
+			'stop'
+			{ after(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getStopAccess().getStopCommandStopKeyword_0_0()); }
 	)
 ;
 finally {

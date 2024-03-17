@@ -40,7 +40,7 @@ public class TraderParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectAccess().getGroup(), "rule__Connect__Group__0");
 			builder.put(grammarAccess.getConnectParametersAccess().getGroup(), "rule__ConnectParameters__Group__0");
 			builder.put(grammarAccess.getTradingBotAccess().getGroup(), "rule__TradingBot__Group__0");
-			builder.put(grammarAccess.getShowAccess().getGroup(), "rule__Show__Group__0");
+			builder.put(grammarAccess.getListBotsAccess().getGroup(), "rule__ListBots__Group__0");
 			builder.put(grammarAccess.getExecuteAccess().getGroup(), "rule__Execute__Group__0");
 			builder.put(grammarAccess.getStopAccess().getGroup(), "rule__Stop__Group__0");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
@@ -63,6 +63,9 @@ public class TraderParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectParametersAccess().getTimeframeAssignment_13(), "rule__ConnectParameters__TimeframeAssignment_13");
 			builder.put(grammarAccess.getTradingBotAccess().getStrategyAssignment_3(), "rule__TradingBot__StrategyAssignment_3");
 			builder.put(grammarAccess.getTradingBotAccess().getFundsAssignment_6(), "rule__TradingBot__FundsAssignment_6");
+			builder.put(grammarAccess.getListBotsAccess().getListCommandAssignment_0(), "rule__ListBots__ListCommandAssignment_0");
+			builder.put(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0(), "rule__Execute__ExecuteCommandAssignment_0");
+			builder.put(grammarAccess.getStopAccess().getStopCommandAssignment_0(), "rule__Stop__StopCommandAssignment_0");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
 			builder.put(grammarAccess.getVariableDeclarationAccess().getValueAssignment_3(), "rule__VariableDeclaration__ValueAssignment_3");
 			builder.put(grammarAccess.getLoopStatementAccess().getCountAssignment_0(), "rule__LoopStatement__CountAssignment_0");

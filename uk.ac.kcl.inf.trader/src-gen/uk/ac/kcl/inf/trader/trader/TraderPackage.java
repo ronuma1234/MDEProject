@@ -244,6 +244,90 @@ public interface TraderPackage extends EPackage
   int TRADING_BOT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl <em>List Bots</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBots()
+   * @generated
+   */
+  int LIST_BOTS = 5;
+
+  /**
+   * The feature id for the '<em><b>List Command</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_BOTS__LIST_COMMAND = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>List Bots</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_BOTS_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
+   * @generated
+   */
+  int EXECUTE = 6;
+
+  /**
+   * The feature id for the '<em><b>Execute Command</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXECUTE__EXECUTE_COMMAND = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Execute</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXECUTE_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StopImpl <em>Stop</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.StopImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStop()
+   * @generated
+   */
+  int STOP = 7;
+
+  /**
+   * The feature id for the '<em><b>Stop Command</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STOP__STOP_COMMAND = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Stop</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STOP_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -251,7 +335,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getVariableDeclaration()
    * @generated
    */
-  int VARIABLE_DECLARATION = 5;
+  int VARIABLE_DECLARATION = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -288,7 +372,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getLoopStatement()
    * @generated
    */
-  int LOOP_STATEMENT = 6;
+  int LOOP_STATEMENT = 9;
 
   /**
    * The feature id for the '<em><b>Count</b></em>' containment reference.
@@ -325,7 +409,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntExpression()
    * @generated
    */
-  int INT_EXPRESSION = 7;
+  int INT_EXPRESSION = 10;
 
   /**
    * The number of structural features of the '<em>Int Expression</em>' class.
@@ -344,7 +428,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 8;
+  int INT_LITERAL = 11;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -372,7 +456,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVarExpression()
    * @generated
    */
-  int INT_VAR_EXPRESSION = 9;
+  int INT_VAR_EXPRESSION = 12;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -400,7 +484,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 10;
+  int ACTION = 13;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -446,7 +530,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
    * @generated
    */
-  int BUY = 11;
+  int BUY = 14;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -492,7 +576,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
    * @generated
    */
-  int SELL = 12;
+  int SELL = 15;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -538,7 +622,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 13;
+  int ADDITION = 16;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -584,7 +668,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 14;
+  int MULTIPLICATION = 17;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -630,7 +714,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStrategyDef()
    * @generated
    */
-  int STRATEGY_DEF = 15;
+  int STRATEGY_DEF = 18;
 
 
   /**
@@ -792,6 +876,69 @@ public interface TraderPackage extends EPackage
    * @generated
    */
   EAttribute getTradingBot_Funds();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ListBots <em>List Bots</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>List Bots</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ListBots
+   * @generated
+   */
+  EClass getListBots();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ListBots#getListCommand <em>List Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>List Command</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ListBots#getListCommand()
+   * @see #getListBots()
+   * @generated
+   */
+  EAttribute getListBots_ListCommand();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Execute <em>Execute</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Execute</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Execute
+   * @generated
+   */
+  EClass getExecute();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Execute#getExecuteCommand <em>Execute Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Execute Command</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Execute#getExecuteCommand()
+   * @see #getExecute()
+   * @generated
+   */
+  EAttribute getExecute_ExecuteCommand();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Stop <em>Stop</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Stop</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Stop
+   * @generated
+   */
+  EClass getStop();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Stop#getStopCommand <em>Stop Command</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Stop Command</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Stop#getStopCommand()
+   * @see #getStop()
+   * @generated
+   */
+  EAttribute getStop_StopCommand();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration <em>Variable Declaration</em>}'.
@@ -1220,6 +1367,60 @@ public interface TraderPackage extends EPackage
      * @generated
      */
     EAttribute TRADING_BOT__FUNDS = eINSTANCE.getTradingBot_Funds();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl <em>List Bots</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBots()
+     * @generated
+     */
+    EClass LIST_BOTS = eINSTANCE.getListBots();
+
+    /**
+     * The meta object literal for the '<em><b>List Command</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LIST_BOTS__LIST_COMMAND = eINSTANCE.getListBots_ListCommand();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
+     * @generated
+     */
+    EClass EXECUTE = eINSTANCE.getExecute();
+
+    /**
+     * The meta object literal for the '<em><b>Execute Command</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXECUTE__EXECUTE_COMMAND = eINSTANCE.getExecute_ExecuteCommand();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StopImpl <em>Stop</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.StopImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStop()
+     * @generated
+     */
+    EClass STOP = eINSTANCE.getStop();
+
+    /**
+     * The meta object literal for the '<em><b>Stop Command</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STOP__STOP_COMMAND = eINSTANCE.getStop_StopCommand();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.

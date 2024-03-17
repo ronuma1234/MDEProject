@@ -866,10 +866,10 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1240:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalTrader.g:1240:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalTrader.g:1266:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalTrader.g:1266:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalTrader.g:1240:11: ( '^' )?
+            // InternalTrader.g:1266:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -878,7 +878,7 @@ public class InternalTraderLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalTrader.g:1240:11: '^'
+                    // InternalTrader.g:1266:11: '^'
                     {
                     match('^'); 
 
@@ -896,7 +896,7 @@ public class InternalTraderLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalTrader.g:1240:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalTrader.g:1266:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -945,10 +945,10 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1242:10: ( ( '0' .. '9' )+ )
-            // InternalTrader.g:1242:12: ( '0' .. '9' )+
+            // InternalTrader.g:1268:10: ( ( '0' .. '9' )+ )
+            // InternalTrader.g:1268:12: ( '0' .. '9' )+
             {
-            // InternalTrader.g:1242:12: ( '0' .. '9' )+
+            // InternalTrader.g:1268:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -962,7 +962,7 @@ public class InternalTraderLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalTrader.g:1242:13: '0' .. '9'
+            	    // InternalTrader.g:1268:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -994,10 +994,10 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1244:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // InternalTrader.g:1244:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalTrader.g:1270:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // InternalTrader.g:1270:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // InternalTrader.g:1244:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // InternalTrader.g:1270:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1015,10 +1015,10 @@ public class InternalTraderLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // InternalTrader.g:1244:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // InternalTrader.g:1270:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // InternalTrader.g:1244:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // InternalTrader.g:1270:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -1034,7 +1034,7 @@ public class InternalTraderLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // InternalTrader.g:1244:21: '\\\\' .
+                    	    // InternalTrader.g:1270:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1042,7 +1042,7 @@ public class InternalTraderLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalTrader.g:1244:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // InternalTrader.g:1270:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1067,10 +1067,10 @@ public class InternalTraderLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // InternalTrader.g:1244:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // InternalTrader.g:1270:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // InternalTrader.g:1244:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // InternalTrader.g:1270:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -1086,7 +1086,7 @@ public class InternalTraderLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // InternalTrader.g:1244:54: '\\\\' .
+                    	    // InternalTrader.g:1270:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1094,7 +1094,7 @@ public class InternalTraderLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // InternalTrader.g:1244:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // InternalTrader.g:1270:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1137,12 +1137,12 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1246:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalTrader.g:1246:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalTrader.g:1272:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalTrader.g:1272:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalTrader.g:1246:24: ( options {greedy=false; } : . )*
+            // InternalTrader.g:1272:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1167,7 +1167,7 @@ public class InternalTraderLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalTrader.g:1246:52: .
+            	    // InternalTrader.g:1272:52: .
             	    {
             	    matchAny(); 
 
@@ -1197,12 +1197,12 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1248:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalTrader.g:1248:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalTrader.g:1274:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalTrader.g:1274:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalTrader.g:1248:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalTrader.g:1274:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -1215,7 +1215,7 @@ public class InternalTraderLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalTrader.g:1248:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalTrader.g:1274:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1235,7 +1235,7 @@ public class InternalTraderLexer extends Lexer {
                 }
             } while (true);
 
-            // InternalTrader.g:1248:40: ( ( '\\r' )? '\\n' )?
+            // InternalTrader.g:1274:40: ( ( '\\r' )? '\\n' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1244,9 +1244,9 @@ public class InternalTraderLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalTrader.g:1248:41: ( '\\r' )? '\\n'
+                    // InternalTrader.g:1274:41: ( '\\r' )? '\\n'
                     {
-                    // InternalTrader.g:1248:41: ( '\\r' )?
+                    // InternalTrader.g:1274:41: ( '\\r' )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -1255,7 +1255,7 @@ public class InternalTraderLexer extends Lexer {
                     }
                     switch (alt9) {
                         case 1 :
-                            // InternalTrader.g:1248:41: '\\r'
+                            // InternalTrader.g:1274:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1287,10 +1287,10 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1250:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalTrader.g:1250:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalTrader.g:1276:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalTrader.g:1276:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalTrader.g:1250:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalTrader.g:1276:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt11=0;
             loop11:
             do {
@@ -1344,8 +1344,8 @@ public class InternalTraderLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalTrader.g:1252:16: ( . )
-            // InternalTrader.g:1252:18: .
+            // InternalTrader.g:1278:16: ( . )
+            // InternalTrader.g:1278:18: .
             {
             matchAny(); 
 
