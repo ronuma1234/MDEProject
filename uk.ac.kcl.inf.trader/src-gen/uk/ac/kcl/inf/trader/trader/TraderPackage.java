@@ -217,13 +217,22 @@ public interface TraderPackage extends EPackage
   int TRADING_BOT = 4;
 
   /**
+   * The feature id for the '<em><b>Bot Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TRADING_BOT__BOT_NAME = STATEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Strategy</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRADING_BOT__STRATEGY = STATEMENT_FEATURE_COUNT + 0;
+  int TRADING_BOT__STRATEGY = STATEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Funds</b></em>' attribute.
@@ -232,7 +241,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRADING_BOT__FUNDS = STATEMENT_FEATURE_COUNT + 1;
+  int TRADING_BOT__FUNDS = STATEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Trading Bot</em>' class.
@@ -241,7 +250,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRADING_BOT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+  int TRADING_BOT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl <em>List Bots</em>}' class.
@@ -347,22 +356,124 @@ public interface TraderPackage extends EPackage
   int VARIABLE_DECLARATION__NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int VARIABLE_DECLARATION__VALUE = STATEMENT_FEATURE_COUNT + 1;
-
-  /**
    * The number of structural features of the '<em>Variable Declaration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VARIABLE_DECLARATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+  int VARIABLE_DECLARATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntVariableDeclarationImpl <em>Int Variable Declaration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.IntVariableDeclarationImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVariableDeclaration()
+   * @generated
+   */
+  int INT_VARIABLE_DECLARATION = 9;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VARIABLE_DECLARATION__VALUE = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Int Variable Declaration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl <em>String Variable Declaration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringVariableDeclaration()
+   * @generated
+   */
+  int STRING_VARIABLE_DECLARATION = 10;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_VARIABLE_DECLARATION__VALUE = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>String Variable Declaration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.RealVariableDeclarationImpl <em>Real Variable Declaration</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.RealVariableDeclarationImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getRealVariableDeclaration()
+   * @generated
+   */
+  int REAL_VARIABLE_DECLARATION = 11;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_VARIABLE_DECLARATION__NAME = VARIABLE_DECLARATION__NAME;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_VARIABLE_DECLARATION__VALUE = VARIABLE_DECLARATION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Real Variable Declaration</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_VARIABLE_DECLARATION_FEATURE_COUNT = VARIABLE_DECLARATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
@@ -372,7 +483,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getLoopStatement()
    * @generated
    */
-  int LOOP_STATEMENT = 9;
+  int LOOP_STATEMENT = 12;
 
   /**
    * The feature id for the '<em><b>Count</b></em>' containment reference.
@@ -409,7 +520,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntExpression()
    * @generated
    */
-  int INT_EXPRESSION = 10;
+  int INT_EXPRESSION = 13;
 
   /**
    * The number of structural features of the '<em>Int Expression</em>' class.
@@ -428,7 +539,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntLiteral()
    * @generated
    */
-  int INT_LITERAL = 11;
+  int INT_LITERAL = 14;
 
   /**
    * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -456,7 +567,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVarExpression()
    * @generated
    */
-  int INT_VAR_EXPRESSION = 12;
+  int INT_VAR_EXPRESSION = 15;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -484,7 +595,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 13;
+  int ACTION = 16;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -530,7 +641,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
    * @generated
    */
-  int BUY = 14;
+  int BUY = 17;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -576,7 +687,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
    * @generated
    */
-  int SELL = 15;
+  int SELL = 18;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' attribute.
@@ -622,7 +733,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 16;
+  int ADDITION = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -668,7 +779,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 17;
+  int MULTIPLICATION = 20;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -714,7 +825,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStrategyDef()
    * @generated
    */
-  int STRATEGY_DEF = 18;
+  int STRATEGY_DEF = 21;
 
 
   /**
@@ -856,6 +967,17 @@ public interface TraderPackage extends EPackage
   EClass getTradingBot();
 
   /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getBotName <em>Bot Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Bot Name</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.TradingBot#getBotName()
+   * @see #getTradingBot()
+   * @generated
+   */
+  EAttribute getTradingBot_BotName();
+
+  /**
    * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getStrategy <em>Strategy</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -962,15 +1084,67 @@ public interface TraderPackage extends EPackage
   EAttribute getVariableDeclaration_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration <em>Int Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Variable Declaration</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.IntVariableDeclaration
+   * @generated
+   */
+  EClass getIntVariableDeclaration();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Value</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue()
-   * @see #getVariableDeclaration()
+   * @see uk.ac.kcl.inf.trader.trader.IntVariableDeclaration#getValue()
+   * @see #getIntVariableDeclaration()
    * @generated
    */
-  EAttribute getVariableDeclaration_Value();
+  EAttribute getIntVariableDeclaration_Value();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration <em>String Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Variable Declaration</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringVariableDeclaration
+   * @generated
+   */
+  EClass getStringVariableDeclaration();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringVariableDeclaration#getValue()
+   * @see #getStringVariableDeclaration()
+   * @generated
+   */
+  EAttribute getStringVariableDeclaration_Value();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration <em>Real Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Real Variable Declaration</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.RealVariableDeclaration
+   * @generated
+   */
+  EClass getRealVariableDeclaration();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.RealVariableDeclaration#getValue()
+   * @see #getRealVariableDeclaration()
+   * @generated
+   */
+  EAttribute getRealVariableDeclaration_Value();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.LoopStatement <em>Loop Statement</em>}'.
@@ -1353,6 +1527,14 @@ public interface TraderPackage extends EPackage
     EClass TRADING_BOT = eINSTANCE.getTradingBot();
 
     /**
+     * The meta object literal for the '<em><b>Bot Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TRADING_BOT__BOT_NAME = eINSTANCE.getTradingBot_BotName();
+
+    /**
      * The meta object literal for the '<em><b>Strategy</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1441,12 +1623,58 @@ public interface TraderPackage extends EPackage
     EAttribute VARIABLE_DECLARATION__NAME = eINSTANCE.getVariableDeclaration_Name();
 
     /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntVariableDeclarationImpl <em>Int Variable Declaration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.IntVariableDeclarationImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVariableDeclaration()
+     * @generated
+     */
+    EClass INT_VARIABLE_DECLARATION = eINSTANCE.getIntVariableDeclaration();
+
+    /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VARIABLE_DECLARATION__VALUE = eINSTANCE.getVariableDeclaration_Value();
+    EAttribute INT_VARIABLE_DECLARATION__VALUE = eINSTANCE.getIntVariableDeclaration_Value();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl <em>String Variable Declaration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringVariableDeclaration()
+     * @generated
+     */
+    EClass STRING_VARIABLE_DECLARATION = eINSTANCE.getStringVariableDeclaration();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute STRING_VARIABLE_DECLARATION__VALUE = eINSTANCE.getStringVariableDeclaration_Value();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.RealVariableDeclarationImpl <em>Real Variable Declaration</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.RealVariableDeclarationImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getRealVariableDeclaration()
+     * @generated
+     */
+    EClass REAL_VARIABLE_DECLARATION = eINSTANCE.getRealVariableDeclaration();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REAL_VARIABLE_DECLARATION__VALUE = eINSTANCE.getRealVariableDeclaration_Value();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.LoopStatementImpl <em>Loop Statement</em>}' class.

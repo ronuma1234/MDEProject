@@ -27,12 +27,12 @@ public interface IntVarExpression extends IntExpression
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Var</em>' reference.
-   * @see #setVar(VariableDeclaration)
+   * @see #setVar(IntVariableDeclaration)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getIntVarExpression_Var()
    * @model
    * @generated
    */
-  VariableDeclaration getVar();
+  IntVariableDeclaration getVar();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.IntVarExpression#getVar <em>Var</em>}' reference.
@@ -42,6 +42,6 @@ public interface IntVarExpression extends IntExpression
    * @see #getVar()
    * @generated
    */
-  void setVar(VariableDeclaration value);
+  void setVar(IntVariableDeclaration value);
 
 } // IntVarExpression

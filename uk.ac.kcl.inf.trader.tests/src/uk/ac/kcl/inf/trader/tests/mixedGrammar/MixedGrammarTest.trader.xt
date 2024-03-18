@@ -2,15 +2,15 @@
 
 connect to broker SwissBank with username "personA", password "passwordA", leverage 0.02, money 500.50, timeframe "1HR"
 
-create bot with buyAndHold strategy using 60.15 from money
+create bot Bot1 with buyAndHold strategy using 60.15 from money
 
-create bot with meanReversion strategy using 40.05 from money
+create bot Bot2 with meanReversion strategy using 40.05 from money
 
-create bot with buyAndHold strategy using 100.10 from money
+create bot Bot3 with buyAndHold strategy using 100.10 from money
 
-create bot with buyAndHold strategy using 100.10 from money
+create bot Bot4 with buyAndHold strategy using 100.10 from money
 
-create bot with buyAndHold strategy using 100.10 from money
+create bot Bot5 with buyAndHold strategy using 100.10 from money
 
 see registered bots
 

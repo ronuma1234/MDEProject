@@ -121,6 +121,21 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createVariableDeclarationAdapter();
       }
       @Override
+      public Adapter caseIntVariableDeclaration(IntVariableDeclaration object)
+      {
+        return createIntVariableDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseStringVariableDeclaration(StringVariableDeclaration object)
+      {
+        return createStringVariableDeclarationAdapter();
+      }
+      @Override
+      public Adapter caseRealVariableDeclaration(RealVariableDeclaration object)
+      {
+        return createRealVariableDeclarationAdapter();
+      }
+      @Override
       public Adapter caseLoopStatement(LoopStatement object)
       {
         return createLoopStatementAdapter();
@@ -318,6 +333,51 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createVariableDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration <em>Int Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.trader.trader.IntVariableDeclaration
+   * @generated
+   */
+  public Adapter createIntVariableDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration <em>String Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.trader.trader.StringVariableDeclaration
+   * @generated
+   */
+  public Adapter createStringVariableDeclarationAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration <em>Real Variable Declaration</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.trader.trader.RealVariableDeclaration
+   * @generated
+   */
+  public Adapter createRealVariableDeclarationAdapter()
   {
     return null;
   }

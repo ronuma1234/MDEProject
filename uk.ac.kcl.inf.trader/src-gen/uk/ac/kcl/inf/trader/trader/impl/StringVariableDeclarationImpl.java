@@ -6,45 +6,53 @@ package uk.ac.kcl.inf.trader.trader.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.trader.trader.IntVarExpression;
-import uk.ac.kcl.inf.trader.trader.IntVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.StringVariableDeclaration;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Var Expression</b></em>'.
+ * An implementation of the model object '<em><b>String Variable Declaration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.IntVarExpressionImpl#getVar <em>Var</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExpression
+public class StringVariableDeclarationImpl extends VariableDeclarationImpl implements StringVariableDeclaration
 {
   /**
-   * The cached value of the '{@link #getVar() <em>Var</em>}' reference.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVar()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected IntVariableDeclaration var;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntVarExpressionImpl()
+  protected StringVariableDeclarationImpl()
   {
     super();
   }
@@ -57,7 +65,7 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.INT_VAR_EXPRESSION;
+    return TraderPackage.Literals.STRING_VARIABLE_DECLARATION;
   }
 
   /**
@@ -66,29 +74,9 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
    * @generated
    */
   @Override
-  public IntVariableDeclaration getVar()
+  public String getValue()
   {
-    if (var != null && var.eIsProxy())
-    {
-      InternalEObject oldVar = (InternalEObject)var;
-      var = (IntVariableDeclaration)eResolveProxy(oldVar);
-      if (var != oldVar)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, TraderPackage.INT_VAR_EXPRESSION__VAR, oldVar, var));
-      }
-    }
-    return var;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IntVariableDeclaration basicGetVar()
-  {
-    return var;
+    return value;
   }
 
   /**
@@ -97,12 +85,12 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
    * @generated
    */
   @Override
-  public void setVar(IntVariableDeclaration newVar)
+  public void setValue(String newValue)
   {
-    IntVariableDeclaration oldVar = var;
-    var = newVar;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.INT_VAR_EXPRESSION__VAR, oldVar, var));
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.STRING_VARIABLE_DECLARATION__VALUE, oldValue, value));
   }
 
   /**
@@ -115,9 +103,8 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VAR_EXPRESSION__VAR:
-        if (resolve) return getVar();
-        return basicGetVar();
+      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,8 +119,8 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VAR_EXPRESSION__VAR:
-        setVar((IntVariableDeclaration)newValue);
+      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,8 +136,8 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VAR_EXPRESSION__VAR:
-        setVar((IntVariableDeclaration)null);
+      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -166,10 +153,27 @@ public class IntVarExpressionImpl extends IntExpressionImpl implements IntVarExp
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VAR_EXPRESSION__VAR:
-        return var != null;
+      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
 
-} //IntVarExpressionImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (value: ");
+    result.append(value);
+    result.append(')');
+    return result.toString();
+  }
+
+} //StringVariableDeclarationImpl

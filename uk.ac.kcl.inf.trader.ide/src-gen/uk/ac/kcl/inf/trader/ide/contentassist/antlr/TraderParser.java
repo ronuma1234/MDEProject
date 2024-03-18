@@ -32,6 +32,7 @@ public class TraderParser extends AbstractContentAssistParser {
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, TraderGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getStatementAccess().getAlternatives(), "rule__Statement__Alternatives");
+			builder.put(grammarAccess.getVariableDeclarationAccess().getAlternatives(), "rule__VariableDeclaration__Alternatives");
 			builder.put(grammarAccess.getAdditionAccess().getOperatorAlternatives_1_1_0(), "rule__Addition__OperatorAlternatives_1_1_0");
 			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAlternatives_1_1_0(), "rule__Multiplication__OperatorAlternatives_1_1_0");
 			builder.put(grammarAccess.getPrimaryAccess().getAlternatives(), "rule__Primary__Alternatives");
@@ -43,7 +44,9 @@ public class TraderParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getListBotsAccess().getGroup(), "rule__ListBots__Group__0");
 			builder.put(grammarAccess.getExecuteAccess().getGroup(), "rule__Execute__Group__0");
 			builder.put(grammarAccess.getStopAccess().getGroup(), "rule__Stop__Group__0");
-			builder.put(grammarAccess.getVariableDeclarationAccess().getGroup(), "rule__VariableDeclaration__Group__0");
+			builder.put(grammarAccess.getIntVariableDeclarationAccess().getGroup(), "rule__IntVariableDeclaration__Group__0");
+			builder.put(grammarAccess.getStringVariableDeclarationAccess().getGroup(), "rule__StringVariableDeclaration__Group__0");
+			builder.put(grammarAccess.getRealVariableDeclarationAccess().getGroup(), "rule__RealVariableDeclaration__Group__0");
 			builder.put(grammarAccess.getLoopStatementAccess().getGroup(), "rule__LoopStatement__Group__0");
 			builder.put(grammarAccess.getREALAccess().getGroup(), "rule__REAL__Group__0");
 			builder.put(grammarAccess.getAdditionAccess().getGroup(), "rule__Addition__Group__0");
@@ -61,15 +64,20 @@ public class TraderParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getConnectParametersAccess().getLeverageAssignment_7(), "rule__ConnectParameters__LeverageAssignment_7");
 			builder.put(grammarAccess.getConnectParametersAccess().getMoneyAssignment_10(), "rule__ConnectParameters__MoneyAssignment_10");
 			builder.put(grammarAccess.getConnectParametersAccess().getTimeframeAssignment_13(), "rule__ConnectParameters__TimeframeAssignment_13");
-			builder.put(grammarAccess.getTradingBotAccess().getStrategyAssignment_3(), "rule__TradingBot__StrategyAssignment_3");
-			builder.put(grammarAccess.getTradingBotAccess().getFundsAssignment_6(), "rule__TradingBot__FundsAssignment_6");
+			builder.put(grammarAccess.getTradingBotAccess().getBotNameAssignment_2(), "rule__TradingBot__BotNameAssignment_2");
+			builder.put(grammarAccess.getTradingBotAccess().getStrategyAssignment_4(), "rule__TradingBot__StrategyAssignment_4");
+			builder.put(grammarAccess.getTradingBotAccess().getFundsAssignment_7(), "rule__TradingBot__FundsAssignment_7");
 			builder.put(grammarAccess.getListBotsAccess().getListCommandAssignment_0(), "rule__ListBots__ListCommandAssignment_0");
 			builder.put(grammarAccess.getExecuteAccess().getExecuteCommandAssignment_0(), "rule__Execute__ExecuteCommandAssignment_0");
 			builder.put(grammarAccess.getStopAccess().getStopCommandAssignment_0(), "rule__Stop__StopCommandAssignment_0");
-			builder.put(grammarAccess.getVariableDeclarationAccess().getNameAssignment_1(), "rule__VariableDeclaration__NameAssignment_1");
-			builder.put(grammarAccess.getVariableDeclarationAccess().getValueAssignment_3(), "rule__VariableDeclaration__ValueAssignment_3");
-			builder.put(grammarAccess.getLoopStatementAccess().getCountAssignment_0(), "rule__LoopStatement__CountAssignment_0");
-			builder.put(grammarAccess.getLoopStatementAccess().getStatementsAssignment_3(), "rule__LoopStatement__StatementsAssignment_3");
+			builder.put(grammarAccess.getIntVariableDeclarationAccess().getNameAssignment_1(), "rule__IntVariableDeclaration__NameAssignment_1");
+			builder.put(grammarAccess.getIntVariableDeclarationAccess().getValueAssignment_5(), "rule__IntVariableDeclaration__ValueAssignment_5");
+			builder.put(grammarAccess.getStringVariableDeclarationAccess().getNameAssignment_1(), "rule__StringVariableDeclaration__NameAssignment_1");
+			builder.put(grammarAccess.getStringVariableDeclarationAccess().getValueAssignment_5(), "rule__StringVariableDeclaration__ValueAssignment_5");
+			builder.put(grammarAccess.getRealVariableDeclarationAccess().getNameAssignment_1(), "rule__RealVariableDeclaration__NameAssignment_1");
+			builder.put(grammarAccess.getRealVariableDeclarationAccess().getValueAssignment_5(), "rule__RealVariableDeclaration__ValueAssignment_5");
+			builder.put(grammarAccess.getLoopStatementAccess().getCountAssignment_1(), "rule__LoopStatement__CountAssignment_1");
+			builder.put(grammarAccess.getLoopStatementAccess().getStatementsAssignment_4(), "rule__LoopStatement__StatementsAssignment_4");
 			builder.put(grammarAccess.getAdditionAccess().getOperatorAssignment_1_1(), "rule__Addition__OperatorAssignment_1_1");
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_2(), "rule__Addition__RightAssignment_1_2");
 			builder.put(grammarAccess.getMultiplicationAccess().getOperatorAssignment_1_1(), "rule__Multiplication__OperatorAssignment_1_1");

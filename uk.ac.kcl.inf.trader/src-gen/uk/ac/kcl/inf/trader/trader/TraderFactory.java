@@ -105,6 +105,33 @@ public interface TraderFactory extends EFactory
   VariableDeclaration createVariableDeclaration();
 
   /**
+   * Returns a new object of class '<em>Int Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Variable Declaration</em>'.
+   * @generated
+   */
+  IntVariableDeclaration createIntVariableDeclaration();
+
+  /**
+   * Returns a new object of class '<em>String Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Variable Declaration</em>'.
+   * @generated
+   */
+  StringVariableDeclaration createStringVariableDeclaration();
+
+  /**
+   * Returns a new object of class '<em>Real Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Real Variable Declaration</em>'.
+   * @generated
+   */
+  RealVariableDeclaration createRealVariableDeclaration();
+
+  /**
    * Returns a new object of class '<em>Loop Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

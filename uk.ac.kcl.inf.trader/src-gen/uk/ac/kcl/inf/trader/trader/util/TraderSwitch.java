@@ -142,6 +142,33 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case TraderPackage.INT_VARIABLE_DECLARATION:
+      {
+        IntVariableDeclaration intVariableDeclaration = (IntVariableDeclaration)theEObject;
+        T result = caseIntVariableDeclaration(intVariableDeclaration);
+        if (result == null) result = caseVariableDeclaration(intVariableDeclaration);
+        if (result == null) result = caseStatement(intVariableDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.STRING_VARIABLE_DECLARATION:
+      {
+        StringVariableDeclaration stringVariableDeclaration = (StringVariableDeclaration)theEObject;
+        T result = caseStringVariableDeclaration(stringVariableDeclaration);
+        if (result == null) result = caseVariableDeclaration(stringVariableDeclaration);
+        if (result == null) result = caseStatement(stringVariableDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.REAL_VARIABLE_DECLARATION:
+      {
+        RealVariableDeclaration realVariableDeclaration = (RealVariableDeclaration)theEObject;
+        T result = caseRealVariableDeclaration(realVariableDeclaration);
+        if (result == null) result = caseVariableDeclaration(realVariableDeclaration);
+        if (result == null) result = caseStatement(realVariableDeclaration);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case TraderPackage.LOOP_STATEMENT:
       {
         LoopStatement loopStatement = (LoopStatement)theEObject;
@@ -356,6 +383,54 @@ public class TraderSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseVariableDeclaration(VariableDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Int Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Int Variable Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIntVariableDeclaration(IntVariableDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Variable Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringVariableDeclaration(StringVariableDeclaration object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Real Variable Declaration</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Real Variable Declaration</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRealVariableDeclaration(RealVariableDeclaration object)
   {
     return null;
   }

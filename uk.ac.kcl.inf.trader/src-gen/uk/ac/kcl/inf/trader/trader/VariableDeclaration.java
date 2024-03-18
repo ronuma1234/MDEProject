@@ -14,7 +14,6 @@ package uk.ac.kcl.inf.trader.trader;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getVariableDeclaration()
@@ -44,27 +43,5 @@ public interface VariableDeclaration extends Statement
    * @generated
    */
   void setName(String value);
-
-  /**
-   * Returns the value of the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getVariableDeclaration_Value()
-   * @model
-   * @generated
-   */
-  int getValue();
-
-  /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(int value);
 
 } // VariableDeclaration

@@ -26,6 +26,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//ConnectParameters/timeframe"/>
     </genClasses>
     <genClasses ecoreClass="Trader.ecore#//TradingBot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//TradingBot/botName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//TradingBot/strategy"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//TradingBot/funds"/>
     </genClasses>
@@ -40,7 +41,15 @@
     </genClasses>
     <genClasses ecoreClass="Trader.ecore#//VariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//VariableDeclaration/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//VariableDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Trader.ecore#//IntVariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//IntVariableDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Trader.ecore#//StringVariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//StringVariableDeclaration/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Trader.ecore#//RealVariableDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//RealVariableDeclaration/value"/>
     </genClasses>
     <genClasses ecoreClass="Trader.ecore#//LoopStatement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//LoopStatement/count"/>

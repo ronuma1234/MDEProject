@@ -13,6 +13,7 @@ package uk.ac.kcl.inf.trader.trader;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getBotName <em>Bot Name</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getStrategy <em>Strategy</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFunds <em>Funds</em>}</li>
  * </ul>
@@ -23,6 +24,28 @@ package uk.ac.kcl.inf.trader.trader;
  */
 public interface TradingBot extends Statement
 {
+  /**
+   * Returns the value of the '<em><b>Bot Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Bot Name</em>' attribute.
+   * @see #setBotName(String)
+   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot_BotName()
+   * @model
+   * @generated
+   */
+  String getBotName();
+
+  /**
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getBotName <em>Bot Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Bot Name</em>' attribute.
+   * @see #getBotName()
+   * @generated
+   */
+  void setBotName(String value);
+
   /**
    * Returns the value of the '<em><b>Strategy</b></em>' attribute.
    * The literals are from the enumeration {@link uk.ac.kcl.inf.trader.trader.StrategyDef}.

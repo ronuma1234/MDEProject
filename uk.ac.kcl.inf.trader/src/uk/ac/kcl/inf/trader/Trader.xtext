@@ -13,7 +13,7 @@ Statement:
 ;
 
 Connect:
-    "connect" "to" "broker" brokerName=ID "with" ( parameters=ConnectParameters)?
+    "connect" "to" "broker" brokerName = ID "with" ( parameters=ConnectParameters)?
 ; 
 
 ConnectParameters:
@@ -25,7 +25,7 @@ ConnectParameters:
 ;
 
 TradingBot:
-    "create" "bot" "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+    "create" "bot" botName = ID "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
 ;
 
 enum StrategyDef:
@@ -45,11 +45,23 @@ Stop:
 ;
 
 VariableDeclaration:
-	"var" name=ID "=" value = INT
+    IntVariableDeclaration | StringVariableDeclaration | RealVariableDeclaration 
+;
+
+IntVariableDeclaration:
+    "var" name=ID "=" "int" ":" value=INT
+;
+
+StringVariableDeclaration:
+    "var" name=ID "=" "String" ":" value=STRING
+;
+
+RealVariableDeclaration:
+    "var" name=ID "=" "Real" ":" value=REAL
 ;
 
 LoopStatement:
-	count = Addition "times" "do"
+	"loop" count = Addition "times" "do"
 		statements += Statement+
 	"end"		
 ;
@@ -77,7 +89,7 @@ IntLiteral:
 ;
 
 IntVarExpression:
-	var = [VariableDeclaration]
+	var = [IntVariableDeclaration]
 ;
 
 Action:

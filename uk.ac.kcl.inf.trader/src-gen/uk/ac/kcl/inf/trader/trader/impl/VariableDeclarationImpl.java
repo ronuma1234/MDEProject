@@ -21,7 +21,6 @@ import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
  * </p>
  * <ul>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl#getName <em>Name</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,26 +46,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @ordered
    */
   protected String name = NAME_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final int VALUE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected int value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,39 +99,12 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @generated
    */
   @Override
-  public int getValue()
-  {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setValue(int newValue)
-  {
-    int oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.VARIABLE_DECLARATION__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
       case TraderPackage.VARIABLE_DECLARATION__NAME:
         return getName();
-      case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -169,9 +121,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
     {
       case TraderPackage.VARIABLE_DECLARATION__NAME:
         setName((String)newValue);
-        return;
-      case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -190,9 +139,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
       case TraderPackage.VARIABLE_DECLARATION__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue(VALUE_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -209,8 +155,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
     {
       case TraderPackage.VARIABLE_DECLARATION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -228,8 +172,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }

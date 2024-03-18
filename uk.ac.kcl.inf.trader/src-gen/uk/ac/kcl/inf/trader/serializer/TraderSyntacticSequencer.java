@@ -57,7 +57,7 @@ public class TraderSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     (rule start) (ambiguity) val=INT
-	 *     (rule start) (ambiguity) var=[VariableDeclaration|ID]
+	 *     (rule start) (ambiguity) var=[IntVariableDeclaration|ID]
 	 *     (rule start) (ambiguity) {Addition.left=}
 	 *     (rule start) (ambiguity) {Multiplication.left=}
 	 

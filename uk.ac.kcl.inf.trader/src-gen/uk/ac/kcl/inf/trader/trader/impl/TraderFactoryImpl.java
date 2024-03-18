@@ -75,6 +75,9 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
       case TraderPackage.EXECUTE: return createExecute();
       case TraderPackage.STOP: return createStop();
       case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
+      case TraderPackage.INT_VARIABLE_DECLARATION: return createIntVariableDeclaration();
+      case TraderPackage.STRING_VARIABLE_DECLARATION: return createStringVariableDeclaration();
+      case TraderPackage.REAL_VARIABLE_DECLARATION: return createRealVariableDeclaration();
       case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
       case TraderPackage.INT_EXPRESSION: return createIntExpression();
       case TraderPackage.INT_LITERAL: return createIntLiteral();
@@ -229,6 +232,42 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
   {
     VariableDeclarationImpl variableDeclaration = new VariableDeclarationImpl();
     return variableDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntVariableDeclaration createIntVariableDeclaration()
+  {
+    IntVariableDeclarationImpl intVariableDeclaration = new IntVariableDeclarationImpl();
+    return intVariableDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StringVariableDeclaration createStringVariableDeclaration()
+  {
+    StringVariableDeclarationImpl stringVariableDeclaration = new StringVariableDeclarationImpl();
+    return stringVariableDeclaration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RealVariableDeclaration createRealVariableDeclaration()
+  {
+    RealVariableDeclarationImpl realVariableDeclaration = new RealVariableDeclarationImpl();
+    return realVariableDeclaration;
   }
 
   /**
