@@ -42,22 +42,13 @@ public interface TraderFactory extends EFactory
   Statement createStatement();
 
   /**
-   * Returns a new object of class '<em>Connect</em>'.
+   * Returns a new object of class '<em>Connect Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Connect</em>'.
+   * @return a new object of class '<em>Connect Statement</em>'.
    * @generated
    */
-  Connect createConnect();
-
-  /**
-   * Returns a new object of class '<em>Connect Parameters</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Connect Parameters</em>'.
-   * @generated
-   */
-  ConnectParameters createConnectParameters();
+  ConnectStatement createConnectStatement();
 
   /**
    * Returns a new object of class '<em>Trading Bot</em>'.
@@ -105,31 +96,31 @@ public interface TraderFactory extends EFactory
   VariableDeclaration createVariableDeclaration();
 
   /**
-   * Returns a new object of class '<em>Int Variable Declaration</em>'.
+   * Returns a new object of class '<em>String Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Variable Declaration</em>'.
+   * @return a new object of class '<em>String Value</em>'.
    * @generated
    */
-  IntVariableDeclaration createIntVariableDeclaration();
+  StringValue createStringValue();
 
   /**
-   * Returns a new object of class '<em>String Variable Declaration</em>'.
+   * Returns a new object of class '<em>Real Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Variable Declaration</em>'.
+   * @return a new object of class '<em>Real Value</em>'.
    * @generated
    */
-  StringVariableDeclaration createStringVariableDeclaration();
+  RealValue createRealValue();
 
   /**
-   * Returns a new object of class '<em>Real Variable Declaration</em>'.
+   * Returns a new object of class '<em>Int Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Real Variable Declaration</em>'.
+   * @return a new object of class '<em>Int Value</em>'.
    * @generated
    */
-  RealVariableDeclaration createRealVariableDeclaration();
+  IntValue createIntValue();
 
   /**
    * Returns a new object of class '<em>Loop Statement</em>'.
@@ -141,31 +132,40 @@ public interface TraderFactory extends EFactory
   LoopStatement createLoopStatement();
 
   /**
-   * Returns a new object of class '<em>Int Expression</em>'.
+   * Returns a new object of class '<em>Num Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Expression</em>'.
+   * @return a new object of class '<em>Num Expression</em>'.
    * @generated
    */
-  IntExpression createIntExpression();
+  NumExpression createNumExpression();
 
   /**
-   * Returns a new object of class '<em>Int Literal</em>'.
+   * Returns a new object of class '<em>Num Var Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Literal</em>'.
+   * @return a new object of class '<em>Num Var Expression</em>'.
    * @generated
    */
-  IntLiteral createIntLiteral();
+  NumVarExpression createNumVarExpression();
 
   /**
-   * Returns a new object of class '<em>Int Var Expression</em>'.
+   * Returns a new object of class '<em>String Primary</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Var Expression</em>'.
+   * @return a new object of class '<em>String Primary</em>'.
    * @generated
    */
-  IntVarExpression createIntVarExpression();
+  StringPrimary createStringPrimary();
+
+  /**
+   * Returns a new object of class '<em>String Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Var Expression</em>'.
+   * @generated
+   */
+  StringVarExpression createStringVarExpression();
 
   /**
    * Returns a new object of class '<em>Action</em>'.

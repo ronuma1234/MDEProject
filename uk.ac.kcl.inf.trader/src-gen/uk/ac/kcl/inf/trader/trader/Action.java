@@ -26,26 +26,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface Action extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Quantity</b></em>' attribute.
+   * Returns the value of the '<em><b>Quantity</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Quantity</em>' attribute.
-   * @see #setQuantity(float)
+   * @return the value of the '<em>Quantity</em>' containment reference.
+   * @see #setQuantity(NumExpression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getAction_Quantity()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  float getQuantity();
+  NumExpression getQuantity();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getQuantity <em>Quantity</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getQuantity <em>Quantity</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Quantity</em>' attribute.
+   * @param value the new value of the '<em>Quantity</em>' containment reference.
    * @see #getQuantity()
    * @generated
    */
-  void setQuantity(float value);
+  void setQuantity(NumExpression value);
 
   /**
    * Returns the value of the '<em><b>Ticker</b></em>' attribute.
@@ -70,25 +70,25 @@ public interface Action extends EObject
   void setTicker(String value);
 
   /**
-   * Returns the value of the '<em><b>Price</b></em>' attribute.
+   * Returns the value of the '<em><b>Price</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Price</em>' attribute.
-   * @see #setPrice(float)
+   * @return the value of the '<em>Price</em>' containment reference.
+   * @see #setPrice(NumExpression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getAction_Price()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  float getPrice();
+  NumExpression getPrice();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getPrice <em>Price</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getPrice <em>Price</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Price</em>' attribute.
+   * @param value the new value of the '<em>Price</em>' containment reference.
    * @see #getPrice()
    * @generated
    */
-  void setPrice(float value);
+  void setPrice(NumExpression value);
 
 } // Action

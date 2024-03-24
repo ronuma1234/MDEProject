@@ -87,18 +87,11 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.CONNECT:
+      case TraderPackage.CONNECT_STATEMENT:
       {
-        Connect connect = (Connect)theEObject;
-        T result = caseConnect(connect);
-        if (result == null) result = caseStatement(connect);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.CONNECT_PARAMETERS:
-      {
-        ConnectParameters connectParameters = (ConnectParameters)theEObject;
-        T result = caseConnectParameters(connectParameters);
+        ConnectStatement connectStatement = (ConnectStatement)theEObject;
+        T result = caseConnectStatement(connectStatement);
+        if (result == null) result = caseStatement(connectStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -142,30 +135,27 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.INT_VARIABLE_DECLARATION:
+      case TraderPackage.STRING_VALUE:
       {
-        IntVariableDeclaration intVariableDeclaration = (IntVariableDeclaration)theEObject;
-        T result = caseIntVariableDeclaration(intVariableDeclaration);
-        if (result == null) result = caseVariableDeclaration(intVariableDeclaration);
-        if (result == null) result = caseStatement(intVariableDeclaration);
+        StringValue stringValue = (StringValue)theEObject;
+        T result = caseStringValue(stringValue);
+        if (result == null) result = caseStringPrimary(stringValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.STRING_VARIABLE_DECLARATION:
+      case TraderPackage.REAL_VALUE:
       {
-        StringVariableDeclaration stringVariableDeclaration = (StringVariableDeclaration)theEObject;
-        T result = caseStringVariableDeclaration(stringVariableDeclaration);
-        if (result == null) result = caseVariableDeclaration(stringVariableDeclaration);
-        if (result == null) result = caseStatement(stringVariableDeclaration);
+        RealValue realValue = (RealValue)theEObject;
+        T result = caseRealValue(realValue);
+        if (result == null) result = caseNumExpression(realValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.REAL_VARIABLE_DECLARATION:
+      case TraderPackage.INT_VALUE:
       {
-        RealVariableDeclaration realVariableDeclaration = (RealVariableDeclaration)theEObject;
-        T result = caseRealVariableDeclaration(realVariableDeclaration);
-        if (result == null) result = caseVariableDeclaration(realVariableDeclaration);
-        if (result == null) result = caseStatement(realVariableDeclaration);
+        IntValue intValue = (IntValue)theEObject;
+        T result = caseIntValue(intValue);
+        if (result == null) result = caseNumExpression(intValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -177,26 +167,33 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.INT_EXPRESSION:
+      case TraderPackage.NUM_EXPRESSION:
       {
-        IntExpression intExpression = (IntExpression)theEObject;
-        T result = caseIntExpression(intExpression);
+        NumExpression numExpression = (NumExpression)theEObject;
+        T result = caseNumExpression(numExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.INT_LITERAL:
+      case TraderPackage.NUM_VAR_EXPRESSION:
       {
-        IntLiteral intLiteral = (IntLiteral)theEObject;
-        T result = caseIntLiteral(intLiteral);
-        if (result == null) result = caseIntExpression(intLiteral);
+        NumVarExpression numVarExpression = (NumVarExpression)theEObject;
+        T result = caseNumVarExpression(numVarExpression);
+        if (result == null) result = caseNumExpression(numVarExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.INT_VAR_EXPRESSION:
+      case TraderPackage.STRING_PRIMARY:
       {
-        IntVarExpression intVarExpression = (IntVarExpression)theEObject;
-        T result = caseIntVarExpression(intVarExpression);
-        if (result == null) result = caseIntExpression(intVarExpression);
+        StringPrimary stringPrimary = (StringPrimary)theEObject;
+        T result = caseStringPrimary(stringPrimary);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case TraderPackage.STRING_VAR_EXPRESSION:
+      {
+        StringVarExpression stringVarExpression = (StringVarExpression)theEObject;
+        T result = caseStringVarExpression(stringVarExpression);
+        if (result == null) result = caseStringPrimary(stringVarExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -227,7 +224,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         Addition addition = (Addition)theEObject;
         T result = caseAddition(addition);
-        if (result == null) result = caseIntExpression(addition);
+        if (result == null) result = caseNumExpression(addition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -235,7 +232,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         Multiplication multiplication = (Multiplication)theEObject;
         T result = caseMultiplication(multiplication);
-        if (result == null) result = caseIntExpression(multiplication);
+        if (result == null) result = caseNumExpression(multiplication);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -276,33 +273,17 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Connect</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Connect Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Connect</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Connect Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseConnect(Connect object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Connect Parameters</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Connect Parameters</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseConnectParameters(ConnectParameters object)
+  public T caseConnectStatement(ConnectStatement object)
   {
     return null;
   }
@@ -388,49 +369,49 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Variable Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Variable Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>String Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntVariableDeclaration(IntVariableDeclaration object)
+  public T caseStringValue(StringValue object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>String Variable Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Real Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Variable Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Real Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStringVariableDeclaration(StringVariableDeclaration object)
+  public T caseRealValue(RealValue object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Real Variable Declaration</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Int Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Real Variable Declaration</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Int Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRealVariableDeclaration(RealVariableDeclaration object)
+  public T caseIntValue(IntValue object)
   {
     return null;
   }
@@ -452,49 +433,65 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Num Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Num Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntExpression(IntExpression object)
+  public T caseNumExpression(NumExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Num Var Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Literal</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Num Var Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntLiteral(IntLiteral object)
+  public T caseNumVarExpression(NumVarExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Int Var Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String Primary</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Int Var Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>String Primary</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIntVarExpression(IntVarExpression object)
+  public T caseStringPrimary(StringPrimary object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Var Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Var Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseStringVarExpression(StringVarExpression object)
   {
     return null;
   }

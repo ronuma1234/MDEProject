@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uk.ac.kcl.inf.trader.trader.IntExpression;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
+import uk.ac.kcl.inf.trader.trader.NumExpression;
 import uk.ac.kcl.inf.trader.trader.Statement;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
@@ -47,7 +47,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * @generated
    * @ordered
    */
-  protected IntExpression count;
+  protected NumExpression count;
 
   /**
    * The cached value of the '{@link #getStatements() <em>Statements</em>}' containment reference list.
@@ -86,7 +86,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * @generated
    */
   @Override
-  public IntExpression getCount()
+  public NumExpression getCount()
   {
     return count;
   }
@@ -96,9 +96,9 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetCount(IntExpression newCount, NotificationChain msgs)
+  public NotificationChain basicSetCount(NumExpression newCount, NotificationChain msgs)
   {
-    IntExpression oldCount = count;
+    NumExpression oldCount = count;
     count = newCount;
     if (eNotificationRequired())
     {
@@ -114,7 +114,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
    * @generated
    */
   @Override
-  public void setCount(IntExpression newCount)
+  public void setCount(NumExpression newCount)
   {
     if (newCount != count)
     {
@@ -193,7 +193,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
     switch (featureID)
     {
       case TraderPackage.LOOP_STATEMENT__COUNT:
-        setCount((IntExpression)newValue);
+        setCount((NumExpression)newValue);
         return;
       case TraderPackage.LOOP_STATEMENT__STATEMENTS:
         getStatements().clear();
@@ -214,7 +214,7 @@ public class LoopStatementImpl extends StatementImpl implements LoopStatement
     switch (featureID)
     {
       case TraderPackage.LOOP_STATEMENT__COUNT:
-        setCount((IntExpression)null);
+        setCount((NumExpression)null);
         return;
       case TraderPackage.LOOP_STATEMENT__STATEMENTS:
         getStatements().clear();

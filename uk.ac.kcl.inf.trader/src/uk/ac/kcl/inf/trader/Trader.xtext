@@ -9,23 +9,20 @@ TraderProgram:
 ;
 
 Statement:
-    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+    ConnectStatement | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 ;
 
-Connect:
-    "connect" "to" "broker" brokerName = ID "with" ( parameters=ConnectParameters)?
-; 
-
-ConnectParameters:
-    "username" username=STRING ","
-    "password" password=STRING ","
-    "leverage" leverage=REAL ","
-    "money" money=REAL ","
-    "timeframe" timeframe=STRING
+ConnectStatement:
+    "connect" "to" "broker" brokerName = ID "with"
+    "username:" username = StringPrimary ","
+    "password:" password = StringPrimary ","
+    "leverage:" leverage = Addition ","
+    "money:" money = Addition ","
+    "timeframe:" timeframe = StringPrimary
 ;
 
 TradingBot:
-    "create" "bot" botName = ID "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+    "create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
 ;
 
 enum StrategyDef:
@@ -45,19 +42,19 @@ Stop:
 ;
 
 VariableDeclaration:
-    IntVariableDeclaration | StringVariableDeclaration | RealVariableDeclaration 
+    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
 ;
 
-IntVariableDeclaration:
-    "var" name=ID "=" "int" ":" value=INT
+StringValue:
+    value=STRING
 ;
 
-StringVariableDeclaration:
-    "var" name=ID "=" "String" ":" value=STRING
+RealValue:
+    value=REAL
 ;
 
-RealVariableDeclaration:
-    "var" name=ID "=" "Real" ":" value=REAL
+IntValue:
+    value=INT
 ;
 
 LoopStatement:
@@ -68,28 +65,34 @@ LoopStatement:
 
 REAL returns ecore::EFloat hidden():
 	INT? "." INT
-; 
+;
 
-Addition returns IntExpression:
+Addition returns NumExpression:
 	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 ;
 
-Multiplication returns IntExpression:
+Multiplication returns NumExpression:
 	Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 ;
 
-Primary returns IntExpression:
-	IntLiteral |
-	IntVarExpression |
+Primary returns NumExpression:
+	IntValue |
+	RealValue |
+	NumVarExpression |
 	"(" Addition ")"
 ;
 
-IntLiteral:
-	val = INT
+NumVarExpression:
+	var = [VariableDeclaration]
 ;
 
-IntVarExpression:
-	var = [IntVariableDeclaration]
+StringPrimary:
+	StringVarExpression |
+	StringValue
+;
+
+StringVarExpression:
+	var = [VariableDeclaration]
 ;
 
 Action:
@@ -97,9 +100,9 @@ Action:
 ;
 
 Buy:
-    "buy" quantity=REAL ticker=ID "at" "price" price=REAL
+    "buy" quantity=Addition ticker=ID "at" "price" price=Addition
 ;
 
 Sell:
-    "sell" quantity=REAL ticker=ID "at" "price" price=REAL
+    "sell" quantity=Addition ticker=ID "at" "price" price=Addition
 ;

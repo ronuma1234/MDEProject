@@ -4,11 +4,14 @@
 package uk.ac.kcl.inf.trader.trader.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import uk.ac.kcl.inf.trader.trader.NumExpression;
 import uk.ac.kcl.inf.trader.trader.StrategyDef;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TradingBot;
@@ -21,35 +24,14 @@ import uk.ac.kcl.inf.trader.trader.TradingBot;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl#getBotName <em>Bot Name</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl#getStrategy <em>Strategy</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl#getFunds <em>Funds</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl#getFund <em>Fund</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TradingBotImpl extends StatementImpl implements TradingBot
 {
-  /**
-   * The default value of the '{@link #getBotName() <em>Bot Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBotName()
-   * @generated
-   * @ordered
-   */
-  protected static final String BOT_NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getBotName() <em>Bot Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getBotName()
-   * @generated
-   * @ordered
-   */
-  protected String botName = BOT_NAME_EDEFAULT;
-
   /**
    * The default value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -71,24 +53,14 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   protected StrategyDef strategy = STRATEGY_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getFunds() <em>Funds</em>}' attribute.
+   * The cached value of the '{@link #getFund() <em>Fund</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getFunds()
+   * @see #getFund()
    * @generated
    * @ordered
    */
-  protected static final float FUNDS_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getFunds() <em>Funds</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getFunds()
-   * @generated
-   * @ordered
-   */
-  protected float funds = FUNDS_EDEFAULT;
+  protected NumExpression fund;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,31 +81,6 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   protected EClass eStaticClass()
   {
     return TraderPackage.Literals.TRADING_BOT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getBotName()
-  {
-    return botName;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setBotName(String newBotName)
-  {
-    String oldBotName = botName;
-    botName = newBotName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.TRADING_BOT__BOT_NAME, oldBotName, botName));
   }
 
   /**
@@ -167,9 +114,26 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * @generated
    */
   @Override
-  public float getFunds()
+  public NumExpression getFund()
   {
-    return funds;
+    return fund;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFund(NumExpression newFund, NotificationChain msgs)
+  {
+    NumExpression oldFund = fund;
+    fund = newFund;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.TRADING_BOT__FUND, oldFund, newFund);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -178,12 +142,36 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * @generated
    */
   @Override
-  public void setFunds(float newFunds)
+  public void setFund(NumExpression newFund)
   {
-    float oldFunds = funds;
-    funds = newFunds;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.TRADING_BOT__FUNDS, oldFunds, funds));
+    if (newFund != fund)
+    {
+      NotificationChain msgs = null;
+      if (fund != null)
+        msgs = ((InternalEObject)fund).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.TRADING_BOT__FUND, null, msgs);
+      if (newFund != null)
+        msgs = ((InternalEObject)newFund).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.TRADING_BOT__FUND, null, msgs);
+      msgs = basicSetFund(newFund, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.TRADING_BOT__FUND, newFund, newFund));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TraderPackage.TRADING_BOT__FUND:
+        return basicSetFund(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -196,12 +184,10 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   {
     switch (featureID)
     {
-      case TraderPackage.TRADING_BOT__BOT_NAME:
-        return getBotName();
       case TraderPackage.TRADING_BOT__STRATEGY:
         return getStrategy();
-      case TraderPackage.TRADING_BOT__FUNDS:
-        return getFunds();
+      case TraderPackage.TRADING_BOT__FUND:
+        return getFund();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -216,14 +202,11 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   {
     switch (featureID)
     {
-      case TraderPackage.TRADING_BOT__BOT_NAME:
-        setBotName((String)newValue);
-        return;
       case TraderPackage.TRADING_BOT__STRATEGY:
         setStrategy((StrategyDef)newValue);
         return;
-      case TraderPackage.TRADING_BOT__FUNDS:
-        setFunds((Float)newValue);
+      case TraderPackage.TRADING_BOT__FUND:
+        setFund((NumExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -239,14 +222,11 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   {
     switch (featureID)
     {
-      case TraderPackage.TRADING_BOT__BOT_NAME:
-        setBotName(BOT_NAME_EDEFAULT);
-        return;
       case TraderPackage.TRADING_BOT__STRATEGY:
         setStrategy(STRATEGY_EDEFAULT);
         return;
-      case TraderPackage.TRADING_BOT__FUNDS:
-        setFunds(FUNDS_EDEFAULT);
+      case TraderPackage.TRADING_BOT__FUND:
+        setFund((NumExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -262,12 +242,10 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
   {
     switch (featureID)
     {
-      case TraderPackage.TRADING_BOT__BOT_NAME:
-        return BOT_NAME_EDEFAULT == null ? botName != null : !BOT_NAME_EDEFAULT.equals(botName);
       case TraderPackage.TRADING_BOT__STRATEGY:
         return strategy != STRATEGY_EDEFAULT;
-      case TraderPackage.TRADING_BOT__FUNDS:
-        return funds != FUNDS_EDEFAULT;
+      case TraderPackage.TRADING_BOT__FUND:
+        return fund != null;
     }
     return super.eIsSet(featureID);
   }
@@ -283,12 +261,8 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (botName: ");
-    result.append(botName);
-    result.append(", strategy: ");
+    result.append(" (strategy: ");
     result.append(strategy);
-    result.append(", funds: ");
-    result.append(funds);
     result.append(')');
     return result.toString();
   }

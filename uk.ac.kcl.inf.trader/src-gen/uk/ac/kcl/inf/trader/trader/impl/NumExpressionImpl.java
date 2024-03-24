@@ -7,24 +7,24 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import uk.ac.kcl.inf.trader.trader.IntExpression;
+import uk.ac.kcl.inf.trader.trader.NumExpression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Expression</b></em>'.
+ * An implementation of the model object '<em><b>Num Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * @generated
  */
-public class IntExpressionImpl extends MinimalEObjectImpl.Container implements IntExpression
+public class NumExpressionImpl extends MinimalEObjectImpl.Container implements NumExpression
 {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntExpressionImpl()
+  protected NumExpressionImpl()
   {
     super();
   }
@@ -37,7 +37,7 @@ public class IntExpressionImpl extends MinimalEObjectImpl.Container implements I
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.INT_EXPRESSION;
+    return TraderPackage.Literals.NUM_EXPRESSION;
   }
 
-} //IntExpressionImpl
+} //NumExpressionImpl

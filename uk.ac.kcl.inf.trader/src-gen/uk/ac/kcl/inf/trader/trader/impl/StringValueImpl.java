@@ -9,23 +9,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.trader.trader.IntVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.StringValue;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Variable Declaration</b></em>'.
+ * An implementation of the model object '<em><b>String Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.IntVariableDeclarationImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.StringValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntVariableDeclarationImpl extends VariableDeclarationImpl implements IntVariableDeclaration
+public class StringValueImpl extends StringPrimaryImpl implements StringValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -35,7 +35,7 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -45,14 +45,14 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
    * @generated
    * @ordered
    */
-  protected int value = VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntVariableDeclarationImpl()
+  protected StringValueImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.INT_VARIABLE_DECLARATION;
+    return TraderPackage.Literals.STRING_VALUE;
   }
 
   /**
@@ -74,7 +74,7 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
    * @generated
    */
   @Override
-  public int getValue()
+  public String getValue()
   {
     return value;
   }
@@ -85,12 +85,12 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
    * @generated
    */
   @Override
-  public void setValue(int newValue)
+  public void setValue(String newValue)
   {
-    int oldValue = value;
+    String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.INT_VARIABLE_DECLARATION__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.STRING_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -103,7 +103,7 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VARIABLE_DECLARATION__VALUE:
+      case TraderPackage.STRING_VALUE__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -119,8 +119,8 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VARIABLE_DECLARATION__VALUE:
-        setValue((Integer)newValue);
+      case TraderPackage.STRING_VALUE__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,7 +136,7 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VARIABLE_DECLARATION__VALUE:
+      case TraderPackage.STRING_VALUE__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
     }
@@ -153,8 +153,8 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
   {
     switch (featureID)
     {
-      case TraderPackage.INT_VARIABLE_DECLARATION__VALUE:
-        return value != VALUE_EDEFAULT;
+      case TraderPackage.STRING_VALUE__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -176,4 +176,4 @@ public class IntVariableDeclarationImpl extends VariableDeclarationImpl implemen
     return result.toString();
   }
 
-} //IntVariableDeclarationImpl
+} //StringValueImpl

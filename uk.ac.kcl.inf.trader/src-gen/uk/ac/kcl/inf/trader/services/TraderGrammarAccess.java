@@ -45,7 +45,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	public class StatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Statement");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cConnectParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cConnectStatementParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cTradingBotParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cListBotsParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
 		private final RuleCall cExecuteParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
@@ -54,15 +54,15 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final RuleCall cLoopStatementParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Statement:
-		//    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+		//    ConnectStatement | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+		//ConnectStatement | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//Connect
-		public RuleCall getConnectParserRuleCall_0() { return cConnectParserRuleCall_0; }
+		//ConnectStatement
+		public RuleCall getConnectStatementParserRuleCall_0() { return cConnectStatementParserRuleCall_0; }
 		
 		//TradingBot
 		public RuleCall getTradingBotParserRuleCall_1() { return cTradingBotParserRuleCall_1; }
@@ -82,8 +82,8 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//LoopStatement
 		public RuleCall getLoopStatementParserRuleCall_6() { return cLoopStatementParserRuleCall_6; }
 	}
-	public class ConnectElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Connect");
+	public class ConnectStatementElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.ConnectStatement");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cConnectKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cToKeyword_1 = (Keyword)cGroup.eContents().get(1);
@@ -91,15 +91,42 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cBrokerNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cBrokerNameIDTerminalRuleCall_3_0 = (RuleCall)cBrokerNameAssignment_3.eContents().get(0);
 		private final Keyword cWithKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cParametersAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cParametersConnectParametersParserRuleCall_5_0 = (RuleCall)cParametersAssignment_5.eContents().get(0);
+		private final Keyword cUsernameKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cUsernameAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cUsernameStringPrimaryParserRuleCall_6_0 = (RuleCall)cUsernameAssignment_6.eContents().get(0);
+		private final Keyword cCommaKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cPasswordKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cPasswordAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cPasswordStringPrimaryParserRuleCall_9_0 = (RuleCall)cPasswordAssignment_9.eContents().get(0);
+		private final Keyword cCommaKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Keyword cLeverageKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Assignment cLeverageAssignment_12 = (Assignment)cGroup.eContents().get(12);
+		private final RuleCall cLeverageAdditionParserRuleCall_12_0 = (RuleCall)cLeverageAssignment_12.eContents().get(0);
+		private final Keyword cCommaKeyword_13 = (Keyword)cGroup.eContents().get(13);
+		private final Keyword cMoneyKeyword_14 = (Keyword)cGroup.eContents().get(14);
+		private final Assignment cMoneyAssignment_15 = (Assignment)cGroup.eContents().get(15);
+		private final RuleCall cMoneyAdditionParserRuleCall_15_0 = (RuleCall)cMoneyAssignment_15.eContents().get(0);
+		private final Keyword cCommaKeyword_16 = (Keyword)cGroup.eContents().get(16);
+		private final Keyword cTimeframeKeyword_17 = (Keyword)cGroup.eContents().get(17);
+		private final Assignment cTimeframeAssignment_18 = (Assignment)cGroup.eContents().get(18);
+		private final RuleCall cTimeframeStringPrimaryParserRuleCall_18_0 = (RuleCall)cTimeframeAssignment_18.eContents().get(0);
 		
-		//Connect:
-		//    "connect" "to" "broker" brokerName = ID "with" ( parameters=ConnectParameters)?
+		//ConnectStatement:
+		//    "connect" "to" "broker" brokerName = ID "with"
+		//    "username:" username = StringPrimary ","
+		//    "password:" password = StringPrimary ","
+		//    "leverage:" leverage = Addition ","
+		//    "money:" money = Addition ","
+		//    "timeframe:" timeframe = StringPrimary
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"connect" "to" "broker" brokerName = ID "with" ( parameters=ConnectParameters)?
+		//"connect" "to" "broker" brokerName = ID "with"
+		//"username:" username = StringPrimary ","
+		//"password:" password = StringPrimary ","
+		//"leverage:" leverage = Addition ","
+		//"money:" money = Addition ","
+		//"timeframe:" timeframe = StringPrimary
 		public Group getGroup() { return cGroup; }
 		
 		//"connect"
@@ -120,131 +147,83 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"with"
 		public Keyword getWithKeyword_4() { return cWithKeyword_4; }
 		
-		//( parameters=ConnectParameters)?
-		public Assignment getParametersAssignment_5() { return cParametersAssignment_5; }
+		//"username:"
+		public Keyword getUsernameKeyword_5() { return cUsernameKeyword_5; }
 		
-		//ConnectParameters
-		public RuleCall getParametersConnectParametersParserRuleCall_5_0() { return cParametersConnectParametersParserRuleCall_5_0; }
-	}
-	public class ConnectParametersElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.ConnectParameters");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cUsernameKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cUsernameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cUsernameSTRINGTerminalRuleCall_1_0 = (RuleCall)cUsernameAssignment_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cPasswordKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cPasswordAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cPasswordSTRINGTerminalRuleCall_4_0 = (RuleCall)cPasswordAssignment_4.eContents().get(0);
-		private final Keyword cCommaKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cLeverageKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cLeverageAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cLeverageREALParserRuleCall_7_0 = (RuleCall)cLeverageAssignment_7.eContents().get(0);
-		private final Keyword cCommaKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cMoneyKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Assignment cMoneyAssignment_10 = (Assignment)cGroup.eContents().get(10);
-		private final RuleCall cMoneyREALParserRuleCall_10_0 = (RuleCall)cMoneyAssignment_10.eContents().get(0);
-		private final Keyword cCommaKeyword_11 = (Keyword)cGroup.eContents().get(11);
-		private final Keyword cTimeframeKeyword_12 = (Keyword)cGroup.eContents().get(12);
-		private final Assignment cTimeframeAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cTimeframeSTRINGTerminalRuleCall_13_0 = (RuleCall)cTimeframeAssignment_13.eContents().get(0);
+		//username = StringPrimary
+		public Assignment getUsernameAssignment_6() { return cUsernameAssignment_6; }
 		
-		//ConnectParameters:
-		//    "username" username=STRING ","
-		//    "password" password=STRING ","
-		//    "leverage" leverage=REAL ","
-		//    "money" money=REAL ","
-		//    "timeframe" timeframe=STRING
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//"username" username=STRING ","
-		//"password" password=STRING ","
-		//"leverage" leverage=REAL ","
-		//"money" money=REAL ","
-		//"timeframe" timeframe=STRING
-		public Group getGroup() { return cGroup; }
-		
-		//"username"
-		public Keyword getUsernameKeyword_0() { return cUsernameKeyword_0; }
-		
-		//username=STRING
-		public Assignment getUsernameAssignment_1() { return cUsernameAssignment_1; }
-		
-		//STRING
-		public RuleCall getUsernameSTRINGTerminalRuleCall_1_0() { return cUsernameSTRINGTerminalRuleCall_1_0; }
+		//StringPrimary
+		public RuleCall getUsernameStringPrimaryParserRuleCall_6_0() { return cUsernameStringPrimaryParserRuleCall_6_0; }
 		
 		//","
-		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		public Keyword getCommaKeyword_7() { return cCommaKeyword_7; }
 		
-		//"password"
-		public Keyword getPasswordKeyword_3() { return cPasswordKeyword_3; }
+		//"password:"
+		public Keyword getPasswordKeyword_8() { return cPasswordKeyword_8; }
 		
-		//password=STRING
-		public Assignment getPasswordAssignment_4() { return cPasswordAssignment_4; }
+		//password = StringPrimary
+		public Assignment getPasswordAssignment_9() { return cPasswordAssignment_9; }
 		
-		//STRING
-		public RuleCall getPasswordSTRINGTerminalRuleCall_4_0() { return cPasswordSTRINGTerminalRuleCall_4_0; }
-		
-		//","
-		public Keyword getCommaKeyword_5() { return cCommaKeyword_5; }
-		
-		//"leverage"
-		public Keyword getLeverageKeyword_6() { return cLeverageKeyword_6; }
-		
-		//leverage=REAL
-		public Assignment getLeverageAssignment_7() { return cLeverageAssignment_7; }
-		
-		//REAL
-		public RuleCall getLeverageREALParserRuleCall_7_0() { return cLeverageREALParserRuleCall_7_0; }
+		//StringPrimary
+		public RuleCall getPasswordStringPrimaryParserRuleCall_9_0() { return cPasswordStringPrimaryParserRuleCall_9_0; }
 		
 		//","
-		public Keyword getCommaKeyword_8() { return cCommaKeyword_8; }
+		public Keyword getCommaKeyword_10() { return cCommaKeyword_10; }
 		
-		//"money"
-		public Keyword getMoneyKeyword_9() { return cMoneyKeyword_9; }
+		//"leverage:"
+		public Keyword getLeverageKeyword_11() { return cLeverageKeyword_11; }
 		
-		//money=REAL
-		public Assignment getMoneyAssignment_10() { return cMoneyAssignment_10; }
+		//leverage = Addition
+		public Assignment getLeverageAssignment_12() { return cLeverageAssignment_12; }
 		
-		//REAL
-		public RuleCall getMoneyREALParserRuleCall_10_0() { return cMoneyREALParserRuleCall_10_0; }
+		//Addition
+		public RuleCall getLeverageAdditionParserRuleCall_12_0() { return cLeverageAdditionParserRuleCall_12_0; }
 		
 		//","
-		public Keyword getCommaKeyword_11() { return cCommaKeyword_11; }
+		public Keyword getCommaKeyword_13() { return cCommaKeyword_13; }
 		
-		//"timeframe"
-		public Keyword getTimeframeKeyword_12() { return cTimeframeKeyword_12; }
+		//"money:"
+		public Keyword getMoneyKeyword_14() { return cMoneyKeyword_14; }
 		
-		//timeframe=STRING
-		public Assignment getTimeframeAssignment_13() { return cTimeframeAssignment_13; }
+		//money = Addition
+		public Assignment getMoneyAssignment_15() { return cMoneyAssignment_15; }
 		
-		//STRING
-		public RuleCall getTimeframeSTRINGTerminalRuleCall_13_0() { return cTimeframeSTRINGTerminalRuleCall_13_0; }
+		//Addition
+		public RuleCall getMoneyAdditionParserRuleCall_15_0() { return cMoneyAdditionParserRuleCall_15_0; }
+		
+		//","
+		public Keyword getCommaKeyword_16() { return cCommaKeyword_16; }
+		
+		//"timeframe:"
+		public Keyword getTimeframeKeyword_17() { return cTimeframeKeyword_17; }
+		
+		//timeframe = StringPrimary
+		public Assignment getTimeframeAssignment_18() { return cTimeframeAssignment_18; }
+		
+		//StringPrimary
+		public RuleCall getTimeframeStringPrimaryParserRuleCall_18_0() { return cTimeframeStringPrimaryParserRuleCall_18_0; }
 	}
 	public class TradingBotElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.TradingBot");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cCreateKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cBotKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cBotNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cBotNameIDTerminalRuleCall_2_0 = (RuleCall)cBotNameAssignment_2.eContents().get(0);
-		private final Keyword cWithKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cStrategyAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cStrategyStrategyDefEnumRuleCall_4_0 = (RuleCall)cStrategyAssignment_4.eContents().get(0);
-		private final Keyword cStrategyKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cUsingKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cFundsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cFundsREALParserRuleCall_7_0 = (RuleCall)cFundsAssignment_7.eContents().get(0);
-		private final Keyword cFromKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cMoneyKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cWithKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cStrategyAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cStrategyStrategyDefEnumRuleCall_3_0 = (RuleCall)cStrategyAssignment_3.eContents().get(0);
+		private final Keyword cStrategyKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cUsingKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cFundAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cFundAdditionParserRuleCall_6_0 = (RuleCall)cFundAssignment_6.eContents().get(0);
+		private final Keyword cFundsKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//TradingBot:
-		//    "create" "bot" botName = ID "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+		//    "create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"create" "bot" botName = ID "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+		//"create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
 		public Group getGroup() { return cGroup; }
 		
 		//"create"
@@ -253,38 +232,29 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"bot"
 		public Keyword getBotKeyword_1() { return cBotKeyword_1; }
 		
-		//botName = ID
-		public Assignment getBotNameAssignment_2() { return cBotNameAssignment_2; }
-		
-		//ID
-		public RuleCall getBotNameIDTerminalRuleCall_2_0() { return cBotNameIDTerminalRuleCall_2_0; }
-		
 		//"with"
-		public Keyword getWithKeyword_3() { return cWithKeyword_3; }
+		public Keyword getWithKeyword_2() { return cWithKeyword_2; }
 		
 		//strategy = StrategyDef
-		public Assignment getStrategyAssignment_4() { return cStrategyAssignment_4; }
+		public Assignment getStrategyAssignment_3() { return cStrategyAssignment_3; }
 		
 		//StrategyDef
-		public RuleCall getStrategyStrategyDefEnumRuleCall_4_0() { return cStrategyStrategyDefEnumRuleCall_4_0; }
+		public RuleCall getStrategyStrategyDefEnumRuleCall_3_0() { return cStrategyStrategyDefEnumRuleCall_3_0; }
 		
 		//"strategy"
-		public Keyword getStrategyKeyword_5() { return cStrategyKeyword_5; }
+		public Keyword getStrategyKeyword_4() { return cStrategyKeyword_4; }
 		
 		//"using"
-		public Keyword getUsingKeyword_6() { return cUsingKeyword_6; }
+		public Keyword getUsingKeyword_5() { return cUsingKeyword_5; }
 		
-		//funds = REAL
-		public Assignment getFundsAssignment_7() { return cFundsAssignment_7; }
+		//fund = Addition
+		public Assignment getFundAssignment_6() { return cFundAssignment_6; }
 		
-		//REAL
-		public RuleCall getFundsREALParserRuleCall_7_0() { return cFundsREALParserRuleCall_7_0; }
+		//Addition
+		public RuleCall getFundAdditionParserRuleCall_6_0() { return cFundAdditionParserRuleCall_6_0; }
 		
-		//"from"
-		public Keyword getFromKeyword_8() { return cFromKeyword_8; }
-		
-		//"money"
-		public Keyword getMoneyKeyword_9() { return cMoneyKeyword_9; }
+		//"funds"
+		public Keyword getFundsKeyword_7() { return cFundsKeyword_7; }
 	}
 	public class ListBotsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.ListBots");
@@ -364,46 +334,25 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	public class VariableDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.VariableDeclaration");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIntVariableDeclarationParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cStringVariableDeclarationParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cRealVariableDeclarationParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cValueAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final RuleCall cValueStringValueParserRuleCall_3_0_0 = (RuleCall)cValueAssignment_3_0.eContents().get(0);
+		private final Assignment cValueAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final RuleCall cValueRealValueParserRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
+		private final Assignment cValueAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
+		private final RuleCall cValueIntValueParserRuleCall_3_2_0 = (RuleCall)cValueAssignment_3_2.eContents().get(0);
 		
 		//VariableDeclaration:
-		//    IntVariableDeclaration | StringVariableDeclaration | RealVariableDeclaration
+		//    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntVariableDeclaration | StringVariableDeclaration | RealVariableDeclaration
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//IntVariableDeclaration
-		public RuleCall getIntVariableDeclarationParserRuleCall_0() { return cIntVariableDeclarationParserRuleCall_0; }
-		
-		//StringVariableDeclaration
-		public RuleCall getStringVariableDeclarationParserRuleCall_1() { return cStringVariableDeclarationParserRuleCall_1; }
-		
-		//RealVariableDeclaration
-		public RuleCall getRealVariableDeclarationParserRuleCall_2() { return cRealVariableDeclarationParserRuleCall_2; }
-	}
-	public class IntVariableDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.IntVariableDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cIntKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cValueINTTerminalRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
-		
-		//IntVariableDeclaration:
-		//    "var" name=ID "=" "int" ":" value=INT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//"var" name=ID "=" "int" ":" value=INT
+		//"var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
 		public Group getGroup() { return cGroup; }
 		
 		//"var"
@@ -418,105 +367,74 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"="
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 		
-		//"int"
-		public Keyword getIntKeyword_3() { return cIntKeyword_3; }
+		//(value=StringValue | value=RealValue | value=IntValue)
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//":"
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
+		//value=StringValue
+		public Assignment getValueAssignment_3_0() { return cValueAssignment_3_0; }
 		
-		//value=INT
-		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		//StringValue
+		public RuleCall getValueStringValueParserRuleCall_3_0_0() { return cValueStringValueParserRuleCall_3_0_0; }
 		
-		//INT
-		public RuleCall getValueINTTerminalRuleCall_5_0() { return cValueINTTerminalRuleCall_5_0; }
+		//value=RealValue
+		public Assignment getValueAssignment_3_1() { return cValueAssignment_3_1; }
+		
+		//RealValue
+		public RuleCall getValueRealValueParserRuleCall_3_1_0() { return cValueRealValueParserRuleCall_3_1_0; }
+		
+		//value=IntValue
+		public Assignment getValueAssignment_3_2() { return cValueAssignment_3_2; }
+		
+		//IntValue
+		public RuleCall getValueIntValueParserRuleCall_3_2_0() { return cValueIntValueParserRuleCall_3_2_0; }
 	}
-	public class StringVariableDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StringVariableDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cStringKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cValueSTRINGTerminalRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+	public class StringValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StringValue");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueSTRINGTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//StringVariableDeclaration:
-		//    "var" name=ID "=" "String" ":" value=STRING
+		//StringValue:
+		//    value=STRING
 		//;
 		@Override public ParserRule getRule() { return rule; }
-		
-		//"var" name=ID "=" "String" ":" value=STRING
-		public Group getGroup() { return cGroup; }
-		
-		//"var"
-		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-		
-		//"String"
-		public Keyword getStringKeyword_3() { return cStringKeyword_3; }
-		
-		//":"
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
 		
 		//value=STRING
-		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
 		//STRING
-		public RuleCall getValueSTRINGTerminalRuleCall_5_0() { return cValueSTRINGTerminalRuleCall_5_0; }
+		public RuleCall getValueSTRINGTerminalRuleCall_0() { return cValueSTRINGTerminalRuleCall_0; }
 	}
-	public class RealVariableDeclarationElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.RealVariableDeclaration");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cEqualsSignKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cRealKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cValueREALParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+	public class RealValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.RealValue");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueREALParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//RealVariableDeclaration:
-		//    "var" name=ID "=" "Real" ":" value=REAL
+		//RealValue:
+		//    value=REAL
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"var" name=ID "=" "Real" ":" value=REAL
-		public Group getGroup() { return cGroup; }
-		
-		//"var"
-		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
-		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
-		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-		
-		//"="
-		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
-		
-		//"Real"
-		public Keyword getRealKeyword_3() { return cRealKeyword_3; }
-		
-		//":"
-		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
-		
 		//value=REAL
-		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		public Assignment getValueAssignment() { return cValueAssignment; }
 		
 		//REAL
-		public RuleCall getValueREALParserRuleCall_5_0() { return cValueREALParserRuleCall_5_0; }
+		public RuleCall getValueREALParserRuleCall_0() { return cValueREALParserRuleCall_0; }
+	}
+	public class IntValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.IntValue");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//IntValue:
+		//    value=INT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+		
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 	public class LoopStatementElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.LoopStatement");
@@ -603,7 +521,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightMultiplicationParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//Addition returns IntExpression:
+		//Addition returns NumExpression:
 		//    Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -651,7 +569,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightPrimaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//Multiplication returns IntExpression:
+		//Multiplication returns NumExpression:
 		//    Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -689,78 +607,110 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	public class PrimaryElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Primary");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cIntLiteralParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cIntVarExpressionParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final RuleCall cAdditionParserRuleCall_2_1 = (RuleCall)cGroup_2.eContents().get(1);
-		private final Keyword cRightParenthesisKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
+		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cRealValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cNumVarExpressionParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
+		private final Keyword cLeftParenthesisKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
+		private final RuleCall cAdditionParserRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
+		private final Keyword cRightParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
-		//Primary returns IntExpression:
-		//    IntLiteral |
-		//    IntVarExpression |
+		//Primary returns NumExpression:
+		//    IntValue |
+		//    RealValue |
+		//    NumVarExpression |
 		//    "(" Addition ")"
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//IntLiteral |
-		//IntVarExpression |
+		//IntValue |
+		//RealValue |
+		//NumVarExpression |
 		//"(" Addition ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//IntLiteral
-		public RuleCall getIntLiteralParserRuleCall_0() { return cIntLiteralParserRuleCall_0; }
+		//IntValue
+		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
 		
-		//IntVarExpression
-		public RuleCall getIntVarExpressionParserRuleCall_1() { return cIntVarExpressionParserRuleCall_1; }
+		//RealValue
+		public RuleCall getRealValueParserRuleCall_1() { return cRealValueParserRuleCall_1; }
+		
+		//NumVarExpression
+		public RuleCall getNumVarExpressionParserRuleCall_2() { return cNumVarExpressionParserRuleCall_2; }
 		
 		//"(" Addition ")"
-		public Group getGroup_2() { return cGroup_2; }
+		public Group getGroup_3() { return cGroup_3; }
 		
 		//"("
-		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
+		public Keyword getLeftParenthesisKeyword_3_0() { return cLeftParenthesisKeyword_3_0; }
 		
 		//Addition
-		public RuleCall getAdditionParserRuleCall_2_1() { return cAdditionParserRuleCall_2_1; }
+		public RuleCall getAdditionParserRuleCall_3_1() { return cAdditionParserRuleCall_3_1; }
 		
 		//")"
-		public Keyword getRightParenthesisKeyword_2_2() { return cRightParenthesisKeyword_2_2; }
+		public Keyword getRightParenthesisKeyword_3_2() { return cRightParenthesisKeyword_3_2; }
 	}
-	public class IntLiteralElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.IntLiteral");
-		private final Assignment cValAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValINTTerminalRuleCall_0 = (RuleCall)cValAssignment.eContents().get(0);
-		
-		//IntLiteral:
-		//    val = INT
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//val = INT
-		public Assignment getValAssignment() { return cValAssignment; }
-		
-		//INT
-		public RuleCall getValINTTerminalRuleCall_0() { return cValINTTerminalRuleCall_0; }
-	}
-	public class IntVarExpressionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.IntVarExpression");
+	public class NumVarExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.NumVarExpression");
 		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
-		private final CrossReference cVarIntVariableDeclarationCrossReference_0 = (CrossReference)cVarAssignment.eContents().get(0);
-		private final RuleCall cVarIntVariableDeclarationIDTerminalRuleCall_0_1 = (RuleCall)cVarIntVariableDeclarationCrossReference_0.eContents().get(1);
+		private final CrossReference cVarVariableDeclarationCrossReference_0 = (CrossReference)cVarAssignment.eContents().get(0);
+		private final RuleCall cVarVariableDeclarationIDTerminalRuleCall_0_1 = (RuleCall)cVarVariableDeclarationCrossReference_0.eContents().get(1);
 		
-		//IntVarExpression:
-		//    var = [IntVariableDeclaration]
+		//NumVarExpression:
+		//    var = [VariableDeclaration]
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//var = [IntVariableDeclaration]
+		//var = [VariableDeclaration]
 		public Assignment getVarAssignment() { return cVarAssignment; }
 		
-		//[IntVariableDeclaration]
-		public CrossReference getVarIntVariableDeclarationCrossReference_0() { return cVarIntVariableDeclarationCrossReference_0; }
+		//[VariableDeclaration]
+		public CrossReference getVarVariableDeclarationCrossReference_0() { return cVarVariableDeclarationCrossReference_0; }
 		
 		//ID
-		public RuleCall getVarIntVariableDeclarationIDTerminalRuleCall_0_1() { return cVarIntVariableDeclarationIDTerminalRuleCall_0_1; }
+		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_0_1; }
+	}
+	public class StringPrimaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StringPrimary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final RuleCall cStringVarExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		
+		//StringPrimary:
+		//    StringVarExpression |
+		//    StringValue
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//StringVarExpression |
+		//StringValue
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//StringVarExpression
+		public RuleCall getStringVarExpressionParserRuleCall_0() { return cStringVarExpressionParserRuleCall_0; }
+		
+		//StringValue
+		public RuleCall getStringValueParserRuleCall_1() { return cStringValueParserRuleCall_1; }
+	}
+	public class StringVarExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StringVarExpression");
+		private final Assignment cVarAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cVarVariableDeclarationCrossReference_0 = (CrossReference)cVarAssignment.eContents().get(0);
+		private final RuleCall cVarVariableDeclarationIDTerminalRuleCall_0_1 = (RuleCall)cVarVariableDeclarationCrossReference_0.eContents().get(1);
+		
+		//StringVarExpression:
+		//    var = [VariableDeclaration]
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//var = [VariableDeclaration]
+		public Assignment getVarAssignment() { return cVarAssignment; }
+		
+		//[VariableDeclaration]
+		public CrossReference getVarVariableDeclarationCrossReference_0() { return cVarVariableDeclarationCrossReference_0; }
+		
+		//ID
+		public RuleCall getVarVariableDeclarationIDTerminalRuleCall_0_1() { return cVarVariableDeclarationIDTerminalRuleCall_0_1; }
 	}
 	public class ActionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Action");
@@ -787,30 +737,30 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cBuyKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cQuantityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQuantityREALParserRuleCall_1_0 = (RuleCall)cQuantityAssignment_1.eContents().get(0);
+		private final RuleCall cQuantityAdditionParserRuleCall_1_0 = (RuleCall)cQuantityAssignment_1.eContents().get(0);
 		private final Assignment cTickerAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTickerIDTerminalRuleCall_2_0 = (RuleCall)cTickerAssignment_2.eContents().get(0);
 		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cPriceKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cPriceAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cPriceREALParserRuleCall_5_0 = (RuleCall)cPriceAssignment_5.eContents().get(0);
+		private final RuleCall cPriceAdditionParserRuleCall_5_0 = (RuleCall)cPriceAssignment_5.eContents().get(0);
 		
 		//Buy:
-		//    "buy" quantity=REAL ticker=ID "at" "price" price=REAL
+		//    "buy" quantity=Addition ticker=ID "at" "price" price=Addition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"buy" quantity=REAL ticker=ID "at" "price" price=REAL
+		//"buy" quantity=Addition ticker=ID "at" "price" price=Addition
 		public Group getGroup() { return cGroup; }
 		
 		//"buy"
 		public Keyword getBuyKeyword_0() { return cBuyKeyword_0; }
 		
-		//quantity=REAL
+		//quantity=Addition
 		public Assignment getQuantityAssignment_1() { return cQuantityAssignment_1; }
 		
-		//REAL
-		public RuleCall getQuantityREALParserRuleCall_1_0() { return cQuantityREALParserRuleCall_1_0; }
+		//Addition
+		public RuleCall getQuantityAdditionParserRuleCall_1_0() { return cQuantityAdditionParserRuleCall_1_0; }
 		
 		//ticker=ID
 		public Assignment getTickerAssignment_2() { return cTickerAssignment_2; }
@@ -824,41 +774,41 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"price"
 		public Keyword getPriceKeyword_4() { return cPriceKeyword_4; }
 		
-		//price=REAL
+		//price=Addition
 		public Assignment getPriceAssignment_5() { return cPriceAssignment_5; }
 		
-		//REAL
-		public RuleCall getPriceREALParserRuleCall_5_0() { return cPriceREALParserRuleCall_5_0; }
+		//Addition
+		public RuleCall getPriceAdditionParserRuleCall_5_0() { return cPriceAdditionParserRuleCall_5_0; }
 	}
 	public class SellElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.Sell");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cSellKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cQuantityAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cQuantityREALParserRuleCall_1_0 = (RuleCall)cQuantityAssignment_1.eContents().get(0);
+		private final RuleCall cQuantityAdditionParserRuleCall_1_0 = (RuleCall)cQuantityAssignment_1.eContents().get(0);
 		private final Assignment cTickerAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cTickerIDTerminalRuleCall_2_0 = (RuleCall)cTickerAssignment_2.eContents().get(0);
 		private final Keyword cAtKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cPriceKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cPriceAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cPriceREALParserRuleCall_5_0 = (RuleCall)cPriceAssignment_5.eContents().get(0);
+		private final RuleCall cPriceAdditionParserRuleCall_5_0 = (RuleCall)cPriceAssignment_5.eContents().get(0);
 		
 		//Sell:
-		//    "sell" quantity=REAL ticker=ID "at" "price" price=REAL
+		//    "sell" quantity=Addition ticker=ID "at" "price" price=Addition
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"sell" quantity=REAL ticker=ID "at" "price" price=REAL
+		//"sell" quantity=Addition ticker=ID "at" "price" price=Addition
 		public Group getGroup() { return cGroup; }
 		
 		//"sell"
 		public Keyword getSellKeyword_0() { return cSellKeyword_0; }
 		
-		//quantity=REAL
+		//quantity=Addition
 		public Assignment getQuantityAssignment_1() { return cQuantityAssignment_1; }
 		
-		//REAL
-		public RuleCall getQuantityREALParserRuleCall_1_0() { return cQuantityREALParserRuleCall_1_0; }
+		//Addition
+		public RuleCall getQuantityAdditionParserRuleCall_1_0() { return cQuantityAdditionParserRuleCall_1_0; }
 		
 		//ticker=ID
 		public Assignment getTickerAssignment_2() { return cTickerAssignment_2; }
@@ -872,11 +822,11 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"price"
 		public Keyword getPriceKeyword_4() { return cPriceKeyword_4; }
 		
-		//price=REAL
+		//price=Addition
 		public Assignment getPriceAssignment_5() { return cPriceAssignment_5; }
 		
-		//REAL
-		public RuleCall getPriceREALParserRuleCall_5_0() { return cPriceREALParserRuleCall_5_0; }
+		//Addition
+		public RuleCall getPriceAdditionParserRuleCall_5_0() { return cPriceAdditionParserRuleCall_5_0; }
 	}
 	
 	public class StrategyDefElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
@@ -908,24 +858,24 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	
 	private final TraderProgramElements pTraderProgram;
 	private final StatementElements pStatement;
-	private final ConnectElements pConnect;
-	private final ConnectParametersElements pConnectParameters;
+	private final ConnectStatementElements pConnectStatement;
 	private final TradingBotElements pTradingBot;
 	private final StrategyDefElements eStrategyDef;
 	private final ListBotsElements pListBots;
 	private final ExecuteElements pExecute;
 	private final StopElements pStop;
 	private final VariableDeclarationElements pVariableDeclaration;
-	private final IntVariableDeclarationElements pIntVariableDeclaration;
-	private final StringVariableDeclarationElements pStringVariableDeclaration;
-	private final RealVariableDeclarationElements pRealVariableDeclaration;
+	private final StringValueElements pStringValue;
+	private final RealValueElements pRealValue;
+	private final IntValueElements pIntValue;
 	private final LoopStatementElements pLoopStatement;
 	private final REALElements pREAL;
 	private final AdditionElements pAddition;
 	private final MultiplicationElements pMultiplication;
 	private final PrimaryElements pPrimary;
-	private final IntLiteralElements pIntLiteral;
-	private final IntVarExpressionElements pIntVarExpression;
+	private final NumVarExpressionElements pNumVarExpression;
+	private final StringPrimaryElements pStringPrimary;
+	private final StringVarExpressionElements pStringVarExpression;
 	private final ActionElements pAction;
 	private final BuyElements pBuy;
 	private final SellElements pSell;
@@ -941,24 +891,24 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		this.gaTerminals = gaTerminals;
 		this.pTraderProgram = new TraderProgramElements();
 		this.pStatement = new StatementElements();
-		this.pConnect = new ConnectElements();
-		this.pConnectParameters = new ConnectParametersElements();
+		this.pConnectStatement = new ConnectStatementElements();
 		this.pTradingBot = new TradingBotElements();
 		this.eStrategyDef = new StrategyDefElements();
 		this.pListBots = new ListBotsElements();
 		this.pExecute = new ExecuteElements();
 		this.pStop = new StopElements();
 		this.pVariableDeclaration = new VariableDeclarationElements();
-		this.pIntVariableDeclaration = new IntVariableDeclarationElements();
-		this.pStringVariableDeclaration = new StringVariableDeclarationElements();
-		this.pRealVariableDeclaration = new RealVariableDeclarationElements();
+		this.pStringValue = new StringValueElements();
+		this.pRealValue = new RealValueElements();
+		this.pIntValue = new IntValueElements();
 		this.pLoopStatement = new LoopStatementElements();
 		this.pREAL = new REALElements();
 		this.pAddition = new AdditionElements();
 		this.pMultiplication = new MultiplicationElements();
 		this.pPrimary = new PrimaryElements();
-		this.pIntLiteral = new IntLiteralElements();
-		this.pIntVarExpression = new IntVarExpressionElements();
+		this.pNumVarExpression = new NumVarExpressionElements();
+		this.pStringPrimary = new StringPrimaryElements();
+		this.pStringVarExpression = new StringVarExpressionElements();
 		this.pAction = new ActionElements();
 		this.pBuy = new BuyElements();
 		this.pSell = new SellElements();
@@ -1003,7 +953,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//Statement:
-	//    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+	//    ConnectStatement | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
 	//;
 	public StatementElements getStatementAccess() {
 		return pStatement;
@@ -1013,34 +963,24 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getStatementAccess().getRule();
 	}
 	
-	//Connect:
-	//    "connect" "to" "broker" brokerName = ID "with" ( parameters=ConnectParameters)?
+	//ConnectStatement:
+	//    "connect" "to" "broker" brokerName = ID "with"
+	//    "username:" username = StringPrimary ","
+	//    "password:" password = StringPrimary ","
+	//    "leverage:" leverage = Addition ","
+	//    "money:" money = Addition ","
+	//    "timeframe:" timeframe = StringPrimary
 	//;
-	public ConnectElements getConnectAccess() {
-		return pConnect;
+	public ConnectStatementElements getConnectStatementAccess() {
+		return pConnectStatement;
 	}
 	
-	public ParserRule getConnectRule() {
-		return getConnectAccess().getRule();
-	}
-	
-	//ConnectParameters:
-	//    "username" username=STRING ","
-	//    "password" password=STRING ","
-	//    "leverage" leverage=REAL ","
-	//    "money" money=REAL ","
-	//    "timeframe" timeframe=STRING
-	//;
-	public ConnectParametersElements getConnectParametersAccess() {
-		return pConnectParameters;
-	}
-	
-	public ParserRule getConnectParametersRule() {
-		return getConnectParametersAccess().getRule();
+	public ParserRule getConnectStatementRule() {
+		return getConnectStatementAccess().getRule();
 	}
 	
 	//TradingBot:
-	//    "create" "bot" botName = ID "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+	//    "create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
 	//;
 	public TradingBotElements getTradingBotAccess() {
 		return pTradingBot;
@@ -1095,7 +1035,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//VariableDeclaration:
-	//    IntVariableDeclaration | StringVariableDeclaration | RealVariableDeclaration
+	//    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
 	//;
 	public VariableDeclarationElements getVariableDeclarationAccess() {
 		return pVariableDeclaration;
@@ -1105,37 +1045,37 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getVariableDeclarationAccess().getRule();
 	}
 	
-	//IntVariableDeclaration:
-	//    "var" name=ID "=" "int" ":" value=INT
+	//StringValue:
+	//    value=STRING
 	//;
-	public IntVariableDeclarationElements getIntVariableDeclarationAccess() {
-		return pIntVariableDeclaration;
+	public StringValueElements getStringValueAccess() {
+		return pStringValue;
 	}
 	
-	public ParserRule getIntVariableDeclarationRule() {
-		return getIntVariableDeclarationAccess().getRule();
+	public ParserRule getStringValueRule() {
+		return getStringValueAccess().getRule();
 	}
 	
-	//StringVariableDeclaration:
-	//    "var" name=ID "=" "String" ":" value=STRING
+	//RealValue:
+	//    value=REAL
 	//;
-	public StringVariableDeclarationElements getStringVariableDeclarationAccess() {
-		return pStringVariableDeclaration;
+	public RealValueElements getRealValueAccess() {
+		return pRealValue;
 	}
 	
-	public ParserRule getStringVariableDeclarationRule() {
-		return getStringVariableDeclarationAccess().getRule();
+	public ParserRule getRealValueRule() {
+		return getRealValueAccess().getRule();
 	}
 	
-	//RealVariableDeclaration:
-	//    "var" name=ID "=" "Real" ":" value=REAL
+	//IntValue:
+	//    value=INT
 	//;
-	public RealVariableDeclarationElements getRealVariableDeclarationAccess() {
-		return pRealVariableDeclaration;
+	public IntValueElements getIntValueAccess() {
+		return pIntValue;
 	}
 	
-	public ParserRule getRealVariableDeclarationRule() {
-		return getRealVariableDeclarationAccess().getRule();
+	public ParserRule getIntValueRule() {
+		return getIntValueAccess().getRule();
 	}
 	
 	//LoopStatement:
@@ -1162,7 +1102,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getREALAccess().getRule();
 	}
 	
-	//Addition returns IntExpression:
+	//Addition returns NumExpression:
 	//    Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 	//;
 	public AdditionElements getAdditionAccess() {
@@ -1173,7 +1113,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getAdditionAccess().getRule();
 	}
 	
-	//Multiplication returns IntExpression:
+	//Multiplication returns NumExpression:
 	//    Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 	//;
 	public MultiplicationElements getMultiplicationAccess() {
@@ -1184,9 +1124,10 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getMultiplicationAccess().getRule();
 	}
 	
-	//Primary returns IntExpression:
-	//    IntLiteral |
-	//    IntVarExpression |
+	//Primary returns NumExpression:
+	//    IntValue |
+	//    RealValue |
+	//    NumVarExpression |
 	//    "(" Addition ")"
 	//;
 	public PrimaryElements getPrimaryAccess() {
@@ -1197,26 +1138,38 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getPrimaryAccess().getRule();
 	}
 	
-	//IntLiteral:
-	//    val = INT
+	//NumVarExpression:
+	//    var = [VariableDeclaration]
 	//;
-	public IntLiteralElements getIntLiteralAccess() {
-		return pIntLiteral;
+	public NumVarExpressionElements getNumVarExpressionAccess() {
+		return pNumVarExpression;
 	}
 	
-	public ParserRule getIntLiteralRule() {
-		return getIntLiteralAccess().getRule();
+	public ParserRule getNumVarExpressionRule() {
+		return getNumVarExpressionAccess().getRule();
 	}
 	
-	//IntVarExpression:
-	//    var = [IntVariableDeclaration]
+	//StringPrimary:
+	//    StringVarExpression |
+	//    StringValue
 	//;
-	public IntVarExpressionElements getIntVarExpressionAccess() {
-		return pIntVarExpression;
+	public StringPrimaryElements getStringPrimaryAccess() {
+		return pStringPrimary;
 	}
 	
-	public ParserRule getIntVarExpressionRule() {
-		return getIntVarExpressionAccess().getRule();
+	public ParserRule getStringPrimaryRule() {
+		return getStringPrimaryAccess().getRule();
+	}
+	
+	//StringVarExpression:
+	//    var = [VariableDeclaration]
+	//;
+	public StringVarExpressionElements getStringVarExpressionAccess() {
+		return pStringVarExpression;
+	}
+	
+	public ParserRule getStringVarExpressionRule() {
+		return getStringVarExpressionAccess().getRule();
 	}
 	
 	//Action:
@@ -1231,7 +1184,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//Buy:
-	//    "buy" quantity=REAL ticker=ID "at" "price" price=REAL
+	//    "buy" quantity=Addition ticker=ID "at" "price" price=Addition
 	//;
 	public BuyElements getBuyAccess() {
 		return pBuy;
@@ -1242,7 +1195,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//Sell:
-	//    "sell" quantity=REAL ticker=ID "at" "price" price=REAL
+	//    "sell" quantity=Addition ticker=ID "at" "price" price=Addition
 	//;
 	public SellElements getSellAccess() {
 		return pSell;

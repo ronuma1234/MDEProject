@@ -6,21 +6,21 @@ package uk.ac.kcl.inf.trader.trader;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Int Variable Declaration</b></em>'.
+ * A representation of the model object '<em><b>Int Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration#getValue <em>Value</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.IntValue#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getIntVariableDeclaration()
+ * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getIntValue()
  * @model
  * @generated
  */
-public interface IntVariableDeclaration extends VariableDeclaration
+public interface IntValue extends NumExpression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -28,14 +28,14 @@ public interface IntVariableDeclaration extends VariableDeclaration
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(int)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getIntVariableDeclaration_Value()
+   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getIntValue_Value()
    * @model
    * @generated
    */
   int getValue();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.IntValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
@@ -44,4 +44,4 @@ public interface IntVariableDeclaration extends VariableDeclaration
    */
   void setValue(int value);
 
-} // IntVariableDeclaration
+} // IntValue

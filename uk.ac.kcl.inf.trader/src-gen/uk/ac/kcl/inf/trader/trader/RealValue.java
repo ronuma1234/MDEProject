@@ -6,21 +6,21 @@ package uk.ac.kcl.inf.trader.trader;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Real Variable Declaration</b></em>'.
+ * A representation of the model object '<em><b>Real Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration#getValue <em>Value</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.RealValue#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getRealVariableDeclaration()
+ * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getRealValue()
  * @model
  * @generated
  */
-public interface RealVariableDeclaration extends VariableDeclaration
+public interface RealValue extends NumExpression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -28,14 +28,14 @@ public interface RealVariableDeclaration extends VariableDeclaration
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(float)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getRealVariableDeclaration_Value()
+   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getRealValue_Value()
    * @model
    * @generated
    */
   float getValue();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.RealValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
@@ -44,4 +44,4 @@ public interface RealVariableDeclaration extends VariableDeclaration
    */
   void setValue(float value);
 
-} // RealVariableDeclaration
+} // RealValue

@@ -1,14 +1,30 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.loop.LoopTest END_SETUP */
 
-connect to broker SwissBank with username "personA", password "passwordA", leverage 0.02, money 500.50, timeframe "1HR"
+connect to broker SwissBank with username: "personA", password: "passwordA", leverage: 0.02, money: 500.50, timeframe: "1HR"
 
-create bot with buyAndHold strategy using 60.15 from money
+var z = 60.15
 
-create bot with meanReversion strategy using 40.05 from money
+// XPECT scope at z --> !x, !y, z, ...
+create bot with buyAndHold strategy using z funds
 
-3 times do 
-	create bot with buyAndHold strategy using 100.10 from money
+create bot with meanReversion strategy using 40.05 funds
+
+loop 3 times do 
+	var x = 100.10
+	// XPECT scope at x --> x, !y, z, ...
+	create bot with buyAndHold strategy using x funds
+	
+	// XPECT warnings --> "Cannot call connect statement inside loop statement" at "SwissBank"
+	connect to broker SwissBank with username: "personA", password: "passwordA", leverage: 0.02, money: 500.50, timeframe: "1HR"
+	
+	// XPECT warnings --> "Name of the variable must be unique" at "x"
+	var x = 150.10
+
+	// XPECT warnings --> "Name of the variable must be unique" at "z"	
+	var z = "heyya"
 end
+
+var y = 200
 
 see registered bots
 

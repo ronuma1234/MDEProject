@@ -9,23 +9,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.trader.trader.StringVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.RealValue;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>String Variable Declaration</b></em>'.
+ * An implementation of the model object '<em><b>Real Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.StringVariableDeclarationImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.RealValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class StringVariableDeclarationImpl extends VariableDeclarationImpl implements StringVariableDeclaration
+public class RealValueImpl extends NumExpressionImpl implements RealValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -35,7 +35,7 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
+  protected static final float VALUE_EDEFAULT = 0.0F;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -45,14 +45,14 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected float value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected StringVariableDeclarationImpl()
+  protected RealValueImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.STRING_VARIABLE_DECLARATION;
+    return TraderPackage.Literals.REAL_VALUE;
   }
 
   /**
@@ -74,7 +74,7 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
    * @generated
    */
   @Override
-  public String getValue()
+  public float getValue()
   {
     return value;
   }
@@ -85,12 +85,12 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
    * @generated
    */
   @Override
-  public void setValue(String newValue)
+  public void setValue(float newValue)
   {
-    String oldValue = value;
+    float oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.STRING_VARIABLE_DECLARATION__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.REAL_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -103,7 +103,7 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
   {
     switch (featureID)
     {
-      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+      case TraderPackage.REAL_VALUE__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -119,8 +119,8 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
   {
     switch (featureID)
     {
-      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
-        setValue((String)newValue);
+      case TraderPackage.REAL_VALUE__VALUE:
+        setValue((Float)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,7 +136,7 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
   {
     switch (featureID)
     {
-      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
+      case TraderPackage.REAL_VALUE__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
     }
@@ -153,8 +153,8 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
   {
     switch (featureID)
     {
-      case TraderPackage.STRING_VARIABLE_DECLARATION__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+      case TraderPackage.REAL_VALUE__VALUE:
+        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -176,4 +176,4 @@ public class StringVariableDeclarationImpl extends VariableDeclarationImpl imple
     return result.toString();
   }
 
-} //StringVariableDeclarationImpl
+} //RealValueImpl

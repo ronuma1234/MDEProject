@@ -13,9 +13,8 @@ package uk.ac.kcl.inf.trader.trader;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getBotName <em>Bot Name</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getStrategy <em>Strategy</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFunds <em>Funds</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFund <em>Fund</em>}</li>
  * </ul>
  *
  * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot()
@@ -24,28 +23,6 @@ package uk.ac.kcl.inf.trader.trader;
  */
 public interface TradingBot extends Statement
 {
-  /**
-   * Returns the value of the '<em><b>Bot Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Bot Name</em>' attribute.
-   * @see #setBotName(String)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot_BotName()
-   * @model
-   * @generated
-   */
-  String getBotName();
-
-  /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getBotName <em>Bot Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Bot Name</em>' attribute.
-   * @see #getBotName()
-   * @generated
-   */
-  void setBotName(String value);
-
   /**
    * Returns the value of the '<em><b>Strategy</b></em>' attribute.
    * The literals are from the enumeration {@link uk.ac.kcl.inf.trader.trader.StrategyDef}.
@@ -72,25 +49,25 @@ public interface TradingBot extends Statement
   void setStrategy(StrategyDef value);
 
   /**
-   * Returns the value of the '<em><b>Funds</b></em>' attribute.
+   * Returns the value of the '<em><b>Fund</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Funds</em>' attribute.
-   * @see #setFunds(float)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot_Funds()
-   * @model
+   * @return the value of the '<em>Fund</em>' containment reference.
+   * @see #setFund(NumExpression)
+   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot_Fund()
+   * @model containment="true"
    * @generated
    */
-  float getFunds();
+  NumExpression getFund();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFunds <em>Funds</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFund <em>Fund</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Funds</em>' attribute.
-   * @see #getFunds()
+   * @param value the new value of the '<em>Fund</em>' containment reference.
+   * @see #getFund()
    * @generated
    */
-  void setFunds(float value);
+  void setFund(NumExpression value);
 
 } // TradingBot

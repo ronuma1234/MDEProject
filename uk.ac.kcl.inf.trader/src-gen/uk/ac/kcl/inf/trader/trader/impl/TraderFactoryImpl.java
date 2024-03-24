@@ -68,20 +68,20 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.TRADER_PROGRAM: return createTraderProgram();
       case TraderPackage.STATEMENT: return createStatement();
-      case TraderPackage.CONNECT: return createConnect();
-      case TraderPackage.CONNECT_PARAMETERS: return createConnectParameters();
+      case TraderPackage.CONNECT_STATEMENT: return createConnectStatement();
       case TraderPackage.TRADING_BOT: return createTradingBot();
       case TraderPackage.LIST_BOTS: return createListBots();
       case TraderPackage.EXECUTE: return createExecute();
       case TraderPackage.STOP: return createStop();
       case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
-      case TraderPackage.INT_VARIABLE_DECLARATION: return createIntVariableDeclaration();
-      case TraderPackage.STRING_VARIABLE_DECLARATION: return createStringVariableDeclaration();
-      case TraderPackage.REAL_VARIABLE_DECLARATION: return createRealVariableDeclaration();
+      case TraderPackage.STRING_VALUE: return createStringValue();
+      case TraderPackage.REAL_VALUE: return createRealValue();
+      case TraderPackage.INT_VALUE: return createIntValue();
       case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
-      case TraderPackage.INT_EXPRESSION: return createIntExpression();
-      case TraderPackage.INT_LITERAL: return createIntLiteral();
-      case TraderPackage.INT_VAR_EXPRESSION: return createIntVarExpression();
+      case TraderPackage.NUM_EXPRESSION: return createNumExpression();
+      case TraderPackage.NUM_VAR_EXPRESSION: return createNumVarExpression();
+      case TraderPackage.STRING_PRIMARY: return createStringPrimary();
+      case TraderPackage.STRING_VAR_EXPRESSION: return createStringVarExpression();
       case TraderPackage.ACTION: return createAction();
       case TraderPackage.BUY: return createBuy();
       case TraderPackage.SELL: return createSell();
@@ -156,22 +156,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Connect createConnect()
+  public ConnectStatement createConnectStatement()
   {
-    ConnectImpl connect = new ConnectImpl();
-    return connect;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ConnectParameters createConnectParameters()
-  {
-    ConnectParametersImpl connectParameters = new ConnectParametersImpl();
-    return connectParameters;
+    ConnectStatementImpl connectStatement = new ConnectStatementImpl();
+    return connectStatement;
   }
 
   /**
@@ -240,10 +228,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntVariableDeclaration createIntVariableDeclaration()
+  public StringValue createStringValue()
   {
-    IntVariableDeclarationImpl intVariableDeclaration = new IntVariableDeclarationImpl();
-    return intVariableDeclaration;
+    StringValueImpl stringValue = new StringValueImpl();
+    return stringValue;
   }
 
   /**
@@ -252,10 +240,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public StringVariableDeclaration createStringVariableDeclaration()
+  public RealValue createRealValue()
   {
-    StringVariableDeclarationImpl stringVariableDeclaration = new StringVariableDeclarationImpl();
-    return stringVariableDeclaration;
+    RealValueImpl realValue = new RealValueImpl();
+    return realValue;
   }
 
   /**
@@ -264,10 +252,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public RealVariableDeclaration createRealVariableDeclaration()
+  public IntValue createIntValue()
   {
-    RealVariableDeclarationImpl realVariableDeclaration = new RealVariableDeclarationImpl();
-    return realVariableDeclaration;
+    IntValueImpl intValue = new IntValueImpl();
+    return intValue;
   }
 
   /**
@@ -288,10 +276,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntExpression createIntExpression()
+  public NumExpression createNumExpression()
   {
-    IntExpressionImpl intExpression = new IntExpressionImpl();
-    return intExpression;
+    NumExpressionImpl numExpression = new NumExpressionImpl();
+    return numExpression;
   }
 
   /**
@@ -300,10 +288,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntLiteral createIntLiteral()
+  public NumVarExpression createNumVarExpression()
   {
-    IntLiteralImpl intLiteral = new IntLiteralImpl();
-    return intLiteral;
+    NumVarExpressionImpl numVarExpression = new NumVarExpressionImpl();
+    return numVarExpression;
   }
 
   /**
@@ -312,10 +300,22 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntVarExpression createIntVarExpression()
+  public StringPrimary createStringPrimary()
   {
-    IntVarExpressionImpl intVarExpression = new IntVarExpressionImpl();
-    return intVarExpression;
+    StringPrimaryImpl stringPrimary = new StringPrimaryImpl();
+    return stringPrimary;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public StringVarExpression createStringVarExpression()
+  {
+    StringVarExpressionImpl stringVarExpression = new StringVarExpressionImpl();
+    return stringVarExpression;
   }
 
   /**

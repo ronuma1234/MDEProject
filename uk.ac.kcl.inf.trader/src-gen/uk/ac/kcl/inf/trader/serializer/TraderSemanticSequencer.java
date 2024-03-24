@@ -17,22 +17,22 @@ import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransi
 import uk.ac.kcl.inf.trader.services.TraderGrammarAccess;
 import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.Buy;
-import uk.ac.kcl.inf.trader.trader.Connect;
-import uk.ac.kcl.inf.trader.trader.ConnectParameters;
+import uk.ac.kcl.inf.trader.trader.ConnectStatement;
 import uk.ac.kcl.inf.trader.trader.Execute;
-import uk.ac.kcl.inf.trader.trader.IntLiteral;
-import uk.ac.kcl.inf.trader.trader.IntVarExpression;
-import uk.ac.kcl.inf.trader.trader.IntVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.IntValue;
 import uk.ac.kcl.inf.trader.trader.ListBots;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.Multiplication;
-import uk.ac.kcl.inf.trader.trader.RealVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.NumVarExpression;
+import uk.ac.kcl.inf.trader.trader.RealValue;
 import uk.ac.kcl.inf.trader.trader.Sell;
 import uk.ac.kcl.inf.trader.trader.Stop;
-import uk.ac.kcl.inf.trader.trader.StringVariableDeclaration;
+import uk.ac.kcl.inf.trader.trader.StringValue;
+import uk.ac.kcl.inf.trader.trader.StringVarExpression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
 import uk.ac.kcl.inf.trader.trader.TradingBot;
+import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
 
 @SuppressWarnings("all")
 public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer {
@@ -54,23 +54,14 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case TraderPackage.BUY:
 				sequence_Buy(context, (Buy) semanticObject); 
 				return; 
-			case TraderPackage.CONNECT:
-				sequence_Connect(context, (Connect) semanticObject); 
-				return; 
-			case TraderPackage.CONNECT_PARAMETERS:
-				sequence_ConnectParameters(context, (ConnectParameters) semanticObject); 
+			case TraderPackage.CONNECT_STATEMENT:
+				sequence_ConnectStatement(context, (ConnectStatement) semanticObject); 
 				return; 
 			case TraderPackage.EXECUTE:
 				sequence_Execute(context, (Execute) semanticObject); 
 				return; 
-			case TraderPackage.INT_LITERAL:
-				sequence_IntLiteral(context, (IntLiteral) semanticObject); 
-				return; 
-			case TraderPackage.INT_VAR_EXPRESSION:
-				sequence_IntVarExpression(context, (IntVarExpression) semanticObject); 
-				return; 
-			case TraderPackage.INT_VARIABLE_DECLARATION:
-				sequence_IntVariableDeclaration(context, (IntVariableDeclaration) semanticObject); 
+			case TraderPackage.INT_VALUE:
+				sequence_IntValue(context, (IntValue) semanticObject); 
 				return; 
 			case TraderPackage.LIST_BOTS:
 				sequence_ListBots(context, (ListBots) semanticObject); 
@@ -81,8 +72,11 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case TraderPackage.MULTIPLICATION:
 				sequence_Multiplication(context, (Multiplication) semanticObject); 
 				return; 
-			case TraderPackage.REAL_VARIABLE_DECLARATION:
-				sequence_RealVariableDeclaration(context, (RealVariableDeclaration) semanticObject); 
+			case TraderPackage.NUM_VAR_EXPRESSION:
+				sequence_NumVarExpression(context, (NumVarExpression) semanticObject); 
+				return; 
+			case TraderPackage.REAL_VALUE:
+				sequence_RealValue(context, (RealValue) semanticObject); 
 				return; 
 			case TraderPackage.SELL:
 				sequence_Sell(context, (Sell) semanticObject); 
@@ -90,14 +84,20 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 			case TraderPackage.STOP:
 				sequence_Stop(context, (Stop) semanticObject); 
 				return; 
-			case TraderPackage.STRING_VARIABLE_DECLARATION:
-				sequence_StringVariableDeclaration(context, (StringVariableDeclaration) semanticObject); 
+			case TraderPackage.STRING_VALUE:
+				sequence_StringValue(context, (StringValue) semanticObject); 
+				return; 
+			case TraderPackage.STRING_VAR_EXPRESSION:
+				sequence_StringVarExpression(context, (StringVarExpression) semanticObject); 
 				return; 
 			case TraderPackage.TRADER_PROGRAM:
 				sequence_TraderProgram(context, (TraderProgram) semanticObject); 
 				return; 
 			case TraderPackage.TRADING_BOT:
 				sequence_TradingBot(context, (TradingBot) semanticObject); 
+				return; 
+			case TraderPackage.VARIABLE_DECLARATION:
+				sequence_VariableDeclaration(context, (VariableDeclaration) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -129,7 +129,7 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Buy returns Buy
 	 *
 	 * Constraint:
-	 *     (quantity=REAL ticker=ID price=REAL)
+	 *     (quantity=Addition ticker=ID price=Addition)
 	 * </pre>
 	 */
 	protected void sequence_Buy(ISerializationContext context, Buy semanticObject) {
@@ -142,9 +142,9 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.ACTION__PRICE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBuyAccess().getQuantityREALParserRuleCall_1_0(), semanticObject.getQuantity());
+		feeder.accept(grammarAccess.getBuyAccess().getQuantityAdditionParserRuleCall_1_0(), semanticObject.getQuantity());
 		feeder.accept(grammarAccess.getBuyAccess().getTickerIDTerminalRuleCall_2_0(), semanticObject.getTicker());
-		feeder.accept(grammarAccess.getBuyAccess().getPriceREALParserRuleCall_5_0(), semanticObject.getPrice());
+		feeder.accept(grammarAccess.getBuyAccess().getPriceAdditionParserRuleCall_5_0(), semanticObject.getPrice());
 		feeder.finish();
 	}
 	
@@ -152,47 +152,43 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ConnectParameters returns ConnectParameters
+	 *     Statement returns ConnectStatement
+	 *     ConnectStatement returns ConnectStatement
 	 *
 	 * Constraint:
-	 *     (username=STRING password=STRING leverage=REAL money=REAL timeframe=STRING)
+	 *     (
+	 *         brokerName=ID 
+	 *         username=StringPrimary 
+	 *         password=StringPrimary 
+	 *         leverage=Addition 
+	 *         money=Addition 
+	 *         timeframe=StringPrimary
+	 *     )
 	 * </pre>
 	 */
-	protected void sequence_ConnectParameters(ISerializationContext context, ConnectParameters semanticObject) {
+	protected void sequence_ConnectStatement(ISerializationContext context, ConnectStatement semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__USERNAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__USERNAME));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__PASSWORD) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__PASSWORD));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__LEVERAGE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__LEVERAGE));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__MONEY) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__MONEY));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__TIMEFRAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_PARAMETERS__TIMEFRAME));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__USERNAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__USERNAME));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__PASSWORD) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__PASSWORD));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__LEVERAGE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__LEVERAGE));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__MONEY) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__MONEY));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__TIMEFRAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.CONNECT_STATEMENT__TIMEFRAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getConnectParametersAccess().getUsernameSTRINGTerminalRuleCall_1_0(), semanticObject.getUsername());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getPasswordSTRINGTerminalRuleCall_4_0(), semanticObject.getPassword());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getLeverageREALParserRuleCall_7_0(), semanticObject.getLeverage());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getMoneyREALParserRuleCall_10_0(), semanticObject.getMoney());
-		feeder.accept(grammarAccess.getConnectParametersAccess().getTimeframeSTRINGTerminalRuleCall_13_0(), semanticObject.getTimeframe());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getBrokerNameIDTerminalRuleCall_3_0(), semanticObject.getBrokerName());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getUsernameStringPrimaryParserRuleCall_6_0(), semanticObject.getUsername());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getPasswordStringPrimaryParserRuleCall_9_0(), semanticObject.getPassword());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getLeverageAdditionParserRuleCall_12_0(), semanticObject.getLeverage());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getMoneyAdditionParserRuleCall_15_0(), semanticObject.getMoney());
+		feeder.accept(grammarAccess.getConnectStatementAccess().getTimeframeStringPrimaryParserRuleCall_18_0(), semanticObject.getTimeframe());
 		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Statement returns Connect
-	 *     Connect returns Connect
-	 *
-	 * Constraint:
-	 *     (brokerName=ID parameters=ConnectParameters?)
-	 * </pre>
-	 */
-	protected void sequence_Connect(ISerializationContext context, Connect semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -220,74 +216,24 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Addition returns IntLiteral
-	 *     Addition.Addition_1_0 returns IntLiteral
-	 *     Multiplication returns IntLiteral
-	 *     Multiplication.Multiplication_1_0 returns IntLiteral
-	 *     Primary returns IntLiteral
-	 *     IntLiteral returns IntLiteral
+	 *     IntValue returns IntValue
+	 *     Addition returns IntValue
+	 *     Addition.Addition_1_0 returns IntValue
+	 *     Multiplication returns IntValue
+	 *     Multiplication.Multiplication_1_0 returns IntValue
+	 *     Primary returns IntValue
 	 *
 	 * Constraint:
-	 *     val=INT
+	 *     value=INT
 	 * </pre>
 	 */
-	protected void sequence_IntLiteral(ISerializationContext context, IntLiteral semanticObject) {
+	protected void sequence_IntValue(ISerializationContext context, IntValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.INT_LITERAL__VAL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.INT_LITERAL__VAL));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.INT_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.INT_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIntLiteralAccess().getValINTTerminalRuleCall_0(), semanticObject.getVal());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Addition returns IntVarExpression
-	 *     Addition.Addition_1_0 returns IntVarExpression
-	 *     Multiplication returns IntVarExpression
-	 *     Multiplication.Multiplication_1_0 returns IntVarExpression
-	 *     Primary returns IntVarExpression
-	 *     IntVarExpression returns IntVarExpression
-	 *
-	 * Constraint:
-	 *     var=[IntVariableDeclaration|ID]
-	 * </pre>
-	 */
-	protected void sequence_IntVarExpression(ISerializationContext context, IntVarExpression semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.INT_VAR_EXPRESSION__VAR) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.INT_VAR_EXPRESSION__VAR));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIntVarExpressionAccess().getVarIntVariableDeclarationIDTerminalRuleCall_0_1(), semanticObject.eGet(TraderPackage.Literals.INT_VAR_EXPRESSION__VAR, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Statement returns IntVariableDeclaration
-	 *     VariableDeclaration returns IntVariableDeclaration
-	 *     IntVariableDeclaration returns IntVariableDeclaration
-	 *
-	 * Constraint:
-	 *     (name=ID value=INT)
-	 * </pre>
-	 */
-	protected void sequence_IntVariableDeclaration(ISerializationContext context, IntVariableDeclaration semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.INT_VARIABLE_DECLARATION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.INT_VARIABLE_DECLARATION__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIntVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getIntVariableDeclarationAccess().getValueINTTerminalRuleCall_5_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getIntValueAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -349,24 +295,49 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Statement returns RealVariableDeclaration
-	 *     VariableDeclaration returns RealVariableDeclaration
-	 *     RealVariableDeclaration returns RealVariableDeclaration
+	 *     Addition returns NumVarExpression
+	 *     Addition.Addition_1_0 returns NumVarExpression
+	 *     Multiplication returns NumVarExpression
+	 *     Multiplication.Multiplication_1_0 returns NumVarExpression
+	 *     Primary returns NumVarExpression
+	 *     NumVarExpression returns NumVarExpression
 	 *
 	 * Constraint:
-	 *     (name=ID value=REAL)
+	 *     var=[VariableDeclaration|ID]
 	 * </pre>
 	 */
-	protected void sequence_RealVariableDeclaration(ISerializationContext context, RealVariableDeclaration semanticObject) {
+	protected void sequence_NumVarExpression(ISerializationContext context, NumVarExpression semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.REAL_VARIABLE_DECLARATION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.REAL_VARIABLE_DECLARATION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.NUM_VAR_EXPRESSION__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.NUM_VAR_EXPRESSION__VAR));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRealVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getRealVariableDeclarationAccess().getValueREALParserRuleCall_5_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getNumVarExpressionAccess().getVarVariableDeclarationIDTerminalRuleCall_0_1(), semanticObject.eGet(TraderPackage.Literals.NUM_VAR_EXPRESSION__VAR, false));
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RealValue returns RealValue
+	 *     Addition returns RealValue
+	 *     Addition.Addition_1_0 returns RealValue
+	 *     Multiplication returns RealValue
+	 *     Multiplication.Multiplication_1_0 returns RealValue
+	 *     Primary returns RealValue
+	 *
+	 * Constraint:
+	 *     value=REAL
+	 * </pre>
+	 */
+	protected void sequence_RealValue(ISerializationContext context, RealValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.REAL_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.REAL_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRealValueAccess().getValueREALParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -378,7 +349,7 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     Sell returns Sell
 	 *
 	 * Constraint:
-	 *     (quantity=REAL ticker=ID price=REAL)
+	 *     (quantity=Addition ticker=ID price=Addition)
 	 * </pre>
 	 */
 	protected void sequence_Sell(ISerializationContext context, Sell semanticObject) {
@@ -391,9 +362,9 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.ACTION__PRICE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getSellAccess().getQuantityREALParserRuleCall_1_0(), semanticObject.getQuantity());
+		feeder.accept(grammarAccess.getSellAccess().getQuantityAdditionParserRuleCall_1_0(), semanticObject.getQuantity());
 		feeder.accept(grammarAccess.getSellAccess().getTickerIDTerminalRuleCall_2_0(), semanticObject.getTicker());
-		feeder.accept(grammarAccess.getSellAccess().getPriceREALParserRuleCall_5_0(), semanticObject.getPrice());
+		feeder.accept(grammarAccess.getSellAccess().getPriceAdditionParserRuleCall_5_0(), semanticObject.getPrice());
 		feeder.finish();
 	}
 	
@@ -422,24 +393,41 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Statement returns StringVariableDeclaration
-	 *     VariableDeclaration returns StringVariableDeclaration
-	 *     StringVariableDeclaration returns StringVariableDeclaration
+	 *     StringValue returns StringValue
+	 *     StringPrimary returns StringValue
 	 *
 	 * Constraint:
-	 *     (name=ID value=STRING)
+	 *     value=STRING
 	 * </pre>
 	 */
-	protected void sequence_StringVariableDeclaration(ISerializationContext context, StringVariableDeclaration semanticObject) {
+	protected void sequence_StringValue(ISerializationContext context, StringValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.VARIABLE_DECLARATION__NAME));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.STRING_VARIABLE_DECLARATION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.STRING_VARIABLE_DECLARATION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.STRING_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.STRING_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getStringVariableDeclarationAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getStringVariableDeclarationAccess().getValueSTRINGTerminalRuleCall_5_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     StringPrimary returns StringVarExpression
+	 *     StringVarExpression returns StringVarExpression
+	 *
+	 * Constraint:
+	 *     var=[VariableDeclaration|ID]
+	 * </pre>
+	 */
+	protected void sequence_StringVarExpression(ISerializationContext context, StringVarExpression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.STRING_VAR_EXPRESSION__VAR) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.STRING_VAR_EXPRESSION__VAR));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStringVarExpressionAccess().getVarVariableDeclarationIDTerminalRuleCall_0_1(), semanticObject.eGet(TraderPackage.Literals.STRING_VAR_EXPRESSION__VAR, false));
 		feeder.finish();
 	}
 	
@@ -465,23 +453,35 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     TradingBot returns TradingBot
 	 *
 	 * Constraint:
-	 *     (botName=ID strategy=StrategyDef funds=REAL)
+	 *     (strategy=StrategyDef fund=Addition)
 	 * </pre>
 	 */
 	protected void sequence_TradingBot(ISerializationContext context, TradingBot semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.TRADING_BOT__BOT_NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.TRADING_BOT__BOT_NAME));
 			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.TRADING_BOT__STRATEGY) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.TRADING_BOT__STRATEGY));
-			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.TRADING_BOT__FUNDS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.TRADING_BOT__FUNDS));
+			if (transientValues.isValueTransient(semanticObject, TraderPackage.Literals.TRADING_BOT__FUND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, TraderPackage.Literals.TRADING_BOT__FUND));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getTradingBotAccess().getBotNameIDTerminalRuleCall_2_0(), semanticObject.getBotName());
-		feeder.accept(grammarAccess.getTradingBotAccess().getStrategyStrategyDefEnumRuleCall_4_0(), semanticObject.getStrategy());
-		feeder.accept(grammarAccess.getTradingBotAccess().getFundsREALParserRuleCall_7_0(), semanticObject.getFunds());
+		feeder.accept(grammarAccess.getTradingBotAccess().getStrategyStrategyDefEnumRuleCall_3_0(), semanticObject.getStrategy());
+		feeder.accept(grammarAccess.getTradingBotAccess().getFundAdditionParserRuleCall_6_0(), semanticObject.getFund());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Statement returns VariableDeclaration
+	 *     VariableDeclaration returns VariableDeclaration
+	 *
+	 * Constraint:
+	 *     (name=ID (value=StringValue | value=RealValue | value=IntValue))
+	 * </pre>
+	 */
+	protected void sequence_VariableDeclaration(ISerializationContext context, VariableDeclaration semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

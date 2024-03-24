@@ -6,53 +6,45 @@ package uk.ac.kcl.inf.trader.trader.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.trader.trader.IntLiteral;
+import uk.ac.kcl.inf.trader.trader.NumVarExpression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
+import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Int Literal</b></em>'.
+ * An implementation of the model object '<em><b>Num Var Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl#getVal <em>Val</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl#getVar <em>Var</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
+public class NumVarExpressionImpl extends NumExpressionImpl implements NumVarExpression
 {
   /**
-   * The default value of the '{@link #getVal() <em>Val</em>}' attribute.
+   * The cached value of the '{@link #getVar() <em>Var</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getVal()
+   * @see #getVar()
    * @generated
    * @ordered
    */
-  protected static final int VAL_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getVal() <em>Val</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getVal()
-   * @generated
-   * @ordered
-   */
-  protected int val = VAL_EDEFAULT;
+  protected VariableDeclaration var;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IntLiteralImpl()
+  protected NumVarExpressionImpl()
   {
     super();
   }
@@ -65,7 +57,7 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
   @Override
   protected EClass eStaticClass()
   {
-    return TraderPackage.Literals.INT_LITERAL;
+    return TraderPackage.Literals.NUM_VAR_EXPRESSION;
   }
 
   /**
@@ -74,9 +66,29 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public int getVal()
+  public VariableDeclaration getVar()
   {
-    return val;
+    if (var != null && var.eIsProxy())
+    {
+      InternalEObject oldVar = (InternalEObject)var;
+      var = (VariableDeclaration)eResolveProxy(oldVar);
+      if (var != oldVar)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, TraderPackage.NUM_VAR_EXPRESSION__VAR, oldVar, var));
+      }
+    }
+    return var;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public VariableDeclaration basicGetVar()
+  {
+    return var;
   }
 
   /**
@@ -85,12 +97,12 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
    * @generated
    */
   @Override
-  public void setVal(int newVal)
+  public void setVar(VariableDeclaration newVar)
   {
-    int oldVal = val;
-    val = newVal;
+    VariableDeclaration oldVar = var;
+    var = newVar;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.INT_LITERAL__VAL, oldVal, val));
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.NUM_VAR_EXPRESSION__VAR, oldVar, var));
   }
 
   /**
@@ -103,8 +115,9 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TraderPackage.INT_LITERAL__VAL:
-        return getVal();
+      case TraderPackage.NUM_VAR_EXPRESSION__VAR:
+        if (resolve) return getVar();
+        return basicGetVar();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -119,8 +132,8 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TraderPackage.INT_LITERAL__VAL:
-        setVal((Integer)newValue);
+      case TraderPackage.NUM_VAR_EXPRESSION__VAR:
+        setVar((VariableDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -136,8 +149,8 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TraderPackage.INT_LITERAL__VAL:
-        setVal(VAL_EDEFAULT);
+      case TraderPackage.NUM_VAR_EXPRESSION__VAR:
+        setVar((VariableDeclaration)null);
         return;
     }
     super.eUnset(featureID);
@@ -153,27 +166,10 @@ public class IntLiteralImpl extends IntExpressionImpl implements IntLiteral
   {
     switch (featureID)
     {
-      case TraderPackage.INT_LITERAL__VAL:
-        return val != VAL_EDEFAULT;
+      case TraderPackage.NUM_VAR_EXPRESSION__VAR:
+        return var != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (val: ");
-    result.append(val);
-    result.append(')');
-    return result.toString();
-  }
-
-} //IntLiteralImpl
+} //NumVarExpressionImpl

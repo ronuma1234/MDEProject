@@ -86,14 +86,9 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createStatementAdapter();
       }
       @Override
-      public Adapter caseConnect(Connect object)
+      public Adapter caseConnectStatement(ConnectStatement object)
       {
-        return createConnectAdapter();
-      }
-      @Override
-      public Adapter caseConnectParameters(ConnectParameters object)
-      {
-        return createConnectParametersAdapter();
+        return createConnectStatementAdapter();
       }
       @Override
       public Adapter caseTradingBot(TradingBot object)
@@ -121,19 +116,19 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createVariableDeclarationAdapter();
       }
       @Override
-      public Adapter caseIntVariableDeclaration(IntVariableDeclaration object)
+      public Adapter caseStringValue(StringValue object)
       {
-        return createIntVariableDeclarationAdapter();
+        return createStringValueAdapter();
       }
       @Override
-      public Adapter caseStringVariableDeclaration(StringVariableDeclaration object)
+      public Adapter caseRealValue(RealValue object)
       {
-        return createStringVariableDeclarationAdapter();
+        return createRealValueAdapter();
       }
       @Override
-      public Adapter caseRealVariableDeclaration(RealVariableDeclaration object)
+      public Adapter caseIntValue(IntValue object)
       {
-        return createRealVariableDeclarationAdapter();
+        return createIntValueAdapter();
       }
       @Override
       public Adapter caseLoopStatement(LoopStatement object)
@@ -141,19 +136,24 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createLoopStatementAdapter();
       }
       @Override
-      public Adapter caseIntExpression(IntExpression object)
+      public Adapter caseNumExpression(NumExpression object)
       {
-        return createIntExpressionAdapter();
+        return createNumExpressionAdapter();
       }
       @Override
-      public Adapter caseIntLiteral(IntLiteral object)
+      public Adapter caseNumVarExpression(NumVarExpression object)
       {
-        return createIntLiteralAdapter();
+        return createNumVarExpressionAdapter();
       }
       @Override
-      public Adapter caseIntVarExpression(IntVarExpression object)
+      public Adapter caseStringPrimary(StringPrimary object)
       {
-        return createIntVarExpressionAdapter();
+        return createStringPrimaryAdapter();
+      }
+      @Override
+      public Adapter caseStringVarExpression(StringVarExpression object)
+      {
+        return createStringVarExpressionAdapter();
       }
       @Override
       public Adapter caseAction(Action object)
@@ -233,31 +233,16 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Connect <em>Connect</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement <em>Connect Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Connect
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement
    * @generated
    */
-  public Adapter createConnectAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters <em>Connect Parameters</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters
-   * @generated
-   */
-  public Adapter createConnectParametersAdapter()
+  public Adapter createConnectStatementAdapter()
   {
     return null;
   }
@@ -338,46 +323,46 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntVariableDeclaration <em>Int Variable Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringValue <em>String Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.IntVariableDeclaration
+   * @see uk.ac.kcl.inf.trader.trader.StringValue
    * @generated
    */
-  public Adapter createIntVariableDeclarationAdapter()
+  public Adapter createStringValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration <em>String Variable Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.RealValue <em>Real Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.StringVariableDeclaration
+   * @see uk.ac.kcl.inf.trader.trader.RealValue
    * @generated
    */
-  public Adapter createStringVariableDeclarationAdapter()
+  public Adapter createRealValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.RealVariableDeclaration <em>Real Variable Declaration</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntValue <em>Int Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.RealVariableDeclaration
+   * @see uk.ac.kcl.inf.trader.trader.IntValue
    * @generated
    */
-  public Adapter createRealVariableDeclarationAdapter()
+  public Adapter createIntValueAdapter()
   {
     return null;
   }
@@ -398,46 +383,61 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntExpression <em>Int Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.NumExpression <em>Num Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.IntExpression
+   * @see uk.ac.kcl.inf.trader.trader.NumExpression
    * @generated
    */
-  public Adapter createIntExpressionAdapter()
+  public Adapter createNumExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntLiteral <em>Int Literal</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.NumVarExpression <em>Num Var Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.IntLiteral
+   * @see uk.ac.kcl.inf.trader.trader.NumVarExpression
    * @generated
    */
-  public Adapter createIntLiteralAdapter()
+  public Adapter createNumVarExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.IntVarExpression <em>Int Var Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringPrimary <em>String Primary</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.IntVarExpression
+   * @see uk.ac.kcl.inf.trader.trader.StringPrimary
    * @generated
    */
-  public Adapter createIntVarExpressionAdapter()
+  public Adapter createStringPrimaryAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringVarExpression <em>String Var Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uk.ac.kcl.inf.trader.trader.StringVarExpression
+   * @generated
+   */
+  public Adapter createStringVarExpressionAdapter()
   {
     return null;
   }

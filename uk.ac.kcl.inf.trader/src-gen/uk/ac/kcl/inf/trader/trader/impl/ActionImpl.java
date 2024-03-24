@@ -4,13 +4,16 @@
 package uk.ac.kcl.inf.trader.trader.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import uk.ac.kcl.inf.trader.trader.Action;
+import uk.ac.kcl.inf.trader.trader.NumExpression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
@@ -31,24 +34,14 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
 public class ActionImpl extends MinimalEObjectImpl.Container implements Action
 {
   /**
-   * The default value of the '{@link #getQuantity() <em>Quantity</em>}' attribute.
+   * The cached value of the '{@link #getQuantity() <em>Quantity</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getQuantity()
    * @generated
    * @ordered
    */
-  protected static final float QUANTITY_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getQuantity() <em>Quantity</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getQuantity()
-   * @generated
-   * @ordered
-   */
-  protected float quantity = QUANTITY_EDEFAULT;
+  protected NumExpression quantity;
 
   /**
    * The default value of the '{@link #getTicker() <em>Ticker</em>}' attribute.
@@ -71,24 +64,14 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
   protected String ticker = TICKER_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getPrice() <em>Price</em>}' attribute.
+   * The cached value of the '{@link #getPrice() <em>Price</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPrice()
    * @generated
    * @ordered
    */
-  protected static final float PRICE_EDEFAULT = 0.0F;
-
-  /**
-   * The cached value of the '{@link #getPrice() <em>Price</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPrice()
-   * @generated
-   * @ordered
-   */
-  protected float price = PRICE_EDEFAULT;
+  protected NumExpression price;
 
   /**
    * <!-- begin-user-doc -->
@@ -117,7 +100,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public float getQuantity()
+  public NumExpression getQuantity()
   {
     return quantity;
   }
@@ -127,13 +110,38 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setQuantity(float newQuantity)
+  public NotificationChain basicSetQuantity(NumExpression newQuantity, NotificationChain msgs)
   {
-    float oldQuantity = quantity;
+    NumExpression oldQuantity = quantity;
     quantity = newQuantity;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__QUANTITY, oldQuantity, quantity));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__QUANTITY, oldQuantity, newQuantity);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setQuantity(NumExpression newQuantity)
+  {
+    if (newQuantity != quantity)
+    {
+      NotificationChain msgs = null;
+      if (quantity != null)
+        msgs = ((InternalEObject)quantity).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.ACTION__QUANTITY, null, msgs);
+      if (newQuantity != null)
+        msgs = ((InternalEObject)newQuantity).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.ACTION__QUANTITY, null, msgs);
+      msgs = basicSetQuantity(newQuantity, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__QUANTITY, newQuantity, newQuantity));
   }
 
   /**
@@ -167,7 +175,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public float getPrice()
+  public NumExpression getPrice()
   {
     return price;
   }
@@ -177,13 +185,56 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setPrice(float newPrice)
+  public NotificationChain basicSetPrice(NumExpression newPrice, NotificationChain msgs)
   {
-    float oldPrice = price;
+    NumExpression oldPrice = price;
     price = newPrice;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__PRICE, oldPrice, price));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__PRICE, oldPrice, newPrice);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPrice(NumExpression newPrice)
+  {
+    if (newPrice != price)
+    {
+      NotificationChain msgs = null;
+      if (price != null)
+        msgs = ((InternalEObject)price).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.ACTION__PRICE, null, msgs);
+      if (newPrice != null)
+        msgs = ((InternalEObject)newPrice).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.ACTION__PRICE, null, msgs);
+      msgs = basicSetPrice(newPrice, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.ACTION__PRICE, newPrice, newPrice));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TraderPackage.ACTION__QUANTITY:
+        return basicSetQuantity(null, msgs);
+      case TraderPackage.ACTION__PRICE:
+        return basicSetPrice(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -217,13 +268,13 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case TraderPackage.ACTION__QUANTITY:
-        setQuantity((Float)newValue);
+        setQuantity((NumExpression)newValue);
         return;
       case TraderPackage.ACTION__TICKER:
         setTicker((String)newValue);
         return;
       case TraderPackage.ACTION__PRICE:
-        setPrice((Float)newValue);
+        setPrice((NumExpression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -240,13 +291,13 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case TraderPackage.ACTION__QUANTITY:
-        setQuantity(QUANTITY_EDEFAULT);
+        setQuantity((NumExpression)null);
         return;
       case TraderPackage.ACTION__TICKER:
         setTicker(TICKER_EDEFAULT);
         return;
       case TraderPackage.ACTION__PRICE:
-        setPrice(PRICE_EDEFAULT);
+        setPrice((NumExpression)null);
         return;
     }
     super.eUnset(featureID);
@@ -263,11 +314,11 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case TraderPackage.ACTION__QUANTITY:
-        return quantity != QUANTITY_EDEFAULT;
+        return quantity != null;
       case TraderPackage.ACTION__TICKER:
         return TICKER_EDEFAULT == null ? ticker != null : !TICKER_EDEFAULT.equals(ticker);
       case TraderPackage.ACTION__PRICE:
-        return price != PRICE_EDEFAULT;
+        return price != null;
     }
     return super.eIsSet(featureID);
   }
@@ -283,12 +334,8 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (quantity: ");
-    result.append(quantity);
-    result.append(", ticker: ");
+    result.append(" (ticker: ");
     result.append(ticker);
-    result.append(", price: ");
-    result.append(price);
     result.append(')');
     return result.toString();
   }

@@ -6,22 +6,23 @@
         eType="#//Statement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Connect" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="brokerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" eType="#//ConnectParameters"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="username" eType="#//StringPrimary"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="password" eType="#//StringPrimary"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="leverage" eType="#//NumExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="money" eType="#//NumExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="timeframe" eType="#//StringPrimary"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConnectParameters">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="leverage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="money" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeframe" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TradingBot" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="botName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" eType="#//StrategyDef"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="funds" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fund" eType="#//NumExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StrategyDef">
     <eLiterals name="buyAndHold" literal="buyAndHold"/>
@@ -38,50 +39,55 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntVariableDeclaration" eSuperTypes="#//VariableDeclaration">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringVariableDeclaration" eSuperTypes="#//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="StringValue" eSuperTypes="#//StringPrimary">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RealVariableDeclaration" eSuperTypes="#//VariableDeclaration">
+  <eClassifiers xsi:type="ecore:EClass" name="RealValue" eSuperTypes="#//NumExpression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IntValue" eSuperTypes="#//NumExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LoopStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="count" eType="#//IntExpression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="count" eType="#//NumExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
         eType="#//Statement" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntExpression"/>
-  <eClassifiers xsi:type="ecore:EClass" name="IntLiteral" eSuperTypes="#//IntExpression">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="val" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumExpression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NumVarExpression" eSuperTypes="#//NumExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//VariableDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntVarExpression" eSuperTypes="#//IntExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//IntVariableDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringPrimary"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringVarExpression" eSuperTypes="#//StringPrimary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//VariableDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Action">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="quantity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="quantity" eType="#//NumExpression"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="price" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="price" eType="#//NumExpression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Buy" eSuperTypes="#//Action"/>
   <eClassifiers xsi:type="ecore:EClass" name="Sell" eSuperTypes="#//Action"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//IntExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IntExpression"
+  <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//NumExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//NumExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
-        eType="#//IntExpression" containment="true"/>
+        eType="#//NumExpression" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//IntExpression">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//IntExpression"
+  <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//NumExpression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//NumExpression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" unique="false"
         upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="right" upperBound="-1"
-        eType="#//IntExpression" containment="true"/>
+        eType="#//NumExpression" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

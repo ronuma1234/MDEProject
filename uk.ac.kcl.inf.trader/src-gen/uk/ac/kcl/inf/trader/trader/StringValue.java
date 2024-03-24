@@ -6,21 +6,21 @@ package uk.ac.kcl.inf.trader.trader;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>String Variable Declaration</b></em>'.
+ * A representation of the model object '<em><b>String Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration#getValue <em>Value</em>}</li>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.StringValue#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getStringVariableDeclaration()
+ * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getStringValue()
  * @model
  * @generated
  */
-public interface StringVariableDeclaration extends VariableDeclaration
+public interface StringValue extends StringPrimary
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -28,14 +28,14 @@ public interface StringVariableDeclaration extends VariableDeclaration
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(String)
-   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getStringVariableDeclaration_Value()
+   * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getStringValue_Value()
    * @model
    * @generated
    */
   String getValue();
 
   /**
-   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.StringVariableDeclaration#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.StringValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
@@ -44,4 +44,4 @@ public interface StringVariableDeclaration extends VariableDeclaration
    */
   void setValue(String value);
 
-} // StringVariableDeclaration
+} // StringValue
