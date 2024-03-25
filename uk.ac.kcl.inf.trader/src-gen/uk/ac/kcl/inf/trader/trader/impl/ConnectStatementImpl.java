@@ -12,8 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.kcl.inf.trader.trader.ConnectStatement;
-import uk.ac.kcl.inf.trader.trader.NumExpression;
-import uk.ac.kcl.inf.trader.trader.StringPrimary;
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
@@ -64,7 +63,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    * @ordered
    */
-  protected StringPrimary username;
+  protected Expression username;
 
   /**
    * The cached value of the '{@link #getPassword() <em>Password</em>}' containment reference.
@@ -74,7 +73,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    * @ordered
    */
-  protected StringPrimary password;
+  protected Expression password;
 
   /**
    * The cached value of the '{@link #getLeverage() <em>Leverage</em>}' containment reference.
@@ -84,7 +83,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    * @ordered
    */
-  protected NumExpression leverage;
+  protected Expression leverage;
 
   /**
    * The cached value of the '{@link #getMoney() <em>Money</em>}' containment reference.
@@ -94,7 +93,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    * @ordered
    */
-  protected NumExpression money;
+  protected Expression money;
 
   /**
    * The cached value of the '{@link #getTimeframe() <em>Timeframe</em>}' containment reference.
@@ -104,7 +103,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    * @ordered
    */
-  protected StringPrimary timeframe;
+  protected Expression timeframe;
 
   /**
    * <!-- begin-user-doc -->
@@ -158,7 +157,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public StringPrimary getUsername()
+  public Expression getUsername()
   {
     return username;
   }
@@ -168,9 +167,9 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetUsername(StringPrimary newUsername, NotificationChain msgs)
+  public NotificationChain basicSetUsername(Expression newUsername, NotificationChain msgs)
   {
-    StringPrimary oldUsername = username;
+    Expression oldUsername = username;
     username = newUsername;
     if (eNotificationRequired())
     {
@@ -186,7 +185,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public void setUsername(StringPrimary newUsername)
+  public void setUsername(Expression newUsername)
   {
     if (newUsername != username)
     {
@@ -208,7 +207,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public StringPrimary getPassword()
+  public Expression getPassword()
   {
     return password;
   }
@@ -218,9 +217,9 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPassword(StringPrimary newPassword, NotificationChain msgs)
+  public NotificationChain basicSetPassword(Expression newPassword, NotificationChain msgs)
   {
-    StringPrimary oldPassword = password;
+    Expression oldPassword = password;
     password = newPassword;
     if (eNotificationRequired())
     {
@@ -236,7 +235,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public void setPassword(StringPrimary newPassword)
+  public void setPassword(Expression newPassword)
   {
     if (newPassword != password)
     {
@@ -258,7 +257,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public NumExpression getLeverage()
+  public Expression getLeverage()
   {
     return leverage;
   }
@@ -268,9 +267,9 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeverage(NumExpression newLeverage, NotificationChain msgs)
+  public NotificationChain basicSetLeverage(Expression newLeverage, NotificationChain msgs)
   {
-    NumExpression oldLeverage = leverage;
+    Expression oldLeverage = leverage;
     leverage = newLeverage;
     if (eNotificationRequired())
     {
@@ -286,7 +285,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public void setLeverage(NumExpression newLeverage)
+  public void setLeverage(Expression newLeverage)
   {
     if (newLeverage != leverage)
     {
@@ -308,7 +307,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public NumExpression getMoney()
+  public Expression getMoney()
   {
     return money;
   }
@@ -318,9 +317,9 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetMoney(NumExpression newMoney, NotificationChain msgs)
+  public NotificationChain basicSetMoney(Expression newMoney, NotificationChain msgs)
   {
-    NumExpression oldMoney = money;
+    Expression oldMoney = money;
     money = newMoney;
     if (eNotificationRequired())
     {
@@ -336,7 +335,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public void setMoney(NumExpression newMoney)
+  public void setMoney(Expression newMoney)
   {
     if (newMoney != money)
     {
@@ -358,7 +357,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public StringPrimary getTimeframe()
+  public Expression getTimeframe()
   {
     return timeframe;
   }
@@ -368,9 +367,9 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTimeframe(StringPrimary newTimeframe, NotificationChain msgs)
+  public NotificationChain basicSetTimeframe(Expression newTimeframe, NotificationChain msgs)
   {
-    StringPrimary oldTimeframe = timeframe;
+    Expression oldTimeframe = timeframe;
     timeframe = newTimeframe;
     if (eNotificationRequired())
     {
@@ -386,7 +385,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public void setTimeframe(StringPrimary newTimeframe)
+  public void setTimeframe(Expression newTimeframe)
   {
     if (newTimeframe != timeframe)
     {
@@ -466,19 +465,19 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
         setBrokerName((String)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
-        setUsername((StringPrimary)newValue);
+        setUsername((Expression)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
-        setPassword((StringPrimary)newValue);
+        setPassword((Expression)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        setLeverage((NumExpression)newValue);
+        setLeverage((Expression)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__MONEY:
-        setMoney((NumExpression)newValue);
+        setMoney((Expression)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        setTimeframe((StringPrimary)newValue);
+        setTimeframe((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -498,19 +497,19 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
         setBrokerName(BROKER_NAME_EDEFAULT);
         return;
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
-        setUsername((StringPrimary)null);
+        setUsername((Expression)null);
         return;
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
-        setPassword((StringPrimary)null);
+        setPassword((Expression)null);
         return;
       case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        setLeverage((NumExpression)null);
+        setLeverage((Expression)null);
         return;
       case TraderPackage.CONNECT_STATEMENT__MONEY:
-        setMoney((NumExpression)null);
+        setMoney((Expression)null);
         return;
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        setTimeframe((StringPrimary)null);
+        setTimeframe((Expression)null);
         return;
     }
     super.eUnset(featureID);

@@ -53,12 +53,12 @@ public interface TradingBot extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Fund</em>' containment reference.
-   * @see #setFund(NumExpression)
+   * @see #setFund(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getTradingBot_Fund()
    * @model containment="true"
    * @generated
    */
-  NumExpression getFund();
+  Expression getFund();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFund <em>Fund</em>}' containment reference.
@@ -68,6 +68,6 @@ public interface TradingBot extends Statement
    * @see #getFund()
    * @generated
    */
-  void setFund(NumExpression value);
+  void setFund(Expression value);
 
 } // TradingBot

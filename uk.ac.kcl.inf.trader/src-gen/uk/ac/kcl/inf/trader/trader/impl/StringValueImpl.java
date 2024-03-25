@@ -25,7 +25,7 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
  *
  * @generated
  */
-public class StringValueImpl extends StringPrimaryImpl implements StringValue
+public class StringValueImpl extends ExpressionImpl implements StringValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

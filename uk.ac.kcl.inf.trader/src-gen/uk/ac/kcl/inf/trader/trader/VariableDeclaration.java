@@ -3,7 +3,6 @@
  */
 package uk.ac.kcl.inf.trader.trader;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -51,12 +50,12 @@ public interface VariableDeclaration extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' containment reference.
-   * @see #setValue(EObject)
+   * @see #setValue(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getVariableDeclaration_Value()
    * @model containment="true"
    * @generated
    */
-  EObject getValue();
+  Expression getValue();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}' containment reference.
@@ -66,6 +65,6 @@ public interface VariableDeclaration extends Statement
    * @see #getValue()
    * @generated
    */
-  void setValue(EObject value);
+  void setValue(Expression value);
 
 } // VariableDeclaration

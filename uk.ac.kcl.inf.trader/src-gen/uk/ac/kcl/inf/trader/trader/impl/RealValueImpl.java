@@ -25,7 +25,7 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
  *
  * @generated
  */
-public class RealValueImpl extends NumExpressionImpl implements RealValue
+public class RealValueImpl extends ExpressionImpl implements RealValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

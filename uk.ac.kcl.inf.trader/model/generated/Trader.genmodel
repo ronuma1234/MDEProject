@@ -52,11 +52,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//LoopStatement/count"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//LoopStatement/statements"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//NumExpression"/>
+    <genClasses ecoreClass="Trader.ecore#//Expression"/>
     <genClasses ecoreClass="Trader.ecore#//NumVarExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Trader.ecore#//NumVarExpression/var"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//StringPrimary"/>
     <genClasses ecoreClass="Trader.ecore#//StringVarExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Trader.ecore#//StringVarExpression/var"/>
     </genClasses>

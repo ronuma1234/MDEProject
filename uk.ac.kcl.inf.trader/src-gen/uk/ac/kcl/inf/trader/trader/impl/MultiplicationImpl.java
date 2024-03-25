@@ -19,8 +19,8 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.Multiplication;
-import uk.ac.kcl.inf.trader.trader.NumExpression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
@@ -38,7 +38,7 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
  *
  * @generated
  */
-public class MultiplicationImpl extends NumExpressionImpl implements Multiplication
+public class MultiplicationImpl extends ExpressionImpl implements Multiplication
 {
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
@@ -48,7 +48,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * @generated
    * @ordered
    */
-  protected NumExpression left;
+  protected Expression left;
 
   /**
    * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute list.
@@ -68,7 +68,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * @generated
    * @ordered
    */
-  protected EList<NumExpression> right;
+  protected EList<Expression> right;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,7 +97,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * @generated
    */
   @Override
-  public NumExpression getLeft()
+  public Expression getLeft()
   {
     return left;
   }
@@ -107,9 +107,9 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetLeft(NumExpression newLeft, NotificationChain msgs)
+  public NotificationChain basicSetLeft(Expression newLeft, NotificationChain msgs)
   {
-    NumExpression oldLeft = left;
+    Expression oldLeft = left;
     left = newLeft;
     if (eNotificationRequired())
     {
@@ -125,7 +125,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * @generated
    */
   @Override
-  public void setLeft(NumExpression newLeft)
+  public void setLeft(Expression newLeft)
   {
     if (newLeft != left)
     {
@@ -162,11 +162,11 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
    * @generated
    */
   @Override
-  public EList<NumExpression> getRight()
+  public EList<Expression> getRight()
   {
     if (right == null)
     {
-      right = new EObjectContainmentEList<NumExpression>(NumExpression.class, this, TraderPackage.MULTIPLICATION__RIGHT);
+      right = new EObjectContainmentEList<Expression>(Expression.class, this, TraderPackage.MULTIPLICATION__RIGHT);
     }
     return right;
   }
@@ -221,7 +221,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
     switch (featureID)
     {
       case TraderPackage.MULTIPLICATION__LEFT:
-        setLeft((NumExpression)newValue);
+        setLeft((Expression)newValue);
         return;
       case TraderPackage.MULTIPLICATION__OPERATOR:
         getOperator().clear();
@@ -229,7 +229,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
         return;
       case TraderPackage.MULTIPLICATION__RIGHT:
         getRight().clear();
-        getRight().addAll((Collection<? extends NumExpression>)newValue);
+        getRight().addAll((Collection<? extends Expression>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -246,7 +246,7 @@ public class MultiplicationImpl extends NumExpressionImpl implements Multiplicat
     switch (featureID)
     {
       case TraderPackage.MULTIPLICATION__LEFT:
-        setLeft((NumExpression)null);
+        setLeft((Expression)null);
         return;
       case TraderPackage.MULTIPLICATION__OPERATOR:
         getOperator().clear();

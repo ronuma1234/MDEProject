@@ -132,13 +132,13 @@ public interface TraderFactory extends EFactory
   LoopStatement createLoopStatement();
 
   /**
-   * Returns a new object of class '<em>Num Expression</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Num Expression</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  NumExpression createNumExpression();
+  Expression createExpression();
 
   /**
    * Returns a new object of class '<em>Num Var Expression</em>'.
@@ -148,15 +148,6 @@ public interface TraderFactory extends EFactory
    * @generated
    */
   NumVarExpression createNumVarExpression();
-
-  /**
-   * Returns a new object of class '<em>String Primary</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Primary</em>'.
-   * @generated
-   */
-  StringPrimary createStringPrimary();
 
   /**
    * Returns a new object of class '<em>String Var Expression</em>'.

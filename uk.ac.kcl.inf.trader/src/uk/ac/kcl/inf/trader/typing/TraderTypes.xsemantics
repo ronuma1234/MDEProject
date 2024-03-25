@@ -1,0 +1,117 @@
+import uk.ac.kcl.inf.trader.validation.AbstractTraderValidator
+import uk.ac.kcl.inf.trader.trader.IntValue
+import uk.ac.kcl.inf.trader.trader.RealValue
+import uk.ac.kcl.inf.trader.trader.StringValue
+import uk.ac.kcl.inf.trader.trader.Expression
+import uk.ac.kcl.inf.trader.trader.Multiplication
+import uk.ac.kcl.inf.trader.trader.Addition
+import uk.ac.kcl.inf.trader.trader.ConnectStatement
+import uk.ac.kcl.inf.trader.trader.TradingBot
+import uk.ac.kcl.inf.trader.trader.LoopStatement
+import uk.ac.kcl.inf.trader.trader.StringVarExpression
+import uk.ac.kcl.inf.trader.trader.NumVarExpression
+//import uk.ac.kcl.inf.trader.trader.VariableDeclaration
+
+system uk.ac.kcl.inf.trader.typing.TraderTypeValidator
+
+validatorExtends AbstractTraderValidator 
+
+auxiliary {
+	typeExpression(Iterable<Expression> exps) : TraderType cached
+}
+
+judgments {
+	type |- Expression exp : output TraderType
+		cached
+		error "Cannot type " + stringRep(exp)
+	subType |- TraderType left <: TraderType right
+		error stringRep(left) + " is not a subtype of " + stringRep(right)
+}
+
+auxiliary typeExpression(Iterable<Expression> exps){
+	if (exps.forall[exp |
+		empty |- exp : var TraderType type
+		type === TraderType.INT]) {
+			return TraderType.INT
+		} 
+	else if (exps.exists[exp |
+		empty |- exp : var TraderType type
+		type === TraderType.STRING]) {
+			return TraderType.STRING
+		}
+	else {
+		return TraderType.REAL
+		}
+}
+
+axiom TIntLit
+	G |- IntValue exp : TraderType.INT
+	
+axiom TRealLit
+	G |- RealValue exp : TraderType.REAL
+	
+axiom TStringLit
+	G |- StringValue exp : TraderType.STRING
+
+axiom TStringVarExpression
+	G |- StringVarExpression exp : TraderType.STRING
+
+rule TNumVarExpression
+	G |- NumVarExpression exp : TraderType t
+from {
+	empty |- exp.^var.value : var TraderType type
+	if (type === TraderType.INT) {
+		t = TraderType.INT	
+	} else if (type === TraderType.REAL) {
+		t = TraderType.REAL
+	} else {		
+		t = TraderType.STRING
+	}
+}
+	
+rule TMultiplication
+	G |- Multiplication exp : TraderType t
+from {
+	t = (#[exp.left] + exp.right).typeExpression
+}
+
+rule TAddition
+	G |- Addition exp : TraderType t
+from {
+	t = (#[exp.left] + exp.right).typeExpression
+}
+
+rule SubTyping
+	G |- TraderType left <: TraderType right
+from {
+	(left !== TraderType.STRING && right === TraderType.REAL) or left === right
+}
+
+checkrule checkConnectStatement for
+	ConnectStatement stmt
+from {
+	empty |- stmt.username : var TraderType usernameTypes
+	empty |- usernameTypes <: TraderType.STRING
+	empty |- stmt.password : var TraderType passwordTypes
+	empty |- passwordTypes <: TraderType.STRING
+	empty |- stmt.leverage : var TraderType leverageTypes
+	empty |- leverageTypes <: TraderType.REAL
+	empty |- stmt.money : var TraderType moneyTypes
+	empty |- moneyTypes <: TraderType.REAL
+	empty |- stmt.timeframe : var TraderType timeframeTypes
+	empty |- timeframeTypes <: TraderType.STRING
+}
+
+checkrule checkLoopStatement for
+	LoopStatement stmt
+from {
+	empty |- stmt.count : var TraderType countTypes
+	empty |- countTypes <: TraderType.INT
+}
+
+checkrule checkTradingBot for
+	TradingBot stmt
+from {
+	empty |- stmt.fund : var TraderType fundTypes
+	empty |- fundTypes <: TraderType.REAL	
+}

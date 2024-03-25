@@ -67,15 +67,15 @@ REAL returns ecore::EFloat hidden():
 	INT? "." INT
 ;
 
-Addition returns NumExpression:
+Addition returns Expression:
 	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 ;
 
-Multiplication returns NumExpression:
+Multiplication returns Expression:
 	Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 ;
 
-Primary returns NumExpression:
+Primary returns Expression:
 	IntValue |
 	RealValue |
 	NumVarExpression |
@@ -86,7 +86,8 @@ NumVarExpression:
 	var = [VariableDeclaration]
 ;
 
-StringPrimary:
+
+StringPrimary returns Expression:
 	StringVarExpression |
 	StringValue
 ;

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import uk.ac.kcl.inf.trader.trader.Action;
-import uk.ac.kcl.inf.trader.trader.NumExpression;
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
@@ -41,7 +41,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    * @ordered
    */
-  protected NumExpression quantity;
+  protected Expression quantity;
 
   /**
    * The default value of the '{@link #getTicker() <em>Ticker</em>}' attribute.
@@ -71,7 +71,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    * @ordered
    */
-  protected NumExpression price;
+  protected Expression price;
 
   /**
    * <!-- begin-user-doc -->
@@ -100,7 +100,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public NumExpression getQuantity()
+  public Expression getQuantity()
   {
     return quantity;
   }
@@ -110,9 +110,9 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetQuantity(NumExpression newQuantity, NotificationChain msgs)
+  public NotificationChain basicSetQuantity(Expression newQuantity, NotificationChain msgs)
   {
-    NumExpression oldQuantity = quantity;
+    Expression oldQuantity = quantity;
     quantity = newQuantity;
     if (eNotificationRequired())
     {
@@ -128,7 +128,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public void setQuantity(NumExpression newQuantity)
+  public void setQuantity(Expression newQuantity)
   {
     if (newQuantity != quantity)
     {
@@ -175,7 +175,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public NumExpression getPrice()
+  public Expression getPrice()
   {
     return price;
   }
@@ -185,9 +185,9 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPrice(NumExpression newPrice, NotificationChain msgs)
+  public NotificationChain basicSetPrice(Expression newPrice, NotificationChain msgs)
   {
-    NumExpression oldPrice = price;
+    Expression oldPrice = price;
     price = newPrice;
     if (eNotificationRequired())
     {
@@ -203,7 +203,7 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
    * @generated
    */
   @Override
-  public void setPrice(NumExpression newPrice)
+  public void setPrice(Expression newPrice)
   {
     if (newPrice != price)
     {
@@ -268,13 +268,13 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case TraderPackage.ACTION__QUANTITY:
-        setQuantity((NumExpression)newValue);
+        setQuantity((Expression)newValue);
         return;
       case TraderPackage.ACTION__TICKER:
         setTicker((String)newValue);
         return;
       case TraderPackage.ACTION__PRICE:
-        setPrice((NumExpression)newValue);
+        setPrice((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -291,13 +291,13 @@ public class ActionImpl extends MinimalEObjectImpl.Container implements Action
     switch (featureID)
     {
       case TraderPackage.ACTION__QUANTITY:
-        setQuantity((NumExpression)null);
+        setQuantity((Expression)null);
         return;
       case TraderPackage.ACTION__TICKER:
         setTicker(TICKER_EDEFAULT);
         return;
       case TraderPackage.ACTION__PRICE:
-        setPrice((NumExpression)null);
+        setPrice((Expression)null);
         return;
     }
     super.eUnset(featureID);

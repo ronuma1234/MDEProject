@@ -34,7 +34,7 @@ public class TraderScopeProvider extends AbstractDeclarativeScopeProvider {
       } else {
         IScope _xblockexpression_1 = null;
         {
-          final int index = containingProgram.getStatements().indexOf(context.eContainer());
+          final int index = this.findIndexOfTopContainer(context, containingProgram);
           final Function1<VariableDeclaration, Boolean> _function = (VariableDeclaration vd) -> {
             int _indexOf = containingProgram.getStatements().indexOf(vd);
             return Boolean.valueOf((_indexOf > index));
@@ -107,5 +107,20 @@ public class TraderScopeProvider extends AbstractDeclarativeScopeProvider {
       _xifexpression = _xifexpression_1;
     }
     return _xifexpression;
+  }
+
+  public int findIndexOfTopContainer(final EObject context, final TraderProgram containingProgram) {
+    final int index = containingProgram.getStatements().indexOf(context);
+    EObject _eContainer = context.eContainer();
+    boolean _tripleEquals = (_eContainer == null);
+    if (_tripleEquals) {
+      return (-1);
+    } else {
+      if ((index == (-1))) {
+        return this.findIndexOfTopContainer(context.eContainer(), containingProgram);
+      } else {
+        return index;
+      }
+    }
   }
 }

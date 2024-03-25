@@ -27,7 +27,7 @@ import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
  *
  * @generated
  */
-public class NumVarExpressionImpl extends NumExpressionImpl implements NumVarExpression
+public class NumVarExpressionImpl extends ExpressionImpl implements NumVarExpression
 {
   /**
    * The cached value of the '{@link #getVar() <em>Var</em>}' reference.

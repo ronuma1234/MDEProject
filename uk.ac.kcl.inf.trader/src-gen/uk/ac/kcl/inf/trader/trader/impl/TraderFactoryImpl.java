@@ -78,9 +78,8 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
       case TraderPackage.REAL_VALUE: return createRealValue();
       case TraderPackage.INT_VALUE: return createIntValue();
       case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
-      case TraderPackage.NUM_EXPRESSION: return createNumExpression();
+      case TraderPackage.EXPRESSION: return createExpression();
       case TraderPackage.NUM_VAR_EXPRESSION: return createNumVarExpression();
-      case TraderPackage.STRING_PRIMARY: return createStringPrimary();
       case TraderPackage.STRING_VAR_EXPRESSION: return createStringVarExpression();
       case TraderPackage.ACTION: return createAction();
       case TraderPackage.BUY: return createBuy();
@@ -276,10 +275,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public NumExpression createNumExpression()
+  public Expression createExpression()
   {
-    NumExpressionImpl numExpression = new NumExpressionImpl();
-    return numExpression;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -292,18 +291,6 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
   {
     NumVarExpressionImpl numVarExpression = new NumVarExpressionImpl();
     return numVarExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public StringPrimary createStringPrimary()
-  {
-    StringPrimaryImpl stringPrimary = new StringPrimaryImpl();
-    return stringPrimary;
   }
 
   /**

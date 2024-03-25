@@ -30,12 +30,12 @@ public interface Action extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Quantity</em>' containment reference.
-   * @see #setQuantity(NumExpression)
+   * @see #setQuantity(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getAction_Quantity()
    * @model containment="true"
    * @generated
    */
-  NumExpression getQuantity();
+  Expression getQuantity();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getQuantity <em>Quantity</em>}' containment reference.
@@ -45,7 +45,7 @@ public interface Action extends EObject
    * @see #getQuantity()
    * @generated
    */
-  void setQuantity(NumExpression value);
+  void setQuantity(Expression value);
 
   /**
    * Returns the value of the '<em><b>Ticker</b></em>' attribute.
@@ -74,12 +74,12 @@ public interface Action extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Price</em>' containment reference.
-   * @see #setPrice(NumExpression)
+   * @see #setPrice(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getAction_Price()
    * @model containment="true"
    * @generated
    */
-  NumExpression getPrice();
+  Expression getPrice();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.Action#getPrice <em>Price</em>}' containment reference.
@@ -89,6 +89,6 @@ public interface Action extends EObject
    * @see #getPrice()
    * @generated
    */
-  void setPrice(NumExpression value);
+  void setPrice(Expression value);
 
 } // Action

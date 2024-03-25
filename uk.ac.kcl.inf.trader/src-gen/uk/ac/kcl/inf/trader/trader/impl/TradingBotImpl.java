@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import uk.ac.kcl.inf.trader.trader.NumExpression;
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.StrategyDef;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TradingBot;
@@ -60,7 +60,7 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * @generated
    * @ordered
    */
-  protected NumExpression fund;
+  protected Expression fund;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * @generated
    */
   @Override
-  public NumExpression getFund()
+  public Expression getFund()
   {
     return fund;
   }
@@ -124,9 +124,9 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetFund(NumExpression newFund, NotificationChain msgs)
+  public NotificationChain basicSetFund(Expression newFund, NotificationChain msgs)
   {
-    NumExpression oldFund = fund;
+    Expression oldFund = fund;
     fund = newFund;
     if (eNotificationRequired())
     {
@@ -142,7 +142,7 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
    * @generated
    */
   @Override
-  public void setFund(NumExpression newFund)
+  public void setFund(Expression newFund)
   {
     if (newFund != fund)
     {
@@ -206,7 +206,7 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
         setStrategy((StrategyDef)newValue);
         return;
       case TraderPackage.TRADING_BOT__FUND:
-        setFund((NumExpression)newValue);
+        setFund((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -226,7 +226,7 @@ public class TradingBotImpl extends StatementImpl implements TradingBot
         setStrategy(STRATEGY_EDEFAULT);
         return;
       case TraderPackage.TRADING_BOT__FUND:
-        setFund((NumExpression)null);
+        setFund((Expression)null);
         return;
     }
     super.eUnset(featureID);

@@ -11,6 +11,7 @@ import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
 import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
+import uk.ac.kcl.inf.trader.typing.validation.TraderTypeValidatorValidator;
 
 /**
  * This class contains custom validation rules.
@@ -18,7 +19,7 @@ import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 @SuppressWarnings("all")
-public class TraderValidator extends AbstractTraderValidator {
+public class TraderValidator extends TraderTypeValidatorValidator {
   public static final String INVALID_VARIABLE_NAME = "uk.ac.kcl.inf.trader.INVALID_VARIABLE_NAME";
 
   public static final String USED_VARIABLE_NAME = "uk.ac.kcl.inf.trader.USED_VARIABLE_NAME";

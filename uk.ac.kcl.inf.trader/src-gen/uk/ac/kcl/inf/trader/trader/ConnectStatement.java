@@ -54,12 +54,12 @@ public interface ConnectStatement extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Username</em>' containment reference.
-   * @see #setUsername(StringPrimary)
+   * @see #setUsername(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getConnectStatement_Username()
    * @model containment="true"
    * @generated
    */
-  StringPrimary getUsername();
+  Expression getUsername();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getUsername <em>Username</em>}' containment reference.
@@ -69,19 +69,19 @@ public interface ConnectStatement extends Statement
    * @see #getUsername()
    * @generated
    */
-  void setUsername(StringPrimary value);
+  void setUsername(Expression value);
 
   /**
    * Returns the value of the '<em><b>Password</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Password</em>' containment reference.
-   * @see #setPassword(StringPrimary)
+   * @see #setPassword(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getConnectStatement_Password()
    * @model containment="true"
    * @generated
    */
-  StringPrimary getPassword();
+  Expression getPassword();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getPassword <em>Password</em>}' containment reference.
@@ -91,19 +91,19 @@ public interface ConnectStatement extends Statement
    * @see #getPassword()
    * @generated
    */
-  void setPassword(StringPrimary value);
+  void setPassword(Expression value);
 
   /**
    * Returns the value of the '<em><b>Leverage</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Leverage</em>' containment reference.
-   * @see #setLeverage(NumExpression)
+   * @see #setLeverage(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getConnectStatement_Leverage()
    * @model containment="true"
    * @generated
    */
-  NumExpression getLeverage();
+  Expression getLeverage();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getLeverage <em>Leverage</em>}' containment reference.
@@ -113,19 +113,19 @@ public interface ConnectStatement extends Statement
    * @see #getLeverage()
    * @generated
    */
-  void setLeverage(NumExpression value);
+  void setLeverage(Expression value);
 
   /**
    * Returns the value of the '<em><b>Money</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Money</em>' containment reference.
-   * @see #setMoney(NumExpression)
+   * @see #setMoney(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getConnectStatement_Money()
    * @model containment="true"
    * @generated
    */
-  NumExpression getMoney();
+  Expression getMoney();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getMoney <em>Money</em>}' containment reference.
@@ -135,19 +135,19 @@ public interface ConnectStatement extends Statement
    * @see #getMoney()
    * @generated
    */
-  void setMoney(NumExpression value);
+  void setMoney(Expression value);
 
   /**
    * Returns the value of the '<em><b>Timeframe</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Timeframe</em>' containment reference.
-   * @see #setTimeframe(StringPrimary)
+   * @see #setTimeframe(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getConnectStatement_Timeframe()
    * @model containment="true"
    * @generated
    */
-  StringPrimary getTimeframe();
+  Expression getTimeframe();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getTimeframe <em>Timeframe</em>}' containment reference.
@@ -157,6 +157,6 @@ public interface ConnectStatement extends Statement
    * @see #getTimeframe()
    * @generated
    */
-  void setTimeframe(StringPrimary value);
+  void setTimeframe(Expression value);
 
 } // ConnectStatement

@@ -7,13 +7,14 @@ import uk.ac.kcl.inf.trader.trader.ConnectStatement
 import uk.ac.kcl.inf.trader.trader.LoopStatement
 import uk.ac.kcl.inf.trader.trader.TraderProgram
 import org.eclipse.emf.ecore.EObject
+import uk.ac.kcl.inf.trader.typing.validation.TraderTypeValidatorValidator
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-class TraderValidator extends AbstractTraderValidator{
+class TraderValidator extends TraderTypeValidatorValidator{
 	
 	public static val INVALID_VARIABLE_NAME = 'uk.ac.kcl.inf.trader.INVALID_VARIABLE_NAME'
 	public static val USED_VARIABLE_NAME = 'uk.ac.kcl.inf.trader.USED_VARIABLE_NAME'

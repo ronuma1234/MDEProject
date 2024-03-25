@@ -7,11 +7,11 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
 
@@ -59,7 +59,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @generated
    * @ordered
    */
-  protected EObject value;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -113,7 +113,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @generated
    */
   @Override
-  public EObject getValue()
+  public Expression getValue()
   {
     return value;
   }
@@ -123,9 +123,9 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    EObject oldValue = value;
+    Expression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
     {
@@ -141,7 +141,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @generated
    */
   @Override
-  public void setValue(EObject newValue)
+  public void setValue(Expression newValue)
   {
     if (newValue != value)
     {
@@ -205,7 +205,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
         setName((String)newValue);
         return;
       case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue((EObject)newValue);
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,7 +225,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
         setName(NAME_EDEFAULT);
         return;
       case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue((EObject)null);
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);

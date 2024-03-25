@@ -25,7 +25,7 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
  *
  * @generated
  */
-public class IntValueImpl extends NumExpressionImpl implements IntValue
+public class IntValueImpl extends ExpressionImpl implements IntValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.

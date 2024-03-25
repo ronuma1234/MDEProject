@@ -20,7 +20,7 @@ package uk.ac.kcl.inf.trader.trader;
  * @model
  * @generated
  */
-public interface RealValue extends NumExpression
+public interface RealValue extends Expression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.

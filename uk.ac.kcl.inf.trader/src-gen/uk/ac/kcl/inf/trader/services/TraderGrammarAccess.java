@@ -521,7 +521,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightMultiplicationParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//Addition returns NumExpression:
+		//Addition returns Expression:
 		//    Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -569,7 +569,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightPrimaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//Multiplication returns NumExpression:
+		//Multiplication returns Expression:
 		//    Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -615,7 +615,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final RuleCall cAdditionParserRuleCall_3_1 = (RuleCall)cGroup_3.eContents().get(1);
 		private final Keyword cRightParenthesisKeyword_3_2 = (Keyword)cGroup_3.eContents().get(2);
 		
-		//Primary returns NumExpression:
+		//Primary returns Expression:
 		//    IntValue |
 		//    RealValue |
 		//    NumVarExpression |
@@ -676,7 +676,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final RuleCall cStringVarExpressionParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cStringValueParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//StringPrimary:
+		//StringPrimary returns Expression:
 		//    StringVarExpression |
 		//    StringValue
 		//;
@@ -1102,7 +1102,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getREALAccess().getRule();
 	}
 	
-	//Addition returns NumExpression:
+	//Addition returns Expression:
 	//    Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 	//;
 	public AdditionElements getAdditionAccess() {
@@ -1113,7 +1113,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getAdditionAccess().getRule();
 	}
 	
-	//Multiplication returns NumExpression:
+	//Multiplication returns Expression:
 	//    Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 	//;
 	public MultiplicationElements getMultiplicationAccess() {
@@ -1124,7 +1124,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getMultiplicationAccess().getRule();
 	}
 	
-	//Primary returns NumExpression:
+	//Primary returns Expression:
 	//    IntValue |
 	//    RealValue |
 	//    NumVarExpression |
@@ -1149,7 +1149,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		return getNumVarExpressionAccess().getRule();
 	}
 	
-	//StringPrimary:
+	//StringPrimary returns Expression:
 	//    StringVarExpression |
 	//    StringValue
 	//;

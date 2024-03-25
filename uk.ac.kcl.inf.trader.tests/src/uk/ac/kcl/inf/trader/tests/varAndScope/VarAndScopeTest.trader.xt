@@ -31,7 +31,7 @@ end
 
 var secondFund = 5.2
 // XPECT scope at secondFund --> loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, secondFund, ...
-create bot with buyAndHold strategy using secondFund funds
+create bot with buyAndHold strategy using (secondFund + secondFund) funds
 
 see registered bots
 

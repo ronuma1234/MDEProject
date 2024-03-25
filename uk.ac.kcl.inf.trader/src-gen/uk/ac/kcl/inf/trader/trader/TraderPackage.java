@@ -337,23 +337,23 @@ public interface TraderPackage extends EPackage
   int VARIABLE_DECLARATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringPrimaryImpl <em>String Primary</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl <em>Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.StringPrimaryImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringPrimary()
+   * @see uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExpression()
    * @generated
    */
-  int STRING_PRIMARY = 14;
+  int EXPRESSION = 12;
 
   /**
-   * The number of structural features of the '<em>String Primary</em>' class.
+   * The number of structural features of the '<em>Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STRING_PRIMARY_FEATURE_COUNT = 0;
+  int EXPRESSION_FEATURE_COUNT = 0;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringValueImpl <em>String Value</em>}' class.
@@ -372,7 +372,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_VALUE__VALUE = STRING_PRIMARY_FEATURE_COUNT + 0;
+  int STRING_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>String Value</em>' class.
@@ -381,26 +381,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_VALUE_FEATURE_COUNT = STRING_PRIMARY_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.NumExpressionImpl <em>Num Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.NumExpressionImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getNumExpression()
-   * @generated
-   */
-  int NUM_EXPRESSION = 12;
-
-  /**
-   * The number of structural features of the '<em>Num Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NUM_EXPRESSION_FEATURE_COUNT = 0;
+  int STRING_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.RealValueImpl <em>Real Value</em>}' class.
@@ -419,7 +400,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REAL_VALUE__VALUE = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int REAL_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Real Value</em>' class.
@@ -428,7 +409,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REAL_VALUE_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int REAL_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntValueImpl <em>Int Value</em>}' class.
@@ -447,7 +428,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INT_VALUE__VALUE = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int INT_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Int Value</em>' class.
@@ -456,7 +437,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INT_VALUE_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int INT_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
@@ -512,7 +493,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_VAR_EXPRESSION__VAR = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int NUM_VAR_EXPRESSION__VAR = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Num Var Expression</em>' class.
@@ -521,7 +502,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NUM_VAR_EXPRESSION_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int NUM_VAR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl <em>String Var Expression</em>}' class.
@@ -531,7 +512,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringVarExpression()
    * @generated
    */
-  int STRING_VAR_EXPRESSION = 15;
+  int STRING_VAR_EXPRESSION = 14;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -540,7 +521,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_VAR_EXPRESSION__VAR = STRING_PRIMARY_FEATURE_COUNT + 0;
+  int STRING_VAR_EXPRESSION__VAR = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>String Var Expression</em>' class.
@@ -549,7 +530,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int STRING_VAR_EXPRESSION_FEATURE_COUNT = STRING_PRIMARY_FEATURE_COUNT + 1;
+  int STRING_VAR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ActionImpl <em>Action</em>}' class.
@@ -559,7 +540,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
    * @generated
    */
-  int ACTION = 16;
+  int ACTION = 15;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' containment reference.
@@ -605,7 +586,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
    * @generated
    */
-  int BUY = 17;
+  int BUY = 16;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' containment reference.
@@ -651,7 +632,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
    * @generated
    */
-  int SELL = 18;
+  int SELL = 17;
 
   /**
    * The feature id for the '<em><b>Quantity</b></em>' containment reference.
@@ -697,7 +678,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 19;
+  int ADDITION = 18;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -706,7 +687,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__LEFT = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int ADDITION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute list.
@@ -715,7 +696,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__OPERATOR = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int ADDITION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference list.
@@ -724,7 +705,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__RIGHT = NUM_EXPRESSION_FEATURE_COUNT + 2;
+  int ADDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Addition</em>' class.
@@ -733,7 +714,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 3;
+  int ADDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.MultiplicationImpl <em>Multiplication</em>}' class.
@@ -743,7 +724,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 20;
+  int MULTIPLICATION = 19;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -752,7 +733,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__LEFT = NUM_EXPRESSION_FEATURE_COUNT + 0;
+  int MULTIPLICATION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute list.
@@ -761,7 +742,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__OPERATOR = NUM_EXPRESSION_FEATURE_COUNT + 1;
+  int MULTIPLICATION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference list.
@@ -770,7 +751,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__RIGHT = NUM_EXPRESSION_FEATURE_COUNT + 2;
+  int MULTIPLICATION__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Multiplication</em>' class.
@@ -779,7 +760,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION_FEATURE_COUNT = NUM_EXPRESSION_FEATURE_COUNT + 3;
+  int MULTIPLICATION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.StrategyDef <em>Strategy Def</em>}' enum.
@@ -789,7 +770,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStrategyDef()
    * @generated
    */
-  int STRATEGY_DEF = 21;
+  int STRATEGY_DEF = 20;
 
 
   /**
@@ -1122,14 +1103,14 @@ public interface TraderPackage extends EPackage
   EReference getLoopStatement_Statements();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.NumExpression <em>Num Expression</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Num Expression</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.NumExpression
+   * @return the meta object for class '<em>Expression</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Expression
    * @generated
    */
-  EClass getNumExpression();
+  EClass getExpression();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.NumVarExpression <em>Num Var Expression</em>}'.
@@ -1151,16 +1132,6 @@ public interface TraderPackage extends EPackage
    * @generated
    */
   EReference getNumVarExpression_Var();
-
-  /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.StringPrimary <em>String Primary</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>String Primary</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.StringPrimary
-   * @generated
-   */
-  EClass getStringPrimary();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.StringVarExpression <em>String Var Expression</em>}'.
@@ -1638,14 +1609,14 @@ public interface TraderPackage extends EPackage
     EReference LOOP_STATEMENT__STATEMENTS = eINSTANCE.getLoopStatement_Statements();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.NumExpressionImpl <em>Num Expression</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.NumExpressionImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getNumExpression()
+     * @see uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExpression()
      * @generated
      */
-    EClass NUM_EXPRESSION = eINSTANCE.getNumExpression();
+    EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl <em>Num Var Expression</em>}' class.
@@ -1664,16 +1635,6 @@ public interface TraderPackage extends EPackage
      * @generated
      */
     EReference NUM_VAR_EXPRESSION__VAR = eINSTANCE.getNumVarExpression_Var();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringPrimaryImpl <em>String Primary</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.StringPrimaryImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringPrimary()
-     * @generated
-     */
-    EClass STRING_PRIMARY = eINSTANCE.getStringPrimary();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl <em>String Var Expression</em>}' class.

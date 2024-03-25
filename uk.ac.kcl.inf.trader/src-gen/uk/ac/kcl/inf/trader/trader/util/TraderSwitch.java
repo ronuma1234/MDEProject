@@ -139,7 +139,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         StringValue stringValue = (StringValue)theEObject;
         T result = caseStringValue(stringValue);
-        if (result == null) result = caseStringPrimary(stringValue);
+        if (result == null) result = caseExpression(stringValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -147,7 +147,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         RealValue realValue = (RealValue)theEObject;
         T result = caseRealValue(realValue);
-        if (result == null) result = caseNumExpression(realValue);
+        if (result == null) result = caseExpression(realValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -155,7 +155,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         IntValue intValue = (IntValue)theEObject;
         T result = caseIntValue(intValue);
-        if (result == null) result = caseNumExpression(intValue);
+        if (result == null) result = caseExpression(intValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -167,10 +167,10 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.NUM_EXPRESSION:
+      case TraderPackage.EXPRESSION:
       {
-        NumExpression numExpression = (NumExpression)theEObject;
-        T result = caseNumExpression(numExpression);
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -178,14 +178,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         NumVarExpression numVarExpression = (NumVarExpression)theEObject;
         T result = caseNumVarExpression(numVarExpression);
-        if (result == null) result = caseNumExpression(numVarExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.STRING_PRIMARY:
-      {
-        StringPrimary stringPrimary = (StringPrimary)theEObject;
-        T result = caseStringPrimary(stringPrimary);
+        if (result == null) result = caseExpression(numVarExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -193,7 +186,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         StringVarExpression stringVarExpression = (StringVarExpression)theEObject;
         T result = caseStringVarExpression(stringVarExpression);
-        if (result == null) result = caseStringPrimary(stringVarExpression);
+        if (result == null) result = caseExpression(stringVarExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -224,7 +217,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         Addition addition = (Addition)theEObject;
         T result = caseAddition(addition);
-        if (result == null) result = caseNumExpression(addition);
+        if (result == null) result = caseExpression(addition);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -232,7 +225,7 @@ public class TraderSwitch<T> extends Switch<T>
       {
         Multiplication multiplication = (Multiplication)theEObject;
         T result = caseMultiplication(multiplication);
-        if (result == null) result = caseNumExpression(multiplication);
+        if (result == null) result = caseExpression(multiplication);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -433,17 +426,17 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Num Expression</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Num Expression</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNumExpression(NumExpression object)
+  public T caseExpression(Expression object)
   {
     return null;
   }
@@ -460,22 +453,6 @@ public class TraderSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseNumVarExpression(NumVarExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>String Primary</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Primary</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStringPrimary(StringPrimary object)
   {
     return null;
   }

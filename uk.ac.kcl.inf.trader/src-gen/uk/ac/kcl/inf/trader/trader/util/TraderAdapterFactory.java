@@ -136,19 +136,14 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createLoopStatementAdapter();
       }
       @Override
-      public Adapter caseNumExpression(NumExpression object)
+      public Adapter caseExpression(Expression object)
       {
-        return createNumExpressionAdapter();
+        return createExpressionAdapter();
       }
       @Override
       public Adapter caseNumVarExpression(NumVarExpression object)
       {
         return createNumVarExpressionAdapter();
-      }
-      @Override
-      public Adapter caseStringPrimary(StringPrimary object)
-      {
-        return createStringPrimaryAdapter();
       }
       @Override
       public Adapter caseStringVarExpression(StringVarExpression object)
@@ -383,16 +378,16 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.NumExpression <em>Num Expression</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.NumExpression
+   * @see uk.ac.kcl.inf.trader.trader.Expression
    * @generated
    */
-  public Adapter createNumExpressionAdapter()
+  public Adapter createExpressionAdapter()
   {
     return null;
   }
@@ -408,21 +403,6 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createNumVarExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.StringPrimary <em>String Primary</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.StringPrimary
-   * @generated
-   */
-  public Adapter createStringPrimaryAdapter()
   {
     return null;
   }

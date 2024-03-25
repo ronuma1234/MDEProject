@@ -20,7 +20,7 @@ package uk.ac.kcl.inf.trader.trader;
  * @model
  * @generated
  */
-public interface StringVarExpression extends StringPrimary
+public interface StringVarExpression extends Expression
 {
   /**
    * Returns the value of the '<em><b>Var</b></em>' reference.

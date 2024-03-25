@@ -26,7 +26,7 @@ class TraderScopeProvider extends AbstractDeclarativeScopeProvider{
 		if (containingLoopStatement !== null) {
 			containingLoopStatement.visibleVariablesScope(context.eContainer)
 		} else {
-			val index = containingProgram.statements.indexOf(context.eContainer) 
+			val index = context.findIndexOfTopContainer(containingProgram)
 			val visibleVariables = containingProgram.statements
             .filter(VariableDeclaration)
             .reject[vd | containingProgram.statements.indexOf(vd) > index]
@@ -61,7 +61,16 @@ class TraderScopeProvider extends AbstractDeclarativeScopeProvider{
     	}
     }
     
-    
+    def int findIndexOfTopContainer(EObject context, TraderProgram containingProgram) {
+    	val index = containingProgram.statements.indexOf(context)
+    	if (context.eContainer === null) {
+    		return -1
+    	} else if (index === -1) {
+    		return context.eContainer.findIndexOfTopContainer(containingProgram)
+    	} else {    		
+	    	return index
+    	}
+    }
 //    
 //    def IScope scope_ConnectParameters_usernameRef(ConnectParameters context, EReference ref) {
 //        val containingProgram = context.eContainer.getContainerOfType(TraderProgram)

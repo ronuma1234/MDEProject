@@ -20,7 +20,7 @@ package uk.ac.kcl.inf.trader.trader;
  * @model
  * @generated
  */
-public interface NumVarExpression extends NumExpression
+public interface NumVarExpression extends Expression
 {
   /**
    * Returns the value of the '<em><b>Var</b></em>' reference.
