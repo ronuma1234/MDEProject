@@ -3,14 +3,33 @@
  */
 package uk.ac.kcl.inf.trader.generator;
 
+import java.util.Arrays;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
+import uk.ac.kcl.inf.trader.trader.Addition;
+import uk.ac.kcl.inf.trader.trader.ConnectStatement;
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement;
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement;
+import uk.ac.kcl.inf.trader.trader.Expression;
+import uk.ac.kcl.inf.trader.trader.IntValue;
+import uk.ac.kcl.inf.trader.trader.ListBotsStatement;
+import uk.ac.kcl.inf.trader.trader.LoopStatement;
+import uk.ac.kcl.inf.trader.trader.Multiplication;
+import uk.ac.kcl.inf.trader.trader.NumVarExpression;
+import uk.ac.kcl.inf.trader.trader.RealValue;
+import uk.ac.kcl.inf.trader.trader.Statement;
+import uk.ac.kcl.inf.trader.trader.StrategyDef;
+import uk.ac.kcl.inf.trader.trader.StringValue;
+import uk.ac.kcl.inf.trader.trader.StringVarExpression;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
 
 /**
@@ -20,12 +39,902 @@ import uk.ac.kcl.inf.trader.trader.TraderProgram;
  */
 @SuppressWarnings("all")
 public class TraderGenerator extends AbstractGenerator {
+  private static class Environment {
+    private int counter = 0;
+
+    public CharSequence getFreshVarName() {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("i");
+      int _plusPlus = this.counter++;
+      _builder.append(_plusPlus);
+      return _builder;
+    }
+
+    public int exit() {
+      return this.counter--;
+    }
+  }
+
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     final TraderProgram model = ((TraderProgram) _head);
-    final String className = this.deriveClassName(resource);
-    fsa.generateFile((className + ".py"), this.doGenerateClass(model, className));
+    fsa.generateFile(this.derivePythonFileNameFor(resource), this.doGeneratePythonCode(model));
+  }
+
+  public String derivePythonFileNameFor(final Resource resource) {
+    String _lastSegment = resource.getURI().lastSegment();
+    String _plus = (_lastSegment + "/");
+    String _lastSegment_1 = resource.getURI().appendFileExtension("py").lastSegment();
+    return (_plus + _lastSegment_1);
+  }
+
+  public String doGeneratePythonCode(final TraderProgram program) {
+    String _head = this.head();
+    StringConcatenation _builder = new StringConcatenation();
+    final Function1<Statement, String> _function = (Statement it) -> {
+      TraderGenerator.Environment _environment = new TraderGenerator.Environment();
+      return this.generatePythonStatement(it, _environment);
+    };
+    String _join = IterableExtensions.join(ListExtensions.<Statement, String>map(program.getStatements(), _function), "\n");
+    _builder.append(_join);
+    _builder.newLineIfNotEmpty();
+    return (_head + _builder);
+  }
+
+  public String head() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("import sys");
+    _builder.newLine();
+    _builder.append("import subprocess");
+    _builder.newLine();
+    _builder.append("#subprocess.check_call([sys.executable, \'virtualenv\' \'env\'])");
+    _builder.newLine();
+    _builder.append("#subprocess.check_call([sys.executable, \'-m\', \'pip\', \'install\', \'MetaTrader5\'])");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("from typing import List");
+    _builder.newLine();
+    _builder.append("from abc import ABC, abstractmethod");
+    _builder.newLine();
+    _builder.append("from datetime import datetime, timedelta");
+    _builder.newLine();
+    _builder.append("import time");
+    _builder.newLine();
+    _builder.append("import MetaTrader5 as mt5");
+    _builder.newLine();
+    _builder.append("import pandas as pd ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("class TradingStrategy(ABC):");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def __init__(self, market_data) -> None:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def long_condition() -> bool:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def short_condition() -> bool:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def closelong_condition() -> bool:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def closeshort_condition() -> bool:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def get_execution_instructions() -> List[str]:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("@abstractmethod");
+    _builder.newLine();
+    _builder.append("\t\t    ");
+    _builder.append("def getName(self) -> str:");
+    _builder.newLine();
+    _builder.append("\t\t        ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("class BuyAndHold(TradingStrategy):");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def __init__(self, symbol, market_df) -> None:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.symbol = symbol");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.current_close = list(market_df[-1:][\'close\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_close = list(market_df[-2:][\'close\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_high = list(market_df[-2:][\'high\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_low = list(market_df[-2:][\'low\'])[0]");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.sl = 0.05");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.tp = 0.1");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def long_condition(self) -> bool:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return self.current_close < self.last_close");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def short_condition(self) -> bool:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return self.current_close < self.last_low");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def closelong_condition(self) -> bool:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return self.current_close < self.last_close");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def closeshort_condition(self) -> bool:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return self.current_close > self.last_close");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def set_market_df(self, market_df):");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.current_close = list(market_df[-1:][\'close\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_close = list(market_df[-2:][\'close\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_high = list(market_df[-2:][\'high\'])[0]");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.last_low = list(market_df[-2:][\'low\'])[0]");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def get_execution_instructions(self) -> List[str]:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("instructions = []");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("already_buy = False");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("already_sell = False");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("try:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("already_sell = mt5.positions_get()[0]._asdict()[\'type\']==1");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("already_buy = mt5.positions_get()[0]._asdict()[\'type\']==0");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("except:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("if self.long_condition():");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if len(mt5.positions_get()) == 0:");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"create\", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("print(\"buy placed\")");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if already_sell:");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"close\", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("print(\'Sell position closed\')");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("time.sleep(1)");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"create\", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("if self.short_condition():");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if len(mt5.positions_get()) == 0:");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"create\", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("print(\"sell placed\")");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if already_buy:");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"close\", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("print(\'Buy position closed\')");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("time.sleep(1)");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("instructions.append((\"create\", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("try:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("already_sell = mt5.positions_get()[0]._asdict()[\'type\']==1");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("already_buy = mt5.positions_get()[0]._asdict()[\'type\']==0");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("except:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("if self.closelong_condition() and already_buy:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("instructions.append((\"close\", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("print(\'buy position closed\')");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("if self.closeshort_condition() and already_sell:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("instructions.append((\"close\", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("print(\'sell position closed\')");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("already_buy = False");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("already_sell = False");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return instructions");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def getName(self) -> str:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return self.__class__.__name__");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("class MeanReversion(TradingStrategy):");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def __init__(self, market_data) -> None:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def should_buy(self, price) -> str:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def should_sell(self, price) -> str:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def should_wait(self, price) -> str:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("pass");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    _builder.append("class TradingBot():");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def __init__(self, strategy: TradingStrategy, lot_size: float) -> None:");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.strategy: TradingStrategy = strategy");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.lot_size: float = lot_size");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("self.symbol = strategy.symbol");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def create_order(self, symbol, lot, type, price, sl, tp):");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("request = {");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"action\": mt5.TRADE_ACTION_DEAL,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"symbol\": symbol,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"volume\": self.lot_size,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type\": type,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"price\": price,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"sl\": sl,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"tp\": tp,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"comment\": \"Open position by Python Bot\",");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type_time\": mt5.ORDER_TIME_GTC,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type_filling\": mt5.ORDER_FILLING_IOC,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("order = mt5.order_send(request)");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return order");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def close_order(self, symbol, lot, type, price):");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("request = {");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"action\": mt5.TRADE_ACTION_DEAL,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"symbol\": symbol,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"volume\": self.lot_size,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type\": type,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"position\": mt5.positions_get()[0]._asdict()[\'ticket\'],");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"price\": price,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"comment\": \"Close position by Python Bot\",");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type_time\": mt5.ORDER_TIME_GTC,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("\"type_filling\": mt5.ORDER_FILLING_IOC,");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("order = mt5.order_send(request)");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("return order");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.append("def run(self):");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("instructions = self.strategy.get_execution_instructions()");
+    _builder.newLine();
+    _builder.append("\t        ");
+    _builder.newLine();
+    _builder.append("\t            ");
+    _builder.append("for instruction in instructions:");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if instruction[0] == \"create\":");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("self.create_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4], instruction[5], instruction[6])");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.newLine();
+    _builder.append("\t                ");
+    _builder.append("if instruction[0] == \"close\":");
+    _builder.newLine();
+    _builder.append("\t                    ");
+    _builder.append("self.close_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4])");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final Statement stmt, final TraderGenerator.Environment env) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final ConnectStatement stmt, final TraderGenerator.Environment env) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("if not mt5.initialize(login=\"");
+    String _generatePythonExpression = this.generatePythonExpression(stmt.getUsername());
+    _builder.append(_generatePythonExpression);
+    _builder.append("\", server=\"");
+    String _generatePythonExpression_1 = this.generatePythonExpression(stmt.getBrokerName());
+    _builder.append(_generatePythonExpression_1);
+    _builder.append("\",password=\"");
+    String _generatePythonExpression_2 = this.generatePythonExpression(stmt.getPassword());
+    _builder.append(_generatePythonExpression_2);
+    _builder.append("\"):");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("print(\"initialize() failed, error code =\",mt5.last_error())");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("quit()");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("timeframe_str = \"");
+    String _name = stmt.getTimeframe().getName();
+    _builder.append(_name);
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("timeframe_dict ={");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M1\":(mt5.TIMEFRAME_M1, timedelta(days=2)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M2\":(mt5.TIMEFRAME_M2, timedelta(days=4)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M3\":(mt5.TIMEFRAME_M3, timedelta(days=6)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M4\":(mt5.TIMEFRAME_M4, timedelta(days=8)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M5\":(mt5.TIMEFRAME_M5, timedelta(days=10)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M6\":(mt5.TIMEFRAME_M6, timedelta(days=12)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M10\":(mt5.TIMEFRAME_M10, timedelta(days=20)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M12\":(mt5.TIMEFRAME_M12, timedelta(days=24)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M20\":(mt5.TIMEFRAME_M20, timedelta(days=40)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"M30\":(mt5.TIMEFRAME_M30, timedelta(days=60)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H1\":(mt5.TIMEFRAME_H1, timedelta(days=120)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H2\":(mt5.TIMEFRAME_H2, timedelta(days=240)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H3\":(mt5.TIMEFRAME_H3, timedelta(days=360)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H4\":(mt5.TIMEFRAME_H4, timedelta(days=480)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H6\":(mt5.TIMEFRAME_H6, timedelta(days=720)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H8\":(mt5.TIMEFRAME_H8, timedelta(days=960)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"H12\":(mt5.TIMEFRAME_H12, timedelta(days=1440)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"D1\":(mt5.TIMEFRAME_D1, timedelta(days=2880)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"W1\":(mt5.TIMEFRAME_W1, timedelta(days=20160)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("\"MN1\":(mt5.TIMEFRAME_MN1, timedelta(days=86400)),");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    _builder.append("symbol = \"");
+    String _generatePythonExpression_3 = this.generatePythonExpression(stmt.getTickerName());
+    _builder.append(_generatePythonExpression_3);
+    _builder.append("\"");
+    _builder.newLineIfNotEmpty();
+    _builder.append("timeframe = timeframe_dict[timeframe_str][0]");
+    _builder.newLine();
+    _builder.append("date_difference = timeframe_dict[timeframe_str][1]");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("initial_market_df = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))");
+    _builder.newLine();
+    _builder.append("initial_market_df[\'time\'] = pd.to_datetime(initial_market_df[\'time\'], unit = \'s\')");
+    _builder.newLine();
+    _builder.append("trading_bot_array = []");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.newLine();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final CreateBotStatement stmt, final TraderGenerator.Environment env) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("strategy = ");
+    CharSequence _xifexpression = null;
+    StrategyDef _strategy = stmt.getStrategy();
+    boolean _tripleEquals = (_strategy == StrategyDef.BUY_AND_HOLD);
+    if (_tripleEquals) {
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("BuyAndHold");
+      _xifexpression = _builder_1;
+    }
+    _builder.append(_xifexpression);
+    CharSequence _xifexpression_1 = null;
+    StrategyDef _strategy_1 = stmt.getStrategy();
+    boolean _tripleEquals_1 = (_strategy_1 == StrategyDef.MEAN_REVERSION);
+    if (_tripleEquals_1) {
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("MeanReversion");
+      _xifexpression_1 = _builder_2;
+    }
+    _builder.append(_xifexpression_1);
+    _builder.append("(symbol, initial_market_df)");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("trading_bot_array.append(TradingBot(strategy, ");
+    String _generatePythonExpression = this.generatePythonExpression(stmt.getLotSize());
+    _builder.append(_generatePythonExpression);
+    _builder.append("))");
+    _builder.newLineIfNotEmpty();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final ListBotsStatement stmt, final TraderGenerator.Environment env) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("for bot in trading_bot_array:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("print(f\'Bot with id {id(bot)} using the {bot.strategy.getName()} strategy and {bot.lot_size} lots.\')");
+    _builder.newLine();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final ExecuteBotsStatement stmt, final TraderGenerator.Environment env) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("timeout = time.time() + ");
+    String _generatePythonExpression = this.generatePythonExpression(stmt.getDays());
+    _builder.append(_generatePythonExpression);
+    _builder.append("*86400 + ");
+    String _generatePythonExpression_1 = this.generatePythonExpression(stmt.getHours());
+    _builder.append(_generatePythonExpression_1);
+    _builder.append("*3600 + ");
+    String _generatePythonExpression_2 = this.generatePythonExpression(stmt.getMinutes());
+    _builder.append(_generatePythonExpression_2);
+    _builder.append("*60 + ");
+    String _generatePythonExpression_3 = this.generatePythonExpression(stmt.getSeconds());
+    _builder.append(_generatePythonExpression_3);
+    _builder.append("*1");
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("while True:");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("prices = pd.DataFrame(mt5.copy_rates_range(\'EURUSD\', mt5.TIMEFRAME_M1, datetime(2024, 3, 22), datetime.now()))");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("prices[\'time\'] = pd.to_datetime(prices[\'time\'], unit = \'s\')");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("for bot in trading_bot_array:");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("bot.strategy.set_market_df(prices)");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("bot.run()");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("time.sleep(60)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("if time.time() > timeout:");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("break");
+    _builder.newLine();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonStatement(final LoopStatement stmt, final TraderGenerator.Environment env) {
+    String _xblockexpression = null;
+    {
+      final CharSequence varName = env.getFreshVarName();
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("for ");
+      _builder.append(varName);
+      _builder.append(" in range(");
+      String _generatePythonExpression = this.generatePythonExpression(stmt.getCount());
+      _builder.append(_generatePythonExpression);
+      _builder.append("):");
+      _builder.newLineIfNotEmpty();
+      _builder.append("\t");
+      final Function1<Statement, String> _function = (Statement it) -> {
+        return this.generatePythonStatement(it, env);
+      };
+      String _join = IterableExtensions.join(ListExtensions.<Statement, String>map(stmt.getStatements(), _function), "\n");
+      _builder.append(_join, "\t");
+      _builder.newLineIfNotEmpty();
+      final String result = _builder.toString();
+      env.exit();
+      _xblockexpression = result;
+    }
+    return _xblockexpression;
+  }
+
+  protected String _generatePythonExpression(final Expression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final Addition exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("(");
+    String _generatePythonExpression = this.generatePythonExpression(exp.getLeft());
+    _builder.append(_generatePythonExpression);
+    {
+      int _size = exp.getOperator().size();
+      int _minus = (_size - 1);
+      IntegerRange _upTo = new IntegerRange(0, _minus);
+      for(final Integer idx : _upTo) {
+        _builder.append(" ");
+        String _get = exp.getOperator().get((idx).intValue());
+        _builder.append(_get);
+        _builder.append(" ");
+        String _generatePythonExpression_1 = this.generatePythonExpression(exp.getRight().get((idx).intValue()));
+        _builder.append(_generatePythonExpression_1);
+      }
+    }
+    _builder.append(")");
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final Multiplication exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _generatePythonExpression = this.generatePythonExpression(exp.getLeft());
+    _builder.append(_generatePythonExpression);
+    {
+      int _size = exp.getOperator().size();
+      int _minus = (_size - 1);
+      IntegerRange _upTo = new IntegerRange(0, _minus);
+      for(final Integer idx : _upTo) {
+        _builder.append(" ");
+        String _get = exp.getOperator().get((idx).intValue());
+        _builder.append(_get);
+        _builder.append(" ");
+        String _generatePythonExpression_1 = this.generatePythonExpression(exp.getRight().get((idx).intValue()));
+        _builder.append(_generatePythonExpression_1);
+      }
+    }
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final IntValue exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    int _value = exp.getValue();
+    _builder.append(_value);
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final RealValue exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    float _value = exp.getValue();
+    _builder.append(_value);
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final StringValue exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    String _value = exp.getValue();
+    _builder.append(_value);
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final NumVarExpression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    Expression _value = exp.getVar().getValue();
+    _builder.append(_value);
+    return _builder.toString();
+  }
+
+  protected String _generatePythonExpression(final StringVarExpression exp) {
+    StringConcatenation _builder = new StringConcatenation();
+    Expression _value = exp.getVar().getValue();
+    _builder.append(_value);
+    return _builder.toString();
   }
 
   public String deriveClassName(final Resource resource) {
@@ -33,7 +942,7 @@ public class TraderGenerator extends AbstractGenerator {
     {
       final String origFilename = resource.getURI().lastSegment();
       String _firstUpper = StringExtensions.toFirstUpper(origFilename.substring(0, origFilename.indexOf(".")));
-      _xblockexpression = (_firstUpper + "Trader");
+      _xblockexpression = (_firstUpper + "trader");
     }
     return _xblockexpression;
   }
@@ -43,5 +952,47 @@ public class TraderGenerator extends AbstractGenerator {
     _builder.append("\t");
     _builder.newLine();
     return _builder;
+  }
+
+  public String generatePythonStatement(final Statement stmt, final TraderGenerator.Environment env) {
+    if (stmt instanceof ConnectStatement) {
+      return _generatePythonStatement((ConnectStatement)stmt, env);
+    } else if (stmt instanceof CreateBotStatement) {
+      return _generatePythonStatement((CreateBotStatement)stmt, env);
+    } else if (stmt instanceof ExecuteBotsStatement) {
+      return _generatePythonStatement((ExecuteBotsStatement)stmt, env);
+    } else if (stmt instanceof ListBotsStatement) {
+      return _generatePythonStatement((ListBotsStatement)stmt, env);
+    } else if (stmt instanceof LoopStatement) {
+      return _generatePythonStatement((LoopStatement)stmt, env);
+    } else if (stmt != null) {
+      return _generatePythonStatement(stmt, env);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(stmt, env).toString());
+    }
+  }
+
+  public String generatePythonExpression(final Expression exp) {
+    if (exp instanceof Addition) {
+      return _generatePythonExpression((Addition)exp);
+    } else if (exp instanceof IntValue) {
+      return _generatePythonExpression((IntValue)exp);
+    } else if (exp instanceof Multiplication) {
+      return _generatePythonExpression((Multiplication)exp);
+    } else if (exp instanceof NumVarExpression) {
+      return _generatePythonExpression((NumVarExpression)exp);
+    } else if (exp instanceof RealValue) {
+      return _generatePythonExpression((RealValue)exp);
+    } else if (exp instanceof StringValue) {
+      return _generatePythonExpression((StringValue)exp);
+    } else if (exp instanceof StringVarExpression) {
+      return _generatePythonExpression((StringVarExpression)exp);
+    } else if (exp != null) {
+      return _generatePythonExpression(exp);
+    } else {
+      throw new IllegalArgumentException("Unhandled parameter types: " +
+        Arrays.<Object>asList(exp).toString());
+    }
   }
 }

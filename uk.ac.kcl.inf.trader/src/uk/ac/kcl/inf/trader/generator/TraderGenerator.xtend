@@ -8,6 +8,21 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import uk.ac.kcl.inf.trader.trader.TraderProgram
+import uk.ac.kcl.inf.trader.trader.Statement
+import uk.ac.kcl.inf.trader.trader.ConnectStatement
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement
+import uk.ac.kcl.inf.trader.trader.StrategyDef
+import uk.ac.kcl.inf.trader.trader.ListBotsStatement
+import uk.ac.kcl.inf.trader.trader.LoopStatement
+import uk.ac.kcl.inf.trader.trader.Addition
+import uk.ac.kcl.inf.trader.trader.Multiplication
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
+import uk.ac.kcl.inf.trader.trader.Expression
+import uk.ac.kcl.inf.trader.trader.IntValue
+import uk.ac.kcl.inf.trader.trader.NumVarExpression
+import uk.ac.kcl.inf.trader.trader.StringVarExpression
+import uk.ac.kcl.inf.trader.trader.RealValue
+import uk.ac.kcl.inf.trader.trader.StringValue
 
 /**
  * Generates code from your model files on save.
@@ -39,8 +54,8 @@ class TraderGenerator extends AbstractGenerator {
 	def String head() '''
 	import sys
 	import subprocess
-	#subprocess.check_call([sys.executable, 'virtualenv' 'env'])
-	#subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'MetaTrader5'])
+	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'MetaTrader5'])
+	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pandas'])
 	
 	from typing import List
 	from abc import ABC, abstractmethod
@@ -48,6 +63,191 @@ class TraderGenerator extends AbstractGenerator {
 	import time
 	import MetaTrader5 as mt5
 	import pandas as pd 
+	
+	class TradingStrategy(ABC):
+			    @abstractmethod
+			    def __init__(self, market_data) -> None:
+			        pass
+			
+			    @abstractmethod
+			    def long_condition() -> bool:
+			        pass
+			
+			    @abstractmethod
+			    def short_condition() -> bool:
+			        pass
+			
+			    @abstractmethod
+			    def closelong_condition() -> bool:
+			        pass
+			
+			    @abstractmethod
+			    def closeshort_condition() -> bool:
+			        pass
+			
+			    @abstractmethod
+			    def get_execution_instructions() -> List[str]:
+			        pass
+			
+			    @abstractmethod
+			    def getName(self) -> str:
+			        pass
+			
+			
+	class BuyAndHold(TradingStrategy):
+		        def __init__(self, symbol, market_df) -> None:
+		            self.symbol = symbol
+		            self.current_close = list(market_df[-1:]['close'])[0]
+		            self.last_close = list(market_df[-2:]['close'])[0]
+		            self.last_high = list(market_df[-2:]['high'])[0]
+		            self.last_low = list(market_df[-2:]['low'])[0]
+		        
+		            
+		            self.sl = 0.05
+		            self.tp = 0.1
+		            self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
+		            self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
+		            self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
+		            self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
+		        
+		        def long_condition(self) -> bool:
+		            return self.current_close < self.last_close
+		        
+		        def short_condition(self) -> bool:
+		            return self.current_close < self.last_low
+		        
+		        def closelong_condition(self) -> bool:
+		            return self.current_close < self.last_close
+		        
+		        def closeshort_condition(self) -> bool:
+		            return self.current_close > self.last_close
+		        
+		        def set_market_df(self, market_df):
+		            self.current_close = list(market_df[-1:]['close'])[0]
+		            self.last_close = list(market_df[-2:]['close'])[0]
+		            self.last_high = list(market_df[-2:]['high'])[0]
+		            self.last_low = list(market_df[-2:]['low'])[0]
+		        
+		        def get_execution_instructions(self) -> List[str]:
+		            instructions = []
+		        
+		            already_buy = False
+		            already_sell = False
+		        
+		            try:
+		                already_sell = mt5.positions_get()[0]._asdict()['type']==1
+		                already_buy = mt5.positions_get()[0]._asdict()['type']==0
+		            except:
+		                pass
+		        
+		            if self.long_condition():
+		                if len(mt5.positions_get()) == 0:
+		                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+		                    print("buy placed")
+		                if already_sell:
+		                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+		                    print('Sell position closed')
+		                    time.sleep(1)
+		                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+		        
+		            if self.short_condition():
+		                if len(mt5.positions_get()) == 0:
+		                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+		                    print("sell placed")
+		                if already_buy:
+		                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+		                    print('Buy position closed')
+		                    time.sleep(1)
+		                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+		        
+		        
+		            try:
+		                already_sell = mt5.positions_get()[0]._asdict()['type']==1
+		                already_buy = mt5.positions_get()[0]._asdict()['type']==0
+		            except:
+		                pass
+		        
+		            if self.closelong_condition() and already_buy:
+		                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+		                print('buy position closed')
+		        
+		            if self.closeshort_condition() and already_sell:
+		                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+		                print('sell position closed')
+		        
+		            already_buy = False
+		            already_sell = False
+		        
+		            return instructions
+		        
+		        def getName(self) -> str:
+		            return self.__class__.__name__
+		
+		
+	class MeanReversion(TradingStrategy):
+		        def __init__(self, market_data) -> None:
+		            pass
+		        
+		        def should_buy(self, price) -> str:
+		            pass
+		        
+		        def should_sell(self, price) -> str:
+		            pass
+		        
+		        def should_wait(self, price) -> str:
+		            pass
+		
+		
+		
+		
+	class TradingBot():
+		        def __init__(self, strategy: TradingStrategy, lot_size: float) -> None:
+		            self.strategy: TradingStrategy = strategy
+		            self.lot_size: float = lot_size
+		            self.symbol = strategy.symbol
+		            
+		        
+		        def create_order(self, symbol, lot, type, price, sl, tp):
+		            request = {
+		                "action": mt5.TRADE_ACTION_DEAL,
+		                "symbol": symbol,
+		                "volume": self.lot_size,
+		                "type": type,
+		                "price": price,
+		                "sl": sl,
+		                "tp": tp,
+		                "comment": "Open position by Python Bot",
+		                "type_time": mt5.ORDER_TIME_GTC,
+		                "type_filling": mt5.ORDER_FILLING_IOC,
+		                }
+		            order = mt5.order_send(request)
+		            return order
+		        
+		        def close_order(self, symbol, lot, type, price):
+		            request = {
+		                "action": mt5.TRADE_ACTION_DEAL,
+		                "symbol": symbol,
+		                "volume": self.lot_size,
+		                "type": type,
+		                "position": mt5.positions_get()[0]._asdict()['ticket'],
+		                "price": price,
+		                "comment": "Close position by Python Bot",
+		                "type_time": mt5.ORDER_TIME_GTC,
+		                "type_filling": mt5.ORDER_FILLING_IOC,
+		                }
+		            order = mt5.order_send(request)
+		            return order
+		        
+		        def run(self):
+		            instructions = self.strategy.get_execution_instructions()
+		        
+		            for instruction in instructions:
+		                if instruction[0] == "create":
+		                    self.create_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4], instruction[5], instruction[6])
+		                
+		                if instruction[0] == "close":
+		                    self.close_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4])
+		
 	'''
 	
 	private static class Environment {
@@ -61,9 +261,11 @@ class TraderGenerator extends AbstractGenerator {
 	dispatch def String generatePythonStatement(Statement stmt, Environment env) ''''''
 	
 	dispatch def String generatePythonStatement(ConnectStatement stmt, Environment env) '''
-	if not mt5.initialize(login=5023919288, server="MetaQuotes-Demo",password="N+UcJj4q"):
+	if not mt5.initialize(login="«stmt.username.generatePythonExpression»", server="«stmt.brokerName.generatePythonExpression»",password="«stmt.password.generatePythonExpression»"):
 	    print("initialize() failed, error code =",mt5.last_error())
 	    quit()
+	    
+	timeframe_str = "«stmt.timeframe.getName()»"
 	
 	
 	timeframe_dict ={
@@ -88,209 +290,25 @@ class TraderGenerator extends AbstractGenerator {
 	    "W1":(mt5.TIMEFRAME_W1, timedelta(days=20160)),
 	    "MN1":(mt5.TIMEFRAME_MN1, timedelta(days=86400)),
 	    }
+	    
+	symbol = "«stmt.tickerName.generatePythonExpression»"
+	timeframe = timeframe_dict[timeframe_str][0]
+	date_difference = timeframe_dict[timeframe_str][1]
 	
-	timeframe = timeframe_dict["M1"][0]
-	date_difference = timeframe_dict["M1"][1]
-	
-	initial_market_df = pd.DataFrame(mt5.copy_rates_range('EURUSD', timeframe, datetime.now() - date_difference, datetime.now()))
+	initial_market_df = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
 	initial_market_df['time'] = pd.to_datetime(initial_market_df['time'], unit = 's')
 	trading_bot_array = []
+	
+	
+		
 	'''
 	
 	dispatch def String generatePythonStatement(CreateBotStatement stmt, Environment env) '''
-	class TradingStrategy(ABC):
-	    @abstractmethod
-	    def __init__(self, market_data) -> None:
-	        pass
-	
-	    @abstractmethod
-	    def long_condition() -> bool:
-	        pass
-	
-	    @abstractmethod
-	    def short_condition() -> bool:
-	        pass
-	
-	    @abstractmethod
-	    def closelong_condition() -> bool:
-	        pass
-	
-	    @abstractmethod
-	    def closeshort_condition() -> bool:
-	        pass
-	
-	    @abstractmethod
-	    def get_execution_instructions() -> List[str]:
-	        pass
-	
-	    @abstractmethod
-	    def getName(self) -> str:
-	        pass
 	
 	
-	class BuyAndHold(TradingStrategy):
-	    def __init__(self, symbol, market_df) -> None:
-	        self.symbol = symbol
-	        self.current_close = list(market_df[-1:]['close'])[0]
-	        self.last_close = list(market_df[-2:]['close'])[0]
-	        self.last_high = list(market_df[-2:]['high'])[0]
-	        self.last_low = list(market_df[-2:]['low'])[0]
+	strategy = «if (stmt.strategy === StrategyDef.BUY_AND_HOLD) '''BuyAndHold''' »«if (stmt.strategy === StrategyDef.MEAN_REVERSION) '''MeanReversion'''»(symbol, initial_market_df)
 	
-	        
-	        self.sl = 0.05
-	        self.tp = 0.1
-	        self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
-	        self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
-	        self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
-	        self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
-	
-	    def long_condition(self) -> bool:
-	        return self.current_close < self.last_close
-	
-	    def short_condition(self) -> bool:
-	        return self.current_close < self.last_low
-	
-	    def closelong_condition(self) -> bool:
-	        return self.current_close < self.last_close
-	
-	    def closeshort_condition(self) -> bool:
-	        return self.current_close > self.last_close
-	
-	    def set_market_df(self, market_df):
-	        self.current_close = list(market_df[-1:]['close'])[0]
-	        self.last_close = list(market_df[-2:]['close'])[0]
-	        self.last_high = list(market_df[-2:]['high'])[0]
-	        self.last_low = list(market_df[-2:]['low'])[0]
-	
-	    def get_execution_instructions(self) -> List[str]:
-	        instructions = []
-	
-	        already_buy = False
-	        already_sell = False
-	
-	        try:
-	            already_sell = mt5.positions_get()[0]._asdict()['type']==1
-	            already_buy = mt5.positions_get()[0]._asdict()['type']==0
-	        except:
-	            pass
-	
-	        if self.long_condition():
-	            if len(mt5.positions_get()) == 0:
-	                instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
-	                print("buy placed")
-	            if already_sell:
-	                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
-	                print('Sell position closed')
-	                time.sleep(1)
-	                instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
-	
-	        if self.short_condition():
-	            if len(mt5.positions_get()) == 0:
-	                instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
-	                print("sell placed")
-	            if already_buy:
-	                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
-	                print('Buy position closed')
-	                time.sleep(1)
-	                instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
-	
-	
-	        try:
-	            already_sell = mt5.positions_get()[0]._asdict()['type']==1
-	            already_buy = mt5.positions_get()[0]._asdict()['type']==0
-	        except:
-	            pass
-	
-	        if self.closelong_condition and already_buy:
-	            instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
-	            print('buy position closed')
-	
-	        if self.closeshort_condition and already_sell:
-	            instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
-	            print('sell position closed')
-	
-	        already_buy = False
-	        already_sell = False
-	
-	        return instructions
-	
-	    def getName(self) -> str:
-	        return self.__class__.__name__
-	
-	
-	class MeanReversion(TradingStrategy):
-	    def __init__(self, market_data) -> None:
-	        pass
-	
-	    def should_buy(self, price) -> str:
-	        pass
-	
-	    def should_sell(self, price) -> str:
-	        pass
-	
-	    def should_wait(self, price) -> str:
-	        pass
-	
-	
-	
-	
-	class TradingBot():
-	    def __init__(self, strategy: TradingStrategy, lot_size: float, symbol_to_trade: str) -> None:
-	        self.strategy: TradingStrategy = strategy
-	        self.lot_size: float = lot_size
-	        self.symbol = symbol_to_trade
-	        
-	
-	    def create_order(self, symbol, lot, type, price, sl, tp):
-	        request = {
-	            "action": mt5.TRADE_ACTION_DEAL,
-	            "symbol": symbol,
-	            "volume": self.lot_size,
-	            "type": type,
-	            "price": price,
-	            "sl": sl,
-	            "tp": tp,
-	            "comment": "Open position by Python Bot",
-	            "type_time": mt5.ORDER_TIME_GTC,
-	            "type_filling": mt5.ORDER_FILLING_IOC,
-	            }
-	        order = mt5.order_send(request)
-	        return order
-	
-	    def close_order(self, symbol, lot, type, price):
-	        request = {
-	            "action": mt5.TRADE_ACTION_DEAL,
-	            "symbol": symbol,
-	            "volume": self.lot_size,
-	            "type": type,
-	            "position": mt5.positions_get()[0]._asdict()['ticket'],
-	            "price": price,
-	            "comment": "Close position by Python Bot",
-	            "type_time": mt5.ORDER_TIME_GTC,
-	            "type_filling": mt5.ORDER_FILLING_IOC,
-	            }
-	        order = mt5.order_send(request)
-	        return order
-	
-	    def run(self):
-	        instructions = self.strategy.get_execution_instructions()
-	
-	        for instruction in instructions:
-	            if instruction[0] == "create":
-	                self.create_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4], instruction[5], instruction[6])
-	            
-	            if instruction[0] == "close":
-	                self.close_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4])
-	
-	
-	
-	
-	
-	
-	strategy = BuyAndHold("EURUSD", initial_market_df)
-	lot_size = 0.01
-	
-	trading_bot_array.append(TradingBot(strategy, lot_size, 'EURUSD'))
+	trading_bot_array.append(TradingBot(strategy, «stmt.lotSize.generatePythonExpression»))
 	'''
 	
 	dispatch def String generatePythonStatement(ListBotsStatement stmt, Environment env) '''
@@ -298,12 +316,8 @@ class TraderGenerator extends AbstractGenerator {
 	    print(f'Bot with id {id(bot)} using the {bot.strategy.getName()} strategy and {bot.lot_size} lots.')
 	'''
 	
-	dispatch def String generatePythonStatement(ExecuteStatement stmt, Environment env) '''
-	a = 0
-	b = 0
-	c = 3
-	d = 0
-	timeout = time.time() + a*86400 + b*3600 + c*60 + d*1
+	dispatch def String generatePythonStatement(ExecuteBotsStatement stmt, Environment env) '''
+	timeout = time.time() + «stmt.days.generatePythonExpression»*86400 + «stmt.hours.generatePythonExpression»*3600 + «stmt.minutes.generatePythonExpression»*60 + «stmt.seconds.generatePythonExpression»*1
 	
 	while True:
 	    prices = pd.DataFrame(mt5.copy_rates_range('EURUSD', mt5.TIMEFRAME_M1, datetime(2024, 3, 22), datetime.now()))
@@ -323,7 +337,7 @@ class TraderGenerator extends AbstractGenerator {
 		
 		val result = '''
 			for «varName» in range(«stmt.count.generatePythonExpression»):
-				«stmt.statements.map[generatePythonStatement].join('\n')»
+				«stmt.statements.map[generatePythonStatement (env)].join('\n')»
 		'''
 		
 		env.exit
@@ -332,15 +346,23 @@ class TraderGenerator extends AbstractGenerator {
 	}
 	
 	
-	dispatch def String generatePythonExpression(IntExpression exp) ''''''
+	dispatch def String generatePythonExpression(Expression exp) ''''''
 	
-	dispatch def String generatePythonExpression(Addition exp) ''''''
+	dispatch def String generatePythonExpression(Addition exp) '''
+	(«exp.left.generatePythonExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generatePythonExpression»«ENDFOR»)'''
 	
-	dispatch def String generatePythonExpression(Multiplication exp) ''''''
+	dispatch def String generatePythonExpression(Multiplication exp) '''
+	«exp.left.generatePythonExpression»«FOR idx: (0..exp.operator.size-1)» «exp.operator.get(idx)» «exp.right.get(idx).generatePythonExpression»«ENDFOR»'''
 	
-	dispatch def String generatePythonExpression(IntLiteral exp) ''''''
+	dispatch def String generatePythonExpression(IntValue exp) '''«exp.value»'''
 	
-	dispatch def String generatePythonExpression(IntVarExpression exp) ''''''
+	dispatch def String generatePythonExpression(RealValue exp) '''«exp.value»'''
+	
+	dispatch def String generatePythonExpression(StringValue exp) '''«exp.value»'''
+	
+	dispatch def String generatePythonExpression(NumVarExpression exp) '''«exp.^var.value»'''
+	
+	dispatch def String generatePythonExpression(StringVarExpression exp) '''«exp.^var.value»'''
 	
 	
 	
@@ -349,7 +371,7 @@ class TraderGenerator extends AbstractGenerator {
 	def deriveClassName(Resource resource) {
 		val origFilename = resource.URI.lastSegment
 		
-		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'Trader'
+		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'trader'
 	}
 	
 	def CharSequence doGenerateClass(TraderProgram program, String string) '''
