@@ -1,40 +1,33 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.varAndScope.VarAndScopeTest END_SETUP */
 
 
-
+var ticker = "EURUSD"
+var brokerName = "Swissbank"
 var usr = "personA"
 var pwd = "passwordA"
-var mny = 500.50
-var lvr = 0.02
-var tf = "1HR"
 
-// XPECT scope at lvr --> !loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, !secondFund, ...
-// XPECT scope at usr --> !loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, !secondFund, ...
-connect to broker SwissBank with username: usr , password: pwd , leverage: lvr , money: mny , timeframe: tf
+// XPECT scope at usr --> ticker, brokerName, pwd, usr, !lotSize, !loopCounter, !newLotSize, !secondLotSize, ...
+connect to trade ticker on server brokerName with login usr, password pwd, timeframe M2
 
-create bot with buyAndHold strategy using 60.15 funds
+var lotSize = 0.02
 
-// XPECT scope at mny --> !loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, !secondFund, ...
-create bot with meanReversion strategy using mny funds
+// XPECT scope at lotSize --> ticker, brokerName, pwd, usr, lotSize, !loopCounter, !newLotSize, !secondLotSize, ...
+create bot with strategy buyAndHold using lot size lotSize
 
 var loopCounter = 3
-// XPECT scope at loopCounter --> loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, !secondFund, ...
+// XPECT scope at loopCounter --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, !secondLotSize, ...
 loop loopCounter times do 
-	var allocatedFund = 100.10
-	// XPECT scope at allocatedFund --> loopCounter, tf, mny, lvr, pwd, usr, allocatedFund, !secondFund, ...
-	create bot with buyAndHold strategy using allocatedFund funds
+	var newLotSize = 0.10
+// XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
+	create bot with strategy buyAndHold using lot size newLotSize
 	loop 1 times do
-		// XPECT scope at allocatedFund --> loopCounter, tf, mny, lvr, pwd, usr, allocatedFund, !secondFund, ...
-		create bot with buyAndHold strategy using allocatedFund funds
+// XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
+		create bot with strategy buyAndHold using lot size newLotSize + 0.05
 	end	
 end
 
-var secondFund = 5.2
-// XPECT scope at secondFund --> loopCounter, tf, mny, lvr, pwd, usr, !allocatedFund, secondFund, ...
-create bot with buyAndHold strategy using (secondFund + secondFund) funds
+var secondLotSize = 5.2
+// XPECT scope at secondLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, secondLotSize, ...
+create bot with strategy buyAndHold using lot size (secondLotSize + secondLotSize)
 
-see registered bots
-
-execute bots
-
-stop bots
+execute bots for 1 days 5 hours 2 minutes 10 seconds

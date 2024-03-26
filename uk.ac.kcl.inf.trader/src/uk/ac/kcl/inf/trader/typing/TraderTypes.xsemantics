@@ -6,10 +6,11 @@ import uk.ac.kcl.inf.trader.trader.Expression
 import uk.ac.kcl.inf.trader.trader.Multiplication
 import uk.ac.kcl.inf.trader.trader.Addition
 import uk.ac.kcl.inf.trader.trader.ConnectStatement
-import uk.ac.kcl.inf.trader.trader.TradingBot
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement
 import uk.ac.kcl.inf.trader.trader.LoopStatement
 import uk.ac.kcl.inf.trader.trader.StringVarExpression
 import uk.ac.kcl.inf.trader.trader.NumVarExpression
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
 
 system uk.ac.kcl.inf.trader.typing.TraderTypeValidator
 
@@ -83,22 +84,42 @@ from {
 rule SubTyping
 	G |- TraderType left <: TraderType right
 from {
-	(left !== TraderType.STRING && right === TraderType.REAL) or left === right
+	(left === TraderType.INT && right === TraderType.REAL) 
+	or left === right
 }
 
 checkrule checkConnectStatement for
 	ConnectStatement stmt
-from {
+from {	
+	empty |- stmt.tickerName : var TraderType tickerNameTypes
+//	tickerNameTypes === TraderType.STRING
+	empty |- tickerNameTypes <: TraderType.STRING
+	empty |- stmt.brokerName : var TraderType brokerNameTypes
+	empty |- brokerNameTypes <: TraderType.STRING
 	empty |- stmt.username : var TraderType usernameTypes
 	empty |- usernameTypes <: TraderType.STRING
 	empty |- stmt.password : var TraderType passwordTypes
 	empty |- passwordTypes <: TraderType.STRING
-	empty |- stmt.leverage : var TraderType leverageTypes
-	empty |- leverageTypes <: TraderType.REAL
-	empty |- stmt.money : var TraderType moneyTypes
-	empty |- moneyTypes <: TraderType.REAL
-	empty |- stmt.timeframe : var TraderType timeframeTypes
-	empty |- timeframeTypes <: TraderType.STRING
+}
+
+checkrule checkCreateBotStatement for
+	CreateBotStatement stmt
+from {
+	empty |- stmt.lotSize : var TraderType lotSizeTypes
+	empty |- lotSizeTypes <: TraderType.REAL	
+}
+
+checkrule checkExecuteBotsStatement for
+	ExecuteBotsStatement stmt
+from {
+	empty |- stmt.days : var TraderType dayTypes
+	empty |- dayTypes <: TraderType.INT
+	empty |- stmt.hours : var TraderType hourTypes
+	empty |- hourTypes <: TraderType.INT
+	empty |- stmt.minutes : var TraderType minuteTypes
+	empty |- minuteTypes <: TraderType.INT
+	empty |- stmt.seconds : var TraderType secondTypes
+	empty |- secondTypes <: TraderType.INT
 }
 
 checkrule checkLoopStatement for
@@ -108,9 +129,3 @@ from {
 	empty |- countTypes <: TraderType.INT
 }
 
-checkrule checkTradingBot for
-	TradingBot stmt
-from {
-	empty |- stmt.fund : var TraderType fundTypes
-	empty |- fundTypes <: TraderType.REAL	
-}

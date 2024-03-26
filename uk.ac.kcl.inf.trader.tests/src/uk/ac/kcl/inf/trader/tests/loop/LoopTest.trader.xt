@@ -1,33 +1,27 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.loop.LoopTest END_SETUP */
 
-connect to broker SwissBank with username: "personA", password: "passwordA", leverage: 0.02, money: 500.50, timeframe: "1HR"
+connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe H6
 
-var z = 60.15
+var lotSize = 0.15
 
-// XPECT scope at z --> !x, !y, z, ...
-create bot with buyAndHold strategy using z funds
-
-create bot with meanReversion strategy using 40.05 funds
+// XPECT scope at lotSize --> lotSize, !secondLotSize, !thirdLotSize, ...
+create bot with strategy buyAndHold using lot size lotSize
 
 loop 3 times do 
-	var x = 100.10
-	// XPECT scope at x --> x, !y, z, ...
-	create bot with buyAndHold strategy using x funds
+	var secondLotSize = 0.10
+	// XPECT scope at secondLotSize --> secondLotSize, lotSize, !thirdLotSize, ...
+	create bot with strategy buyAndHold using lot size secondLotSize 
 	
-	// XPECT warnings --> "Cannot call connect statement inside loop statement" at "SwissBank"
-	connect to broker SwissBank with username: "personA", password: "passwordA", leverage: 0.02, money: 500.50, timeframe: "1HR"
+	// XPECT warnings --> "Cannot call connect statement inside loop statement" at ""SwissBank""
+	connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe M1
 	
-	// XPECT warnings --> "Name of the variable must be unique" at "x"
-	var x = 150.10
+	// XPECT warnings --> "Name of the variable must be unique" at "secondLotSize"
+	var secondLotSize = 01.10
 
-	// XPECT warnings --> "Name of the variable must be unique" at "z"	
-	var z = "heyya"
+	// XPECT warnings --> "Name of the variable must be unique" at "lotSize"	
+	var lotSize = 0.05
 end
 
-var y = 200
+var thirdLotSize = 20
 
-see registered bots
-
-execute bots
-
-stop bots
+execute bots for 1 days 5 hours 2 minutes 10 seconds

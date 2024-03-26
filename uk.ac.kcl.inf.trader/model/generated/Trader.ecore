@@ -7,35 +7,59 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Statement"/>
   <eClassifiers xsi:type="ecore:EClass" name="ConnectStatement" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="brokerName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tickerName" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="brokerName" eType="#//Expression"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="username" eType="#//Expression"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="password" eType="#//Expression"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="leverage" eType="#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="money" eType="#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="timeframe" eType="#//Expression"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="timeframe" eType="#//TimeFrameDef"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TradingBot" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EClass" name="CreateBotStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="strategy" eType="#//StrategyDef"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="fund" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lotSize" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StrategyDef">
     <eLiterals name="buyAndHold" literal="buyAndHold"/>
     <eLiterals name="meanReversion" value="1" literal="meanReversion"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ListBots" eSuperTypes="#//Statement">
+  <eClassifiers xsi:type="ecore:EEnum" name="TimeFrameDef">
+    <eLiterals name="M1" literal="M1"/>
+    <eLiterals name="M2" value="1" literal="M2"/>
+    <eLiterals name="M3" value="2" literal="M3"/>
+    <eLiterals name="M4" value="3" literal="M4"/>
+    <eLiterals name="M5" value="4" literal="M5"/>
+    <eLiterals name="M6" value="5" literal="M6"/>
+    <eLiterals name="M10" value="6" literal="M10"/>
+    <eLiterals name="M12" value="7" literal="M12"/>
+    <eLiterals name="M20" value="8" literal="M20"/>
+    <eLiterals name="M30" value="9" literal="M30"/>
+    <eLiterals name="H1" value="10" literal="H1"/>
+    <eLiterals name="H2" value="11" literal="H2"/>
+    <eLiterals name="H3" value="12" literal="H3"/>
+    <eLiterals name="H4" value="13" literal="H4"/>
+    <eLiterals name="H6" value="14" literal="H6"/>
+    <eLiterals name="H8" value="15" literal="H8"/>
+    <eLiterals name="H12" value="16" literal="H12"/>
+    <eLiterals name="D1" value="17" literal="D1"/>
+    <eLiterals name="W1" value="18" literal="W1"/>
+    <eLiterals name="MN1" value="19" literal="MN1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ListBotsStatement" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="listCommand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Execute" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executeCommand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Stop" eSuperTypes="#//Statement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="stopCommand" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecuteBotsStatement" eSuperTypes="#//Statement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="days" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hours" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="minutes" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="seconds" eType="#//Expression"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration" eSuperTypes="#//Statement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -64,15 +88,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="StringVarExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="var" eType="#//VariableDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Action">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="quantity" eType="#//Expression"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticker" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="price" eType="#//Expression"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Buy" eSuperTypes="#//Action"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Sell" eSuperTypes="#//Action"/>
   <eClassifiers xsi:type="ecore:EClass" name="Addition" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
         containment="true"/>

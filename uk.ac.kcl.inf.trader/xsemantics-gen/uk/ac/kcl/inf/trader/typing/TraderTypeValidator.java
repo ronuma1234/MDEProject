@@ -17,6 +17,8 @@ import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import uk.ac.kcl.inf.trader.trader.Addition;
 import uk.ac.kcl.inf.trader.trader.ConnectStatement;
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement;
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement;
 import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.IntValue;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
@@ -25,7 +27,6 @@ import uk.ac.kcl.inf.trader.trader.NumVarExpression;
 import uk.ac.kcl.inf.trader.trader.RealValue;
 import uk.ac.kcl.inf.trader.trader.StringValue;
 import uk.ac.kcl.inf.trader.trader.StringVarExpression;
-import uk.ac.kcl.inf.trader.trader.TradingBot;
 
 @SuppressWarnings("all")
 public class TraderTypeValidator extends XsemanticsRuntimeSystem {
@@ -145,51 +146,119 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
   }
 
   protected Result<Boolean> checkConnectStatementInternal(final RuleApplicationTrace _trace_, final ConnectStatement stmt) throws RuleFailedException {
+    /* empty |- stmt.tickerName : var TraderType tickerNameTypes */
+    Expression _tickerName = stmt.getTickerName();
+    TraderType tickerNameTypes = null;
+    Result<TraderType> result = typeInternal(emptyEnvironment(), _trace_, _tickerName);
+    checkAssignableTo(result.getFirst(), TraderType.class);
+    tickerNameTypes = (TraderType) result.getFirst();
+    
+    /* empty |- tickerNameTypes <: TraderType.STRING */
+    subTypeInternal(emptyEnvironment(), _trace_, tickerNameTypes, TraderType.STRING);
+    /* empty |- stmt.brokerName : var TraderType brokerNameTypes */
+    Expression _brokerName = stmt.getBrokerName();
+    TraderType brokerNameTypes = null;
+    Result<TraderType> result_1 = typeInternal(emptyEnvironment(), _trace_, _brokerName);
+    checkAssignableTo(result_1.getFirst(), TraderType.class);
+    brokerNameTypes = (TraderType) result_1.getFirst();
+    
+    /* empty |- brokerNameTypes <: TraderType.STRING */
+    subTypeInternal(emptyEnvironment(), _trace_, brokerNameTypes, TraderType.STRING);
     /* empty |- stmt.username : var TraderType usernameTypes */
     Expression _username = stmt.getUsername();
     TraderType usernameTypes = null;
-    Result<TraderType> result = typeInternal(emptyEnvironment(), _trace_, _username);
-    checkAssignableTo(result.getFirst(), TraderType.class);
-    usernameTypes = (TraderType) result.getFirst();
+    Result<TraderType> result_2 = typeInternal(emptyEnvironment(), _trace_, _username);
+    checkAssignableTo(result_2.getFirst(), TraderType.class);
+    usernameTypes = (TraderType) result_2.getFirst();
     
     /* empty |- usernameTypes <: TraderType.STRING */
     subTypeInternal(emptyEnvironment(), _trace_, usernameTypes, TraderType.STRING);
     /* empty |- stmt.password : var TraderType passwordTypes */
     Expression _password = stmt.getPassword();
     TraderType passwordTypes = null;
-    Result<TraderType> result_1 = typeInternal(emptyEnvironment(), _trace_, _password);
-    checkAssignableTo(result_1.getFirst(), TraderType.class);
-    passwordTypes = (TraderType) result_1.getFirst();
+    Result<TraderType> result_3 = typeInternal(emptyEnvironment(), _trace_, _password);
+    checkAssignableTo(result_3.getFirst(), TraderType.class);
+    passwordTypes = (TraderType) result_3.getFirst();
     
     /* empty |- passwordTypes <: TraderType.STRING */
     subTypeInternal(emptyEnvironment(), _trace_, passwordTypes, TraderType.STRING);
-    /* empty |- stmt.leverage : var TraderType leverageTypes */
-    Expression _leverage = stmt.getLeverage();
-    TraderType leverageTypes = null;
-    Result<TraderType> result_2 = typeInternal(emptyEnvironment(), _trace_, _leverage);
+    return new Result<Boolean>(true);
+  }
+
+  public Result<Boolean> checkCreateBotStatement(final CreateBotStatement stmt) {
+    return checkCreateBotStatement(null, stmt);
+  }
+
+  public Result<Boolean> checkCreateBotStatement(final RuleApplicationTrace _trace_, final CreateBotStatement stmt) {
+    try {
+    	return checkCreateBotStatementInternal(_trace_, stmt);
+    } catch (Exception _e_checkCreateBotStatement) {
+    	return resultForFailure(_e_checkCreateBotStatement);
+    }
+  }
+
+  protected Result<Boolean> checkCreateBotStatementInternal(final RuleApplicationTrace _trace_, final CreateBotStatement stmt) throws RuleFailedException {
+    /* empty |- stmt.lotSize : var TraderType lotSizeTypes */
+    Expression _lotSize = stmt.getLotSize();
+    TraderType lotSizeTypes = null;
+    Result<TraderType> result = typeInternal(emptyEnvironment(), _trace_, _lotSize);
+    checkAssignableTo(result.getFirst(), TraderType.class);
+    lotSizeTypes = (TraderType) result.getFirst();
+    
+    /* empty |- lotSizeTypes <: TraderType.REAL */
+    subTypeInternal(emptyEnvironment(), _trace_, lotSizeTypes, TraderType.REAL);
+    return new Result<Boolean>(true);
+  }
+
+  public Result<Boolean> checkExecuteBotsStatement(final ExecuteBotsStatement stmt) {
+    return checkExecuteBotsStatement(null, stmt);
+  }
+
+  public Result<Boolean> checkExecuteBotsStatement(final RuleApplicationTrace _trace_, final ExecuteBotsStatement stmt) {
+    try {
+    	return checkExecuteBotsStatementInternal(_trace_, stmt);
+    } catch (Exception _e_checkExecuteBotsStatement) {
+    	return resultForFailure(_e_checkExecuteBotsStatement);
+    }
+  }
+
+  protected Result<Boolean> checkExecuteBotsStatementInternal(final RuleApplicationTrace _trace_, final ExecuteBotsStatement stmt) throws RuleFailedException {
+    /* empty |- stmt.days : var TraderType dayTypes */
+    Expression _days = stmt.getDays();
+    TraderType dayTypes = null;
+    Result<TraderType> result = typeInternal(emptyEnvironment(), _trace_, _days);
+    checkAssignableTo(result.getFirst(), TraderType.class);
+    dayTypes = (TraderType) result.getFirst();
+    
+    /* empty |- dayTypes <: TraderType.INT */
+    subTypeInternal(emptyEnvironment(), _trace_, dayTypes, TraderType.INT);
+    /* empty |- stmt.hours : var TraderType hourTypes */
+    Expression _hours = stmt.getHours();
+    TraderType hourTypes = null;
+    Result<TraderType> result_1 = typeInternal(emptyEnvironment(), _trace_, _hours);
+    checkAssignableTo(result_1.getFirst(), TraderType.class);
+    hourTypes = (TraderType) result_1.getFirst();
+    
+    /* empty |- hourTypes <: TraderType.INT */
+    subTypeInternal(emptyEnvironment(), _trace_, hourTypes, TraderType.INT);
+    /* empty |- stmt.minutes : var TraderType minuteTypes */
+    Expression _minutes = stmt.getMinutes();
+    TraderType minuteTypes = null;
+    Result<TraderType> result_2 = typeInternal(emptyEnvironment(), _trace_, _minutes);
     checkAssignableTo(result_2.getFirst(), TraderType.class);
-    leverageTypes = (TraderType) result_2.getFirst();
+    minuteTypes = (TraderType) result_2.getFirst();
     
-    /* empty |- leverageTypes <: TraderType.REAL */
-    subTypeInternal(emptyEnvironment(), _trace_, leverageTypes, TraderType.REAL);
-    /* empty |- stmt.money : var TraderType moneyTypes */
-    Expression _money = stmt.getMoney();
-    TraderType moneyTypes = null;
-    Result<TraderType> result_3 = typeInternal(emptyEnvironment(), _trace_, _money);
+    /* empty |- minuteTypes <: TraderType.INT */
+    subTypeInternal(emptyEnvironment(), _trace_, minuteTypes, TraderType.INT);
+    /* empty |- stmt.seconds : var TraderType secondTypes */
+    Expression _seconds = stmt.getSeconds();
+    TraderType secondTypes = null;
+    Result<TraderType> result_3 = typeInternal(emptyEnvironment(), _trace_, _seconds);
     checkAssignableTo(result_3.getFirst(), TraderType.class);
-    moneyTypes = (TraderType) result_3.getFirst();
+    secondTypes = (TraderType) result_3.getFirst();
     
-    /* empty |- moneyTypes <: TraderType.REAL */
-    subTypeInternal(emptyEnvironment(), _trace_, moneyTypes, TraderType.REAL);
-    /* empty |- stmt.timeframe : var TraderType timeframeTypes */
-    Expression _timeframe = stmt.getTimeframe();
-    TraderType timeframeTypes = null;
-    Result<TraderType> result_4 = typeInternal(emptyEnvironment(), _trace_, _timeframe);
-    checkAssignableTo(result_4.getFirst(), TraderType.class);
-    timeframeTypes = (TraderType) result_4.getFirst();
-    
-    /* empty |- timeframeTypes <: TraderType.STRING */
-    subTypeInternal(emptyEnvironment(), _trace_, timeframeTypes, TraderType.STRING);
+    /* empty |- secondTypes <: TraderType.INT */
+    subTypeInternal(emptyEnvironment(), _trace_, secondTypes, TraderType.INT);
     return new Result<Boolean>(true);
   }
 
@@ -215,31 +284,6 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     
     /* empty |- countTypes <: TraderType.INT */
     subTypeInternal(emptyEnvironment(), _trace_, countTypes, TraderType.INT);
-    return new Result<Boolean>(true);
-  }
-
-  public Result<Boolean> checkTradingBot(final TradingBot stmt) {
-    return checkTradingBot(null, stmt);
-  }
-
-  public Result<Boolean> checkTradingBot(final RuleApplicationTrace _trace_, final TradingBot stmt) {
-    try {
-    	return checkTradingBotInternal(_trace_, stmt);
-    } catch (Exception _e_checkTradingBot) {
-    	return resultForFailure(_e_checkTradingBot);
-    }
-  }
-
-  protected Result<Boolean> checkTradingBotInternal(final RuleApplicationTrace _trace_, final TradingBot stmt) throws RuleFailedException {
-    /* empty |- stmt.fund : var TraderType fundTypes */
-    Expression _fund = stmt.getFund();
-    TraderType fundTypes = null;
-    Result<TraderType> result = typeInternal(emptyEnvironment(), _trace_, _fund);
-    checkAssignableTo(result.getFirst(), TraderType.class);
-    fundTypes = (TraderType) result.getFirst();
-    
-    /* empty |- fundTypes <: TraderType.REAL */
-    subTypeInternal(emptyEnvironment(), _trace_, fundTypes, TraderType.REAL);
     return new Result<Boolean>(true);
   }
 
@@ -590,13 +634,13 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
   }
 
   protected Result<Boolean> applyRuleSubTyping(final RuleEnvironment G, final RuleApplicationTrace _trace_, final TraderType left, final TraderType right) throws RuleFailedException {
-    /* (left !== TraderType.STRING && right === TraderType.REAL) or left === right */
+    /* (left === TraderType.INT && right === TraderType.REAL) or left === right */
     {
       RuleFailedException previousFailure = null;
       try {
-        /* left !== TraderType.STRING && right === TraderType.REAL */
-        if (!((left != TraderType.STRING) && (right == TraderType.REAL))) {
-          sneakyThrowRuleFailedException("left !== TraderType.STRING && right === TraderType.REAL");
+        /* left === TraderType.INT && right === TraderType.REAL */
+        if (!((left == TraderType.INT) && (right == TraderType.REAL))) {
+          sneakyThrowRuleFailedException("left === TraderType.INT && right === TraderType.REAL");
         }
       } catch (Exception e) {
         previousFailure = extractRuleFailedException(e);

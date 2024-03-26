@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import uk.ac.kcl.inf.trader.trader.ConnectStatement;
 import uk.ac.kcl.inf.trader.trader.Expression;
+import uk.ac.kcl.inf.trader.trader.TimeFrameDef;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 
 /**
@@ -23,11 +24,10 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getTickerName <em>Ticker Name</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getBrokerName <em>Broker Name</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getPassword <em>Password</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getLeverage <em>Leverage</em>}</li>
- *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getMoney <em>Money</em>}</li>
  *   <li>{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl#getTimeframe <em>Timeframe</em>}</li>
  * </ul>
  *
@@ -36,24 +36,24 @@ import uk.ac.kcl.inf.trader.trader.TraderPackage;
 public class ConnectStatementImpl extends StatementImpl implements ConnectStatement
 {
   /**
-   * The default value of the '{@link #getBrokerName() <em>Broker Name</em>}' attribute.
+   * The cached value of the '{@link #getTickerName() <em>Ticker Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getBrokerName()
+   * @see #getTickerName()
    * @generated
    * @ordered
    */
-  protected static final String BROKER_NAME_EDEFAULT = null;
+  protected Expression tickerName;
 
   /**
-   * The cached value of the '{@link #getBrokerName() <em>Broker Name</em>}' attribute.
+   * The cached value of the '{@link #getBrokerName() <em>Broker Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getBrokerName()
    * @generated
    * @ordered
    */
-  protected String brokerName = BROKER_NAME_EDEFAULT;
+  protected Expression brokerName;
 
   /**
    * The cached value of the '{@link #getUsername() <em>Username</em>}' containment reference.
@@ -76,34 +76,24 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   protected Expression password;
 
   /**
-   * The cached value of the '{@link #getLeverage() <em>Leverage</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLeverage()
-   * @generated
-   * @ordered
-   */
-  protected Expression leverage;
-
-  /**
-   * The cached value of the '{@link #getMoney() <em>Money</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getMoney()
-   * @generated
-   * @ordered
-   */
-  protected Expression money;
-
-  /**
-   * The cached value of the '{@link #getTimeframe() <em>Timeframe</em>}' containment reference.
+   * The default value of the '{@link #getTimeframe() <em>Timeframe</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTimeframe()
    * @generated
    * @ordered
    */
-  protected Expression timeframe;
+  protected static final TimeFrameDef TIMEFRAME_EDEFAULT = TimeFrameDef.M1;
+
+  /**
+   * The cached value of the '{@link #getTimeframe() <em>Timeframe</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTimeframe()
+   * @generated
+   * @ordered
+   */
+  protected TimeFrameDef timeframe = TIMEFRAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -132,7 +122,57 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public String getBrokerName()
+  public Expression getTickerName()
+  {
+    return tickerName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetTickerName(Expression newTickerName, NotificationChain msgs)
+  {
+    Expression oldTickerName = tickerName;
+    tickerName = newTickerName;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__TICKER_NAME, oldTickerName, newTickerName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setTickerName(Expression newTickerName)
+  {
+    if (newTickerName != tickerName)
+    {
+      NotificationChain msgs = null;
+      if (tickerName != null)
+        msgs = ((InternalEObject)tickerName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__TICKER_NAME, null, msgs);
+      if (newTickerName != null)
+        msgs = ((InternalEObject)newTickerName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__TICKER_NAME, null, msgs);
+      msgs = basicSetTickerName(newTickerName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__TICKER_NAME, newTickerName, newTickerName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expression getBrokerName()
   {
     return brokerName;
   }
@@ -142,13 +182,38 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setBrokerName(String newBrokerName)
+  public NotificationChain basicSetBrokerName(Expression newBrokerName, NotificationChain msgs)
   {
-    String oldBrokerName = brokerName;
+    Expression oldBrokerName = brokerName;
     brokerName = newBrokerName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__BROKER_NAME, oldBrokerName, brokerName));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__BROKER_NAME, oldBrokerName, newBrokerName);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setBrokerName(Expression newBrokerName)
+  {
+    if (newBrokerName != brokerName)
+    {
+      NotificationChain msgs = null;
+      if (brokerName != null)
+        msgs = ((InternalEObject)brokerName).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__BROKER_NAME, null, msgs);
+      if (newBrokerName != null)
+        msgs = ((InternalEObject)newBrokerName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__BROKER_NAME, null, msgs);
+      msgs = basicSetBrokerName(newBrokerName, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__BROKER_NAME, newBrokerName, newBrokerName));
   }
 
   /**
@@ -257,107 +322,7 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * @generated
    */
   @Override
-  public Expression getLeverage()
-  {
-    return leverage;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetLeverage(Expression newLeverage, NotificationChain msgs)
-  {
-    Expression oldLeverage = leverage;
-    leverage = newLeverage;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__LEVERAGE, oldLeverage, newLeverage);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setLeverage(Expression newLeverage)
-  {
-    if (newLeverage != leverage)
-    {
-      NotificationChain msgs = null;
-      if (leverage != null)
-        msgs = ((InternalEObject)leverage).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__LEVERAGE, null, msgs);
-      if (newLeverage != null)
-        msgs = ((InternalEObject)newLeverage).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__LEVERAGE, null, msgs);
-      msgs = basicSetLeverage(newLeverage, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__LEVERAGE, newLeverage, newLeverage));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Expression getMoney()
-  {
-    return money;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetMoney(Expression newMoney, NotificationChain msgs)
-  {
-    Expression oldMoney = money;
-    money = newMoney;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__MONEY, oldMoney, newMoney);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setMoney(Expression newMoney)
-  {
-    if (newMoney != money)
-    {
-      NotificationChain msgs = null;
-      if (money != null)
-        msgs = ((InternalEObject)money).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__MONEY, null, msgs);
-      if (newMoney != null)
-        msgs = ((InternalEObject)newMoney).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__MONEY, null, msgs);
-      msgs = basicSetMoney(newMoney, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__MONEY, newMoney, newMoney));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Expression getTimeframe()
+  public TimeFrameDef getTimeframe()
   {
     return timeframe;
   }
@@ -367,38 +332,13 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetTimeframe(Expression newTimeframe, NotificationChain msgs)
-  {
-    Expression oldTimeframe = timeframe;
-    timeframe = newTimeframe;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__TIMEFRAME, oldTimeframe, newTimeframe);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
-  public void setTimeframe(Expression newTimeframe)
+  public void setTimeframe(TimeFrameDef newTimeframe)
   {
-    if (newTimeframe != timeframe)
-    {
-      NotificationChain msgs = null;
-      if (timeframe != null)
-        msgs = ((InternalEObject)timeframe).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__TIMEFRAME, null, msgs);
-      if (newTimeframe != null)
-        msgs = ((InternalEObject)newTimeframe).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.CONNECT_STATEMENT__TIMEFRAME, null, msgs);
-      msgs = basicSetTimeframe(newTimeframe, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__TIMEFRAME, newTimeframe, newTimeframe));
+    TimeFrameDef oldTimeframe = timeframe;
+    timeframe = newTimeframe == null ? TIMEFRAME_EDEFAULT : newTimeframe;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.CONNECT_STATEMENT__TIMEFRAME, oldTimeframe, timeframe));
   }
 
   /**
@@ -411,16 +351,14 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   {
     switch (featureID)
     {
+      case TraderPackage.CONNECT_STATEMENT__TICKER_NAME:
+        return basicSetTickerName(null, msgs);
+      case TraderPackage.CONNECT_STATEMENT__BROKER_NAME:
+        return basicSetBrokerName(null, msgs);
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
         return basicSetUsername(null, msgs);
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
         return basicSetPassword(null, msgs);
-      case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        return basicSetLeverage(null, msgs);
-      case TraderPackage.CONNECT_STATEMENT__MONEY:
-        return basicSetMoney(null, msgs);
-      case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        return basicSetTimeframe(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -435,16 +373,14 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   {
     switch (featureID)
     {
+      case TraderPackage.CONNECT_STATEMENT__TICKER_NAME:
+        return getTickerName();
       case TraderPackage.CONNECT_STATEMENT__BROKER_NAME:
         return getBrokerName();
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
         return getUsername();
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
         return getPassword();
-      case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        return getLeverage();
-      case TraderPackage.CONNECT_STATEMENT__MONEY:
-        return getMoney();
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
         return getTimeframe();
     }
@@ -461,8 +397,11 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   {
     switch (featureID)
     {
+      case TraderPackage.CONNECT_STATEMENT__TICKER_NAME:
+        setTickerName((Expression)newValue);
+        return;
       case TraderPackage.CONNECT_STATEMENT__BROKER_NAME:
-        setBrokerName((String)newValue);
+        setBrokerName((Expression)newValue);
         return;
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
         setUsername((Expression)newValue);
@@ -470,14 +409,8 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
         setPassword((Expression)newValue);
         return;
-      case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        setLeverage((Expression)newValue);
-        return;
-      case TraderPackage.CONNECT_STATEMENT__MONEY:
-        setMoney((Expression)newValue);
-        return;
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        setTimeframe((Expression)newValue);
+        setTimeframe((TimeFrameDef)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -493,8 +426,11 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   {
     switch (featureID)
     {
+      case TraderPackage.CONNECT_STATEMENT__TICKER_NAME:
+        setTickerName((Expression)null);
+        return;
       case TraderPackage.CONNECT_STATEMENT__BROKER_NAME:
-        setBrokerName(BROKER_NAME_EDEFAULT);
+        setBrokerName((Expression)null);
         return;
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
         setUsername((Expression)null);
@@ -502,14 +438,8 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
         setPassword((Expression)null);
         return;
-      case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        setLeverage((Expression)null);
-        return;
-      case TraderPackage.CONNECT_STATEMENT__MONEY:
-        setMoney((Expression)null);
-        return;
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        setTimeframe((Expression)null);
+        setTimeframe(TIMEFRAME_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -525,18 +455,16 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
   {
     switch (featureID)
     {
+      case TraderPackage.CONNECT_STATEMENT__TICKER_NAME:
+        return tickerName != null;
       case TraderPackage.CONNECT_STATEMENT__BROKER_NAME:
-        return BROKER_NAME_EDEFAULT == null ? brokerName != null : !BROKER_NAME_EDEFAULT.equals(brokerName);
+        return brokerName != null;
       case TraderPackage.CONNECT_STATEMENT__USERNAME:
         return username != null;
       case TraderPackage.CONNECT_STATEMENT__PASSWORD:
         return password != null;
-      case TraderPackage.CONNECT_STATEMENT__LEVERAGE:
-        return leverage != null;
-      case TraderPackage.CONNECT_STATEMENT__MONEY:
-        return money != null;
       case TraderPackage.CONNECT_STATEMENT__TIMEFRAME:
-        return timeframe != null;
+        return timeframe != TIMEFRAME_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -552,8 +480,8 @@ public class ConnectStatementImpl extends StatementImpl implements ConnectStatem
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (brokerName: ");
-    result.append(brokerName);
+    result.append(" (timeframe: ");
+    result.append(timeframe);
     result.append(')');
     return result.toString();
   }

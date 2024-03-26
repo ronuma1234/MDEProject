@@ -91,24 +91,19 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
         return createConnectStatementAdapter();
       }
       @Override
-      public Adapter caseTradingBot(TradingBot object)
+      public Adapter caseCreateBotStatement(CreateBotStatement object)
       {
-        return createTradingBotAdapter();
+        return createCreateBotStatementAdapter();
       }
       @Override
-      public Adapter caseListBots(ListBots object)
+      public Adapter caseListBotsStatement(ListBotsStatement object)
       {
-        return createListBotsAdapter();
+        return createListBotsStatementAdapter();
       }
       @Override
-      public Adapter caseExecute(Execute object)
+      public Adapter caseExecuteBotsStatement(ExecuteBotsStatement object)
       {
-        return createExecuteAdapter();
-      }
-      @Override
-      public Adapter caseStop(Stop object)
-      {
-        return createStopAdapter();
+        return createExecuteBotsStatementAdapter();
       }
       @Override
       public Adapter caseVariableDeclaration(VariableDeclaration object)
@@ -149,21 +144,6 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
       public Adapter caseStringVarExpression(StringVarExpression object)
       {
         return createStringVarExpressionAdapter();
-      }
-      @Override
-      public Adapter caseAction(Action object)
-      {
-        return createActionAdapter();
-      }
-      @Override
-      public Adapter caseBuy(Buy object)
-      {
-        return createBuyAdapter();
-      }
-      @Override
-      public Adapter caseSell(Sell object)
-      {
-        return createSellAdapter();
       }
       @Override
       public Adapter caseAddition(Addition object)
@@ -243,61 +223,46 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.TradingBot <em>Trading Bot</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.CreateBotStatement <em>Create Bot Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.TradingBot
+   * @see uk.ac.kcl.inf.trader.trader.CreateBotStatement
    * @generated
    */
-  public Adapter createTradingBotAdapter()
+  public Adapter createCreateBotStatementAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.ListBots <em>List Bots</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.ListBotsStatement <em>List Bots Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.ListBots
+   * @see uk.ac.kcl.inf.trader.trader.ListBotsStatement
    * @generated
    */
-  public Adapter createListBotsAdapter()
+  public Adapter createListBotsStatementAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Execute <em>Execute</em>}'.
+   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement <em>Execute Bots Statement</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Execute
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
    * @generated
    */
-  public Adapter createExecuteAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Stop <em>Stop</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Stop
-   * @generated
-   */
-  public Adapter createStopAdapter()
+  public Adapter createExecuteBotsStatementAdapter()
   {
     return null;
   }
@@ -418,51 +383,6 @@ public class TraderAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createStringVarExpressionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Action <em>Action</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Action
-   * @generated
-   */
-  public Adapter createActionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Buy <em>Buy</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Buy
-   * @generated
-   */
-  public Adapter createBuyAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uk.ac.kcl.inf.trader.trader.Sell <em>Sell</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uk.ac.kcl.inf.trader.trader.Sell
-   * @generated
-   */
-  public Adapter createSellAdapter()
   {
     return null;
   }

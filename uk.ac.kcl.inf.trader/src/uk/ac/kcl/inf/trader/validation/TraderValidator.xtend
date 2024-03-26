@@ -29,7 +29,7 @@ class TraderValidator extends TraderTypeValidatorValidator{
 			)
 		}
 	}
-	
+
 	@Check
 	def checkUniqueVariableName (VariableDeclaration decl){
 		val currentContainer = decl.eContainer

@@ -51,40 +51,31 @@ public interface TraderFactory extends EFactory
   ConnectStatement createConnectStatement();
 
   /**
-   * Returns a new object of class '<em>Trading Bot</em>'.
+   * Returns a new object of class '<em>Create Bot Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Trading Bot</em>'.
+   * @return a new object of class '<em>Create Bot Statement</em>'.
    * @generated
    */
-  TradingBot createTradingBot();
+  CreateBotStatement createCreateBotStatement();
 
   /**
-   * Returns a new object of class '<em>List Bots</em>'.
+   * Returns a new object of class '<em>List Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>List Bots</em>'.
+   * @return a new object of class '<em>List Bots Statement</em>'.
    * @generated
    */
-  ListBots createListBots();
+  ListBotsStatement createListBotsStatement();
 
   /**
-   * Returns a new object of class '<em>Execute</em>'.
+   * Returns a new object of class '<em>Execute Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Execute</em>'.
+   * @return a new object of class '<em>Execute Bots Statement</em>'.
    * @generated
    */
-  Execute createExecute();
-
-  /**
-   * Returns a new object of class '<em>Stop</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Stop</em>'.
-   * @generated
-   */
-  Stop createStop();
+  ExecuteBotsStatement createExecuteBotsStatement();
 
   /**
    * Returns a new object of class '<em>Variable Declaration</em>'.
@@ -157,33 +148,6 @@ public interface TraderFactory extends EFactory
    * @generated
    */
   StringVarExpression createStringVarExpression();
-
-  /**
-   * Returns a new object of class '<em>Action</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Action</em>'.
-   * @generated
-   */
-  Action createAction();
-
-  /**
-   * Returns a new object of class '<em>Buy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Buy</em>'.
-   * @generated
-   */
-  Buy createBuy();
-
-  /**
-   * Returns a new object of class '<em>Sell</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sell</em>'.
-   * @generated
-   */
-  Sell createSell();
 
   /**
    * Returns a new object of class '<em>Addition</em>'.

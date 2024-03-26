@@ -69,10 +69,9 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
       case TraderPackage.TRADER_PROGRAM: return createTraderProgram();
       case TraderPackage.STATEMENT: return createStatement();
       case TraderPackage.CONNECT_STATEMENT: return createConnectStatement();
-      case TraderPackage.TRADING_BOT: return createTradingBot();
-      case TraderPackage.LIST_BOTS: return createListBots();
-      case TraderPackage.EXECUTE: return createExecute();
-      case TraderPackage.STOP: return createStop();
+      case TraderPackage.CREATE_BOT_STATEMENT: return createCreateBotStatement();
+      case TraderPackage.LIST_BOTS_STATEMENT: return createListBotsStatement();
+      case TraderPackage.EXECUTE_BOTS_STATEMENT: return createExecuteBotsStatement();
       case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
       case TraderPackage.STRING_VALUE: return createStringValue();
       case TraderPackage.REAL_VALUE: return createRealValue();
@@ -81,9 +80,6 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
       case TraderPackage.EXPRESSION: return createExpression();
       case TraderPackage.NUM_VAR_EXPRESSION: return createNumVarExpression();
       case TraderPackage.STRING_VAR_EXPRESSION: return createStringVarExpression();
-      case TraderPackage.ACTION: return createAction();
-      case TraderPackage.BUY: return createBuy();
-      case TraderPackage.SELL: return createSell();
       case TraderPackage.ADDITION: return createAddition();
       case TraderPackage.MULTIPLICATION: return createMultiplication();
       default:
@@ -103,6 +99,8 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.STRATEGY_DEF:
         return createStrategyDefFromString(eDataType, initialValue);
+      case TraderPackage.TIME_FRAME_DEF:
+        return createTimeFrameDefFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -120,6 +118,8 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.STRATEGY_DEF:
         return convertStrategyDefToString(eDataType, instanceValue);
+      case TraderPackage.TIME_FRAME_DEF:
+        return convertTimeFrameDefToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -167,10 +167,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public TradingBot createTradingBot()
+  public CreateBotStatement createCreateBotStatement()
   {
-    TradingBotImpl tradingBot = new TradingBotImpl();
-    return tradingBot;
+    CreateBotStatementImpl createBotStatement = new CreateBotStatementImpl();
+    return createBotStatement;
   }
 
   /**
@@ -179,10 +179,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public ListBots createListBots()
+  public ListBotsStatement createListBotsStatement()
   {
-    ListBotsImpl listBots = new ListBotsImpl();
-    return listBots;
+    ListBotsStatementImpl listBotsStatement = new ListBotsStatementImpl();
+    return listBotsStatement;
   }
 
   /**
@@ -191,22 +191,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Execute createExecute()
+  public ExecuteBotsStatement createExecuteBotsStatement()
   {
-    ExecuteImpl execute = new ExecuteImpl();
-    return execute;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Stop createStop()
-  {
-    StopImpl stop = new StopImpl();
-    return stop;
+    ExecuteBotsStatementImpl executeBotsStatement = new ExecuteBotsStatementImpl();
+    return executeBotsStatement;
   }
 
   /**
@@ -311,42 +299,6 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Action createAction()
-  {
-    ActionImpl action = new ActionImpl();
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Buy createBuy()
-  {
-    BuyImpl buy = new BuyImpl();
-    return buy;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Sell createSell()
-  {
-    SellImpl sell = new SellImpl();
-    return sell;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Addition createAddition()
   {
     AdditionImpl addition = new AdditionImpl();
@@ -383,6 +335,28 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   public String convertStrategyDefToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TimeFrameDef createTimeFrameDefFromString(EDataType eDataType, String initialValue)
+  {
+    TimeFrameDef result = TimeFrameDef.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTimeFrameDefToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

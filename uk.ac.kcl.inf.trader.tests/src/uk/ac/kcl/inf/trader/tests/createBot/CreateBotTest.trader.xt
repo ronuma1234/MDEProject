@@ -1,3 +1,5 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.createBot.CreateBotTest END_SETUP */
 
-create bot BuyAndHoldBot with buyAndHold strategy using 102.15 from money
+var x = 0.05
+
+create bot with strategy buyAndHold using lot size x

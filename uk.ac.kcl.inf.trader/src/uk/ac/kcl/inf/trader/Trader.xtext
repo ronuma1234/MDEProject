@@ -15,13 +15,13 @@ Statement:
 ConnectStatement:
     "connect" "to" "trade" tickerName = StringPrimary "on"
     "server" brokerName = StringPrimary "with" 
-    "login" userName = StringPrimary ","
+    "login" username = StringPrimary ","
     "password" password = StringPrimary ","
-    "timeframe:" timeframe = TimeFrameDef
+    "timeframe" timeframe = TimeFrameDef
 ;
 
 CreateBotStatement:
-    "create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
+    "create" "bot" "with" "strategy" strategy = StrategyDef "using" "lot" "size" lotSize = Addition
 ;
 
 enum StrategyDef:

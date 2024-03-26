@@ -95,35 +95,27 @@ public class TraderSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.TRADING_BOT:
+      case TraderPackage.CREATE_BOT_STATEMENT:
       {
-        TradingBot tradingBot = (TradingBot)theEObject;
-        T result = caseTradingBot(tradingBot);
-        if (result == null) result = caseStatement(tradingBot);
+        CreateBotStatement createBotStatement = (CreateBotStatement)theEObject;
+        T result = caseCreateBotStatement(createBotStatement);
+        if (result == null) result = caseStatement(createBotStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.LIST_BOTS:
+      case TraderPackage.LIST_BOTS_STATEMENT:
       {
-        ListBots listBots = (ListBots)theEObject;
-        T result = caseListBots(listBots);
-        if (result == null) result = caseStatement(listBots);
+        ListBotsStatement listBotsStatement = (ListBotsStatement)theEObject;
+        T result = caseListBotsStatement(listBotsStatement);
+        if (result == null) result = caseStatement(listBotsStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case TraderPackage.EXECUTE:
+      case TraderPackage.EXECUTE_BOTS_STATEMENT:
       {
-        Execute execute = (Execute)theEObject;
-        T result = caseExecute(execute);
-        if (result == null) result = caseStatement(execute);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.STOP:
-      {
-        Stop stop = (Stop)theEObject;
-        T result = caseStop(stop);
-        if (result == null) result = caseStatement(stop);
+        ExecuteBotsStatement executeBotsStatement = (ExecuteBotsStatement)theEObject;
+        T result = caseExecuteBotsStatement(executeBotsStatement);
+        if (result == null) result = caseStatement(executeBotsStatement);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -187,29 +179,6 @@ public class TraderSwitch<T> extends Switch<T>
         StringVarExpression stringVarExpression = (StringVarExpression)theEObject;
         T result = caseStringVarExpression(stringVarExpression);
         if (result == null) result = caseExpression(stringVarExpression);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.ACTION:
-      {
-        Action action = (Action)theEObject;
-        T result = caseAction(action);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.BUY:
-      {
-        Buy buy = (Buy)theEObject;
-        T result = caseBuy(buy);
-        if (result == null) result = caseAction(buy);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case TraderPackage.SELL:
-      {
-        Sell sell = (Sell)theEObject;
-        T result = caseSell(sell);
-        if (result == null) result = caseAction(sell);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -282,65 +251,49 @@ public class TraderSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Trading Bot</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Create Bot Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Trading Bot</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Create Bot Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTradingBot(TradingBot object)
+  public T caseCreateBotStatement(CreateBotStatement object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>List Bots</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>List Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>List Bots</em>'.
+   * @return the result of interpreting the object as an instance of '<em>List Bots Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseListBots(ListBots object)
+  public T caseListBotsStatement(ListBotsStatement object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Execute</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Execute Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Execute</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Execute Bots Statement</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseExecute(Execute object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Stop</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Stop</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStop(Stop object)
+  public T caseExecuteBotsStatement(ExecuteBotsStatement object)
   {
     return null;
   }
@@ -469,54 +422,6 @@ public class TraderSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseStringVarExpression(StringVarExpression object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Action</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Action</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAction(Action object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Buy</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Buy</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseBuy(Buy object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Sell</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Sell</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSell(Sell object)
   {
     return null;
   }

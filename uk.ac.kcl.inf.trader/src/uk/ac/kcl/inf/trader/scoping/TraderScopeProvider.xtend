@@ -71,17 +71,5 @@ class TraderScopeProvider extends AbstractDeclarativeScopeProvider{
 	    	return index
     	}
     }
-//    
-//    def IScope scope_ConnectParameters_usernameRef(ConnectParameters context, EReference ref) {
-//        val containingProgram = context.eContainer.getContainerOfType(TraderProgram)
-//        val connectStatement = context.eContainer.getContainerOfType(Connect)
-//        if (containingProgram !== null && connectStatement !== null) {
-//            val index = containingProgram.statements.indexOf(connectStatement)
-//        	val visibleVariables = containingProgram.statements.take(index)
-//            .filter(VariableDeclaration)
-//            .toList
-//            scopeFor(visibleVariables)
-//        }
-//    }
     
 }

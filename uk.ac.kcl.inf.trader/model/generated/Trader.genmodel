@@ -10,30 +10,51 @@
       <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/buyAndHold"/>
       <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/meanReversion"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Trader.ecore#//TimeFrameDef">
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M1"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M2"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M3"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M4"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M5"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M6"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M10"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M12"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M20"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M30"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H1"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H2"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H3"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H4"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H6"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H8"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/H12"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/D1"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/W1"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/MN1"/>
+    </genEnums>
     <genClasses ecoreClass="Trader.ecore#//TraderProgram">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//TraderProgram/statements"/>
     </genClasses>
     <genClasses ecoreClass="Trader.ecore#//Statement"/>
     <genClasses ecoreClass="Trader.ecore#//ConnectStatement">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//ConnectStatement/brokerName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/tickerName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/brokerName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/username"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/password"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/leverage"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/money"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ConnectStatement/timeframe"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//ConnectStatement/timeframe"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//TradingBot">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//TradingBot/strategy"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//TradingBot/fund"/>
+    <genClasses ecoreClass="Trader.ecore#//CreateBotStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//CreateBotStatement/strategy"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//CreateBotStatement/lotSize"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//ListBots">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//ListBots/listCommand"/>
+    <genClasses ecoreClass="Trader.ecore#//ListBotsStatement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//ListBotsStatement/listCommand"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//Execute">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//Execute/executeCommand"/>
-    </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//Stop">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//Stop/stopCommand"/>
+    <genClasses ecoreClass="Trader.ecore#//ExecuteBotsStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ExecuteBotsStatement/days"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ExecuteBotsStatement/hours"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ExecuteBotsStatement/minutes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//ExecuteBotsStatement/seconds"/>
     </genClasses>
     <genClasses ecoreClass="Trader.ecore#//VariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//VariableDeclaration/name"/>
@@ -59,13 +80,6 @@
     <genClasses ecoreClass="Trader.ecore#//StringVarExpression">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Trader.ecore#//StringVarExpression/var"/>
     </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//Action">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//Action/quantity"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//Action/ticker"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//Action/price"/>
-    </genClasses>
-    <genClasses ecoreClass="Trader.ecore#//Buy"/>
-    <genClasses ecoreClass="Trader.ecore#//Sell"/>
     <genClasses ecoreClass="Trader.ecore#//Addition">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Trader.ecore#//Addition/left"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Trader.ecore#//Addition/operator"/>
