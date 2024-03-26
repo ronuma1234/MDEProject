@@ -52,16 +52,18 @@ class TraderValidator extends TraderTypeValidatorValidator{
 	
 	@Check
 	def checkMultipleConnectStatement (ConnectStatement conn){
-		val containingProgram = conn.eContainer as TraderProgram
-		val index = containingProgram.statements.indexOf(conn)
-		val scopedConnectStatements = containingProgram.statements
-		.filter(ConnectStatement)
-		.filter[cs | !cs.equals(conn) && containingProgram.statements.indexOf(cs) < index]
-		if (scopedConnectStatements.length !== 0){
-			warning('ConnectStatement should only be called once', conn,
-				TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME,
-				MULTIPLE_CONNECT_STATEMENT
-			)
+		if (conn.eContainer instanceof TraderProgram){
+			val containingProgram = conn.eContainer as TraderProgram
+			val index = containingProgram.statements.indexOf(conn)
+			val scopedConnectStatements = containingProgram.statements
+			.filter(ConnectStatement)
+			.filter[cs | !cs.equals(conn) && containingProgram.statements.indexOf(cs) < index]
+			if (scopedConnectStatements.length !== 0){
+				warning('ConnectStatement should only be called once', conn,
+					TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME,
+					MULTIPLE_CONNECT_STATEMENT
+				)
+			}
 		}
 	}
 
@@ -77,16 +79,18 @@ class TraderValidator extends TraderTypeValidatorValidator{
 	
 	@Check
 	def checkMultipleExecuteBotStatement (ExecuteBotsStatement stmt){
-		val containingProgram = stmt.eContainer as TraderProgram
-		val index = containingProgram.statements.indexOf(stmt) 
-		val scopedConnectStatements = containingProgram.statements
-		.filter(ExecuteBotsStatement)
-		.filter[ebs | (!ebs.equals(stmt) && containingProgram.statements.indexOf(ebs) < index)]
-		if (scopedConnectStatements.length !== 0){
-			warning('ExecuteBotsStatement should only be called once', stmt,
-				TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS,
-				MULTIPLE_EXECUTE_BOTS_STATEMENT
-			)
+		if (stmt.eContainer instanceof TraderProgram){
+			val containingProgram = stmt.eContainer as TraderProgram
+			val index = containingProgram.statements.indexOf(stmt) 
+			val scopedConnectStatements = containingProgram.statements
+			.filter(ExecuteBotsStatement)
+			.filter[ebs | (!ebs.equals(stmt) && containingProgram.statements.indexOf(ebs) < index)]
+			if (scopedConnectStatements.length !== 0){
+				warning('ExecuteBotsStatement should only be called once', stmt,
+					TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS,
+					MULTIPLE_EXECUTE_BOTS_STATEMENT
+				)
+			}
 		}
 	}
 	

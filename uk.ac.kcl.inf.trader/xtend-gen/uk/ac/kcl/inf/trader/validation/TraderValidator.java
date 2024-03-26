@@ -63,18 +63,21 @@ public class TraderValidator extends TraderTypeValidatorValidator {
   @Check
   public void checkMultipleConnectStatement(final ConnectStatement conn) {
     EObject _eContainer = conn.eContainer();
-    final TraderProgram containingProgram = ((TraderProgram) _eContainer);
-    final int index = containingProgram.getStatements().indexOf(conn);
-    final Function1<ConnectStatement, Boolean> _function = (ConnectStatement cs) -> {
-      return Boolean.valueOf(((!cs.equals(conn)) && (containingProgram.getStatements().indexOf(cs) < index)));
-    };
-    final Iterable<ConnectStatement> scopedConnectStatements = IterableExtensions.<ConnectStatement>filter(Iterables.<ConnectStatement>filter(containingProgram.getStatements(), ConnectStatement.class), _function);
-    int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
-    boolean _tripleNotEquals = (_length != 0);
-    if (_tripleNotEquals) {
-      this.warning("ConnectStatement should only be called once", conn, 
-        TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME, 
-        TraderValidator.MULTIPLE_CONNECT_STATEMENT);
+    if ((_eContainer instanceof TraderProgram)) {
+      EObject _eContainer_1 = conn.eContainer();
+      final TraderProgram containingProgram = ((TraderProgram) _eContainer_1);
+      final int index = containingProgram.getStatements().indexOf(conn);
+      final Function1<ConnectStatement, Boolean> _function = (ConnectStatement cs) -> {
+        return Boolean.valueOf(((!cs.equals(conn)) && (containingProgram.getStatements().indexOf(cs) < index)));
+      };
+      final Iterable<ConnectStatement> scopedConnectStatements = IterableExtensions.<ConnectStatement>filter(Iterables.<ConnectStatement>filter(containingProgram.getStatements(), ConnectStatement.class), _function);
+      int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
+      boolean _tripleNotEquals = (_length != 0);
+      if (_tripleNotEquals) {
+        this.warning("ConnectStatement should only be called once", conn, 
+          TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME, 
+          TraderValidator.MULTIPLE_CONNECT_STATEMENT);
+      }
     }
   }
 
@@ -91,18 +94,21 @@ public class TraderValidator extends TraderTypeValidatorValidator {
   @Check
   public void checkMultipleExecuteBotStatement(final ExecuteBotsStatement stmt) {
     EObject _eContainer = stmt.eContainer();
-    final TraderProgram containingProgram = ((TraderProgram) _eContainer);
-    final int index = containingProgram.getStatements().indexOf(stmt);
-    final Function1<ExecuteBotsStatement, Boolean> _function = (ExecuteBotsStatement ebs) -> {
-      return Boolean.valueOf(((!ebs.equals(stmt)) && (containingProgram.getStatements().indexOf(ebs) < index)));
-    };
-    final Iterable<ExecuteBotsStatement> scopedConnectStatements = IterableExtensions.<ExecuteBotsStatement>filter(Iterables.<ExecuteBotsStatement>filter(containingProgram.getStatements(), ExecuteBotsStatement.class), _function);
-    int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
-    boolean _tripleNotEquals = (_length != 0);
-    if (_tripleNotEquals) {
-      this.warning("ExecuteBotsStatement should only be called once", stmt, 
-        TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS, 
-        TraderValidator.MULTIPLE_EXECUTE_BOTS_STATEMENT);
+    if ((_eContainer instanceof TraderProgram)) {
+      EObject _eContainer_1 = stmt.eContainer();
+      final TraderProgram containingProgram = ((TraderProgram) _eContainer_1);
+      final int index = containingProgram.getStatements().indexOf(stmt);
+      final Function1<ExecuteBotsStatement, Boolean> _function = (ExecuteBotsStatement ebs) -> {
+        return Boolean.valueOf(((!ebs.equals(stmt)) && (containingProgram.getStatements().indexOf(ebs) < index)));
+      };
+      final Iterable<ExecuteBotsStatement> scopedConnectStatements = IterableExtensions.<ExecuteBotsStatement>filter(Iterables.<ExecuteBotsStatement>filter(containingProgram.getStatements(), ExecuteBotsStatement.class), _function);
+      int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
+      boolean _tripleNotEquals = (_length != 0);
+      if (_tripleNotEquals) {
+        this.warning("ExecuteBotsStatement should only be called once", stmt, 
+          TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS, 
+          TraderValidator.MULTIPLE_EXECUTE_BOTS_STATEMENT);
+      }
     }
   }
 
