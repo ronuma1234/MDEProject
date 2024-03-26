@@ -106,87 +106,50 @@ public interface TraderPackage extends EPackage
   int STATEMENT_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectImpl <em>Connect</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl <em>Connect Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ConnectImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnect()
+   * @see uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnectStatement()
    * @generated
    */
-  int CONNECT = 2;
+  int CONNECT_STATEMENT = 2;
 
   /**
-   * The feature id for the '<em><b>Broker Name</b></em>' attribute.
+   * The feature id for the '<em><b>Ticker Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECT__BROKER_NAME = STATEMENT_FEATURE_COUNT + 0;
+  int CONNECT_STATEMENT__TICKER_NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Parameters</b></em>' containment reference.
+   * The feature id for the '<em><b>Broker Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECT__PARAMETERS = STATEMENT_FEATURE_COUNT + 1;
+  int CONNECT_STATEMENT__BROKER_NAME = STATEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Connect</em>' class.
+   * The feature id for the '<em><b>Username</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+  int CONNECT_STATEMENT__USERNAME = STATEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectParametersImpl <em>Connect Parameters</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ConnectParametersImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnectParameters()
-   * @generated
-   */
-  int CONNECT_PARAMETERS = 3;
-
-  /**
-   * The feature id for the '<em><b>Username</b></em>' attribute.
+   * The feature id for the '<em><b>Password</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECT_PARAMETERS__USERNAME = 0;
-
-  /**
-   * The feature id for the '<em><b>Password</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONNECT_PARAMETERS__PASSWORD = 1;
-
-  /**
-   * The feature id for the '<em><b>Leverage</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONNECT_PARAMETERS__LEVERAGE = 2;
-
-  /**
-   * The feature id for the '<em><b>Money</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONNECT_PARAMETERS__MONEY = 3;
+  int CONNECT_STATEMENT__PASSWORD = STATEMENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Timeframe</b></em>' attribute.
@@ -195,26 +158,26 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CONNECT_PARAMETERS__TIMEFRAME = 4;
+  int CONNECT_STATEMENT__TIMEFRAME = STATEMENT_FEATURE_COUNT + 4;
 
   /**
-   * The number of structural features of the '<em>Connect Parameters</em>' class.
+   * The number of structural features of the '<em>Connect Statement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONNECT_PARAMETERS_FEATURE_COUNT = 5;
+  int CONNECT_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 5;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl <em>Trading Bot</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.CreateBotStatementImpl <em>Create Bot Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getTradingBot()
+   * @see uk.ac.kcl.inf.trader.trader.impl.CreateBotStatementImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getCreateBotStatement()
    * @generated
    */
-  int TRADING_BOT = 4;
+  int CREATE_BOT_STATEMENT = 3;
 
   /**
    * The feature id for the '<em><b>Strategy</b></em>' attribute.
@@ -223,35 +186,35 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TRADING_BOT__STRATEGY = STATEMENT_FEATURE_COUNT + 0;
+  int CREATE_BOT_STATEMENT__STRATEGY = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Funds</b></em>' attribute.
+   * The feature id for the '<em><b>Lot Size</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRADING_BOT__FUNDS = STATEMENT_FEATURE_COUNT + 1;
+  int CREATE_BOT_STATEMENT__LOT_SIZE = STATEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Trading Bot</em>' class.
+   * The number of structural features of the '<em>Create Bot Statement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TRADING_BOT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
+  int CREATE_BOT_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl <em>List Bots</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsStatementImpl <em>List Bots Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBots()
+   * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsStatementImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBotsStatement()
    * @generated
    */
-  int LIST_BOTS = 5;
+  int LIST_BOTS_STATEMENT = 4;
 
   /**
    * The feature id for the '<em><b>List Command</b></em>' attribute.
@@ -260,72 +223,71 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST_BOTS__LIST_COMMAND = STATEMENT_FEATURE_COUNT + 0;
+  int LIST_BOTS_STATEMENT__LIST_COMMAND = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>List Bots</em>' class.
+   * The number of structural features of the '<em>List Bots Statement</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LIST_BOTS_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+  int LIST_BOTS_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteBotsStatementImpl <em>Execute Bots Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
+   * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteBotsStatementImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecuteBotsStatement()
    * @generated
    */
-  int EXECUTE = 6;
+  int EXECUTE_BOTS_STATEMENT = 5;
 
   /**
-   * The feature id for the '<em><b>Execute Command</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXECUTE__EXECUTE_COMMAND = STATEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Execute</em>' class.
+   * The feature id for the '<em><b>Days</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXECUTE_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+  int EXECUTE_BOTS_STATEMENT__DAYS = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StopImpl <em>Stop</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.StopImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStop()
-   * @generated
-   */
-  int STOP = 7;
-
-  /**
-   * The feature id for the '<em><b>Stop Command</b></em>' attribute.
+   * The feature id for the '<em><b>Hours</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STOP__STOP_COMMAND = STATEMENT_FEATURE_COUNT + 0;
+  int EXECUTE_BOTS_STATEMENT__HOURS = STATEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Stop</em>' class.
+   * The feature id for the '<em><b>Minutes</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int STOP_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 1;
+  int EXECUTE_BOTS_STATEMENT__MINUTES = STATEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The feature id for the '<em><b>Seconds</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXECUTE_BOTS_STATEMENT__SECONDS = STATEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The number of structural features of the '<em>Execute Bots Statement</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXECUTE_BOTS_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -335,7 +297,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getVariableDeclaration()
    * @generated
    */
-  int VARIABLE_DECLARATION = 8;
+  int VARIABLE_DECLARATION = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -347,7 +309,7 @@ public interface TraderPackage extends EPackage
   int VARIABLE_DECLARATION__NAME = STATEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -365,6 +327,109 @@ public interface TraderPackage extends EPackage
   int VARIABLE_DECLARATION_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl <em>Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExpression()
+   * @generated
+   */
+  int EXPRESSION = 11;
+
+  /**
+   * The number of structural features of the '<em>Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXPRESSION_FEATURE_COUNT = 0;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringValueImpl <em>String Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.StringValueImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringValue()
+   * @generated
+   */
+  int STRING_VALUE = 7;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>String Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.RealValueImpl <em>Real Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.RealValueImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getRealValue()
+   * @generated
+   */
+  int REAL_VALUE = 8;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Real Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REAL_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntValueImpl <em>Int Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.impl.IntValueImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntValue()
+   * @generated
+   */
+  int INT_VALUE = 9;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VALUE__VALUE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Int Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INT_VALUE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -372,7 +437,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getLoopStatement()
    * @generated
    */
-  int LOOP_STATEMENT = 9;
+  int LOOP_STATEMENT = 10;
 
   /**
    * The feature id for the '<em><b>Count</b></em>' containment reference.
@@ -402,61 +467,14 @@ public interface TraderPackage extends EPackage
   int LOOP_STATEMENT_FEATURE_COUNT = STATEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntExpressionImpl <em>Int Expression</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl <em>Num Var Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.IntExpressionImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntExpression()
+   * @see uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getNumVarExpression()
    * @generated
    */
-  int INT_EXPRESSION = 10;
-
-  /**
-   * The number of structural features of the '<em>Int Expression</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_EXPRESSION_FEATURE_COUNT = 0;
-
-  /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl <em>Int Literal</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntLiteral()
-   * @generated
-   */
-  int INT_LITERAL = 11;
-
-  /**
-   * The feature id for the '<em><b>Val</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LITERAL__VAL = INT_EXPRESSION_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Int Literal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INT_LITERAL_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntVarExpressionImpl <em>Int Var Expression</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.IntVarExpressionImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVarExpression()
-   * @generated
-   */
-  int INT_VAR_EXPRESSION = 12;
+  int NUM_VAR_EXPRESSION = 12;
 
   /**
    * The feature id for the '<em><b>Var</b></em>' reference.
@@ -465,154 +483,44 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INT_VAR_EXPRESSION__VAR = INT_EXPRESSION_FEATURE_COUNT + 0;
+  int NUM_VAR_EXPRESSION__VAR = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Int Var Expression</em>' class.
+   * The number of structural features of the '<em>Num Var Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INT_VAR_EXPRESSION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 1;
+  int NUM_VAR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.ActionImpl <em>Action</em>}' class.
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl <em>String Var Expression</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.ActionImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
+   * @see uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringVarExpression()
    * @generated
    */
-  int ACTION = 13;
+  int STRING_VAR_EXPRESSION = 13;
 
   /**
-   * The feature id for the '<em><b>Quantity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTION__QUANTITY = 0;
-
-  /**
-   * The feature id for the '<em><b>Ticker</b></em>' attribute.
+   * The feature id for the '<em><b>Var</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION__TICKER = 1;
+  int STRING_VAR_EXPRESSION__VAR = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Price</b></em>' attribute.
+   * The number of structural features of the '<em>String Var Expression</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTION__PRICE = 2;
-
-  /**
-   * The number of structural features of the '<em>Action</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTION_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.BuyImpl <em>Buy</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.BuyImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
-   * @generated
-   */
-  int BUY = 14;
-
-  /**
-   * The feature id for the '<em><b>Quantity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BUY__QUANTITY = ACTION__QUANTITY;
-
-  /**
-   * The feature id for the '<em><b>Ticker</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BUY__TICKER = ACTION__TICKER;
-
-  /**
-   * The feature id for the '<em><b>Price</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BUY__PRICE = ACTION__PRICE;
-
-  /**
-   * The number of structural features of the '<em>Buy</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BUY_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.SellImpl <em>Sell</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uk.ac.kcl.inf.trader.trader.impl.SellImpl
-   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
-   * @generated
-   */
-  int SELL = 15;
-
-  /**
-   * The feature id for the '<em><b>Quantity</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELL__QUANTITY = ACTION__QUANTITY;
-
-  /**
-   * The feature id for the '<em><b>Ticker</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELL__TICKER = ACTION__TICKER;
-
-  /**
-   * The feature id for the '<em><b>Price</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELL__PRICE = ACTION__PRICE;
-
-  /**
-   * The number of structural features of the '<em>Sell</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SELL_FEATURE_COUNT = ACTION_FEATURE_COUNT + 0;
+  int STRING_VAR_EXPRESSION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.AdditionImpl <em>Addition</em>}' class.
@@ -622,7 +530,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 16;
+  int ADDITION = 14;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -631,7 +539,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__LEFT = INT_EXPRESSION_FEATURE_COUNT + 0;
+  int ADDITION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute list.
@@ -640,7 +548,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__OPERATOR = INT_EXPRESSION_FEATURE_COUNT + 1;
+  int ADDITION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference list.
@@ -649,7 +557,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION__RIGHT = INT_EXPRESSION_FEATURE_COUNT + 2;
+  int ADDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Addition</em>' class.
@@ -658,7 +566,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDITION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 3;
+  int ADDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.impl.MultiplicationImpl <em>Multiplication</em>}' class.
@@ -668,7 +576,7 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 17;
+  int MULTIPLICATION = 15;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -677,7 +585,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__LEFT = INT_EXPRESSION_FEATURE_COUNT + 0;
+  int MULTIPLICATION__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Operator</b></em>' attribute list.
@@ -686,7 +594,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__OPERATOR = INT_EXPRESSION_FEATURE_COUNT + 1;
+  int MULTIPLICATION__OPERATOR = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Right</b></em>' containment reference list.
@@ -695,7 +603,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION__RIGHT = INT_EXPRESSION_FEATURE_COUNT + 2;
+  int MULTIPLICATION__RIGHT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Multiplication</em>' class.
@@ -704,7 +612,7 @@ public interface TraderPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MULTIPLICATION_FEATURE_COUNT = INT_EXPRESSION_FEATURE_COUNT + 3;
+  int MULTIPLICATION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.StrategyDef <em>Strategy Def</em>}' enum.
@@ -714,7 +622,17 @@ public interface TraderPackage extends EPackage
    * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStrategyDef()
    * @generated
    */
-  int STRATEGY_DEF = 18;
+  int STRATEGY_DEF = 16;
+
+  /**
+   * The meta object id for the '{@link uk.ac.kcl.inf.trader.trader.TimeFrameDef <em>Time Frame Def</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uk.ac.kcl.inf.trader.trader.TimeFrameDef
+   * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getTimeFrameDef()
+   * @generated
+   */
+  int TIME_FRAME_DEF = 17;
 
 
   /**
@@ -749,196 +667,176 @@ public interface TraderPackage extends EPackage
   EClass getStatement();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Connect <em>Connect</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement <em>Connect Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Connect</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Connect
+   * @return the meta object for class '<em>Connect Statement</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement
    * @generated
    */
-  EClass getConnect();
+  EClass getConnectStatement();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Connect#getBrokerName <em>Broker Name</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getTickerName <em>Ticker Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Broker Name</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Connect#getBrokerName()
-   * @see #getConnect()
+   * @return the meta object for the containment reference '<em>Ticker Name</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement#getTickerName()
+   * @see #getConnectStatement()
    * @generated
    */
-  EAttribute getConnect_BrokerName();
+  EReference getConnectStatement_TickerName();
 
   /**
-   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.Connect#getParameters <em>Parameters</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getBrokerName <em>Broker Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Parameters</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Connect#getParameters()
-   * @see #getConnect()
+   * @return the meta object for the containment reference '<em>Broker Name</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement#getBrokerName()
+   * @see #getConnectStatement()
    * @generated
    */
-  EReference getConnect_Parameters();
+  EReference getConnectStatement_BrokerName();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters <em>Connect Parameters</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getUsername <em>Username</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Connect Parameters</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters
+   * @return the meta object for the containment reference '<em>Username</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement#getUsername()
+   * @see #getConnectStatement()
    * @generated
    */
-  EClass getConnectParameters();
+  EReference getConnectStatement_Username();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters#getUsername <em>Username</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getPassword <em>Password</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Username</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters#getUsername()
-   * @see #getConnectParameters()
+   * @return the meta object for the containment reference '<em>Password</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement#getPassword()
+   * @see #getConnectStatement()
    * @generated
    */
-  EAttribute getConnectParameters_Username();
+  EReference getConnectStatement_Password();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters#getPassword <em>Password</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Password</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters#getPassword()
-   * @see #getConnectParameters()
-   * @generated
-   */
-  EAttribute getConnectParameters_Password();
-
-  /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters#getLeverage <em>Leverage</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Leverage</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters#getLeverage()
-   * @see #getConnectParameters()
-   * @generated
-   */
-  EAttribute getConnectParameters_Leverage();
-
-  /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters#getMoney <em>Money</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Money</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters#getMoney()
-   * @see #getConnectParameters()
-   * @generated
-   */
-  EAttribute getConnectParameters_Money();
-
-  /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectParameters#getTimeframe <em>Timeframe</em>}'.
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ConnectStatement#getTimeframe <em>Timeframe</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Timeframe</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ConnectParameters#getTimeframe()
-   * @see #getConnectParameters()
+   * @see uk.ac.kcl.inf.trader.trader.ConnectStatement#getTimeframe()
+   * @see #getConnectStatement()
    * @generated
    */
-  EAttribute getConnectParameters_Timeframe();
+  EAttribute getConnectStatement_Timeframe();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.TradingBot <em>Trading Bot</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.CreateBotStatement <em>Create Bot Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Trading Bot</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.TradingBot
+   * @return the meta object for class '<em>Create Bot Statement</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.CreateBotStatement
    * @generated
    */
-  EClass getTradingBot();
+  EClass getCreateBotStatement();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getStrategy <em>Strategy</em>}'.
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.CreateBotStatement#getStrategy <em>Strategy</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Strategy</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.TradingBot#getStrategy()
-   * @see #getTradingBot()
+   * @see uk.ac.kcl.inf.trader.trader.CreateBotStatement#getStrategy()
+   * @see #getCreateBotStatement()
    * @generated
    */
-  EAttribute getTradingBot_Strategy();
+  EAttribute getCreateBotStatement_Strategy();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.TradingBot#getFunds <em>Funds</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.CreateBotStatement#getLotSize <em>Lot Size</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Funds</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.TradingBot#getFunds()
-   * @see #getTradingBot()
+   * @return the meta object for the containment reference '<em>Lot Size</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.CreateBotStatement#getLotSize()
+   * @see #getCreateBotStatement()
    * @generated
    */
-  EAttribute getTradingBot_Funds();
+  EReference getCreateBotStatement_LotSize();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ListBots <em>List Bots</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ListBotsStatement <em>List Bots Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>List Bots</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ListBots
+   * @return the meta object for class '<em>List Bots Statement</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ListBotsStatement
    * @generated
    */
-  EClass getListBots();
+  EClass getListBotsStatement();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ListBots#getListCommand <em>List Command</em>}'.
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.ListBotsStatement#getListCommand <em>List Command</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>List Command</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.ListBots#getListCommand()
-   * @see #getListBots()
+   * @see uk.ac.kcl.inf.trader.trader.ListBotsStatement#getListCommand()
+   * @see #getListBotsStatement()
    * @generated
    */
-  EAttribute getListBots_ListCommand();
+  EAttribute getListBotsStatement_ListCommand();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Execute <em>Execute</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement <em>Execute Bots Statement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Execute</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Execute
+   * @return the meta object for class '<em>Execute Bots Statement</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
    * @generated
    */
-  EClass getExecute();
+  EClass getExecuteBotsStatement();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Execute#getExecuteCommand <em>Execute Command</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getDays <em>Days</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Execute Command</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Execute#getExecuteCommand()
-   * @see #getExecute()
+   * @return the meta object for the containment reference '<em>Days</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getDays()
+   * @see #getExecuteBotsStatement()
    * @generated
    */
-  EAttribute getExecute_ExecuteCommand();
+  EReference getExecuteBotsStatement_Days();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Stop <em>Stop</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getHours <em>Hours</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Stop</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Stop
+   * @return the meta object for the containment reference '<em>Hours</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getHours()
+   * @see #getExecuteBotsStatement()
    * @generated
    */
-  EClass getStop();
+  EReference getExecuteBotsStatement_Hours();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Stop#getStopCommand <em>Stop Command</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getMinutes <em>Minutes</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Stop Command</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Stop#getStopCommand()
-   * @see #getStop()
+   * @return the meta object for the containment reference '<em>Minutes</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getMinutes()
+   * @see #getExecuteBotsStatement()
    * @generated
    */
-  EAttribute getStop_StopCommand();
+  EReference getExecuteBotsStatement_Minutes();
+
+  /**
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getSeconds <em>Seconds</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Seconds</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement#getSeconds()
+   * @see #getExecuteBotsStatement()
+   * @generated
+   */
+  EReference getExecuteBotsStatement_Seconds();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration <em>Variable Declaration</em>}'.
@@ -962,15 +860,78 @@ public interface TraderPackage extends EPackage
   EAttribute getVariableDeclaration_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
+   * @return the meta object for the containment reference '<em>Value</em>'.
    * @see uk.ac.kcl.inf.trader.trader.VariableDeclaration#getValue()
    * @see #getVariableDeclaration()
    * @generated
    */
-  EAttribute getVariableDeclaration_Value();
+  EReference getVariableDeclaration_Value();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.StringValue <em>String Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>String Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringValue
+   * @generated
+   */
+  EClass getStringValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.StringValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringValue#getValue()
+   * @see #getStringValue()
+   * @generated
+   */
+  EAttribute getStringValue_Value();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.RealValue <em>Real Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Real Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.RealValue
+   * @generated
+   */
+  EClass getRealValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.RealValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.RealValue#getValue()
+   * @see #getRealValue()
+   * @generated
+   */
+  EAttribute getRealValue_Value();
+
+  /**
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.IntValue <em>Int Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Int Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.IntValue
+   * @generated
+   */
+  EClass getIntValue();
+
+  /**
+   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.IntValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.IntValue#getValue()
+   * @see #getIntValue()
+   * @generated
+   */
+  EAttribute getIntValue_Value();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.LoopStatement <em>Loop Statement</em>}'.
@@ -1005,119 +966,56 @@ public interface TraderPackage extends EPackage
   EReference getLoopStatement_Statements();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.IntExpression <em>Int Expression</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int Expression</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.IntExpression
+   * @return the meta object for class '<em>Expression</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.Expression
    * @generated
    */
-  EClass getIntExpression();
+  EClass getExpression();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.IntLiteral <em>Int Literal</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.NumVarExpression <em>Num Var Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int Literal</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.IntLiteral
+   * @return the meta object for class '<em>Num Var Expression</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.NumVarExpression
    * @generated
    */
-  EClass getIntLiteral();
+  EClass getNumVarExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.IntLiteral#getVal <em>Val</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Val</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.IntLiteral#getVal()
-   * @see #getIntLiteral()
-   * @generated
-   */
-  EAttribute getIntLiteral_Val();
-
-  /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.IntVarExpression <em>Int Var Expression</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Int Var Expression</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.IntVarExpression
-   * @generated
-   */
-  EClass getIntVarExpression();
-
-  /**
-   * Returns the meta object for the reference '{@link uk.ac.kcl.inf.trader.trader.IntVarExpression#getVar <em>Var</em>}'.
+   * Returns the meta object for the reference '{@link uk.ac.kcl.inf.trader.trader.NumVarExpression#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the reference '<em>Var</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.IntVarExpression#getVar()
-   * @see #getIntVarExpression()
+   * @see uk.ac.kcl.inf.trader.trader.NumVarExpression#getVar()
+   * @see #getNumVarExpression()
    * @generated
    */
-  EReference getIntVarExpression_Var();
+  EReference getNumVarExpression_Var();
 
   /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Action <em>Action</em>}'.
+   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.StringVarExpression <em>String Var Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Action</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Action
+   * @return the meta object for class '<em>String Var Expression</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringVarExpression
    * @generated
    */
-  EClass getAction();
+  EClass getStringVarExpression();
 
   /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Action#getQuantity <em>Quantity</em>}'.
+   * Returns the meta object for the reference '{@link uk.ac.kcl.inf.trader.trader.StringVarExpression#getVar <em>Var</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Quantity</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Action#getQuantity()
-   * @see #getAction()
+   * @return the meta object for the reference '<em>Var</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.StringVarExpression#getVar()
+   * @see #getStringVarExpression()
    * @generated
    */
-  EAttribute getAction_Quantity();
-
-  /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Action#getTicker <em>Ticker</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ticker</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Action#getTicker()
-   * @see #getAction()
-   * @generated
-   */
-  EAttribute getAction_Ticker();
-
-  /**
-   * Returns the meta object for the attribute '{@link uk.ac.kcl.inf.trader.trader.Action#getPrice <em>Price</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Price</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Action#getPrice()
-   * @see #getAction()
-   * @generated
-   */
-  EAttribute getAction_Price();
-
-  /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Buy <em>Buy</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Buy</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Buy
-   * @generated
-   */
-  EClass getBuy();
-
-  /**
-   * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Sell <em>Sell</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Sell</em>'.
-   * @see uk.ac.kcl.inf.trader.trader.Sell
-   * @generated
-   */
-  EClass getSell();
+  EReference getStringVarExpression_Var();
 
   /**
    * Returns the meta object for class '{@link uk.ac.kcl.inf.trader.trader.Addition <em>Addition</em>}'.
@@ -1216,6 +1114,16 @@ public interface TraderPackage extends EPackage
   EEnum getStrategyDef();
 
   /**
+   * Returns the meta object for enum '{@link uk.ac.kcl.inf.trader.trader.TimeFrameDef <em>Time Frame Def</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Time Frame Def</em>'.
+   * @see uk.ac.kcl.inf.trader.trader.TimeFrameDef
+   * @generated
+   */
+  EEnum getTimeFrameDef();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1267,72 +1175,46 @@ public interface TraderPackage extends EPackage
     EClass STATEMENT = eINSTANCE.getStatement();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectImpl <em>Connect</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl <em>Connect Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ConnectImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnect()
+     * @see uk.ac.kcl.inf.trader.trader.impl.ConnectStatementImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnectStatement()
      * @generated
      */
-    EClass CONNECT = eINSTANCE.getConnect();
+    EClass CONNECT_STATEMENT = eINSTANCE.getConnectStatement();
 
     /**
-     * The meta object literal for the '<em><b>Broker Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Ticker Name</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONNECT__BROKER_NAME = eINSTANCE.getConnect_BrokerName();
+    EReference CONNECT_STATEMENT__TICKER_NAME = eINSTANCE.getConnectStatement_TickerName();
 
     /**
-     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Broker Name</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONNECT__PARAMETERS = eINSTANCE.getConnect_Parameters();
+    EReference CONNECT_STATEMENT__BROKER_NAME = eINSTANCE.getConnectStatement_BrokerName();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ConnectParametersImpl <em>Connect Parameters</em>}' class.
+     * The meta object literal for the '<em><b>Username</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ConnectParametersImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getConnectParameters()
      * @generated
      */
-    EClass CONNECT_PARAMETERS = eINSTANCE.getConnectParameters();
+    EReference CONNECT_STATEMENT__USERNAME = eINSTANCE.getConnectStatement_Username();
 
     /**
-     * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Password</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONNECT_PARAMETERS__USERNAME = eINSTANCE.getConnectParameters_Username();
-
-    /**
-     * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONNECT_PARAMETERS__PASSWORD = eINSTANCE.getConnectParameters_Password();
-
-    /**
-     * The meta object literal for the '<em><b>Leverage</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONNECT_PARAMETERS__LEVERAGE = eINSTANCE.getConnectParameters_Leverage();
-
-    /**
-     * The meta object literal for the '<em><b>Money</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONNECT_PARAMETERS__MONEY = eINSTANCE.getConnectParameters_Money();
+    EReference CONNECT_STATEMENT__PASSWORD = eINSTANCE.getConnectStatement_Password();
 
     /**
      * The meta object literal for the '<em><b>Timeframe</b></em>' attribute feature.
@@ -1340,17 +1222,17 @@ public interface TraderPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute CONNECT_PARAMETERS__TIMEFRAME = eINSTANCE.getConnectParameters_Timeframe();
+    EAttribute CONNECT_STATEMENT__TIMEFRAME = eINSTANCE.getConnectStatement_Timeframe();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl <em>Trading Bot</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.CreateBotStatementImpl <em>Create Bot Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.TradingBotImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getTradingBot()
+     * @see uk.ac.kcl.inf.trader.trader.impl.CreateBotStatementImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getCreateBotStatement()
      * @generated
      */
-    EClass TRADING_BOT = eINSTANCE.getTradingBot();
+    EClass CREATE_BOT_STATEMENT = eINSTANCE.getCreateBotStatement();
 
     /**
      * The meta object literal for the '<em><b>Strategy</b></em>' attribute feature.
@@ -1358,25 +1240,25 @@ public interface TraderPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TRADING_BOT__STRATEGY = eINSTANCE.getTradingBot_Strategy();
+    EAttribute CREATE_BOT_STATEMENT__STRATEGY = eINSTANCE.getCreateBotStatement_Strategy();
 
     /**
-     * The meta object literal for the '<em><b>Funds</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Lot Size</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TRADING_BOT__FUNDS = eINSTANCE.getTradingBot_Funds();
+    EReference CREATE_BOT_STATEMENT__LOT_SIZE = eINSTANCE.getCreateBotStatement_LotSize();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl <em>List Bots</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ListBotsStatementImpl <em>List Bots Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBots()
+     * @see uk.ac.kcl.inf.trader.trader.impl.ListBotsStatementImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getListBotsStatement()
      * @generated
      */
-    EClass LIST_BOTS = eINSTANCE.getListBots();
+    EClass LIST_BOTS_STATEMENT = eINSTANCE.getListBotsStatement();
 
     /**
      * The meta object literal for the '<em><b>List Command</b></em>' attribute feature.
@@ -1384,43 +1266,49 @@ public interface TraderPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LIST_BOTS__LIST_COMMAND = eINSTANCE.getListBots_ListCommand();
+    EAttribute LIST_BOTS_STATEMENT__LIST_COMMAND = eINSTANCE.getListBotsStatement_ListCommand();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl <em>Execute</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExecuteBotsStatementImpl <em>Execute Bots Statement</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecute()
+     * @see uk.ac.kcl.inf.trader.trader.impl.ExecuteBotsStatementImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExecuteBotsStatement()
      * @generated
      */
-    EClass EXECUTE = eINSTANCE.getExecute();
+    EClass EXECUTE_BOTS_STATEMENT = eINSTANCE.getExecuteBotsStatement();
 
     /**
-     * The meta object literal for the '<em><b>Execute Command</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXECUTE__EXECUTE_COMMAND = eINSTANCE.getExecute_ExecuteCommand();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StopImpl <em>Stop</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.StopImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStop()
-     * @generated
-     */
-    EClass STOP = eINSTANCE.getStop();
-
-    /**
-     * The meta object literal for the '<em><b>Stop Command</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Days</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute STOP__STOP_COMMAND = eINSTANCE.getStop_StopCommand();
+    EReference EXECUTE_BOTS_STATEMENT__DAYS = eINSTANCE.getExecuteBotsStatement_Days();
+
+    /**
+     * The meta object literal for the '<em><b>Hours</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXECUTE_BOTS_STATEMENT__HOURS = eINSTANCE.getExecuteBotsStatement_Hours();
+
+    /**
+     * The meta object literal for the '<em><b>Minutes</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXECUTE_BOTS_STATEMENT__MINUTES = eINSTANCE.getExecuteBotsStatement_Minutes();
+
+    /**
+     * The meta object literal for the '<em><b>Seconds</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXECUTE_BOTS_STATEMENT__SECONDS = eINSTANCE.getExecuteBotsStatement_Seconds();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
@@ -1441,12 +1329,66 @@ public interface TraderPackage extends EPackage
     EAttribute VARIABLE_DECLARATION__NAME = eINSTANCE.getVariableDeclaration_Name();
 
     /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VARIABLE_DECLARATION__VALUE = eINSTANCE.getVariableDeclaration_Value();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringValueImpl <em>String Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.StringValueImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringValue()
+     * @generated
+     */
+    EClass STRING_VALUE = eINSTANCE.getStringValue();
+
+    /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute VARIABLE_DECLARATION__VALUE = eINSTANCE.getVariableDeclaration_Value();
+    EAttribute STRING_VALUE__VALUE = eINSTANCE.getStringValue_Value();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.RealValueImpl <em>Real Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.RealValueImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getRealValue()
+     * @generated
+     */
+    EClass REAL_VALUE = eINSTANCE.getRealValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute REAL_VALUE__VALUE = eINSTANCE.getRealValue_Value();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntValueImpl <em>Int Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.impl.IntValueImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntValue()
+     * @generated
+     */
+    EClass INT_VALUE = eINSTANCE.getIntValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INT_VALUE__VALUE = eINSTANCE.getIntValue_Value();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.LoopStatementImpl <em>Loop Statement</em>}' class.
@@ -1475,42 +1417,24 @@ public interface TraderPackage extends EPackage
     EReference LOOP_STATEMENT__STATEMENTS = eINSTANCE.getLoopStatement_Statements();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntExpressionImpl <em>Int Expression</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl <em>Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.IntExpressionImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntExpression()
+     * @see uk.ac.kcl.inf.trader.trader.impl.ExpressionImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getExpression()
      * @generated
      */
-    EClass INT_EXPRESSION = eINSTANCE.getIntExpression();
+    EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl <em>Int Literal</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl <em>Num Var Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.IntLiteralImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntLiteral()
+     * @see uk.ac.kcl.inf.trader.trader.impl.NumVarExpressionImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getNumVarExpression()
      * @generated
      */
-    EClass INT_LITERAL = eINSTANCE.getIntLiteral();
-
-    /**
-     * The meta object literal for the '<em><b>Val</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INT_LITERAL__VAL = eINSTANCE.getIntLiteral_Val();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.IntVarExpressionImpl <em>Int Var Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.IntVarExpressionImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getIntVarExpression()
-     * @generated
-     */
-    EClass INT_VAR_EXPRESSION = eINSTANCE.getIntVarExpression();
+    EClass NUM_VAR_EXPRESSION = eINSTANCE.getNumVarExpression();
 
     /**
      * The meta object literal for the '<em><b>Var</b></em>' reference feature.
@@ -1518,61 +1442,25 @@ public interface TraderPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INT_VAR_EXPRESSION__VAR = eINSTANCE.getIntVarExpression_Var();
+    EReference NUM_VAR_EXPRESSION__VAR = eINSTANCE.getNumVarExpression_Var();
 
     /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.ActionImpl <em>Action</em>}' class.
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl <em>String Var Expression</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.ActionImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getAction()
+     * @see uk.ac.kcl.inf.trader.trader.impl.StringVarExpressionImpl
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getStringVarExpression()
      * @generated
      */
-    EClass ACTION = eINSTANCE.getAction();
+    EClass STRING_VAR_EXPRESSION = eINSTANCE.getStringVarExpression();
 
     /**
-     * The meta object literal for the '<em><b>Quantity</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACTION__QUANTITY = eINSTANCE.getAction_Quantity();
-
-    /**
-     * The meta object literal for the '<em><b>Ticker</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Var</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ACTION__TICKER = eINSTANCE.getAction_Ticker();
-
-    /**
-     * The meta object literal for the '<em><b>Price</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACTION__PRICE = eINSTANCE.getAction_Price();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.BuyImpl <em>Buy</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.BuyImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getBuy()
-     * @generated
-     */
-    EClass BUY = eINSTANCE.getBuy();
-
-    /**
-     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.SellImpl <em>Sell</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uk.ac.kcl.inf.trader.trader.impl.SellImpl
-     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getSell()
-     * @generated
-     */
-    EClass SELL = eINSTANCE.getSell();
+    EReference STRING_VAR_EXPRESSION__VAR = eINSTANCE.getStringVarExpression_Var();
 
     /**
      * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.impl.AdditionImpl <em>Addition</em>}' class.
@@ -1651,6 +1539,16 @@ public interface TraderPackage extends EPackage
      * @generated
      */
     EEnum STRATEGY_DEF = eINSTANCE.getStrategyDef();
+
+    /**
+     * The meta object literal for the '{@link uk.ac.kcl.inf.trader.trader.TimeFrameDef <em>Time Frame Def</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uk.ac.kcl.inf.trader.trader.TimeFrameDef
+     * @see uk.ac.kcl.inf.trader.trader.impl.TraderPackageImpl#getTimeFrameDef()
+     * @generated
+     */
+    EEnum TIME_FRAME_DEF = eINSTANCE.getTimeFrameDef();
 
   }
 

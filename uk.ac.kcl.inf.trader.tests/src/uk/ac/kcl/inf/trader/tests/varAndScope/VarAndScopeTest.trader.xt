@@ -1,30 +1,33 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.varAndScope.VarAndScopeTest END_SETUP */
 
-var user = "personA"
+
+var ticker = "EURUSD"
+var brokerName = "Swissbank"
+var usr = "personA"
 var pwd = "passwordA"
-var leverage = 0.02
-var money = 500.50
-var tf = "1HR"
 
-connect to broker SwissBank with username user, password pwd, leverage leverage, money money, timeframe tf
+// XPECT scope at usr --> ticker, brokerName, pwd, usr, !lotSize, !loopCounter, !newLotSize, !secondLotSize, ...
+connect to trade ticker on server brokerName with login usr, password pwd, timeframe M2
 
-var favStrategy = buyAndHold
+var lotSize = 0.02
 
-create bot with favStrategy strategy using 60.15 from money
-
-create bot with meanReversion strategy using 40.05 from money
+// XPECT scope at lotSize --> ticker, brokerName, pwd, usr, lotSize, !loopCounter, !newLotSize, !secondLotSize, ...
+create bot with strategy buyAndHold using lot size lotSize
 
 var loopCounter = 3
-// XPECT scope at loopCounter --> loopCounter, favStrategy, tf, money, leverage, pwd, user, !allocatedFund, ...
-loopCounter times do 
-	var allocatedFund = 100.10
-	
-	// XPECT scope at loopCounter --> loopCounter, favStrategy, tf, money, leverage, pwd, user, allocatedFund
-	create bot with favStrategy strategy using allocatedFund from money
+// XPECT scope at loopCounter --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, !secondLotSize, ...
+loop loopCounter times do 
+	var newLotSize = 0.10
+// XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
+	create bot with strategy buyAndHold using lot size newLotSize
+	loop 1 times do
+// XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
+		create bot with strategy buyAndHold using lot size newLotSize + 0.05
+	end	
 end
 
-see registered bots
+var secondLotSize = 5.2
+// XPECT scope at secondLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, secondLotSize, ...
+create bot with strategy buyAndHold using lot size (secondLotSize + secondLotSize)
 
-execute bots
-
-stop bots
+execute bots for 1 days 5 hours 2 minutes 10 seconds

@@ -9,85 +9,88 @@ TraderProgram:
 ;
 
 Statement:
-    Connect | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+    ConnectStatement | CreateBotStatement | ListBotsStatement | ExecuteBotsStatement | VariableDeclaration | LoopStatement
 ;
 
-Connect:
-    "connect" "to" "broker" brokerName=ID "with" ( parameters=ConnectParameters)?
-; 
-
-ConnectParameters:
-    "username" username=STRING ","
-    "password" password=STRING ","
-    "leverage" leverage=REAL ","
-    "money" money=REAL ","
-    "timeframe" timeframe=STRING
+ConnectStatement:
+    "connect" "to" "trade" tickerName = StringPrimary "on"
+    "server" brokerName = StringPrimary "with" 
+    "login" username = StringPrimary ","
+    "password" password = StringPrimary ","
+    "timeframe" timeframe = TimeFrameDef
 ;
 
-TradingBot:
-    "create" "bot" "with" strategy = StrategyDef "strategy" "using" funds = REAL "from" "money"
+CreateBotStatement:
+    "create" "bot" "with" "strategy" strategy = StrategyDef "using" "lot" "size" lotSize = Addition
 ;
 
 enum StrategyDef:
     buyAndHold | meanReversion
 ;
 
-ListBots:
+enum TimeFrameDef:
+	M1 | M2 | M3 | M4 | M5 | M6 | M10 | M12 | M20 | M30 |
+	H1 | H2 | H3 | H4 | H6 | H8 | H12 |  D1 |  W1 | MN1
+;
+
+ListBotsStatement:
 	listCommand = "see" "registered" "bots"
 ;
 
-Execute:
-    executeCommand = "execute" "bots"
-;
-
-Stop:
-	stopCommand = "stop" "bots"
+ExecuteBotsStatement:
+    "execute" "bots" "for" days = Addition "days" hours = Addition "hours" minutes = Addition "minutes" seconds = Addition "seconds"
 ;
 
 VariableDeclaration:
-	"var" name=ID "=" value = INT
+    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
+;
+
+StringValue:
+    value=STRING
+;
+
+RealValue:
+    value=REAL
+;
+
+IntValue:
+    value=INT
 ;
 
 LoopStatement:
-	count = Addition "times" "do"
+	"loop" count = Addition "times" "do"
 		statements += Statement+
 	"end"		
 ;
 
-REAL returns ecore::EFloat hidden():
-	INT? "." INT
-; 
-
-Addition returns IntExpression:
+Addition returns Expression:
 	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 ;
 
-Multiplication returns IntExpression:
+Multiplication returns Expression:
 	Primary ({Multiplication.left = current} operator+=("*"|"/") right+=Primary)*
 ;
 
-Primary returns IntExpression:
-	IntLiteral |
-	IntVarExpression |
+Primary returns Expression:
+	IntValue |
+	RealValue |
+	NumVarExpression |
 	"(" Addition ")"
 ;
 
-IntLiteral:
-	val = INT
-;
-
-IntVarExpression:
+NumVarExpression:
 	var = [VariableDeclaration]
 ;
 
-Action:
-    Buy | Sell
+REAL returns ecore::EFloat hidden():
+	INT? "." INT
 ;
 
-Buy:
-    "buy" quantity=REAL ticker=ID "at" "price" price=REAL
+StringPrimary returns Expression:
+	StringVarExpression |
+	StringValue
 ;
 
-Sell:
-    "sell" quantity=REAL ticker=ID "at" "price" price=REAL
+StringVarExpression:
+	var = [VariableDeclaration]
 ;

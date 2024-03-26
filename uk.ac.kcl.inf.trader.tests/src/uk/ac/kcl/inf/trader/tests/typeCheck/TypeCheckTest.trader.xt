@@ -1,0 +1,9 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.typeCheck.TypeCheckTest END_SETUP */
+
+
+var ticker = 123
+var brokerName = "Swissbank"
+var usr = 12
+var pwd = 12345.0
+
+connect to trade ticker on server brokerName with login usr, password pwd, timeframe M2

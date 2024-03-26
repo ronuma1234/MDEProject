@@ -68,20 +68,18 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.TRADER_PROGRAM: return createTraderProgram();
       case TraderPackage.STATEMENT: return createStatement();
-      case TraderPackage.CONNECT: return createConnect();
-      case TraderPackage.CONNECT_PARAMETERS: return createConnectParameters();
-      case TraderPackage.TRADING_BOT: return createTradingBot();
-      case TraderPackage.LIST_BOTS: return createListBots();
-      case TraderPackage.EXECUTE: return createExecute();
-      case TraderPackage.STOP: return createStop();
+      case TraderPackage.CONNECT_STATEMENT: return createConnectStatement();
+      case TraderPackage.CREATE_BOT_STATEMENT: return createCreateBotStatement();
+      case TraderPackage.LIST_BOTS_STATEMENT: return createListBotsStatement();
+      case TraderPackage.EXECUTE_BOTS_STATEMENT: return createExecuteBotsStatement();
       case TraderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
+      case TraderPackage.STRING_VALUE: return createStringValue();
+      case TraderPackage.REAL_VALUE: return createRealValue();
+      case TraderPackage.INT_VALUE: return createIntValue();
       case TraderPackage.LOOP_STATEMENT: return createLoopStatement();
-      case TraderPackage.INT_EXPRESSION: return createIntExpression();
-      case TraderPackage.INT_LITERAL: return createIntLiteral();
-      case TraderPackage.INT_VAR_EXPRESSION: return createIntVarExpression();
-      case TraderPackage.ACTION: return createAction();
-      case TraderPackage.BUY: return createBuy();
-      case TraderPackage.SELL: return createSell();
+      case TraderPackage.EXPRESSION: return createExpression();
+      case TraderPackage.NUM_VAR_EXPRESSION: return createNumVarExpression();
+      case TraderPackage.STRING_VAR_EXPRESSION: return createStringVarExpression();
       case TraderPackage.ADDITION: return createAddition();
       case TraderPackage.MULTIPLICATION: return createMultiplication();
       default:
@@ -101,6 +99,8 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.STRATEGY_DEF:
         return createStrategyDefFromString(eDataType, initialValue);
+      case TraderPackage.TIME_FRAME_DEF:
+        return createTimeFrameDefFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -118,6 +118,8 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
     {
       case TraderPackage.STRATEGY_DEF:
         return convertStrategyDefToString(eDataType, instanceValue);
+      case TraderPackage.TIME_FRAME_DEF:
+        return convertTimeFrameDefToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -153,10 +155,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public Connect createConnect()
+  public ConnectStatement createConnectStatement()
   {
-    ConnectImpl connect = new ConnectImpl();
-    return connect;
+    ConnectStatementImpl connectStatement = new ConnectStatementImpl();
+    return connectStatement;
   }
 
   /**
@@ -165,10 +167,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public ConnectParameters createConnectParameters()
+  public CreateBotStatement createCreateBotStatement()
   {
-    ConnectParametersImpl connectParameters = new ConnectParametersImpl();
-    return connectParameters;
+    CreateBotStatementImpl createBotStatement = new CreateBotStatementImpl();
+    return createBotStatement;
   }
 
   /**
@@ -177,10 +179,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public TradingBot createTradingBot()
+  public ListBotsStatement createListBotsStatement()
   {
-    TradingBotImpl tradingBot = new TradingBotImpl();
-    return tradingBot;
+    ListBotsStatementImpl listBotsStatement = new ListBotsStatementImpl();
+    return listBotsStatement;
   }
 
   /**
@@ -189,34 +191,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public ListBots createListBots()
+  public ExecuteBotsStatement createExecuteBotsStatement()
   {
-    ListBotsImpl listBots = new ListBotsImpl();
-    return listBots;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Execute createExecute()
-  {
-    ExecuteImpl execute = new ExecuteImpl();
-    return execute;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Stop createStop()
-  {
-    StopImpl stop = new StopImpl();
-    return stop;
+    ExecuteBotsStatementImpl executeBotsStatement = new ExecuteBotsStatementImpl();
+    return executeBotsStatement;
   }
 
   /**
@@ -237,6 +215,42 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
+  public StringValue createStringValue()
+  {
+    StringValueImpl stringValue = new StringValueImpl();
+    return stringValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RealValue createRealValue()
+  {
+    RealValueImpl realValue = new RealValueImpl();
+    return realValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IntValue createIntValue()
+  {
+    IntValueImpl intValue = new IntValueImpl();
+    return intValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public LoopStatement createLoopStatement()
   {
     LoopStatementImpl loopStatement = new LoopStatementImpl();
@@ -249,10 +263,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntExpression createIntExpression()
+  public Expression createExpression()
   {
-    IntExpressionImpl intExpression = new IntExpressionImpl();
-    return intExpression;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -261,10 +275,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntLiteral createIntLiteral()
+  public NumVarExpression createNumVarExpression()
   {
-    IntLiteralImpl intLiteral = new IntLiteralImpl();
-    return intLiteral;
+    NumVarExpressionImpl numVarExpression = new NumVarExpressionImpl();
+    return numVarExpression;
   }
 
   /**
@@ -273,46 +287,10 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   @Override
-  public IntVarExpression createIntVarExpression()
+  public StringVarExpression createStringVarExpression()
   {
-    IntVarExpressionImpl intVarExpression = new IntVarExpressionImpl();
-    return intVarExpression;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Action createAction()
-  {
-    ActionImpl action = new ActionImpl();
-    return action;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Buy createBuy()
-  {
-    BuyImpl buy = new BuyImpl();
-    return buy;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Sell createSell()
-  {
-    SellImpl sell = new SellImpl();
-    return sell;
+    StringVarExpressionImpl stringVarExpression = new StringVarExpressionImpl();
+    return stringVarExpression;
   }
 
   /**
@@ -357,6 +335,28 @@ public class TraderFactoryImpl extends EFactoryImpl implements TraderFactory
    * @generated
    */
   public String convertStrategyDefToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TimeFrameDef createTimeFrameDefFromString(EDataType eDataType, String initialValue)
+  {
+    TimeFrameDef result = TimeFrameDef.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertTimeFrameDefToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

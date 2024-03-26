@@ -4,11 +4,14 @@
 package uk.ac.kcl.inf.trader.trader.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import uk.ac.kcl.inf.trader.trader.Expression;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
 
@@ -49,24 +52,14 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final int VALUE_EDEFAULT = 0;
-
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected int value = VALUE_EDEFAULT;
+  protected Expression value;
 
   /**
    * <!-- begin-user-doc -->
@@ -120,7 +113,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * @generated
    */
   @Override
-  public int getValue()
+  public Expression getValue()
   {
     return value;
   }
@@ -130,13 +123,54 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public void setValue(int newValue)
+  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
   {
-    int oldValue = value;
+    Expression oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.VARIABLE_DECLARATION__VALUE, oldValue, value));
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, TraderPackage.VARIABLE_DECLARATION__VALUE, oldValue, newValue);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setValue(Expression newValue)
+  {
+    if (newValue != value)
+    {
+      NotificationChain msgs = null;
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - TraderPackage.VARIABLE_DECLARATION__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - TraderPackage.VARIABLE_DECLARATION__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, TraderPackage.VARIABLE_DECLARATION__VALUE, newValue, newValue));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case TraderPackage.VARIABLE_DECLARATION__VALUE:
+        return basicSetValue(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -171,7 +205,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
         setName((String)newValue);
         return;
       case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue((Integer)newValue);
+        setValue((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -191,7 +225,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
         setName(NAME_EDEFAULT);
         return;
       case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        setValue(VALUE_EDEFAULT);
+        setValue((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -210,7 +244,7 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
       case TraderPackage.VARIABLE_DECLARATION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case TraderPackage.VARIABLE_DECLARATION__VALUE:
-        return value != VALUE_EDEFAULT;
+        return value != null;
     }
     return super.eIsSet(featureID);
   }
@@ -228,8 +262,6 @@ public class VariableDeclarationImpl extends StatementImpl implements VariableDe
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (name: ");
     result.append(name);
-    result.append(", value: ");
-    result.append(value);
     result.append(')');
     return result.toString();
   }

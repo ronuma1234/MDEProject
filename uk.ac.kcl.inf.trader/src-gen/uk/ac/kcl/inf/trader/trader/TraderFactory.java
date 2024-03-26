@@ -42,58 +42,40 @@ public interface TraderFactory extends EFactory
   Statement createStatement();
 
   /**
-   * Returns a new object of class '<em>Connect</em>'.
+   * Returns a new object of class '<em>Connect Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Connect</em>'.
+   * @return a new object of class '<em>Connect Statement</em>'.
    * @generated
    */
-  Connect createConnect();
+  ConnectStatement createConnectStatement();
 
   /**
-   * Returns a new object of class '<em>Connect Parameters</em>'.
+   * Returns a new object of class '<em>Create Bot Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Connect Parameters</em>'.
+   * @return a new object of class '<em>Create Bot Statement</em>'.
    * @generated
    */
-  ConnectParameters createConnectParameters();
+  CreateBotStatement createCreateBotStatement();
 
   /**
-   * Returns a new object of class '<em>Trading Bot</em>'.
+   * Returns a new object of class '<em>List Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Trading Bot</em>'.
+   * @return a new object of class '<em>List Bots Statement</em>'.
    * @generated
    */
-  TradingBot createTradingBot();
+  ListBotsStatement createListBotsStatement();
 
   /**
-   * Returns a new object of class '<em>List Bots</em>'.
+   * Returns a new object of class '<em>Execute Bots Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>List Bots</em>'.
+   * @return a new object of class '<em>Execute Bots Statement</em>'.
    * @generated
    */
-  ListBots createListBots();
-
-  /**
-   * Returns a new object of class '<em>Execute</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Execute</em>'.
-   * @generated
-   */
-  Execute createExecute();
-
-  /**
-   * Returns a new object of class '<em>Stop</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Stop</em>'.
-   * @generated
-   */
-  Stop createStop();
+  ExecuteBotsStatement createExecuteBotsStatement();
 
   /**
    * Returns a new object of class '<em>Variable Declaration</em>'.
@@ -105,6 +87,33 @@ public interface TraderFactory extends EFactory
   VariableDeclaration createVariableDeclaration();
 
   /**
+   * Returns a new object of class '<em>String Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>String Value</em>'.
+   * @generated
+   */
+  StringValue createStringValue();
+
+  /**
+   * Returns a new object of class '<em>Real Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Real Value</em>'.
+   * @generated
+   */
+  RealValue createRealValue();
+
+  /**
+   * Returns a new object of class '<em>Int Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Int Value</em>'.
+   * @generated
+   */
+  IntValue createIntValue();
+
+  /**
    * Returns a new object of class '<em>Loop Statement</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,58 +123,31 @@ public interface TraderFactory extends EFactory
   LoopStatement createLoopStatement();
 
   /**
-   * Returns a new object of class '<em>Int Expression</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Expression</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  IntExpression createIntExpression();
+  Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Int Literal</em>'.
+   * Returns a new object of class '<em>Num Var Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Literal</em>'.
+   * @return a new object of class '<em>Num Var Expression</em>'.
    * @generated
    */
-  IntLiteral createIntLiteral();
+  NumVarExpression createNumVarExpression();
 
   /**
-   * Returns a new object of class '<em>Int Var Expression</em>'.
+   * Returns a new object of class '<em>String Var Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Int Var Expression</em>'.
+   * @return a new object of class '<em>String Var Expression</em>'.
    * @generated
    */
-  IntVarExpression createIntVarExpression();
-
-  /**
-   * Returns a new object of class '<em>Action</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Action</em>'.
-   * @generated
-   */
-  Action createAction();
-
-  /**
-   * Returns a new object of class '<em>Buy</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Buy</em>'.
-   * @generated
-   */
-  Buy createBuy();
-
-  /**
-   * Returns a new object of class '<em>Sell</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Sell</em>'.
-   * @generated
-   */
-  Sell createSell();
+  StringVarExpression createStringVarExpression();
 
   /**
    * Returns a new object of class '<em>Addition</em>'.
