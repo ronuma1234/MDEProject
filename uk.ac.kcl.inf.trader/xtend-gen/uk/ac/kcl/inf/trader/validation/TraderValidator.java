@@ -7,6 +7,7 @@ import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import uk.ac.kcl.inf.trader.trader.ConnectStatement;
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
@@ -25,6 +26,12 @@ public class TraderValidator extends TraderTypeValidatorValidator {
   public static final String USED_VARIABLE_NAME = "uk.ac.kcl.inf.trader.USED_VARIABLE_NAME";
 
   public static final String CONNECT_STATEMENT_IN_LOOP = "uk.ac.kcl.inf.trader.CONNECT_STATEMENT_IN_LOOP";
+
+  public static final String MULTIPLE_CONNECT_STATEMENT = "uk.ac.kcl.inf.trader.MULTIPLE_CONNECT_STATEMENT";
+
+  public static final String EXECUTE_BOTS_STATEMENT_IN_LOOP = "uk.ac.kcl.inf.trader.EXECUTE_BOTS_STATEMENT_IN_LOOP";
+
+  public static final String MULTIPLE_EXECUTE_BOTS_STATEMENT = "uk.ac.kcl.inf.trader.MULTIPLE_EXECUTE_BOTS_STATEMENT";
 
   @Check
   public void checkVariableNamesStartWithLowercaseCharacter(final VariableDeclaration decl) {
@@ -47,9 +54,55 @@ public class TraderValidator extends TraderTypeValidatorValidator {
   public void checkConnectStatementInLoop(final ConnectStatement conn) {
     EObject _eContainer = conn.eContainer();
     if ((_eContainer instanceof LoopStatement)) {
-      this.warning("Cannot call connect statement inside loop statement", conn, 
+      this.warning("Cannot call ConnectStatement inside LoopStatement", conn, 
         TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME, 
         TraderValidator.CONNECT_STATEMENT_IN_LOOP);
+    }
+  }
+
+  @Check
+  public void checkMultipleConnectStatement(final ConnectStatement conn) {
+    EObject _eContainer = conn.eContainer();
+    final TraderProgram containingProgram = ((TraderProgram) _eContainer);
+    final int index = containingProgram.getStatements().indexOf(conn);
+    final Function1<ConnectStatement, Boolean> _function = (ConnectStatement cs) -> {
+      return Boolean.valueOf(((!cs.equals(conn)) && (containingProgram.getStatements().indexOf(cs) < index)));
+    };
+    final Iterable<ConnectStatement> scopedConnectStatements = IterableExtensions.<ConnectStatement>filter(Iterables.<ConnectStatement>filter(containingProgram.getStatements(), ConnectStatement.class), _function);
+    int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
+    boolean _tripleNotEquals = (_length != 0);
+    if (_tripleNotEquals) {
+      this.warning("ConnectStatement should only be called once", conn, 
+        TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME, 
+        TraderValidator.MULTIPLE_CONNECT_STATEMENT);
+    }
+  }
+
+  @Check
+  public void checkExecuteBotStatementInLoop(final ExecuteBotsStatement stmt) {
+    EObject _eContainer = stmt.eContainer();
+    if ((_eContainer instanceof LoopStatement)) {
+      this.warning("Cannot call ExecuteBotsStatement inside LoopStatement", stmt, 
+        TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS, 
+        TraderValidator.EXECUTE_BOTS_STATEMENT_IN_LOOP);
+    }
+  }
+
+  @Check
+  public void checkMultipleExecuteBotStatement(final ExecuteBotsStatement stmt) {
+    EObject _eContainer = stmt.eContainer();
+    final TraderProgram containingProgram = ((TraderProgram) _eContainer);
+    final int index = containingProgram.getStatements().indexOf(stmt);
+    final Function1<ExecuteBotsStatement, Boolean> _function = (ExecuteBotsStatement ebs) -> {
+      return Boolean.valueOf(((!ebs.equals(stmt)) && (containingProgram.getStatements().indexOf(ebs) < index)));
+    };
+    final Iterable<ExecuteBotsStatement> scopedConnectStatements = IterableExtensions.<ExecuteBotsStatement>filter(Iterables.<ExecuteBotsStatement>filter(containingProgram.getStatements(), ExecuteBotsStatement.class), _function);
+    int _length = ((Object[])Conversions.unwrapArray(scopedConnectStatements, Object.class)).length;
+    boolean _tripleNotEquals = (_length != 0);
+    if (_tripleNotEquals) {
+      this.warning("ExecuteBotsStatement should only be called once", stmt, 
+        TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS, 
+        TraderValidator.MULTIPLE_EXECUTE_BOTS_STATEMENT);
     }
   }
 

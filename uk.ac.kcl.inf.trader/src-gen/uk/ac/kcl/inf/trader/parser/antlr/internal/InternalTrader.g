@@ -642,9 +642,9 @@ ruleVariableDeclaration returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0());
 					}
-					lv_value_4_0=ruleRealValue
+					lv_value_4_0=ruleIntValue
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
@@ -653,7 +653,7 @@ ruleVariableDeclaration returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_4_0,
-							"uk.ac.kcl.inf.trader.Trader.RealValue");
+							"uk.ac.kcl.inf.trader.Trader.IntValue");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -662,9 +662,9 @@ ruleVariableDeclaration returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0());
+						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0());
 					}
-					lv_value_5_0=ruleIntValue
+					lv_value_5_0=ruleRealValue
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getVariableDeclarationRule());
@@ -673,7 +673,7 @@ ruleVariableDeclaration returns [EObject current=null]
 							$current,
 							"value",
 							lv_value_5_0,
-							"uk.ac.kcl.inf.trader.Trader.IntValue");
+							"uk.ac.kcl.inf.trader.Trader.RealValue");
 						afterParserOrEnumRuleCall();
 					}
 				)

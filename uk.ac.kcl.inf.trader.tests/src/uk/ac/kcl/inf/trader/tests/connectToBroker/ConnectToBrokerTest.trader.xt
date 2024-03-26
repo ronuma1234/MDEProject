@@ -7,3 +7,6 @@ var pwd = "passwordA"
 
 // XPECT scope at ticker --> ticker, broker, username, pwd, ...
 connect to trade ticker on server broker with login username, password pwd, timeframe M1
+
+// XPECT warnings --> "ConnectStatement should only be called once" at ""DeutscheBank""
+connect to trade ticker on server "DeutscheBank" with login username, password pwd, timeframe M1

@@ -24,9 +24,11 @@ judgments {
 	type |- Expression exp : output TraderType
 		cached
 		error "Cannot type " + stringRep(exp)
+		source exp
 	subType |- TraderType left <: TraderType right
-		error stringRep(left) + " is not a subtype of " + stringRep(right)
+		error "Type mismatch: cannot convert from " + stringRep(left) + " to " + stringRep(right)
 }
+
 
 auxiliary typeExpression(Iterable<Expression> exps){
 	if (exps.forall[exp |
@@ -92,7 +94,6 @@ checkrule checkConnectStatement for
 	ConnectStatement stmt
 from {	
 	empty |- stmt.tickerName : var TraderType tickerNameTypes
-//	tickerNameTypes === TraderType.STRING
 	empty |- tickerNameTypes <: TraderType.STRING
 	empty |- stmt.brokerName : var TraderType brokerNameTypes
 	empty |- brokerNameTypes <: TraderType.STRING
@@ -114,12 +115,28 @@ checkrule checkExecuteBotsStatement for
 from {
 	empty |- stmt.days : var TraderType dayTypes
 	empty |- dayTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for days, but a " + dayTypes + " value was provided"
+	 source stmt.days
 	empty |- stmt.hours : var TraderType hourTypes
 	empty |- hourTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for hours, but a " + hourTypes + " value was provided"
+	 source stmt.hours
 	empty |- stmt.minutes : var TraderType minuteTypes
 	empty |- minuteTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for minutes, but a " + minuteTypes + " value was provided"
+	 source stmt.minutes
 	empty |- stmt.seconds : var TraderType secondTypes
 	empty |- secondTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for seconds, but a " + secondTypes + " value was provided"
+	 source stmt.seconds
 }
 
 checkrule checkLoopStatement for
@@ -127,5 +144,9 @@ checkrule checkLoopStatement for
 from {
 	empty |- stmt.count : var TraderType countTypes
 	empty |- countTypes <: TraderType.INT
+	or
+	fail 
+	 error "LoopStatement expects an " + TraderType.INT + " for count, but a " + countTypes + " value was provided"
+	 source stmt.count
 }
 

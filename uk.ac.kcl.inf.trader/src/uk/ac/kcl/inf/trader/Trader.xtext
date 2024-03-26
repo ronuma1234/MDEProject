@@ -42,7 +42,8 @@ ExecuteBotsStatement:
 ;
 
 VariableDeclaration:
-    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
+    "var" name=ID "=" (value = StringValue | value = IntValue | value = RealValue)
+
 ;
 
 StringValue:

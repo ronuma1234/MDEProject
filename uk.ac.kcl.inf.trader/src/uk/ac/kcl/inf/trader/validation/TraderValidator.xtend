@@ -8,6 +8,7 @@ import uk.ac.kcl.inf.trader.trader.LoopStatement
 import uk.ac.kcl.inf.trader.trader.TraderProgram
 import org.eclipse.emf.ecore.EObject
 import uk.ac.kcl.inf.trader.typing.validation.TraderTypeValidatorValidator
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
 
 /**
  * This class contains custom validation rules. 
@@ -19,6 +20,9 @@ class TraderValidator extends TraderTypeValidatorValidator{
 	public static val INVALID_VARIABLE_NAME = 'uk.ac.kcl.inf.trader.INVALID_VARIABLE_NAME'
 	public static val USED_VARIABLE_NAME = 'uk.ac.kcl.inf.trader.USED_VARIABLE_NAME'
 	public static val CONNECT_STATEMENT_IN_LOOP = 'uk.ac.kcl.inf.trader.CONNECT_STATEMENT_IN_LOOP'
+	public static val MULTIPLE_CONNECT_STATEMENT = 'uk.ac.kcl.inf.trader.MULTIPLE_CONNECT_STATEMENT'
+	public static val EXECUTE_BOTS_STATEMENT_IN_LOOP = 'uk.ac.kcl.inf.trader.EXECUTE_BOTS_STATEMENT_IN_LOOP'
+	public static val MULTIPLE_EXECUTE_BOTS_STATEMENT = 'uk.ac.kcl.inf.trader.MULTIPLE_EXECUTE_BOTS_STATEMENT'
 	
 	@Check
 	def checkVariableNamesStartWithLowercaseCharacter (VariableDeclaration decl){
@@ -39,9 +43,49 @@ class TraderValidator extends TraderTypeValidatorValidator{
 	@Check
 	def checkConnectStatementInLoop (ConnectStatement conn){
 		if (conn.eContainer instanceof LoopStatement) {
-			warning('Cannot call connect statement inside loop statement', conn,
+			warning('Cannot call ConnectStatement inside LoopStatement', conn,
 				TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME,
 				CONNECT_STATEMENT_IN_LOOP
+			)
+		}
+	}
+	
+	@Check
+	def checkMultipleConnectStatement (ConnectStatement conn){
+		val containingProgram = conn.eContainer as TraderProgram
+		val index = containingProgram.statements.indexOf(conn)
+		val scopedConnectStatements = containingProgram.statements
+		.filter(ConnectStatement)
+		.filter[cs | !cs.equals(conn) && containingProgram.statements.indexOf(cs) < index]
+		if (scopedConnectStatements.length !== 0){
+			warning('ConnectStatement should only be called once', conn,
+				TraderPackage.Literals.CONNECT_STATEMENT__BROKER_NAME,
+				MULTIPLE_CONNECT_STATEMENT
+			)
+		}
+	}
+
+	@Check
+	def checkExecuteBotStatementInLoop (ExecuteBotsStatement stmt){
+		if (stmt.eContainer instanceof LoopStatement) {
+			warning('Cannot call ExecuteBotsStatement inside LoopStatement', stmt,
+				TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS,
+				EXECUTE_BOTS_STATEMENT_IN_LOOP
+			)
+		}
+	}
+	
+	@Check
+	def checkMultipleExecuteBotStatement (ExecuteBotsStatement stmt){
+		val containingProgram = stmt.eContainer as TraderProgram
+		val index = containingProgram.statements.indexOf(stmt) 
+		val scopedConnectStatements = containingProgram.statements
+		.filter(ExecuteBotsStatement)
+		.filter[ebs | (!ebs.equals(stmt) && containingProgram.statements.indexOf(ebs) < index)]
+		if (scopedConnectStatements.length !== 0){
+			warning('ExecuteBotsStatement should only be called once', stmt,
+				TraderPackage.Literals.EXECUTE_BOTS_STATEMENT__DAYS,
+				MULTIPLE_EXECUTE_BOTS_STATEMENT
 			)
 		}
 	}

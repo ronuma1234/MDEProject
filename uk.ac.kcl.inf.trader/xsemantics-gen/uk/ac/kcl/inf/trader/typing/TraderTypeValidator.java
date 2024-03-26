@@ -4,6 +4,7 @@ import com.google.common.collect.Iterables;
 import com.google.inject.Provider;
 import java.util.Collections;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xsemantics.runtime.ErrorInformation;
 import org.eclipse.xsemantics.runtime.Result;
 import org.eclipse.xsemantics.runtime.RuleApplicationTrace;
@@ -230,8 +231,21 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     checkAssignableTo(result.getFirst(), TraderType.class);
     dayTypes = (TraderType) result.getFirst();
     
-    /* empty |- dayTypes <: TraderType.INT */
-    subTypeInternal(emptyEnvironment(), _trace_, dayTypes, TraderType.INT);
+    /* empty |- dayTypes <: TraderType.INT or fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for days, but a " + dayTypes + " value was provided" source stmt.days */
+    {
+      RuleFailedException previousFailure = null;
+      try {
+        /* empty |- dayTypes <: TraderType.INT */
+        subTypeInternal(emptyEnvironment(), _trace_, dayTypes, TraderType.INT);
+      } catch (Exception e) {
+        previousFailure = extractRuleFailedException(e);
+        /* fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for days, but a " + dayTypes + " value was provided" source stmt.days */
+        String error = (((("ExecuteBotsStatement expects an " + TraderType.INT) + " for days, but a ") + dayTypes) + " value was provided");
+        Expression _days_1 = stmt.getDays();
+        EObject source = _days_1;
+        throwForExplicitFail(error, new ErrorInformation(source, null));
+      }
+    }
     /* empty |- stmt.hours : var TraderType hourTypes */
     Expression _hours = stmt.getHours();
     TraderType hourTypes = null;
@@ -239,8 +253,21 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     checkAssignableTo(result_1.getFirst(), TraderType.class);
     hourTypes = (TraderType) result_1.getFirst();
     
-    /* empty |- hourTypes <: TraderType.INT */
-    subTypeInternal(emptyEnvironment(), _trace_, hourTypes, TraderType.INT);
+    /* empty |- hourTypes <: TraderType.INT or fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for hours, but a " + hourTypes + " value was provided" source stmt.hours */
+    {
+      RuleFailedException previousFailure = null;
+      try {
+        /* empty |- hourTypes <: TraderType.INT */
+        subTypeInternal(emptyEnvironment(), _trace_, hourTypes, TraderType.INT);
+      } catch (Exception e_1) {
+        previousFailure = extractRuleFailedException(e_1);
+        /* fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for hours, but a " + hourTypes + " value was provided" source stmt.hours */
+        String error_1 = (((("ExecuteBotsStatement expects an " + TraderType.INT) + " for hours, but a ") + hourTypes) + " value was provided");
+        Expression _hours_1 = stmt.getHours();
+        EObject source_1 = _hours_1;
+        throwForExplicitFail(error_1, new ErrorInformation(source_1, null));
+      }
+    }
     /* empty |- stmt.minutes : var TraderType minuteTypes */
     Expression _minutes = stmt.getMinutes();
     TraderType minuteTypes = null;
@@ -248,8 +275,21 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     checkAssignableTo(result_2.getFirst(), TraderType.class);
     minuteTypes = (TraderType) result_2.getFirst();
     
-    /* empty |- minuteTypes <: TraderType.INT */
-    subTypeInternal(emptyEnvironment(), _trace_, minuteTypes, TraderType.INT);
+    /* empty |- minuteTypes <: TraderType.INT or fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for minutes, but a " + minuteTypes + " value was provided" source stmt.minutes */
+    {
+      RuleFailedException previousFailure = null;
+      try {
+        /* empty |- minuteTypes <: TraderType.INT */
+        subTypeInternal(emptyEnvironment(), _trace_, minuteTypes, TraderType.INT);
+      } catch (Exception e_2) {
+        previousFailure = extractRuleFailedException(e_2);
+        /* fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for minutes, but a " + minuteTypes + " value was provided" source stmt.minutes */
+        String error_2 = (((("ExecuteBotsStatement expects an " + TraderType.INT) + " for minutes, but a ") + minuteTypes) + " value was provided");
+        Expression _minutes_1 = stmt.getMinutes();
+        EObject source_2 = _minutes_1;
+        throwForExplicitFail(error_2, new ErrorInformation(source_2, null));
+      }
+    }
     /* empty |- stmt.seconds : var TraderType secondTypes */
     Expression _seconds = stmt.getSeconds();
     TraderType secondTypes = null;
@@ -257,8 +297,21 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     checkAssignableTo(result_3.getFirst(), TraderType.class);
     secondTypes = (TraderType) result_3.getFirst();
     
-    /* empty |- secondTypes <: TraderType.INT */
-    subTypeInternal(emptyEnvironment(), _trace_, secondTypes, TraderType.INT);
+    /* empty |- secondTypes <: TraderType.INT or fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for seconds, but a " + secondTypes + " value was provided" source stmt.seconds */
+    {
+      RuleFailedException previousFailure = null;
+      try {
+        /* empty |- secondTypes <: TraderType.INT */
+        subTypeInternal(emptyEnvironment(), _trace_, secondTypes, TraderType.INT);
+      } catch (Exception e_3) {
+        previousFailure = extractRuleFailedException(e_3);
+        /* fail error "ExecuteBotsStatement expects an " + TraderType.INT + " for seconds, but a " + secondTypes + " value was provided" source stmt.seconds */
+        String error_3 = (((("ExecuteBotsStatement expects an " + TraderType.INT) + " for seconds, but a ") + secondTypes) + " value was provided");
+        Expression _seconds_1 = stmt.getSeconds();
+        EObject source_3 = _seconds_1;
+        throwForExplicitFail(error_3, new ErrorInformation(source_3, null));
+      }
+    }
     return new Result<Boolean>(true);
   }
 
@@ -282,8 +335,21 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     checkAssignableTo(result.getFirst(), TraderType.class);
     countTypes = (TraderType) result.getFirst();
     
-    /* empty |- countTypes <: TraderType.INT */
-    subTypeInternal(emptyEnvironment(), _trace_, countTypes, TraderType.INT);
+    /* empty |- countTypes <: TraderType.INT or fail error "LoopStatement expects an " + TraderType.INT + " for count, but a " + countTypes + " value was provided" source stmt.count */
+    {
+      RuleFailedException previousFailure = null;
+      try {
+        /* empty |- countTypes <: TraderType.INT */
+        subTypeInternal(emptyEnvironment(), _trace_, countTypes, TraderType.INT);
+      } catch (Exception e) {
+        previousFailure = extractRuleFailedException(e);
+        /* fail error "LoopStatement expects an " + TraderType.INT + " for count, but a " + countTypes + " value was provided" source stmt.count */
+        String error = (((("LoopStatement expects an " + TraderType.INT) + " for count, but a ") + countTypes) + " value was provided");
+        Expression _count_1 = stmt.getCount();
+        EObject source = _count_1;
+        throwForExplicitFail(error, new ErrorInformation(source, null));
+      }
+    }
     return new Result<Boolean>(true);
   }
 
@@ -325,8 +391,9 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
     String _stringRep = this.stringRep(exp);
     String _plus = ("Cannot type " + _stringRep);
     String error = _plus;
+    EObject source = exp;
     throwRuleFailedException(error,
-    	_issue, _ex, new ErrorInformation(null, null));
+    	_issue, _ex, new ErrorInformation(source, null));
   }
 
   protected Result<Boolean> subTypeInternal(final RuleEnvironment _environment_, final RuleApplicationTrace _trace_, final TraderType left, final TraderType right) {
@@ -341,10 +408,11 @@ public class TraderTypeValidator extends XsemanticsRuntimeSystem {
 
   protected void subTypeThrowException(final String _error, final String _issue, final Exception _ex, final TraderType left, final TraderType right, final ErrorInformation[] _errorInformations) throws RuleFailedException {
     String _stringRep = this.stringRep(left);
-    String _plus = (_stringRep + " is not a subtype of ");
+    String _plus = ("Type mismatch: cannot convert from " + _stringRep);
+    String _plus_1 = (_plus + " to ");
     String _stringRep_1 = this.stringRep(right);
-    String _plus_1 = (_plus + _stringRep_1);
-    String error = _plus_1;
+    String _plus_2 = (_plus_1 + _stringRep_1);
+    String error = _plus_2;
     throwRuleFailedException(error,
     	_issue, _ex, new ErrorInformation(null, null));
   }

@@ -1337,7 +1337,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleVariableDeclaration"
-    // InternalTrader.g:587:1: ruleVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) ) ) ;
+    // InternalTrader.g:587:1: ruleVariableDeclaration returns [EObject current=null] : (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) ) ) ;
     public final EObject ruleVariableDeclaration() throws RecognitionException {
         EObject current = null;
 
@@ -1355,11 +1355,11 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTrader.g:593:2: ( (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) ) ) )
-            // InternalTrader.g:594:2: (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) ) )
+            // InternalTrader.g:593:2: ( (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) ) ) )
+            // InternalTrader.g:594:2: (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) ) )
             {
-            // InternalTrader.g:594:2: (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) ) )
-            // InternalTrader.g:595:3: otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) )
+            // InternalTrader.g:594:2: (otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) ) )
+            // InternalTrader.g:595:3: otherlv_0= 'var' ( (lv_name_1_0= RULE_ID ) ) otherlv_2= '=' ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) )
             {
             otherlv_0=(Token)match(input,36,FOLLOW_29); 
 
@@ -1395,7 +1395,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
 
             			newLeafNode(otherlv_2, grammarAccess.getVariableDeclarationAccess().getEqualsSignKeyword_2());
             		
-            // InternalTrader.g:621:3: ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleRealValue ) ) | ( (lv_value_5_0= ruleIntValue ) ) )
+            // InternalTrader.g:621:3: ( ( (lv_value_3_0= ruleStringValue ) ) | ( (lv_value_4_0= ruleIntValue ) ) | ( (lv_value_5_0= ruleRealValue ) ) )
             int alt3=3;
             switch ( input.LA(1) ) {
             case RULE_STRING:
@@ -1407,10 +1407,10 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                 {
                 int LA3_2 = input.LA(2);
 
-                if ( (LA3_2==48) ) {
+                if ( (LA3_2==EOF||LA3_2==11||LA3_2==21||LA3_2==27||LA3_2==30||LA3_2==36||LA3_2==38||LA3_2==41) ) {
                     alt3=2;
                 }
-                else if ( (LA3_2==EOF||LA3_2==11||LA3_2==21||LA3_2==27||LA3_2==30||LA3_2==36||LA3_2==38||LA3_2==41) ) {
+                else if ( (LA3_2==48) ) {
                     alt3=3;
                 }
                 else {
@@ -1423,7 +1423,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                 break;
             case 48:
                 {
-                alt3=2;
+                alt3=3;
                 }
                 break;
             default:
@@ -1472,19 +1472,19 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalTrader.g:642:4: ( (lv_value_4_0= ruleRealValue ) )
+                    // InternalTrader.g:642:4: ( (lv_value_4_0= ruleIntValue ) )
                     {
-                    // InternalTrader.g:642:4: ( (lv_value_4_0= ruleRealValue ) )
-                    // InternalTrader.g:643:5: (lv_value_4_0= ruleRealValue )
+                    // InternalTrader.g:642:4: ( (lv_value_4_0= ruleIntValue ) )
+                    // InternalTrader.g:643:5: (lv_value_4_0= ruleIntValue )
                     {
-                    // InternalTrader.g:643:5: (lv_value_4_0= ruleRealValue )
-                    // InternalTrader.g:644:6: lv_value_4_0= ruleRealValue
+                    // InternalTrader.g:643:5: (lv_value_4_0= ruleIntValue )
+                    // InternalTrader.g:644:6: lv_value_4_0= ruleIntValue
                     {
 
-                    						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0());
+                    						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0());
                     					
                     pushFollow(FOLLOW_2);
-                    lv_value_4_0=ruleRealValue();
+                    lv_value_4_0=ruleIntValue();
 
                     state._fsp--;
 
@@ -1496,7 +1496,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                     							current,
                     							"value",
                     							lv_value_4_0,
-                    							"uk.ac.kcl.inf.trader.Trader.RealValue");
+                    							"uk.ac.kcl.inf.trader.Trader.IntValue");
                     						afterParserOrEnumRuleCall();
                     					
 
@@ -1509,19 +1509,19 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalTrader.g:662:4: ( (lv_value_5_0= ruleIntValue ) )
+                    // InternalTrader.g:662:4: ( (lv_value_5_0= ruleRealValue ) )
                     {
-                    // InternalTrader.g:662:4: ( (lv_value_5_0= ruleIntValue ) )
-                    // InternalTrader.g:663:5: (lv_value_5_0= ruleIntValue )
+                    // InternalTrader.g:662:4: ( (lv_value_5_0= ruleRealValue ) )
+                    // InternalTrader.g:663:5: (lv_value_5_0= ruleRealValue )
                     {
-                    // InternalTrader.g:663:5: (lv_value_5_0= ruleIntValue )
-                    // InternalTrader.g:664:6: lv_value_5_0= ruleIntValue
+                    // InternalTrader.g:663:5: (lv_value_5_0= ruleRealValue )
+                    // InternalTrader.g:664:6: lv_value_5_0= ruleRealValue
                     {
 
-                    						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0());
+                    						newCompositeNode(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0());
                     					
                     pushFollow(FOLLOW_2);
-                    lv_value_5_0=ruleIntValue();
+                    lv_value_5_0=ruleRealValue();
 
                     state._fsp--;
 
@@ -1533,7 +1533,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                     							current,
                     							"value",
                     							lv_value_5_0,
-                    							"uk.ac.kcl.inf.trader.Trader.IntValue");
+                    							"uk.ac.kcl.inf.trader.Trader.RealValue");
                     						afterParserOrEnumRuleCall();
                     					
 
