@@ -1,0 +1,30 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.varAndScope.VarAndScopeTest END_SETUP */
+
+var user = "personA"
+var pwd = "passwordA"
+var leverage = 0.02
+var money = 500.50
+var tf = "1HR"
+
+connect to broker SwissBank with username user, password pwd, leverage leverage, money money, timeframe tf
+
+var favStrategy = buyAndHold
+
+create bot with favStrategy strategy using 60.15 from money
+
+create bot with meanReversion strategy using 40.05 from money
+
+var loopCounter = 3
+// XPECT scope at loopCounter --> loopCounter, favStrategy, tf, money, leverage, pwd, user, !allocatedFund, ...
+loopCounter times do 
+	var allocatedFund = 100.10
+	
+	// XPECT scope at loopCounter --> loopCounter, favStrategy, tf, money, leverage, pwd, user, allocatedFund
+	create bot with favStrategy strategy using allocatedFund from money
+end
+
+see registered bots
+
+execute bots
+
+stop bots

@@ -1,0 +1,3 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.connectToBroker.ConnectToBrokerTest END_SETUP */
+
+connect to broker SwissBank with username "personA", password "passwordA", leverage 0.02, money 500.50, timeframe "1HR"
