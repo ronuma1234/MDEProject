@@ -9,19 +9,18 @@ TraderProgram:
 ;
 
 Statement:
-    ConnectStatement | TradingBot | ListBots | Execute | Stop | VariableDeclaration | LoopStatement
+    ConnectStatement | CreateBotStatement | ListBotsStatement | ExecuteBotsStatement | VariableDeclaration | LoopStatement
 ;
 
 ConnectStatement:
-    "connect" "to" "broker" brokerName = ID "with"
-    "username:" username = StringPrimary ","
-    "password:" password = StringPrimary ","
-    "leverage:" leverage = Addition ","
-    "money:" money = Addition ","
-    "timeframe:" timeframe = StringPrimary
+    "connect" "to" "trade" tickerName = StringPrimary "on"
+    "server" brokerName = StringPrimary "with" 
+    "login" userName = StringPrimary ","
+    "password" password = StringPrimary ","
+    "timeframe:" timeframe = TimeFrameDef
 ;
 
-TradingBot:
+CreateBotStatement:
     "create" "bot" "with" strategy = StrategyDef "strategy" "using" fund = Addition "funds"
 ;
 
@@ -29,16 +28,17 @@ enum StrategyDef:
     buyAndHold | meanReversion
 ;
 
-ListBots:
+enum TimeFrameDef:
+	M1 | M2 | M3 | M4 | M5 | M6 | M10 | M12 | M20 | M30 |
+	H1 | H2 | H3 | H4 | H6 | H8 | H12 |  D1 |  W1 | MN1
+;
+
+ListBotsStatement:
 	listCommand = "see" "registered" "bots"
 ;
 
-Execute:
-    executeCommand = "execute" "bots"
-;
-
-Stop:
-	stopCommand = "stop" "bots"
+ExecuteBotsStatement:
+    "execute" "bots" "for" days = Addition "days" hours = Addition "hours" minutes = Addition "minutes" seconds = Addition "seconds"
 ;
 
 VariableDeclaration:
@@ -63,10 +63,6 @@ LoopStatement:
 	"end"		
 ;
 
-REAL returns ecore::EFloat hidden():
-	INT? "." INT
-;
-
 Addition returns Expression:
 	Multiplication ({Addition.left = current} operator+=("+"|"-") right+=Multiplication)*
 ;
@@ -86,6 +82,9 @@ NumVarExpression:
 	var = [VariableDeclaration]
 ;
 
+REAL returns ecore::EFloat hidden():
+	INT? "." INT
+;
 
 StringPrimary returns Expression:
 	StringVarExpression |
@@ -94,16 +93,4 @@ StringPrimary returns Expression:
 
 StringVarExpression:
 	var = [VariableDeclaration]
-;
-
-Action:
-    Buy | Sell
-;
-
-Buy:
-    "buy" quantity=Addition ticker=ID "at" "price" price=Addition
-;
-
-Sell:
-    "sell" quantity=Addition ticker=ID "at" "price" price=Addition
 ;

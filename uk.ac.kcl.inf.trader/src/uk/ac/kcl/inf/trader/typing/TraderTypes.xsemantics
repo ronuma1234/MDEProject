@@ -10,7 +10,6 @@ import uk.ac.kcl.inf.trader.trader.TradingBot
 import uk.ac.kcl.inf.trader.trader.LoopStatement
 import uk.ac.kcl.inf.trader.trader.StringVarExpression
 import uk.ac.kcl.inf.trader.trader.NumVarExpression
-//import uk.ac.kcl.inf.trader.trader.VariableDeclaration
 
 system uk.ac.kcl.inf.trader.typing.TraderTypeValidator
 
