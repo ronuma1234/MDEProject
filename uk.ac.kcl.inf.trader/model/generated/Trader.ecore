@@ -23,8 +23,8 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="StrategyDef">
-    <eLiterals name="buyAndHold" literal="buyAndHold"/>
-    <eLiterals name="meanReversion" value="1" literal="meanReversion"/>
+    <eLiterals name="simpleStrategyA" literal="simpleStrategyA"/>
+    <eLiterals name="machineLearningStrategyA" value="1" literal="machineLearningStrategyA"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="TimeFrameDef">
     <eLiterals name="M1" literal="M1"/>

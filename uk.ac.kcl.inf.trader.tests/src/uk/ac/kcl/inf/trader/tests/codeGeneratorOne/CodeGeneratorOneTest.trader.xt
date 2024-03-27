@@ -1,0 +1,437 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.codeGeneratorOne.CodeGeneratorOneTest END_SETUP */
+/*
+XPECT generated ---
+import sys
+import subprocess
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'MetaTrader5'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pandas'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'ta'])
+subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'scikit-learn'])
+
+from typing import List
+from abc import ABC, abstractmethod
+from datetime import datetime, timedelta
+import time
+import MetaTrader5 as mt5
+import pandas as pd 
+from ta.utils import dropna
+from ta.volatility import BollingerBands
+from ta.momentum import RSIIndicator
+from sklearn.metrics import accuracy_score, log_loss
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import classification_report
+from sklearn.feature_selection import SelectFromModel
+from sklearn.neural_network import MLPClassifier
+
+class TradingStrategy(ABC):
+		    @abstractmethod
+		    def __init__(self, symbol, market_data) -> None:
+		        pass
+		
+		    @abstractmethod
+		    def long_condition(self) -> bool:
+		        pass
+		
+		    @abstractmethod
+		    def short_condition(self) -> bool:
+		        pass
+		
+		    @abstractmethod
+		    def closelong_condition(self) -> bool:
+		        pass
+		
+		    @abstractmethod
+		    def closeshort_condition(self) -> bool:
+		        pass
+		        
+		    @abstractmethod
+		    def set_market_df(self, market_df) -> None:
+		        pass
+		
+		    @abstractmethod
+		    def get_execution_instructions(self) -> List[str]:
+		        pass
+		
+		    @abstractmethod
+		    def getName(self) -> str:
+		        pass
+		
+class SimpleStrategyA(TradingStrategy):
+	        def __init__(self, symbol, market_df) -> None:
+	            self.symbol = symbol
+	            self.current_close = list(market_df[-1:]['close'])[0]
+	            self.last_close = list(market_df[-2:]['close'])[0]
+	            self.last_high = list(market_df[-2:]['high'])[0]
+	            self.last_low = list(market_df[-2:]['low'])[0]
+	            self.sl = 0.05
+	            self.tp = 0.1
+	            self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
+	            self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
+	            self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
+	            self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
+	        
+	        def long_condition(self) -> bool:
+	            return self.current_close < self.last_close
+	        
+	        def short_condition(self) -> bool:
+	            return self.current_close < self.last_low
+	        
+	        def closelong_condition(self) -> bool:
+	            return self.current_close < self.last_close
+	        
+	        def closeshort_condition(self) -> bool:
+	            return self.current_close > self.last_close
+	        
+	        def set_market_df(self, market_df) -> None:
+	            self.current_close = list(market_df[-1:]['close'])[0]
+	            self.last_close = list(market_df[-2:]['close'])[0]
+	            self.last_high = list(market_df[-2:]['high'])[0]
+	            self.last_low = list(market_df[-2:]['low'])[0]
+	        
+	        def get_execution_instructions(self) -> List[str]:
+	            instructions = []
+	            already_buy = False
+	            already_sell = False
+	        
+	            try:
+	                already_sell = mt5.positions_get()[0]._asdict()['type']==1
+	                already_buy = mt5.positions_get()[0]._asdict()['type']==0
+	            except:
+	                pass
+	        
+	            if self.long_condition():
+	                if len(mt5.positions_get()) == 0:
+	                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+	                    print("buy placed")
+	                if already_sell:
+	                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+	                    print('Sell position closed')
+	                    time.sleep(1)
+	                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+	        
+	            if self.short_condition():
+	                if len(mt5.positions_get()) == 0:
+	                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+	                    print("sell placed")
+	                if already_buy:
+	                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+	                    print('Buy position closed')
+	                    time.sleep(1)
+	                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+	        
+	            try:
+	                already_sell = mt5.positions_get()[0]._asdict()['type']==1
+	                already_buy = mt5.positions_get()[0]._asdict()['type']==0
+	            except:
+	                pass
+	        
+	            if self.closelong_condition() and already_buy:
+	                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+	                print('buy position closed')
+	        
+	            if self.closeshort_condition() and already_sell:
+	                instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+	                print('sell position closed')
+	        
+	            already_buy = False
+	            already_sell = False
+	            return instructions
+	        
+	        def getName(self) -> str:
+	            return self.__class__.__name__
+	
+	
+class NeuralNetworkStratHelper():
+            def clean_NA(self, df1):
+                df1.reset_index(drop=True, inplace=True)
+                df1.isna().sum()
+                return df1
+            
+            def add_bolinger(self, df1):
+                # Initialize Bollinger Bands Indicator
+                indicator_bb = BollingerBands(close=df1["close"], window=20, window_dev=2)
+            
+                # Add Bollinger Bands features
+                df1['bb_bbm'] = indicator_bb.bollinger_mavg()
+                df1['bb_bbh'] = indicator_bb.bollinger_hband()
+                df1['bb_bbl'] = indicator_bb.bollinger_lband()
+            
+                # Add Bollinger Band high indicator
+                df1['bb_bbhi'] = indicator_bb.bollinger_hband_indicator()
+            
+                # Add Bollinger Band low indicator
+                df1['bb_bbli'] = indicator_bb.bollinger_lband_indicator()
+            
+                return df1
+            
+            def add_rsi(self, df1):
+                indicator_rsi = RSIIndicator(close=df1["close"], window=14)
+                df1['rsi'] = indicator_rsi.rsi()
+                return df1
+            
+            def my_target(self, df1, df_len):
+                pipdiff = 0.00300
+                length = len(df1)
+                high = list(df1['high'])
+                low = list(df1['low'])
+                close = list(df1['close'])
+                open = list(df1['open'])
+                trendcat = [None] * length
+                j = 0
+                for i in range(df_len):
+                    j = i+1
+                    continue_flag = True
+                    trendcat[i] = 0
+                    
+                    while j < df_len and continue_flag == True:
+                        if low[j] < close[i] - pipdiff and high[j] < close[i] + pipdiff:
+                            trendcat[i] = 1 #downtrend
+                            continue_flag = False
+                        elif low[j] > close[i] - pipdiff and high[j] > close[i] + pipdiff:
+                            trendcat[i] = 2 #uptrend
+                            continue_flag = False
+                        else:
+                            trendcat[i] = 0 #no clear trend
+                        j=j+1
+                return trendcat
+            
+            def extract_time(self, df1, df_len):
+                time_col = [None] * df_len
+                df1['time'] = df1['time'].dt.strftime('%H:%M:%S')
+                return df1
+            
+            def filter_time(self, df1, df2, df_len):
+                for i in range(df_len):
+                    if df1['time'][i] < '09:00:00' or df1['time'][i] > '18:00:00':
+                        df2 = df2.drop([i], axis=0)
+                    
+                return df2
+            
+            def NN_model(self, df1):
+            	df1 = df1.dropna()
+            	attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
+            	X = df1[attributes]
+            	y = df1['Target']
+            	train_pct_index = int(0.7 * len(X))
+            	X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+            	y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+            	model = MLPClassifier(hidden_layer_sizes = (3, 3), max_iter=400)
+            	model.fit(X_train, y_train)
+            	return model
+            	
+class MachineLearningStrategyA(TradingStrategy):
+            def __init__(self, symbol, market_df) -> None:
+                self.symbol = symbol
+                self.nn_strategy_helper = NeuralNetworkStratHelper()
+                df = market_df.copy()
+                df_len = len(df)
+                df = self.nn_strategy_helper.clean_NA(df)
+                df = self.nn_strategy_helper.add_bolinger(df)
+                df = self.nn_strategy_helper.add_rsi(df)
+                df['Target'] = self.nn_strategy_helper.my_target(df, df_len)
+                df = self.nn_strategy_helper.extract_time(df, df_len)
+                df_trade_time = df.copy()
+                df_trade_time = self.nn_strategy_helper.filter_time(df, df_trade_time, df_len)
+                df_train_data = df_trade_time[:int(0.9 * df_len)]
+                self.model = self.nn_strategy_helper.NN_model(df_train_data)
+                self.sl = 0.02
+                self.tp = 0.08
+                self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
+                self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
+                self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
+                self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
+            
+            def long_condition(self) -> bool:
+                return list(self.model.predict(self.current_market_df))[0] == 2
+            
+            def short_condition(self) -> bool:
+                return list(self.model.predict(self.current_market_df))[0] == 1
+            
+            def closelong_condition(self) -> bool:
+                return list(self.model.predict(self.current_market_df))[0] == 0
+            
+            def closeshort_condition(self) -> bool:
+                return list(self.model.predict(self.current_market_df))[0] == 0
+            
+            def set_market_df(self, market_df) -> None:
+                df = market_df.copy()
+                df_len = len(df)
+                df = self.nn_strategy_helper.clean_NA(df)
+                df = self.nn_strategy_helper.add_bolinger(df)
+                df = self.nn_strategy_helper.add_rsi(df)
+                attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
+                X = df[attributes]
+                self.current_market_df = X[-1:]
+            
+            def get_execution_instructions(self) -> List[str]:
+                instructions = []
+                already_buy = False
+                already_sell = False
+            
+                try:
+                    already_sell = mt5.positions_get()[0]._asdict()['type']==1
+                    already_buy = mt5.positions_get()[0]._asdict()['type']==0
+                except:
+                    pass
+            
+                if self.long_condition():
+                    if len(mt5.positions_get()) == 0:
+                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+                        print("buy placed")
+                    if already_sell:
+                        instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+                        print('Sell position closed')
+                        time.sleep(1)
+                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+            
+                if self.short_condition():
+                    if len(mt5.positions_get()) == 0:
+                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+                        print("sell placed")
+                    if already_buy:
+                        instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+                        print('Buy position closed')
+                        time.sleep(1)
+                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+            
+                try:
+                    already_sell = mt5.positions_get()[0]._asdict()['type']==1
+                    already_buy = mt5.positions_get()[0]._asdict()['type']==0
+                except:
+                    pass
+            
+                if self.closelong_condition() and already_buy:
+                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+                    print('buy position closed')
+            
+                if self.closeshort_condition() and already_sell:
+                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+                    print('sell position closed')
+            
+                already_buy = False
+                already_sell = False
+                return instructions
+            
+            def getName(self) -> str:
+                return self.__class__.__name__
+	        
+class TradingBot():
+	        def __init__(self, strategy: TradingStrategy, lot_size: float) -> None:
+	            self.strategy: TradingStrategy = strategy
+	            self.lot_size: float = lot_size
+	            self.symbol = strategy.symbol
+	            
+	        def create_order(self, symbol, lot, type, price, sl, tp):
+	            request = {
+	                "action": mt5.TRADE_ACTION_DEAL,
+	                "symbol": symbol,
+	                "volume": self.lot_size,
+	                "type": type,
+	                "price": price,
+	                "sl": sl,
+	                "tp": tp,
+	                "comment": "Open position by Python Bot",
+	                "type_time": mt5.ORDER_TIME_GTC,
+	                "type_filling": mt5.ORDER_FILLING_IOC,
+	                }
+	            order = mt5.order_send(request)
+	            return order
+	        
+	        def close_order(self, symbol, lot, type, price):
+	            request = {
+	                "action": mt5.TRADE_ACTION_DEAL,
+	                "symbol": symbol,
+	                "volume": self.lot_size,
+	                "type": type,
+	                "position": mt5.positions_get()[0]._asdict()['ticket'],
+	                "price": price,
+	                "comment": "Close position by Python Bot",
+	                "type_time": mt5.ORDER_TIME_GTC,
+	                "type_filling": mt5.ORDER_FILLING_IOC,
+	                }
+	            order = mt5.order_send(request)
+	            return order
+	        
+	        def run(self):
+	            instructions = self.strategy.get_execution_instructions()
+	            for instruction in instructions:
+	                if instruction[0] == "create":
+	                    self.create_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4], instruction[5], instruction[6])
+	                
+	                if instruction[0] == "close":
+	                    self.close_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4])
+	
+if not mt5.initialize(login=5023919288, server="MetaQuotes-Demo",password="N+UcJj4q"):
+    print("initialize() failed, error code =",mt5.last_error())
+    quit()
+    
+timeframe_str = "M1"
+
+timeframe_dict ={
+    "M1":(mt5.TIMEFRAME_M1, timedelta(days=2)),
+    "M2":(mt5.TIMEFRAME_M2, timedelta(days=4)),
+    "M3":(mt5.TIMEFRAME_M3, timedelta(days=6)),
+    "M4":(mt5.TIMEFRAME_M4, timedelta(days=8)),
+    "M5":(mt5.TIMEFRAME_M5, timedelta(days=10)),
+    "M6":(mt5.TIMEFRAME_M6, timedelta(days=12)),
+    "M10":(mt5.TIMEFRAME_M10, timedelta(days=20)),
+    "M12":(mt5.TIMEFRAME_M12, timedelta(days=24)),
+    "M20":(mt5.TIMEFRAME_M20, timedelta(days=40)),
+    "M30":(mt5.TIMEFRAME_M30, timedelta(days=60)),
+    "H1":(mt5.TIMEFRAME_H1, timedelta(days=120)),
+    "H2":(mt5.TIMEFRAME_H2, timedelta(days=240)),
+    "H3":(mt5.TIMEFRAME_H3, timedelta(days=360)),
+    "H4":(mt5.TIMEFRAME_H4, timedelta(days=480)),
+    "H6":(mt5.TIMEFRAME_H6, timedelta(days=720)),
+    "H8":(mt5.TIMEFRAME_H8, timedelta(days=960)),
+    "H12":(mt5.TIMEFRAME_H12, timedelta(days=1440)),
+    "D1":(mt5.TIMEFRAME_D1, timedelta(days=2880)),
+    "W1":(mt5.TIMEFRAME_W1, timedelta(days=20160)),
+    "MN1":(mt5.TIMEFRAME_MN1, timedelta(days=86400)),
+    }
+    
+symbol = "EURUSD"
+timeframe = timeframe_dict[timeframe_str][0]
+date_difference = timeframe_dict[timeframe_str][1]
+initial_market_df = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
+initial_market_df['time'] = pd.to_datetime(initial_market_df['time'], unit = 's')
+trading_bot_array = []
+
+
+strategy = MachineLearningStrategyA(symbol, initial_market_df)
+trading_bot_array.append(TradingBot(strategy, 0.01))
+
+
+strategy = MachineLearningStrategyA(symbol, initial_market_df)
+trading_bot_array.append(TradingBot(strategy, 0.12))
+
+
+for bot in trading_bot_array:
+    print(f'Bot with id {id(bot)} using the {bot.strategy.getName()} strategy and {bot.lot_size} lots.')
+    
+
+timeout = time.time() + 0*86400 + 0*3600 + 3*60 + 90*1
+
+while True:
+    prices = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
+    prices['time'] = pd.to_datetime(prices['time'], unit = 's')
+
+    for bot in trading_bot_array:
+        bot.strategy.set_market_df(prices)
+        bot.run()
+
+    time.sleep(60)
+    if time.time() > timeout:
+        break
+
+---
+ */
+connect to trade "EURUSD" on server "MetaQuotes-Demo" with login "5023919288", password "N+UcJj4q", timeframe M1
+
+create bot with strategy machineLearningStrategyA using lot size 0.01
+
+create bot with strategy machineLearningStrategyA using lot size 0.12
+
+see registered bots
+
+execute bots for 0 days 0 hours 3 minutes 90 seconds

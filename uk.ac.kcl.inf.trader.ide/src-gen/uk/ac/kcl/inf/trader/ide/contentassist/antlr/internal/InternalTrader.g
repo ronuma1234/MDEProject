@@ -713,15 +713,15 @@ rule__StrategyDef__Alternatives
 	}
 :
 	(
-		{ before(grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0()); }
-		('buyAndHold')
-		{ after(grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0()); }
+		{ before(grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0()); }
+		('simpleStrategyA')
+		{ after(grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1()); }
-		('meanReversion')
-		{ after(grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1()); }
+		{ before(grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1()); }
+		('machineLearningStrategyA')
+		{ after(grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1()); }
 	)
 ;
 finally {

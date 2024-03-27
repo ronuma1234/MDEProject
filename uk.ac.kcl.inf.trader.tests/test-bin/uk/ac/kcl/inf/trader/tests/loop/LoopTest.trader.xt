@@ -1,0 +1,27 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.loop.LoopTest END_SETUP */
+
+connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe H6
+
+var lotSize = 0.15
+
+// XPECT scope at lotSize --> lotSize, !secondLotSize, !thirdLotSize, ...
+create bot with strategy simpleStrategyA using lot size lotSize
+
+loop 3 times do 
+	var secondLotSize = 0.10
+	// XPECT scope at secondLotSize --> secondLotSize, lotSize, !thirdLotSize, ...
+	create bot with strategy simpleStrategyA using lot size secondLotSize 
+	
+	// XPECT warnings --> "Cannot call connect statement inside loop statement" at ""SwissBank""
+	connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe M1
+	
+	// XPECT warnings --> "Name of the variable must be unique" at "secondLotSize"
+	var secondLotSize = 01.10
+
+	// XPECT warnings --> "Name of the variable must be unique" at "lotSize"	
+	var lotSize = 0.05
+end
+
+var thirdLotSize = 20
+
+execute bots for 1 days 5 hours 2 minutes 10 seconds

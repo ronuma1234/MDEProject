@@ -1244,18 +1244,18 @@ ruleStrategyDef returns [Enumerator current=null]
 }:
 	(
 		(
-			enumLiteral_0='buyAndHold'
+			enumLiteral_0='simpleStrategyA'
 			{
-				$current = grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0());
+				$current = grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0());
 			}
 		)
 		    |
 		(
-			enumLiteral_1='meanReversion'
+			enumLiteral_1='machineLearningStrategyA'
 			{
-				$current = grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1());
+				$current = grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1());
 			}
 		)
 	)

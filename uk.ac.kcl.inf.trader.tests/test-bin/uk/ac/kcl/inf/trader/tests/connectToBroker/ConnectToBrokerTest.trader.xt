@@ -1,0 +1,9 @@
+/* XPECT_SETUP uk.ac.kcl.inf.trader.tests.connectToBroker.ConnectToBrokerTest END_SETUP */
+
+var ticker = "EURUSD"
+var broker = "SwissBank"
+var username = "personA"
+var pwd = "passwordA"
+
+// XPECT scope at ticker --> ticker, broker, username, pwd, ...
+connect to trade ticker on server broker with login username, password pwd, timeframe M1

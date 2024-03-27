@@ -40,7 +40,7 @@ public class CreateBotStatementImpl extends StatementImpl implements CreateBotSt
    * @generated
    * @ordered
    */
-  protected static final StrategyDef STRATEGY_EDEFAULT = StrategyDef.BUY_AND_HOLD;
+  protected static final StrategyDef STRATEGY_EDEFAULT = StrategyDef.SIMPLE_STRATEGY_A;
 
   /**
    * The cached value of the '{@link #getStrategy() <em>Strategy</em>}' attribute.

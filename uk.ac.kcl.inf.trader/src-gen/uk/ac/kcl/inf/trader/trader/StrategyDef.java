@@ -21,46 +21,46 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum StrategyDef implements Enumerator
 {
   /**
-   * The '<em><b>Buy And Hold</b></em>' literal object.
+   * The '<em><b>Simple Strategy A</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BUY_AND_HOLD_VALUE
+   * @see #SIMPLE_STRATEGY_A_VALUE
    * @generated
    * @ordered
    */
-  BUY_AND_HOLD(0, "buyAndHold", "buyAndHold"),
+  SIMPLE_STRATEGY_A(0, "simpleStrategyA", "simpleStrategyA"),
 
   /**
-   * The '<em><b>Mean Reversion</b></em>' literal object.
+   * The '<em><b>Machine Learning Strategy A</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #MEAN_REVERSION_VALUE
+   * @see #MACHINE_LEARNING_STRATEGY_A_VALUE
    * @generated
    * @ordered
    */
-  MEAN_REVERSION(1, "meanReversion", "meanReversion");
+  MACHINE_LEARNING_STRATEGY_A(1, "machineLearningStrategyA", "machineLearningStrategyA");
 
   /**
-   * The '<em><b>Buy And Hold</b></em>' literal value.
+   * The '<em><b>Simple Strategy A</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #BUY_AND_HOLD
-   * @model name="buyAndHold"
+   * @see #SIMPLE_STRATEGY_A
+   * @model name="simpleStrategyA"
    * @generated
    * @ordered
    */
-  public static final int BUY_AND_HOLD_VALUE = 0;
+  public static final int SIMPLE_STRATEGY_A_VALUE = 0;
 
   /**
-   * The '<em><b>Mean Reversion</b></em>' literal value.
+   * The '<em><b>Machine Learning Strategy A</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #MEAN_REVERSION
-   * @model name="meanReversion"
+   * @see #MACHINE_LEARNING_STRATEGY_A
+   * @model name="machineLearningStrategyA"
    * @generated
    * @ordered
    */
-  public static final int MEAN_REVERSION_VALUE = 1;
+  public static final int MACHINE_LEARNING_STRATEGY_A_VALUE = 1;
 
   /**
    * An array of all the '<em><b>Strategy Def</b></em>' enumerators.
@@ -71,8 +71,8 @@ public enum StrategyDef implements Enumerator
   private static final StrategyDef[] VALUES_ARRAY =
     new StrategyDef[]
     {
-      BUY_AND_HOLD,
-      MEAN_REVERSION,
+      SIMPLE_STRATEGY_A,
+      MACHINE_LEARNING_STRATEGY_A,
     };
 
   /**
@@ -137,8 +137,8 @@ public enum StrategyDef implements Enumerator
   {
     switch (value)
     {
-      case BUY_AND_HOLD_VALUE: return BUY_AND_HOLD;
-      case MEAN_REVERSION_VALUE: return MEAN_REVERSION;
+      case SIMPLE_STRATEGY_A_VALUE: return SIMPLE_STRATEGY_A;
+      case MACHINE_LEARNING_STRATEGY_A_VALUE: return MACHINE_LEARNING_STRATEGY_A;
     }
     return null;
   }
