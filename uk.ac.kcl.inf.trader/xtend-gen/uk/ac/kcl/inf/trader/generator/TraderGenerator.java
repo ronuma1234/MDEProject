@@ -1391,15 +1391,15 @@ public class TraderGenerator extends AbstractGenerator {
 
   protected String _generatePythonExpression(final NumVarExpression exp) {
     StringConcatenation _builder = new StringConcatenation();
-    Expression _value = exp.getVar().getValue();
-    _builder.append(_value);
+    String _generatePythonExpression = this.generatePythonExpression(exp.getVar().getValue());
+    _builder.append(_generatePythonExpression);
     return _builder.toString();
   }
 
   protected String _generatePythonExpression(final StringVarExpression exp) {
     StringConcatenation _builder = new StringConcatenation();
-    Expression _value = exp.getVar().getValue();
-    _builder.append(_value);
+    String _generatePythonExpression = this.generatePythonExpression(exp.getVar().getValue());
+    _builder.append(_generatePythonExpression);
     return _builder.toString();
   }
 

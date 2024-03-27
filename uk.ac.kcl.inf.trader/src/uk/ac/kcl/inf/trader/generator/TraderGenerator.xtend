@@ -520,9 +520,9 @@ class TraderGenerator extends AbstractGenerator {
 	
 	dispatch def String generatePythonExpression(StringValue exp) '''«exp.value»'''
 	
-	dispatch def String generatePythonExpression(NumVarExpression exp) '''«exp.^var.value»'''
+	dispatch def String generatePythonExpression(NumVarExpression exp) '''«exp.^var.value.generatePythonExpression»'''
 	
-	dispatch def String generatePythonExpression(StringVarExpression exp) '''«exp.^var.value»'''
+	dispatch def String generatePythonExpression(StringVarExpression exp) '''«exp.^var.value.generatePythonExpression»'''
 	
 	
 	
