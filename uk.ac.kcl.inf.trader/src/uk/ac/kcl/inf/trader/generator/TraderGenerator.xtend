@@ -261,7 +261,7 @@ class TraderGenerator extends AbstractGenerator {
 	dispatch def String generatePythonStatement(Statement stmt, Environment env) ''''''
 	
 	dispatch def String generatePythonStatement(ConnectStatement stmt, Environment env) '''
-	if not mt5.initialize(login="«stmt.username.generatePythonExpression»", server="«stmt.brokerName.generatePythonExpression»",password="«stmt.password.generatePythonExpression»"):
+	if not mt5.initialize(login=«stmt.username.generatePythonExpression», server="«stmt.brokerName.generatePythonExpression»",password="«stmt.password.generatePythonExpression»"):
 	    print("initialize() failed, error code =",mt5.last_error())
 	    quit()
 	    
