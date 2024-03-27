@@ -88,9 +88,9 @@ public class TraderGenerator extends AbstractGenerator {
     _builder.newLine();
     _builder.append("import subprocess");
     _builder.newLine();
-    _builder.append("#subprocess.check_call([sys.executable, \'virtualenv\' \'env\'])");
+    _builder.append("subprocess.check_call([sys.executable, \'-m\', \'pip\', \'install\', \'MetaTrader5\'])");
     _builder.newLine();
-    _builder.append("#subprocess.check_call([sys.executable, \'-m\', \'pip\', \'install\', \'MetaTrader5\'])");
+    _builder.append("subprocess.check_call([sys.executable, \'-m\', \'pip\', \'install\', \'pandas\'])");
     _builder.newLine();
     _builder.newLine();
     _builder.append("from typing import List");
@@ -621,10 +621,10 @@ public class TraderGenerator extends AbstractGenerator {
 
   protected String _generatePythonStatement(final ConnectStatement stmt, final TraderGenerator.Environment env) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.append("if not mt5.initialize(login=\"");
+    _builder.append("if not mt5.initialize(login=");
     String _generatePythonExpression = this.generatePythonExpression(stmt.getUsername());
     _builder.append(_generatePythonExpression);
-    _builder.append("\", server=\"");
+    _builder.append(", server=\"");
     String _generatePythonExpression_1 = this.generatePythonExpression(stmt.getBrokerName());
     _builder.append(_generatePythonExpression_1);
     _builder.append("\",password=\"");

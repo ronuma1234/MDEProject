@@ -15,7 +15,7 @@ Statement:
 ConnectStatement:
     "connect" "to" "trade" tickerName = StringPrimary "on"
     "server" brokerName = StringPrimary "with" 
-    "login" username = Primary ","
+    "login" username = StringPrimary ","
     "password" password = StringPrimary ","
     "timeframe" timeframe = TimeFrameDef
 ;
