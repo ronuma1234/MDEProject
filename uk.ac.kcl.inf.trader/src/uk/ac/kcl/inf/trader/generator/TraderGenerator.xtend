@@ -34,11 +34,17 @@ class TraderGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 		val model = resource.contents.head as TraderProgram
 		
-		//val className = resource.deriveClassName
-		//fsa.generateFile(className + '.py', model.doGenerateClass(className))
+		val className = resource.deriveClassName
+		fsa.generateFile(className + '.py', model.doGeneratePythonCode)
 		
-		fsa.generateFile(resource.derivePythonFileNameFor, model.doGeneratePythonCode)
+		//fsa.generateFile(resource.derivePythonFileNameFor, model.doGeneratePythonCode)
 		
+	}
+	
+	def deriveClassName(Resource resource) {
+		val origFilename = resource.URI.lastSegment
+		
+		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'trader'
 	}
 	
 	def derivePythonFileNameFor(Resource resource) {
@@ -56,6 +62,8 @@ class TraderGenerator extends AbstractGenerator {
 	import subprocess
 	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'MetaTrader5'])
 	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pandas'])
+	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'ta'])
+	subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'scikit-learn'])
 	
 	from typing import List
 	from abc import ABC, abstractmethod
@@ -63,6 +71,14 @@ class TraderGenerator extends AbstractGenerator {
 	import time
 	import MetaTrader5 as mt5
 	import pandas as pd 
+	from ta.utils import dropna
+	from ta.volatility import BollingerBands
+	from ta.momentum import RSIIndicator
+	from sklearn.metrics import accuracy_score, log_loss
+	from sklearn.metrics import confusion_matrix
+	from sklearn.metrics import classification_report
+	from sklearn.feature_selection import SelectFromModel
+	from sklearn.neural_network import MLPClassifier
 	
 	class TradingStrategy(ABC):
 			    @abstractmethod
@@ -94,7 +110,7 @@ class TraderGenerator extends AbstractGenerator {
 			        pass
 			
 			
-	class BuyAndHold(TradingStrategy):
+	class SimpleStrategyA(TradingStrategy):
 		        def __init__(self, symbol, market_df) -> None:
 		            self.symbol = symbol
 		            self.current_close = list(market_df[-1:]['close'])[0]
@@ -122,7 +138,7 @@ class TraderGenerator extends AbstractGenerator {
 		        def closeshort_condition(self) -> bool:
 		            return self.current_close > self.last_close
 		        
-		        def set_market_df(self, market_df):
+		        def set_market_df(self, market_df) -> None:
 		            self.current_close = list(market_df[-1:]['close'])[0]
 		            self.last_close = list(market_df[-2:]['close'])[0]
 		            self.last_high = list(market_df[-2:]['high'])[0]
@@ -184,22 +200,214 @@ class TraderGenerator extends AbstractGenerator {
 		            return self.__class__.__name__
 		
 		
-	class MeanReversion(TradingStrategy):
-		        def __init__(self, market_data) -> None:
-		            pass
+	class NeuralNetworkStratHelper():
+	            def clean_NA(self, df1):
+	                df1.reset_index(drop=True, inplace=True)
+	                df1.isna().sum()
+	                return df1
+	            
+	            def add_bolinger(self, df1):
+	                # Initialize Bollinger Bands Indicator
+	                indicator_bb = BollingerBands(close=df1["close"], window=20, window_dev=2)
+	            
+	                # Add Bollinger Bands features
+	                df1['bb_bbm'] = indicator_bb.bollinger_mavg()
+	                df1['bb_bbh'] = indicator_bb.bollinger_hband()
+	                df1['bb_bbl'] = indicator_bb.bollinger_lband()
+	            
+	                # Add Bollinger Band high indicator
+	                df1['bb_bbhi'] = indicator_bb.bollinger_hband_indicator()
+	            
+	                # Add Bollinger Band low indicator
+	                df1['bb_bbli'] = indicator_bb.bollinger_lband_indicator()
+	            
+	                return df1
+	            
+	            def add_rsi(self, df1):
+	                indicator_rsi = RSIIndicator(close=df1["close"], window=14)
+	                df1['rsi'] = indicator_rsi.rsi()
+	                return df1
+	            
+	            def my_target(self, df1, df_len):
+	                pipdiff = 0.00300
+	                length = len(df1)
+	                high = list(df1['high'])
+	                low = list(df1['low'])
+	                close = list(df1['close'])
+	                open = list(df1['open'])
+	                trendcat = [None] * length
+	                j = 0
+	                for i in range(df_len):
+	                    j = i+1
+	                    continue_flag = True
+	                    trendcat[i] = 0
+	                    
+	                    while j < df_len and continue_flag == True:
+	                        if low[j] < close[i] - pipdiff and high[j] < close[i] + pipdiff:
+	                            trendcat[i] = 1 #downtrend
+	                            continue_flag = False
+	                        elif low[j] > close[i] - pipdiff and high[j] > close[i] + pipdiff:
+	                            trendcat[i] = 2 #uptrend
+	                            continue_flag = False
+	                        else:
+	                            trendcat[i] = 0 #no clear trend
+	                        j=j+1
+	                return trendcat
+	            
+	            def extract_time(self, df1, df_len):
+	                time_col = [None] * df_len
+	                df1['time'] = df1['time'].dt.strftime('%H:%M:%S')
+	                return df1
+	            
+	            def filter_time(self, df1, df2, df_len):
+	                for i in range(df_len):
+	                    if df1['time'][i] < '09:00:00' or df1['time'][i] > '18:00:00':
+	                        df2 = df2.drop([i], axis=0)
+	                    
+	                return df2
+	            
+	            def NN_model(self, df1):
+	                attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
+	                X = df1[attributes]
+	                y = df1['Target']
+	            
+	                train_pct_index = int(0.7 * len(X))
+	                X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+	                y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+	                
+	                model = MLPClassifier(hidden_layer_sizes = (3, 3), max_iter=400)
+	                model.fit(X_train, y_train)
+	                #Uncomment code below to see trained model
+	            
+	                #pred_train = model.predict(X_train)
+	                #pred_test = model.predict(X_test)
+	                #
+	                #acc_train = accuracy_score(y_train, pred_train)
+	                #acc_test = accuracy_score(y_test, pred_test)
+	                #print('****Train Results****')
+	                #print("Accuracy: {:.4%}".format(acc_train))
+	                #print('****Test Results****')
+	                #print("Accuracy: {:.4%}".format(acc_test))
+	                #
+	                #matrix_train = confusion_matrix(y_train, pred_train)
+	                #matrix_test = confusion_matrix(y_test, pred_test)
+	                #
+	                #print(matrix_train)
+	                #print(matrix_test)
+	                #
+	                #report_train = classification_report(y_train, pred_train)
+	                #report_test = classification_report(y_test, pred_test)
+	                #
+	                #print(report_train)
+	                #print(report_test)
+	                
+	                return model
+	        
+	class MachineLearningStrategyA(TradingStrategy):
+	            def __init__(self, symbol, market_df) -> None:
+	                self.symbol = symbol
+	                self.nn_strategy_helper = NeuralNetworkStratHelper()
+	            
+	                df = market_df.copy()
+	                df_len = len(df)
+	                df = self.nn_strategy_helper.clean_NA(df)
+	                df = self.nn_strategy_helper.add_bolinger(df)
+	                df = self.nn_strategy_helper.add_rsi(df)
+	                df['Target'] = self.nn_strategy_helper.my_target(df, df_len)
+	                df = self.nn_strategy_helper.extract_time(df, df_len)
+	                
+	                df_trade_time = df.copy()
+	                df_trade_time = self.nn_strategy_helper.filter_time(df, df_trade_time, df_len)
+	                
+	                df_train_data = df_trade_time[:int(0.9 * df_len)]
+	                self.model = self.nn_strategy_helper.NN_model(df_train_data)
+	                
+	                self.sl = 0.02
+	                self.tp = 0.08
+	                self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
+	                self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
+	                self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
+	                self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
+	            
+	            
+	            def long_condition(self) -> bool:
+	                return list(self.model.predict(self.current_market_df))[0] == 2
+	            
+	            def short_condition(self) -> bool:
+	                return list(self.model.predict(self.current_market_df))[0] == 1
+	            
+	            def closelong_condition(self) -> bool:
+	                return list(self.model.predict(self.current_market_df))[0] == 0
+	            
+	            def closeshort_condition(self) -> bool:
+	                return list(self.model.predict(self.current_market_df))[0] == 0
+	            
+	            def set_market_df(self, market_df) -> None:
+	                df = market_df.copy()
+	                df_len = len(df)
+	                df = self.nn_strategy_helper.clean_NA(df)
+	                df = self.nn_strategy_helper.add_bolinger(df)
+	                df = self.nn_strategy_helper.add_rsi(df)
+	                attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
+	                X = df[attributes]
+	                self.current_market_df = X[-1:]
+	            
+	            def get_execution_instructions(self) -> List[str]:
+	                instructions = []
+	            
+	                already_buy = False
+	                already_sell = False
+	            
+	                try:
+	                    already_sell = mt5.positions_get()[0]._asdict()['type']==1
+	                    already_buy = mt5.positions_get()[0]._asdict()['type']==0
+	                except:
+	                    pass
+	            
+	                if self.long_condition():
+	                    if len(mt5.positions_get()) == 0:
+	                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+	                        print("buy placed")
+	                    if already_sell:
+	                        instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+	                        print('Sell position closed')
+	                        time.sleep(1)
+	                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask, self.buy_sl, self.buy_tp))
+	            
+	                if self.short_condition():
+	                    if len(mt5.positions_get()) == 0:
+	                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+	                        print("sell placed")
+	                    if already_buy:
+	                        instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+	                        print('Buy position closed')
+	                        time.sleep(1)
+	                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
+	            
+	            
+	                try:
+	                    already_sell = mt5.positions_get()[0]._asdict()['type']==1
+	                    already_buy = mt5.positions_get()[0]._asdict()['type']==0
+	                except:
+	                    pass
+	            
+	                if self.closelong_condition() and already_buy:
+	                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid))
+	                    print('buy position closed')
+	            
+	                if self.closeshort_condition() and already_sell:
+	                    instructions.append(("close", self.symbol, 0, mt5.ORDER_TYPE_BUY, mt5.symbol_info_tick(self.symbol).ask))
+	                    print('sell position closed')
+	            
+	                already_buy = False
+	                already_sell = False
+	            
+	            
+	                return instructions
+	            
+	            def getName(self) -> str:
+	                return self.__class__.__name__
 		        
-		        def should_buy(self, price) -> str:
-		            pass
-		        
-		        def should_sell(self, price) -> str:
-		            pass
-		        
-		        def should_wait(self, price) -> str:
-		            pass
-		
-		
-		
-		
 	class TradingBot():
 		        def __init__(self, strategy: TradingStrategy, lot_size: float) -> None:
 		            self.strategy: TradingStrategy = strategy
@@ -298,15 +506,10 @@ class TraderGenerator extends AbstractGenerator {
 	initial_market_df = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
 	initial_market_df['time'] = pd.to_datetime(initial_market_df['time'], unit = 's')
 	trading_bot_array = []
-	
-	
-		
 	'''
 	
 	dispatch def String generatePythonStatement(CreateBotStatement stmt, Environment env) '''
-	
-	
-	strategy = «if (stmt.strategy === StrategyDef.BUY_AND_HOLD) '''BuyAndHold''' »«if (stmt.strategy === StrategyDef.MEAN_REVERSION) '''MeanReversion'''»(symbol, initial_market_df)
+	strategy = «if (stmt.strategy === StrategyDef.BUY_AND_HOLD) '''SimpleStrategyA''' »«if (stmt.strategy === StrategyDef.MEAN_REVERSION) '''MachineLearningStrategyA'''»(symbol, initial_market_df)
 	
 	trading_bot_array.append(TradingBot(strategy, «stmt.lotSize.generatePythonExpression»))
 	'''
@@ -320,7 +523,7 @@ class TraderGenerator extends AbstractGenerator {
 	timeout = time.time() + «stmt.days.generatePythonExpression»*86400 + «stmt.hours.generatePythonExpression»*3600 + «stmt.minutes.generatePythonExpression»*60 + «stmt.seconds.generatePythonExpression»*1
 	
 	while True:
-	    prices = pd.DataFrame(mt5.copy_rates_range('EURUSD', mt5.TIMEFRAME_M1, datetime(2024, 3, 22), datetime.now()))
+	    prices = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
 	    prices['time'] = pd.to_datetime(prices['time'], unit = 's')
 	
 	    for bot in trading_bot_array:
@@ -368,14 +571,8 @@ class TraderGenerator extends AbstractGenerator {
 	
 	
 	
-	def deriveClassName(Resource resource) {
-		val origFilename = resource.URI.lastSegment
-		
-		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'trader'
-	}
 	
-	def CharSequence doGenerateClass(TraderProgram program, String string) '''
 	
-	'''
+	
 	
 }
