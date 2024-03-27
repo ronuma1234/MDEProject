@@ -349,16 +349,16 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		private final Assignment cValueAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
 		private final RuleCall cValueStringValueParserRuleCall_3_0_0 = (RuleCall)cValueAssignment_3_0.eContents().get(0);
 		private final Assignment cValueAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
-		private final RuleCall cValueRealValueParserRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
+		private final RuleCall cValueIntValueParserRuleCall_3_1_0 = (RuleCall)cValueAssignment_3_1.eContents().get(0);
 		private final Assignment cValueAssignment_3_2 = (Assignment)cAlternatives_3.eContents().get(2);
-		private final RuleCall cValueIntValueParserRuleCall_3_2_0 = (RuleCall)cValueAssignment_3_2.eContents().get(0);
+		private final RuleCall cValueRealValueParserRuleCall_3_2_0 = (RuleCall)cValueAssignment_3_2.eContents().get(0);
 		
 		//VariableDeclaration:
-		//    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
+		//    "var" name=ID "=" (value = StringValue | value = IntValue | value = RealValue)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//"var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
+		//"var" name=ID "=" (value = StringValue | value = IntValue | value = RealValue)
 		public Group getGroup() { return cGroup; }
 		
 		//"var"
@@ -373,26 +373,26 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 		//"="
 		public Keyword getEqualsSignKeyword_2() { return cEqualsSignKeyword_2; }
 		
-		//(value=StringValue | value=RealValue | value=IntValue)
+		//(value = StringValue | value = IntValue | value = RealValue)
 		public Alternatives getAlternatives_3() { return cAlternatives_3; }
 		
-		//value=StringValue
+		//value = StringValue
 		public Assignment getValueAssignment_3_0() { return cValueAssignment_3_0; }
 		
 		//StringValue
 		public RuleCall getValueStringValueParserRuleCall_3_0_0() { return cValueStringValueParserRuleCall_3_0_0; }
 		
-		//value=RealValue
+		//value = IntValue
 		public Assignment getValueAssignment_3_1() { return cValueAssignment_3_1; }
 		
-		//RealValue
-		public RuleCall getValueRealValueParserRuleCall_3_1_0() { return cValueRealValueParserRuleCall_3_1_0; }
+		//IntValue
+		public RuleCall getValueIntValueParserRuleCall_3_1_0() { return cValueIntValueParserRuleCall_3_1_0; }
 		
-		//value=IntValue
+		//value = RealValue
 		public Assignment getValueAssignment_3_2() { return cValueAssignment_3_2; }
 		
-		//IntValue
-		public RuleCall getValueIntValueParserRuleCall_3_2_0() { return cValueIntValueParserRuleCall_3_2_0; }
+		//RealValue
+		public RuleCall getValueRealValueParserRuleCall_3_2_0() { return cValueRealValueParserRuleCall_3_2_0; }
 	}
 	public class StringValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StringValue");
@@ -1073,7 +1073,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//VariableDeclaration:
-	//    "var" name=ID "=" (value=StringValue | value=RealValue | value=IntValue)
+	//    "var" name=ID "=" (value = StringValue | value = IntValue | value = RealValue)
 	//;
 	public VariableDeclarationElements getVariableDeclarationAccess() {
 		return pVariableDeclaration;

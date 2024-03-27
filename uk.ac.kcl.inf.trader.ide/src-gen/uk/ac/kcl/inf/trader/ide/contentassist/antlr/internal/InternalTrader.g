@@ -2854,9 +2854,9 @@ rule__VariableDeclaration__ValueAssignment_3_1
 	}
 :
 	(
-		{ before(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0()); }
-		ruleRealValue
-		{ after(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0()); }
+		{ before(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0()); }
+		ruleIntValue
+		{ after(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0()); }
 	)
 ;
 finally {
@@ -2869,9 +2869,9 @@ rule__VariableDeclaration__ValueAssignment_3_2
 	}
 :
 	(
-		{ before(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0()); }
-		ruleIntValue
-		{ after(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0()); }
+		{ before(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0()); }
+		ruleRealValue
+		{ after(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0()); }
 	)
 ;
 finally {

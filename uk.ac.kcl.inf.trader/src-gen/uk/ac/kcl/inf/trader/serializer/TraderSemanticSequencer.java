@@ -389,7 +389,7 @@ public class TraderSemanticSequencer extends AbstractDelegatingSemanticSequencer
 	 *     VariableDeclaration returns VariableDeclaration
 	 *
 	 * Constraint:
-	 *     (name=ID (value=StringValue | value=RealValue | value=IntValue))
+	 *     (name=ID (value=StringValue | value=IntValue | value=RealValue))
 	 * </pre>
 	 */
 	protected void sequence_VariableDeclaration(ISerializationContext context, VariableDeclaration semanticObject) {

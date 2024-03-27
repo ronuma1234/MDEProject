@@ -12,7 +12,7 @@ loop 3 times do
 	// XPECT scope at secondLotSize --> secondLotSize, lotSize, !thirdLotSize, ...
 	create bot with strategy simpleStrategyA using lot size secondLotSize 
 	
-	// XPECT warnings --> "Cannot call connect statement inside loop statement" at ""SwissBank""
+	// XPECT warnings --> "Cannot call ConnectStatement inside LoopStatement" at ""SwissBank""
 	connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe M1
 	
 	// XPECT warnings --> "Name of the variable must be unique" at "secondLotSize"

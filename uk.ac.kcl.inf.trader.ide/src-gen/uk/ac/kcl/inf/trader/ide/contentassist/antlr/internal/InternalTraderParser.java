@@ -1832,10 +1832,10 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 {
                 int LA3_2 = input.LA(2);
 
-                if ( (LA3_2==EOF||LA3_2==37||LA3_2==47||LA3_2==55||LA3_2==61||LA3_2==63||LA3_2==66||LA3_2==70) ) {
+                if ( (LA3_2==69) ) {
                     alt3=3;
                 }
-                else if ( (LA3_2==69) ) {
+                else if ( (LA3_2==EOF||LA3_2==37||LA3_2==47||LA3_2==55||LA3_2==61||LA3_2==63||LA3_2==66||LA3_2==70) ) {
                     alt3=2;
                 }
                 else {
@@ -1848,7 +1848,7 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                 break;
             case 69:
                 {
-                alt3=2;
+                alt3=3;
                 }
                 break;
             default:
@@ -8719,25 +8719,25 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableDeclaration__ValueAssignment_3_1"
-    // InternalTrader.g:2851:1: rule__VariableDeclaration__ValueAssignment_3_1 : ( ruleRealValue ) ;
+    // InternalTrader.g:2851:1: rule__VariableDeclaration__ValueAssignment_3_1 : ( ruleIntValue ) ;
     public final void rule__VariableDeclaration__ValueAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2855:1: ( ( ruleRealValue ) )
-            // InternalTrader.g:2856:2: ( ruleRealValue )
+            // InternalTrader.g:2855:1: ( ( ruleIntValue ) )
+            // InternalTrader.g:2856:2: ( ruleIntValue )
             {
-            // InternalTrader.g:2856:2: ( ruleRealValue )
-            // InternalTrader.g:2857:3: ruleRealValue
+            // InternalTrader.g:2856:2: ( ruleIntValue )
+            // InternalTrader.g:2857:3: ruleIntValue
             {
-             before(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0()); 
+             before(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0()); 
             pushFollow(FOLLOW_2);
-            ruleRealValue();
+            ruleIntValue();
 
             state._fsp--;
 
-             after(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_1_0()); 
+             after(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_1_0()); 
 
             }
 
@@ -8760,25 +8760,25 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__VariableDeclaration__ValueAssignment_3_2"
-    // InternalTrader.g:2866:1: rule__VariableDeclaration__ValueAssignment_3_2 : ( ruleIntValue ) ;
+    // InternalTrader.g:2866:1: rule__VariableDeclaration__ValueAssignment_3_2 : ( ruleRealValue ) ;
     public final void rule__VariableDeclaration__ValueAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:2870:1: ( ( ruleIntValue ) )
-            // InternalTrader.g:2871:2: ( ruleIntValue )
+            // InternalTrader.g:2870:1: ( ( ruleRealValue ) )
+            // InternalTrader.g:2871:2: ( ruleRealValue )
             {
-            // InternalTrader.g:2871:2: ( ruleIntValue )
-            // InternalTrader.g:2872:3: ruleIntValue
+            // InternalTrader.g:2871:2: ( ruleRealValue )
+            // InternalTrader.g:2872:3: ruleRealValue
             {
-             before(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0()); 
+             before(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0()); 
             pushFollow(FOLLOW_2);
-            ruleIntValue();
+            ruleRealValue();
 
             state._fsp--;
 
-             after(grammarAccess.getVariableDeclarationAccess().getValueIntValueParserRuleCall_3_2_0()); 
+             after(grammarAccess.getVariableDeclarationAccess().getValueRealValueParserRuleCall_3_2_0()); 
 
             }
 
