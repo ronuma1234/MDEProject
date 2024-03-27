@@ -5,12 +5,12 @@ connect to trade "EURUSD" on server "SwissBank" with login "personA", password "
 var lotSize = 0.15
 
 // XPECT scope at lotSize --> lotSize, !secondLotSize, !thirdLotSize, ...
-create bot with strategy buyAndHold using lot size lotSize
+create bot with strategy simpleStrategyA using lot size lotSize
 
 loop 3 times do 
 	var secondLotSize = 0.10
 	// XPECT scope at secondLotSize --> secondLotSize, lotSize, !thirdLotSize, ...
-	create bot with strategy buyAndHold using lot size secondLotSize 
+	create bot with strategy simpleStrategyA using lot size secondLotSize 
 	
 	// XPECT warnings --> "Cannot call connect statement inside loop statement" at ""SwissBank""
 	connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe M1

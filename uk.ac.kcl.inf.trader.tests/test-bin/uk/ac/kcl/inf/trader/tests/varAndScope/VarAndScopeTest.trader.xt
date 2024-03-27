@@ -12,22 +12,22 @@ connect to trade ticker on server brokerName with login usr, password pwd, timef
 var lotSize = 0.02
 
 // XPECT scope at lotSize --> ticker, brokerName, pwd, usr, lotSize, !loopCounter, !newLotSize, !secondLotSize, ...
-create bot with strategy buyAndHold using lot size lotSize
+create bot with strategy machineLearningStrategyA using lot size lotSize
 
 var loopCounter = 3
 // XPECT scope at loopCounter --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, !secondLotSize, ...
 loop loopCounter times do 
 	var newLotSize = 0.10
 // XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
-	create bot with strategy buyAndHold using lot size newLotSize
+	create bot with strategy machineLearningStrategyA using lot size newLotSize
 	loop 1 times do
 // XPECT scope at newLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, newLotSize, !secondLotSize, ...
-		create bot with strategy buyAndHold using lot size newLotSize + 0.05
+		create bot with strategy simpleStrategyA using lot size newLotSize + 0.05
 	end	
 end
 
 var secondLotSize = 5.2
 // XPECT scope at secondLotSize --> ticker, brokerName, pwd, usr, lotSize, loopCounter, !newLotSize, secondLotSize, ...
-create bot with strategy buyAndHold using lot size (secondLotSize + secondLotSize)
+create bot with strategy simpleStrategyA using lot size (secondLotSize + secondLotSize)
 
 execute bots for 1 days 5 hours 2 minutes 10 seconds

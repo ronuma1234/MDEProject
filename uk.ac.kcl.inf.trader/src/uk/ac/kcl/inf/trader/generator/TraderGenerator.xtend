@@ -260,42 +260,17 @@ class TraderGenerator extends AbstractGenerator {
 	                return df2
 	            
 	            def NN_model(self, df1):
-	                attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
-	                X = df1[attributes]
-	                y = df1['Target']
-	            
-	                train_pct_index = int(0.7 * len(X))
-	                X_train, X_test = X[:train_pct_index], X[train_pct_index:]
-	                y_train, y_test = y[:train_pct_index], y[train_pct_index:]
-	                
-	                model = MLPClassifier(hidden_layer_sizes = (3, 3), max_iter=400)
-	                model.fit(X_train, y_train)
-	                #Uncomment code below to see trained model
-	            
-	                #pred_train = model.predict(X_train)
-	                #pred_test = model.predict(X_test)
-	                #
-	                #acc_train = accuracy_score(y_train, pred_train)
-	                #acc_test = accuracy_score(y_test, pred_test)
-	                #print('****Train Results****')
-	                #print("Accuracy: {:.4%}".format(acc_train))
-	                #print('****Test Results****')
-	                #print("Accuracy: {:.4%}".format(acc_test))
-	                #
-	                #matrix_train = confusion_matrix(y_train, pred_train)
-	                #matrix_test = confusion_matrix(y_test, pred_test)
-	                #
-	                #print(matrix_train)
-	                #print(matrix_test)
-	                #
-	                #report_train = classification_report(y_train, pred_train)
-	                #report_test = classification_report(y_test, pred_test)
-	                #
-	                #print(report_train)
-	                #print(report_test)
-	                
-	                return model
-	        
+	            	df1 = df1.dropna()
+	            	attributes = ['rsi', 'bb_bbm', 'bb_bbh', 'bb_bbl', 'bb_bbhi', 'bb_bbli']
+	            	X = df1[attributes]
+	            	y = df1['Target']
+	            	train_pct_index = int(0.7 * len(X))
+	            	X_train, X_test = X[:train_pct_index], X[train_pct_index:]
+	            	y_train, y_test = y[:train_pct_index], y[train_pct_index:]
+	            	model = MLPClassifier(hidden_layer_sizes = (3, 3), max_iter=400)
+	            	model.fit(X_train, y_train)
+	            	return model
+	            	
 	class MachineLearningStrategyA(TradingStrategy):
 	            def __init__(self, symbol, market_df) -> None:
 	                self.symbol = symbol
