@@ -7,8 +7,8 @@
   <genPackages prefix="Trader" basePackage="uk.ac.kcl.inf.trader" disposableProviderFactory="true"
       fileExtensions="trader" ecorePackage="Trader.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Trader.ecore#//StrategyDef">
-      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/buyAndHold"/>
-      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/meanReversion"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/simpleStrategyA"/>
+      <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//StrategyDef/machineLearningStrategyA"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Trader.ecore#//TimeFrameDef">
       <genEnumLiterals ecoreEnumLiteral="Trader.ecore#//TimeFrameDef/M1"/>

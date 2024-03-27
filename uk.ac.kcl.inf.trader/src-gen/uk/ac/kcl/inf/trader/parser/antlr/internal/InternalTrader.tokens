@@ -29,7 +29,6 @@
 'W1'=69
 'bot'=22
 'bots'=29
-'buyAndHold'=49
 'connect'=11
 'create'=21
 'days'=32
@@ -41,7 +40,7 @@
 'login'=17
 'loop'=38
 'lot'=25
-'meanReversion'=50
+'machineLearningStrategyA'=50
 'minutes'=34
 'on'=14
 'password'=19
@@ -49,6 +48,7 @@
 'seconds'=35
 'see'=27
 'server'=15
+'simpleStrategyA'=49
 'size'=26
 'strategy'=23
 'timeframe'=20

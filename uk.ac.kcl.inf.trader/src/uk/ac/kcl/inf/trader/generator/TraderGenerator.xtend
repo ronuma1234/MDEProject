@@ -11,7 +11,6 @@ import uk.ac.kcl.inf.trader.trader.TraderProgram
 import uk.ac.kcl.inf.trader.trader.Statement
 import uk.ac.kcl.inf.trader.trader.ConnectStatement
 import uk.ac.kcl.inf.trader.trader.CreateBotStatement
-import uk.ac.kcl.inf.trader.trader.StrategyDef
 import uk.ac.kcl.inf.trader.trader.ListBotsStatement
 import uk.ac.kcl.inf.trader.trader.LoopStatement
 import uk.ac.kcl.inf.trader.trader.Addition
@@ -23,6 +22,7 @@ import uk.ac.kcl.inf.trader.trader.NumVarExpression
 import uk.ac.kcl.inf.trader.trader.StringVarExpression
 import uk.ac.kcl.inf.trader.trader.RealValue
 import uk.ac.kcl.inf.trader.trader.StringValue
+import uk.ac.kcl.inf.trader.trader.StrategyDef
 
 /**
  * Generates code from your model files on save.
@@ -37,8 +37,6 @@ class TraderGenerator extends AbstractGenerator {
 		val className = resource.deriveClassName
 		fsa.generateFile(className + '.py', model.doGeneratePythonCode)
 		
-		//fsa.generateFile(resource.derivePythonFileNameFor, model.doGeneratePythonCode)
-		
 	}
 	
 	def deriveClassName(Resource resource) {
@@ -47,9 +45,6 @@ class TraderGenerator extends AbstractGenerator {
 		origFilename.substring(0, origFilename.indexOf('.')).toFirstUpper + 'trader'
 	}
 	
-	def derivePythonFileNameFor(Resource resource) {
-		resource.URI.lastSegment + "/" + resource.URI.appendFileExtension('py').lastSegment
-	}
 	
 	def String doGeneratePythonCode(TraderProgram program) {
 		head + '''
@@ -82,33 +77,36 @@ class TraderGenerator extends AbstractGenerator {
 	
 	class TradingStrategy(ABC):
 			    @abstractmethod
-			    def __init__(self, market_data) -> None:
+			    def __init__(self, symbol, market_data) -> None:
 			        pass
 			
 			    @abstractmethod
-			    def long_condition() -> bool:
+			    def long_condition(self) -> bool:
 			        pass
 			
 			    @abstractmethod
-			    def short_condition() -> bool:
+			    def short_condition(self) -> bool:
 			        pass
 			
 			    @abstractmethod
-			    def closelong_condition() -> bool:
+			    def closelong_condition(self) -> bool:
 			        pass
 			
 			    @abstractmethod
-			    def closeshort_condition() -> bool:
+			    def closeshort_condition(self) -> bool:
+			        pass
+			        
+			    @abstractmethod
+			    def set_market_df(self, market_df) -> None:
 			        pass
 			
 			    @abstractmethod
-			    def get_execution_instructions() -> List[str]:
+			    def get_execution_instructions(self) -> List[str]:
 			        pass
 			
 			    @abstractmethod
 			    def getName(self) -> str:
 			        pass
-			
 			
 	class SimpleStrategyA(TradingStrategy):
 		        def __init__(self, symbol, market_df) -> None:
@@ -117,8 +115,6 @@ class TraderGenerator extends AbstractGenerator {
 		            self.last_close = list(market_df[-2:]['close'])[0]
 		            self.last_high = list(market_df[-2:]['high'])[0]
 		            self.last_low = list(market_df[-2:]['low'])[0]
-		        
-		            
 		            self.sl = 0.05
 		            self.tp = 0.1
 		            self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
@@ -146,7 +142,6 @@ class TraderGenerator extends AbstractGenerator {
 		        
 		        def get_execution_instructions(self) -> List[str]:
 		            instructions = []
-		        
 		            already_buy = False
 		            already_sell = False
 		        
@@ -176,7 +171,6 @@ class TraderGenerator extends AbstractGenerator {
 		                    time.sleep(1)
 		                    instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
 		        
-		        
 		            try:
 		                already_sell = mt5.positions_get()[0]._asdict()['type']==1
 		                already_buy = mt5.positions_get()[0]._asdict()['type']==0
@@ -193,7 +187,6 @@ class TraderGenerator extends AbstractGenerator {
 		        
 		            already_buy = False
 		            already_sell = False
-		        
 		            return instructions
 		        
 		        def getName(self) -> str:
@@ -307,7 +300,6 @@ class TraderGenerator extends AbstractGenerator {
 	            def __init__(self, symbol, market_df) -> None:
 	                self.symbol = symbol
 	                self.nn_strategy_helper = NeuralNetworkStratHelper()
-	            
 	                df = market_df.copy()
 	                df_len = len(df)
 	                df = self.nn_strategy_helper.clean_NA(df)
@@ -315,20 +307,16 @@ class TraderGenerator extends AbstractGenerator {
 	                df = self.nn_strategy_helper.add_rsi(df)
 	                df['Target'] = self.nn_strategy_helper.my_target(df, df_len)
 	                df = self.nn_strategy_helper.extract_time(df, df_len)
-	                
 	                df_trade_time = df.copy()
 	                df_trade_time = self.nn_strategy_helper.filter_time(df, df_trade_time, df_len)
-	                
 	                df_train_data = df_trade_time[:int(0.9 * df_len)]
 	                self.model = self.nn_strategy_helper.NN_model(df_train_data)
-	                
 	                self.sl = 0.02
 	                self.tp = 0.08
 	                self.buy_sl = mt5.symbol_info_tick(self.symbol).ask * (1-self.sl)
 	                self.buy_tp = mt5.symbol_info_tick(self.symbol).ask * (1+self.tp)
 	                self.sell_sl = mt5.symbol_info_tick(self.symbol).bid * (1+self.sl)
 	                self.sell_tp = mt5.symbol_info_tick(self.symbol).bid * (1-self.tp)
-	            
 	            
 	            def long_condition(self) -> bool:
 	                return list(self.model.predict(self.current_market_df))[0] == 2
@@ -354,7 +342,6 @@ class TraderGenerator extends AbstractGenerator {
 	            
 	            def get_execution_instructions(self) -> List[str]:
 	                instructions = []
-	            
 	                already_buy = False
 	                already_sell = False
 	            
@@ -384,7 +371,6 @@ class TraderGenerator extends AbstractGenerator {
 	                        time.sleep(1)
 	                        instructions.append(("create", self.symbol, 0, mt5.ORDER_TYPE_SELL, mt5.symbol_info_tick(self.symbol).bid, self.sell_sl, self.sell_tp))
 	            
-	            
 	                try:
 	                    already_sell = mt5.positions_get()[0]._asdict()['type']==1
 	                    already_buy = mt5.positions_get()[0]._asdict()['type']==0
@@ -401,8 +387,6 @@ class TraderGenerator extends AbstractGenerator {
 	            
 	                already_buy = False
 	                already_sell = False
-	            
-	            
 	                return instructions
 	            
 	            def getName(self) -> str:
@@ -414,7 +398,6 @@ class TraderGenerator extends AbstractGenerator {
 		            self.lot_size: float = lot_size
 		            self.symbol = strategy.symbol
 		            
-		        
 		        def create_order(self, symbol, lot, type, price, sl, tp):
 		            request = {
 		                "action": mt5.TRADE_ACTION_DEAL,
@@ -448,7 +431,6 @@ class TraderGenerator extends AbstractGenerator {
 		        
 		        def run(self):
 		            instructions = self.strategy.get_execution_instructions()
-		        
 		            for instruction in instructions:
 		                if instruction[0] == "create":
 		                    self.create_order(instruction[1], self.lot_size + instruction[2], instruction[3], instruction[4], instruction[5], instruction[6])
@@ -474,7 +456,6 @@ class TraderGenerator extends AbstractGenerator {
 	    quit()
 	    
 	timeframe_str = "«stmt.timeframe.getName()»"
-	
 	
 	timeframe_dict ={
 	    "M1":(mt5.TIMEFRAME_M1, timedelta(days=2)),
@@ -502,21 +483,22 @@ class TraderGenerator extends AbstractGenerator {
 	symbol = "«stmt.tickerName.generatePythonExpression»"
 	timeframe = timeframe_dict[timeframe_str][0]
 	date_difference = timeframe_dict[timeframe_str][1]
-	
 	initial_market_df = pd.DataFrame(mt5.copy_rates_range(symbol, timeframe, datetime.now() - date_difference, datetime.now()))
 	initial_market_df['time'] = pd.to_datetime(initial_market_df['time'], unit = 's')
 	trading_bot_array = []
+	
 	'''
 	
 	dispatch def String generatePythonStatement(CreateBotStatement stmt, Environment env) '''
-	strategy = «if (stmt.strategy === StrategyDef.BUY_AND_HOLD) '''SimpleStrategyA''' »«if (stmt.strategy === StrategyDef.MEAN_REVERSION) '''MachineLearningStrategyA'''»(symbol, initial_market_df)
-	
+	strategy = «if (stmt.strategy === StrategyDef.SIMPLE_STRATEGY_A) '''SimpleStrategyA''' »«if (stmt.strategy === StrategyDef.MACHINE_LEARNING_STRATEGY_A) '''MachineLearningStrategyA'''»(symbol, initial_market_df)
 	trading_bot_array.append(TradingBot(strategy, «stmt.lotSize.generatePythonExpression»))
+	
 	'''
 	
 	dispatch def String generatePythonStatement(ListBotsStatement stmt, Environment env) '''
 	for bot in trading_bot_array:
 	    print(f'Bot with id {id(bot)} using the {bot.strategy.getName()} strategy and {bot.lot_size} lots.')
+	    
 	'''
 	
 	dispatch def String generatePythonStatement(ExecuteBotsStatement stmt, Environment env) '''

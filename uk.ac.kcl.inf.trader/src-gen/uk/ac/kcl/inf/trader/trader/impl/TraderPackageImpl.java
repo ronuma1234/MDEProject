@@ -936,8 +936,8 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
 
     // Initialize enums and add enum literals
     initEEnum(strategyDefEEnum, StrategyDef.class, "StrategyDef");
-    addEEnumLiteral(strategyDefEEnum, StrategyDef.BUY_AND_HOLD);
-    addEEnumLiteral(strategyDefEEnum, StrategyDef.MEAN_REVERSION);
+    addEEnumLiteral(strategyDefEEnum, StrategyDef.SIMPLE_STRATEGY_A);
+    addEEnumLiteral(strategyDefEEnum, StrategyDef.MACHINE_LEARNING_STRATEGY_A);
 
     initEEnum(timeFrameDefEEnum, TimeFrameDef.class, "TimeFrameDef");
     addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M1);

@@ -722,28 +722,28 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	public class StrategyDefElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.StrategyDef");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cBuyAndHoldEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cBuyAndHoldBuyAndHoldKeyword_0_0 = (Keyword)cBuyAndHoldEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cMeanReversionEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cMeanReversionMeanReversionKeyword_1_0 = (Keyword)cMeanReversionEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cSimpleStrategyAEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cSimpleStrategyASimpleStrategyAKeyword_0_0 = (Keyword)cSimpleStrategyAEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cMachineLearningStrategyAEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cMachineLearningStrategyAMachineLearningStrategyAKeyword_1_0 = (Keyword)cMachineLearningStrategyAEnumLiteralDeclaration_1.eContents().get(0);
 		
 		//enum StrategyDef:
-		//    buyAndHold | meanReversion
+		//    simpleStrategyA | machineLearningStrategyA
 		//;
 		public EnumRule getRule() { return rule; }
 		
-		//buyAndHold | meanReversion
+		//simpleStrategyA | machineLearningStrategyA
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//buyAndHold
-		public EnumLiteralDeclaration getBuyAndHoldEnumLiteralDeclaration_0() { return cBuyAndHoldEnumLiteralDeclaration_0; }
+		//simpleStrategyA
+		public EnumLiteralDeclaration getSimpleStrategyAEnumLiteralDeclaration_0() { return cSimpleStrategyAEnumLiteralDeclaration_0; }
 		
-		public Keyword getBuyAndHoldBuyAndHoldKeyword_0_0() { return cBuyAndHoldBuyAndHoldKeyword_0_0; }
+		public Keyword getSimpleStrategyASimpleStrategyAKeyword_0_0() { return cSimpleStrategyASimpleStrategyAKeyword_0_0; }
 		
-		//meanReversion
-		public EnumLiteralDeclaration getMeanReversionEnumLiteralDeclaration_1() { return cMeanReversionEnumLiteralDeclaration_1; }
+		//machineLearningStrategyA
+		public EnumLiteralDeclaration getMachineLearningStrategyAEnumLiteralDeclaration_1() { return cMachineLearningStrategyAEnumLiteralDeclaration_1; }
 		
-		public Keyword getMeanReversionMeanReversionKeyword_1_0() { return cMeanReversionMeanReversionKeyword_1_0; }
+		public Keyword getMachineLearningStrategyAMachineLearningStrategyAKeyword_1_0() { return cMachineLearningStrategyAMachineLearningStrategyAKeyword_1_0; }
 	}
 	public class TimeFrameDefElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
 		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uk.ac.kcl.inf.trader.Trader.TimeFrameDef");
@@ -1028,7 +1028,7 @@ public class TraderGrammarAccess extends AbstractElementFinder.AbstractGrammarEl
 	}
 	
 	//enum StrategyDef:
-	//    buyAndHold | meanReversion
+	//    simpleStrategyA | machineLearningStrategyA
 	//;
 	public StrategyDefElements getStrategyDefAccess() {
 		return eStrategyDef;

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalTraderParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'connect'", "'to'", "'trade'", "'on'", "'server'", "'with'", "'login'", "','", "'password'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'lot'", "'size'", "'see'", "'registered'", "'bots'", "'execute'", "'for'", "'days'", "'hours'", "'minutes'", "'seconds'", "'var'", "'='", "'loop'", "'times'", "'do'", "'end'", "'+'", "'-'", "'*'", "'/'", "'('", "')'", "'.'", "'buyAndHold'", "'meanReversion'", "'M1'", "'M2'", "'M3'", "'M4'", "'M5'", "'M6'", "'M10'", "'M12'", "'M20'", "'M30'", "'H1'", "'H2'", "'H3'", "'H4'", "'H6'", "'H8'", "'H12'", "'D1'", "'W1'", "'MN1'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'connect'", "'to'", "'trade'", "'on'", "'server'", "'with'", "'login'", "','", "'password'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'lot'", "'size'", "'see'", "'registered'", "'bots'", "'execute'", "'for'", "'days'", "'hours'", "'minutes'", "'seconds'", "'var'", "'='", "'loop'", "'times'", "'do'", "'end'", "'+'", "'-'", "'*'", "'/'", "'('", "')'", "'.'", "'simpleStrategyA'", "'machineLearningStrategyA'", "'M1'", "'M2'", "'M3'", "'M4'", "'M5'", "'M6'", "'M10'", "'M12'", "'M20'", "'M30'", "'H1'", "'H2'", "'H3'", "'H4'", "'H6'", "'H8'", "'H12'", "'D1'", "'W1'", "'MN1'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -3131,7 +3131,7 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleStrategyDef"
-    // InternalTrader.g:1238:1: ruleStrategyDef returns [Enumerator current=null] : ( (enumLiteral_0= 'buyAndHold' ) | (enumLiteral_1= 'meanReversion' ) ) ;
+    // InternalTrader.g:1238:1: ruleStrategyDef returns [Enumerator current=null] : ( (enumLiteral_0= 'simpleStrategyA' ) | (enumLiteral_1= 'machineLearningStrategyA' ) ) ;
     public final Enumerator ruleStrategyDef() throws RecognitionException {
         Enumerator current = null;
 
@@ -3142,10 +3142,10 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalTrader.g:1244:2: ( ( (enumLiteral_0= 'buyAndHold' ) | (enumLiteral_1= 'meanReversion' ) ) )
-            // InternalTrader.g:1245:2: ( (enumLiteral_0= 'buyAndHold' ) | (enumLiteral_1= 'meanReversion' ) )
+            // InternalTrader.g:1244:2: ( ( (enumLiteral_0= 'simpleStrategyA' ) | (enumLiteral_1= 'machineLearningStrategyA' ) ) )
+            // InternalTrader.g:1245:2: ( (enumLiteral_0= 'simpleStrategyA' ) | (enumLiteral_1= 'machineLearningStrategyA' ) )
             {
-            // InternalTrader.g:1245:2: ( (enumLiteral_0= 'buyAndHold' ) | (enumLiteral_1= 'meanReversion' ) )
+            // InternalTrader.g:1245:2: ( (enumLiteral_0= 'simpleStrategyA' ) | (enumLiteral_1= 'machineLearningStrategyA' ) )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -3163,15 +3163,15 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
             }
             switch (alt12) {
                 case 1 :
-                    // InternalTrader.g:1246:3: (enumLiteral_0= 'buyAndHold' )
+                    // InternalTrader.g:1246:3: (enumLiteral_0= 'simpleStrategyA' )
                     {
-                    // InternalTrader.g:1246:3: (enumLiteral_0= 'buyAndHold' )
-                    // InternalTrader.g:1247:4: enumLiteral_0= 'buyAndHold'
+                    // InternalTrader.g:1246:3: (enumLiteral_0= 'simpleStrategyA' )
+                    // InternalTrader.g:1247:4: enumLiteral_0= 'simpleStrategyA'
                     {
                     enumLiteral_0=(Token)match(input,49,FOLLOW_2); 
 
-                    				current = grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-                    				newLeafNode(enumLiteral_0, grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0());
+                    				current = grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+                    				newLeafNode(enumLiteral_0, grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0());
                     			
 
                     }
@@ -3180,15 +3180,15 @@ public class InternalTraderParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalTrader.g:1254:3: (enumLiteral_1= 'meanReversion' )
+                    // InternalTrader.g:1254:3: (enumLiteral_1= 'machineLearningStrategyA' )
                     {
-                    // InternalTrader.g:1254:3: (enumLiteral_1= 'meanReversion' )
-                    // InternalTrader.g:1255:4: enumLiteral_1= 'meanReversion'
+                    // InternalTrader.g:1254:3: (enumLiteral_1= 'machineLearningStrategyA' )
+                    // InternalTrader.g:1255:4: enumLiteral_1= 'machineLearningStrategyA'
                     {
                     enumLiteral_1=(Token)match(input,50,FOLLOW_2); 
 
-                    				current = grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-                    				newLeafNode(enumLiteral_1, grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1());
+                    				current = grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+                    				newLeafNode(enumLiteral_1, grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1());
                     			
 
                     }

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalTraderParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'+'", "'-'", "'*'", "'/'", "'buyAndHold'", "'meanReversion'", "'M1'", "'M2'", "'M3'", "'M4'", "'M5'", "'M6'", "'M10'", "'M12'", "'M20'", "'M30'", "'H1'", "'H2'", "'H3'", "'H4'", "'H6'", "'H8'", "'H12'", "'D1'", "'W1'", "'MN1'", "'connect'", "'to'", "'trade'", "'on'", "'server'", "'with'", "'login'", "','", "'password'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'lot'", "'size'", "'registered'", "'bots'", "'execute'", "'for'", "'days'", "'hours'", "'minutes'", "'seconds'", "'var'", "'='", "'loop'", "'times'", "'do'", "'end'", "'('", "')'", "'.'", "'see'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_INT", "RULE_ID", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'+'", "'-'", "'*'", "'/'", "'simpleStrategyA'", "'machineLearningStrategyA'", "'M1'", "'M2'", "'M3'", "'M4'", "'M5'", "'M6'", "'M10'", "'M12'", "'M20'", "'M30'", "'H1'", "'H2'", "'H3'", "'H4'", "'H6'", "'H8'", "'H12'", "'D1'", "'W1'", "'MN1'", "'connect'", "'to'", "'trade'", "'on'", "'server'", "'with'", "'login'", "','", "'password'", "'timeframe'", "'create'", "'bot'", "'strategy'", "'using'", "'lot'", "'size'", "'registered'", "'bots'", "'execute'", "'for'", "'days'", "'hours'", "'minutes'", "'seconds'", "'var'", "'='", "'loop'", "'times'", "'do'", "'end'", "'('", "')'", "'.'", "'see'"
     };
     public static final int T__50=50;
     public static final int T__19=19;
@@ -2323,13 +2323,13 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start "rule__StrategyDef__Alternatives"
-    // InternalTrader.g:710:1: rule__StrategyDef__Alternatives : ( ( ( 'buyAndHold' ) ) | ( ( 'meanReversion' ) ) );
+    // InternalTrader.g:710:1: rule__StrategyDef__Alternatives : ( ( ( 'simpleStrategyA' ) ) | ( ( 'machineLearningStrategyA' ) ) );
     public final void rule__StrategyDef__Alternatives() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalTrader.g:714:1: ( ( ( 'buyAndHold' ) ) | ( ( 'meanReversion' ) ) )
+            // InternalTrader.g:714:1: ( ( ( 'simpleStrategyA' ) ) | ( ( 'machineLearningStrategyA' ) ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -2347,20 +2347,20 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalTrader.g:715:2: ( ( 'buyAndHold' ) )
+                    // InternalTrader.g:715:2: ( ( 'simpleStrategyA' ) )
                     {
-                    // InternalTrader.g:715:2: ( ( 'buyAndHold' ) )
-                    // InternalTrader.g:716:3: ( 'buyAndHold' )
+                    // InternalTrader.g:715:2: ( ( 'simpleStrategyA' ) )
+                    // InternalTrader.g:716:3: ( 'simpleStrategyA' )
                     {
-                     before(grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0()); 
-                    // InternalTrader.g:717:3: ( 'buyAndHold' )
-                    // InternalTrader.g:717:4: 'buyAndHold'
+                     before(grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0()); 
+                    // InternalTrader.g:717:3: ( 'simpleStrategyA' )
+                    // InternalTrader.g:717:4: 'simpleStrategyA'
                     {
                     match(input,15,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getStrategyDefAccess().getBuyAndHoldEnumLiteralDeclaration_0()); 
+                     after(grammarAccess.getStrategyDefAccess().getSimpleStrategyAEnumLiteralDeclaration_0()); 
 
                     }
 
@@ -2368,20 +2368,20 @@ public class InternalTraderParser extends AbstractInternalContentAssistParser {
                     }
                     break;
                 case 2 :
-                    // InternalTrader.g:721:2: ( ( 'meanReversion' ) )
+                    // InternalTrader.g:721:2: ( ( 'machineLearningStrategyA' ) )
                     {
-                    // InternalTrader.g:721:2: ( ( 'meanReversion' ) )
-                    // InternalTrader.g:722:3: ( 'meanReversion' )
+                    // InternalTrader.g:721:2: ( ( 'machineLearningStrategyA' ) )
+                    // InternalTrader.g:722:3: ( 'machineLearningStrategyA' )
                     {
-                     before(grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1()); 
-                    // InternalTrader.g:723:3: ( 'meanReversion' )
-                    // InternalTrader.g:723:4: 'meanReversion'
+                     before(grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1()); 
+                    // InternalTrader.g:723:3: ( 'machineLearningStrategyA' )
+                    // InternalTrader.g:723:4: 'machineLearningStrategyA'
                     {
                     match(input,16,FOLLOW_2); 
 
                     }
 
-                     after(grammarAccess.getStrategyDefAccess().getMeanReversionEnumLiteralDeclaration_1()); 
+                     after(grammarAccess.getStrategyDefAccess().getMachineLearningStrategyAEnumLiteralDeclaration_1()); 
 
                     }
 

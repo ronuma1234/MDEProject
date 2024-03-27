@@ -25,7 +25,7 @@ CreateBotStatement:
 ;
 
 enum StrategyDef:
-    buyAndHold | meanReversion
+    simpleStrategyA | machineLearningStrategyA
 ;
 
 enum TimeFrameDef:

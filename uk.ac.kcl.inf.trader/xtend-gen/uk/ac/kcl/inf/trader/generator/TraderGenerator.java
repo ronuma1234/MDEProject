@@ -73,13 +73,6 @@ public class TraderGenerator extends AbstractGenerator {
     return _xblockexpression;
   }
 
-  public String derivePythonFileNameFor(final Resource resource) {
-    String _lastSegment = resource.getURI().lastSegment();
-    String _plus = (_lastSegment + "/");
-    String _lastSegment_1 = resource.getURI().appendFileExtension("py").lastSegment();
-    return (_plus + _lastSegment_1);
-  }
-
   public String doGeneratePythonCode(final TraderProgram program) {
     String _head = this.head();
     StringConcatenation _builder = new StringConcatenation();
@@ -1307,12 +1300,10 @@ public class TraderGenerator extends AbstractGenerator {
 
   protected String _generatePythonStatement(final CreateBotStatement stmt, final TraderGenerator.Environment env) {
     StringConcatenation _builder = new StringConcatenation();
-    _builder.newLine();
-    _builder.newLine();
     _builder.append("strategy = ");
     CharSequence _xifexpression = null;
     StrategyDef _strategy = stmt.getStrategy();
-    boolean _tripleEquals = (_strategy == StrategyDef.BUY_AND_HOLD);
+    boolean _tripleEquals = (_strategy == StrategyDef.SIMPLE_STRATEGY_A);
     if (_tripleEquals) {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("SimpleStrategyA");
@@ -1321,7 +1312,7 @@ public class TraderGenerator extends AbstractGenerator {
     _builder.append(_xifexpression);
     CharSequence _xifexpression_1 = null;
     StrategyDef _strategy_1 = stmt.getStrategy();
-    boolean _tripleEquals_1 = (_strategy_1 == StrategyDef.MEAN_REVERSION);
+    boolean _tripleEquals_1 = (_strategy_1 == StrategyDef.MACHINE_LEARNING_STRATEGY_A);
     if (_tripleEquals_1) {
       StringConcatenation _builder_2 = new StringConcatenation();
       _builder_2.append("MachineLearningStrategyA");
