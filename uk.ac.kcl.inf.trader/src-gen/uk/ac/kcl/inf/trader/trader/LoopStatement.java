@@ -29,12 +29,12 @@ public interface LoopStatement extends Statement
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Count</em>' containment reference.
-   * @see #setCount(IntExpression)
+   * @see #setCount(Expression)
    * @see uk.ac.kcl.inf.trader.trader.TraderPackage#getLoopStatement_Count()
    * @model containment="true"
    * @generated
    */
-  IntExpression getCount();
+  Expression getCount();
 
   /**
    * Sets the value of the '{@link uk.ac.kcl.inf.trader.trader.LoopStatement#getCount <em>Count</em>}' containment reference.
@@ -44,7 +44,7 @@ public interface LoopStatement extends Statement
    * @see #getCount()
    * @generated
    */
-  void setCount(IntExpression value);
+  void setCount(Expression value);
 
   /**
    * Returns the value of the '<em><b>Statements</b></em>' containment reference list.

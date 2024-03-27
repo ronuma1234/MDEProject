@@ -11,26 +11,25 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uk.ac.kcl.inf.trader.trader.Action;
 import uk.ac.kcl.inf.trader.trader.Addition;
-import uk.ac.kcl.inf.trader.trader.Buy;
-import uk.ac.kcl.inf.trader.trader.Connect;
-import uk.ac.kcl.inf.trader.trader.ConnectParameters;
-import uk.ac.kcl.inf.trader.trader.Execute;
-import uk.ac.kcl.inf.trader.trader.IntExpression;
-import uk.ac.kcl.inf.trader.trader.IntLiteral;
-import uk.ac.kcl.inf.trader.trader.IntVarExpression;
-import uk.ac.kcl.inf.trader.trader.ListBots;
+import uk.ac.kcl.inf.trader.trader.ConnectStatement;
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement;
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement;
+import uk.ac.kcl.inf.trader.trader.Expression;
+import uk.ac.kcl.inf.trader.trader.IntValue;
+import uk.ac.kcl.inf.trader.trader.ListBotsStatement;
 import uk.ac.kcl.inf.trader.trader.LoopStatement;
 import uk.ac.kcl.inf.trader.trader.Multiplication;
-import uk.ac.kcl.inf.trader.trader.Sell;
+import uk.ac.kcl.inf.trader.trader.NumVarExpression;
+import uk.ac.kcl.inf.trader.trader.RealValue;
 import uk.ac.kcl.inf.trader.trader.Statement;
-import uk.ac.kcl.inf.trader.trader.Stop;
 import uk.ac.kcl.inf.trader.trader.StrategyDef;
+import uk.ac.kcl.inf.trader.trader.StringValue;
+import uk.ac.kcl.inf.trader.trader.StringVarExpression;
+import uk.ac.kcl.inf.trader.trader.TimeFrameDef;
 import uk.ac.kcl.inf.trader.trader.TraderFactory;
 import uk.ac.kcl.inf.trader.trader.TraderPackage;
 import uk.ac.kcl.inf.trader.trader.TraderProgram;
-import uk.ac.kcl.inf.trader.trader.TradingBot;
 import uk.ac.kcl.inf.trader.trader.VariableDeclaration;
 
 /**
@@ -60,42 +59,28 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass connectEClass = null;
+  private EClass connectStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass connectParametersEClass = null;
+  private EClass createBotStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass tradingBotEClass = null;
+  private EClass listBotsStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass listBotsEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass executeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass stopEClass = null;
+  private EClass executeBotsStatementEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -109,6 +94,27 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass stringValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass realValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass intValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass loopStatementEClass = null;
 
   /**
@@ -116,42 +122,21 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass intExpressionEClass = null;
+  private EClass expressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass intLiteralEClass = null;
+  private EClass numVarExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass intVarExpressionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass actionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass buyEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass sellEClass = null;
+  private EClass stringVarExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +158,13 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   private EEnum strategyDefEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum timeFrameDefEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -275,9 +267,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getConnect()
+  public EClass getConnectStatement()
   {
-    return connectEClass;
+    return connectStatementEClass;
   }
 
   /**
@@ -286,9 +278,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnect_BrokerName()
+  public EReference getConnectStatement_TickerName()
   {
-    return (EAttribute)connectEClass.getEStructuralFeatures().get(0);
+    return (EReference)connectStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -297,9 +289,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EReference getConnect_Parameters()
+  public EReference getConnectStatement_BrokerName()
   {
-    return (EReference)connectEClass.getEStructuralFeatures().get(1);
+    return (EReference)connectStatementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -308,9 +300,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getConnectParameters()
+  public EReference getConnectStatement_Username()
   {
-    return connectParametersEClass;
+    return (EReference)connectStatementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -319,9 +311,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnectParameters_Username()
+  public EReference getConnectStatement_Password()
   {
-    return (EAttribute)connectParametersEClass.getEStructuralFeatures().get(0);
+    return (EReference)connectStatementEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -330,9 +322,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnectParameters_Password()
+  public EAttribute getConnectStatement_Timeframe()
   {
-    return (EAttribute)connectParametersEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)connectStatementEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -341,9 +333,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnectParameters_Leverage()
+  public EClass getCreateBotStatement()
   {
-    return (EAttribute)connectParametersEClass.getEStructuralFeatures().get(2);
+    return createBotStatementEClass;
   }
 
   /**
@@ -352,9 +344,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnectParameters_Money()
+  public EAttribute getCreateBotStatement_Strategy()
   {
-    return (EAttribute)connectParametersEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)createBotStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -363,9 +355,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getConnectParameters_Timeframe()
+  public EReference getCreateBotStatement_LotSize()
   {
-    return (EAttribute)connectParametersEClass.getEStructuralFeatures().get(4);
+    return (EReference)createBotStatementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -374,9 +366,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getTradingBot()
+  public EClass getListBotsStatement()
   {
-    return tradingBotEClass;
+    return listBotsStatementEClass;
   }
 
   /**
@@ -385,9 +377,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getTradingBot_Strategy()
+  public EAttribute getListBotsStatement_ListCommand()
   {
-    return (EAttribute)tradingBotEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)listBotsStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -396,9 +388,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getTradingBot_Funds()
+  public EClass getExecuteBotsStatement()
   {
-    return (EAttribute)tradingBotEClass.getEStructuralFeatures().get(1);
+    return executeBotsStatementEClass;
   }
 
   /**
@@ -407,9 +399,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getListBots()
+  public EReference getExecuteBotsStatement_Days()
   {
-    return listBotsEClass;
+    return (EReference)executeBotsStatementEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -418,9 +410,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getListBots_ListCommand()
+  public EReference getExecuteBotsStatement_Hours()
   {
-    return (EAttribute)listBotsEClass.getEStructuralFeatures().get(0);
+    return (EReference)executeBotsStatementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -429,9 +421,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getExecute()
+  public EReference getExecuteBotsStatement_Minutes()
   {
-    return executeEClass;
+    return (EReference)executeBotsStatementEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -440,31 +432,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getExecute_ExecuteCommand()
+  public EReference getExecuteBotsStatement_Seconds()
   {
-    return (EAttribute)executeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getStop()
-  {
-    return stopEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getStop_StopCommand()
-  {
-    return (EAttribute)stopEClass.getEStructuralFeatures().get(0);
+    return (EReference)executeBotsStatementEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -495,9 +465,75 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getVariableDeclaration_Value()
+  public EReference getVariableDeclaration_Value()
   {
-    return (EAttribute)variableDeclarationEClass.getEStructuralFeatures().get(1);
+    return (EReference)variableDeclarationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getStringValue()
+  {
+    return stringValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getStringValue_Value()
+  {
+    return (EAttribute)stringValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRealValue()
+  {
+    return realValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRealValue_Value()
+  {
+    return (EAttribute)realValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIntValue()
+  {
+    return intValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIntValue_Value()
+  {
+    return (EAttribute)intValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -539,9 +575,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getIntExpression()
+  public EClass getExpression()
   {
-    return intExpressionEClass;
+    return expressionEClass;
   }
 
   /**
@@ -550,9 +586,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getIntLiteral()
+  public EClass getNumVarExpression()
   {
-    return intLiteralEClass;
+    return numVarExpressionEClass;
   }
 
   /**
@@ -561,9 +597,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EAttribute getIntLiteral_Val()
+  public EReference getNumVarExpression_Var()
   {
-    return (EAttribute)intLiteralEClass.getEStructuralFeatures().get(0);
+    return (EReference)numVarExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -572,9 +608,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EClass getIntVarExpression()
+  public EClass getStringVarExpression()
   {
-    return intVarExpressionEClass;
+    return stringVarExpressionEClass;
   }
 
   /**
@@ -583,75 +619,9 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
-  public EReference getIntVarExpression_Var()
+  public EReference getStringVarExpression_Var()
   {
-    return (EReference)intVarExpressionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getAction()
-  {
-    return actionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAction_Quantity()
-  {
-    return (EAttribute)actionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAction_Ticker()
-  {
-    return (EAttribute)actionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAction_Price()
-  {
-    return (EAttribute)actionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getBuy()
-  {
-    return buyEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSell()
-  {
-    return sellEClass;
+    return (EReference)stringVarExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -759,6 +729,17 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
    * @generated
    */
   @Override
+  public EEnum getTimeFrameDef()
+  {
+    return timeFrameDefEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public TraderFactory getTraderFactory()
   {
     return (TraderFactory)getEFactoryInstance();
@@ -789,54 +770,50 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
 
     statementEClass = createEClass(STATEMENT);
 
-    connectEClass = createEClass(CONNECT);
-    createEAttribute(connectEClass, CONNECT__BROKER_NAME);
-    createEReference(connectEClass, CONNECT__PARAMETERS);
+    connectStatementEClass = createEClass(CONNECT_STATEMENT);
+    createEReference(connectStatementEClass, CONNECT_STATEMENT__TICKER_NAME);
+    createEReference(connectStatementEClass, CONNECT_STATEMENT__BROKER_NAME);
+    createEReference(connectStatementEClass, CONNECT_STATEMENT__USERNAME);
+    createEReference(connectStatementEClass, CONNECT_STATEMENT__PASSWORD);
+    createEAttribute(connectStatementEClass, CONNECT_STATEMENT__TIMEFRAME);
 
-    connectParametersEClass = createEClass(CONNECT_PARAMETERS);
-    createEAttribute(connectParametersEClass, CONNECT_PARAMETERS__USERNAME);
-    createEAttribute(connectParametersEClass, CONNECT_PARAMETERS__PASSWORD);
-    createEAttribute(connectParametersEClass, CONNECT_PARAMETERS__LEVERAGE);
-    createEAttribute(connectParametersEClass, CONNECT_PARAMETERS__MONEY);
-    createEAttribute(connectParametersEClass, CONNECT_PARAMETERS__TIMEFRAME);
+    createBotStatementEClass = createEClass(CREATE_BOT_STATEMENT);
+    createEAttribute(createBotStatementEClass, CREATE_BOT_STATEMENT__STRATEGY);
+    createEReference(createBotStatementEClass, CREATE_BOT_STATEMENT__LOT_SIZE);
 
-    tradingBotEClass = createEClass(TRADING_BOT);
-    createEAttribute(tradingBotEClass, TRADING_BOT__STRATEGY);
-    createEAttribute(tradingBotEClass, TRADING_BOT__FUNDS);
+    listBotsStatementEClass = createEClass(LIST_BOTS_STATEMENT);
+    createEAttribute(listBotsStatementEClass, LIST_BOTS_STATEMENT__LIST_COMMAND);
 
-    listBotsEClass = createEClass(LIST_BOTS);
-    createEAttribute(listBotsEClass, LIST_BOTS__LIST_COMMAND);
-
-    executeEClass = createEClass(EXECUTE);
-    createEAttribute(executeEClass, EXECUTE__EXECUTE_COMMAND);
-
-    stopEClass = createEClass(STOP);
-    createEAttribute(stopEClass, STOP__STOP_COMMAND);
+    executeBotsStatementEClass = createEClass(EXECUTE_BOTS_STATEMENT);
+    createEReference(executeBotsStatementEClass, EXECUTE_BOTS_STATEMENT__DAYS);
+    createEReference(executeBotsStatementEClass, EXECUTE_BOTS_STATEMENT__HOURS);
+    createEReference(executeBotsStatementEClass, EXECUTE_BOTS_STATEMENT__MINUTES);
+    createEReference(executeBotsStatementEClass, EXECUTE_BOTS_STATEMENT__SECONDS);
 
     variableDeclarationEClass = createEClass(VARIABLE_DECLARATION);
     createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__NAME);
-    createEAttribute(variableDeclarationEClass, VARIABLE_DECLARATION__VALUE);
+    createEReference(variableDeclarationEClass, VARIABLE_DECLARATION__VALUE);
+
+    stringValueEClass = createEClass(STRING_VALUE);
+    createEAttribute(stringValueEClass, STRING_VALUE__VALUE);
+
+    realValueEClass = createEClass(REAL_VALUE);
+    createEAttribute(realValueEClass, REAL_VALUE__VALUE);
+
+    intValueEClass = createEClass(INT_VALUE);
+    createEAttribute(intValueEClass, INT_VALUE__VALUE);
 
     loopStatementEClass = createEClass(LOOP_STATEMENT);
     createEReference(loopStatementEClass, LOOP_STATEMENT__COUNT);
     createEReference(loopStatementEClass, LOOP_STATEMENT__STATEMENTS);
 
-    intExpressionEClass = createEClass(INT_EXPRESSION);
+    expressionEClass = createEClass(EXPRESSION);
 
-    intLiteralEClass = createEClass(INT_LITERAL);
-    createEAttribute(intLiteralEClass, INT_LITERAL__VAL);
+    numVarExpressionEClass = createEClass(NUM_VAR_EXPRESSION);
+    createEReference(numVarExpressionEClass, NUM_VAR_EXPRESSION__VAR);
 
-    intVarExpressionEClass = createEClass(INT_VAR_EXPRESSION);
-    createEReference(intVarExpressionEClass, INT_VAR_EXPRESSION__VAR);
-
-    actionEClass = createEClass(ACTION);
-    createEAttribute(actionEClass, ACTION__QUANTITY);
-    createEAttribute(actionEClass, ACTION__TICKER);
-    createEAttribute(actionEClass, ACTION__PRICE);
-
-    buyEClass = createEClass(BUY);
-
-    sellEClass = createEClass(SELL);
+    stringVarExpressionEClass = createEClass(STRING_VAR_EXPRESSION);
+    createEReference(stringVarExpressionEClass, STRING_VAR_EXPRESSION__VAR);
 
     additionEClass = createEClass(ADDITION);
     createEReference(additionEClass, ADDITION__LEFT);
@@ -850,6 +827,7 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
 
     // Create enums
     strategyDefEEnum = createEEnum(STRATEGY_DEF);
+    timeFrameDefEEnum = createEEnum(TIME_FRAME_DEF);
   }
 
   /**
@@ -881,19 +859,19 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    connectEClass.getESuperTypes().add(this.getStatement());
-    tradingBotEClass.getESuperTypes().add(this.getStatement());
-    listBotsEClass.getESuperTypes().add(this.getStatement());
-    executeEClass.getESuperTypes().add(this.getStatement());
-    stopEClass.getESuperTypes().add(this.getStatement());
+    connectStatementEClass.getESuperTypes().add(this.getStatement());
+    createBotStatementEClass.getESuperTypes().add(this.getStatement());
+    listBotsStatementEClass.getESuperTypes().add(this.getStatement());
+    executeBotsStatementEClass.getESuperTypes().add(this.getStatement());
     variableDeclarationEClass.getESuperTypes().add(this.getStatement());
+    stringValueEClass.getESuperTypes().add(this.getExpression());
+    realValueEClass.getESuperTypes().add(this.getExpression());
+    intValueEClass.getESuperTypes().add(this.getExpression());
     loopStatementEClass.getESuperTypes().add(this.getStatement());
-    intLiteralEClass.getESuperTypes().add(this.getIntExpression());
-    intVarExpressionEClass.getESuperTypes().add(this.getIntExpression());
-    buyEClass.getESuperTypes().add(this.getAction());
-    sellEClass.getESuperTypes().add(this.getAction());
-    additionEClass.getESuperTypes().add(this.getIntExpression());
-    multiplicationEClass.getESuperTypes().add(this.getIntExpression());
+    numVarExpressionEClass.getESuperTypes().add(this.getExpression());
+    stringVarExpressionEClass.getESuperTypes().add(this.getExpression());
+    additionEClass.getESuperTypes().add(this.getExpression());
+    multiplicationEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(traderProgramEClass, TraderProgram.class, "TraderProgram", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -901,69 +879,87 @@ public class TraderPackageImpl extends EPackageImpl implements TraderPackage
 
     initEClass(statementEClass, Statement.class, "Statement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(connectEClass, Connect.class, "Connect", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConnect_BrokerName(), ecorePackage.getEString(), "brokerName", null, 0, 1, Connect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getConnect_Parameters(), this.getConnectParameters(), null, "parameters", null, 0, 1, Connect.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(connectStatementEClass, ConnectStatement.class, "ConnectStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConnectStatement_TickerName(), this.getExpression(), null, "tickerName", null, 0, 1, ConnectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConnectStatement_BrokerName(), this.getExpression(), null, "brokerName", null, 0, 1, ConnectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConnectStatement_Username(), this.getExpression(), null, "username", null, 0, 1, ConnectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getConnectStatement_Password(), this.getExpression(), null, "password", null, 0, 1, ConnectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConnectStatement_Timeframe(), this.getTimeFrameDef(), "timeframe", null, 0, 1, ConnectStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(connectParametersEClass, ConnectParameters.class, "ConnectParameters", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getConnectParameters_Username(), ecorePackage.getEString(), "username", null, 0, 1, ConnectParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConnectParameters_Password(), ecorePackage.getEString(), "password", null, 0, 1, ConnectParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConnectParameters_Leverage(), ecorePackage.getEFloat(), "leverage", null, 0, 1, ConnectParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConnectParameters_Money(), ecorePackage.getEFloat(), "money", null, 0, 1, ConnectParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getConnectParameters_Timeframe(), ecorePackage.getEString(), "timeframe", null, 0, 1, ConnectParameters.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(createBotStatementEClass, CreateBotStatement.class, "CreateBotStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCreateBotStatement_Strategy(), this.getStrategyDef(), "strategy", null, 0, 1, CreateBotStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCreateBotStatement_LotSize(), this.getExpression(), null, "lotSize", null, 0, 1, CreateBotStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(tradingBotEClass, TradingBot.class, "TradingBot", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getTradingBot_Strategy(), this.getStrategyDef(), "strategy", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getTradingBot_Funds(), ecorePackage.getEFloat(), "funds", null, 0, 1, TradingBot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(listBotsStatementEClass, ListBotsStatement.class, "ListBotsStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getListBotsStatement_ListCommand(), ecorePackage.getEString(), "listCommand", null, 0, 1, ListBotsStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(listBotsEClass, ListBots.class, "ListBots", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getListBots_ListCommand(), ecorePackage.getEString(), "listCommand", null, 0, 1, ListBots.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(executeEClass, Execute.class, "Execute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getExecute_ExecuteCommand(), ecorePackage.getEString(), "executeCommand", null, 0, 1, Execute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(stopEClass, Stop.class, "Stop", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStop_StopCommand(), ecorePackage.getEString(), "stopCommand", null, 0, 1, Stop.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(executeBotsStatementEClass, ExecuteBotsStatement.class, "ExecuteBotsStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExecuteBotsStatement_Days(), this.getExpression(), null, "days", null, 0, 1, ExecuteBotsStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExecuteBotsStatement_Hours(), this.getExpression(), null, "hours", null, 0, 1, ExecuteBotsStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExecuteBotsStatement_Minutes(), this.getExpression(), null, "minutes", null, 0, 1, ExecuteBotsStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExecuteBotsStatement_Seconds(), this.getExpression(), null, "seconds", null, 0, 1, ExecuteBotsStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(variableDeclarationEClass, VariableDeclaration.class, "VariableDeclaration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getVariableDeclaration_Name(), ecorePackage.getEString(), "name", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getVariableDeclaration_Value(), ecorePackage.getEInt(), "value", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getVariableDeclaration_Value(), this.getExpression(), null, "value", null, 0, 1, VariableDeclaration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(stringValueEClass, StringValue.class, "StringValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(realValueEClass, RealValue.class, "RealValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRealValue_Value(), ecorePackage.getEFloat(), "value", null, 0, 1, RealValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(intValueEClass, IntValue.class, "IntValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIntValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(loopStatementEClass, LoopStatement.class, "LoopStatement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getLoopStatement_Count(), this.getIntExpression(), null, "count", null, 0, 1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLoopStatement_Count(), this.getExpression(), null, "count", null, 0, 1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLoopStatement_Statements(), this.getStatement(), null, "statements", null, 0, -1, LoopStatement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(intExpressionEClass, IntExpression.class, "IntExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(intLiteralEClass, IntLiteral.class, "IntLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIntLiteral_Val(), ecorePackage.getEInt(), "val", null, 0, 1, IntLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(numVarExpressionEClass, NumVarExpression.class, "NumVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNumVarExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, NumVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(intVarExpressionEClass, IntVarExpression.class, "IntVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getIntVarExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, IntVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getAction_Quantity(), ecorePackage.getEFloat(), "quantity", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAction_Ticker(), ecorePackage.getEString(), "ticker", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAction_Price(), ecorePackage.getEFloat(), "price", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(buyEClass, Buy.class, "Buy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(sellEClass, Sell.class, "Sell", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEClass(stringVarExpressionEClass, StringVarExpression.class, "StringVarExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getStringVarExpression_Var(), this.getVariableDeclaration(), null, "var", null, 0, 1, StringVarExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(additionEClass, Addition.class, "Addition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAddition_Left(), this.getIntExpression(), null, "left", null, 0, 1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAddition_Left(), this.getExpression(), null, "left", null, 0, 1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAddition_Operator(), ecorePackage.getEString(), "operator", null, 0, -1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getAddition_Right(), this.getIntExpression(), null, "right", null, 0, -1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAddition_Right(), this.getExpression(), null, "right", null, 0, -1, Addition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(multiplicationEClass, Multiplication.class, "Multiplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMultiplication_Left(), this.getIntExpression(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplication_Left(), this.getExpression(), null, "left", null, 0, 1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMultiplication_Operator(), ecorePackage.getEString(), "operator", null, 0, -1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getMultiplication_Right(), this.getIntExpression(), null, "right", null, 0, -1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMultiplication_Right(), this.getExpression(), null, "right", null, 0, -1, Multiplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(strategyDefEEnum, StrategyDef.class, "StrategyDef");
     addEEnumLiteral(strategyDefEEnum, StrategyDef.BUY_AND_HOLD);
     addEEnumLiteral(strategyDefEEnum, StrategyDef.MEAN_REVERSION);
+
+    initEEnum(timeFrameDefEEnum, TimeFrameDef.class, "TimeFrameDef");
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M1);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M2);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M3);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M4);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M5);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M6);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M10);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M12);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M20);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.M30);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H1);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H2);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H3);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H4);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H6);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H8);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.H12);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.D1);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.W1);
+    addEEnumLiteral(timeFrameDefEEnum, TimeFrameDef.MN1);
 
     // Create resource
     createResource(eNS_URI);

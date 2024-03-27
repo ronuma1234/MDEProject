@@ -1,0 +1,152 @@
+import uk.ac.kcl.inf.trader.validation.AbstractTraderValidator
+import uk.ac.kcl.inf.trader.trader.IntValue
+import uk.ac.kcl.inf.trader.trader.RealValue
+import uk.ac.kcl.inf.trader.trader.StringValue
+import uk.ac.kcl.inf.trader.trader.Expression
+import uk.ac.kcl.inf.trader.trader.Multiplication
+import uk.ac.kcl.inf.trader.trader.Addition
+import uk.ac.kcl.inf.trader.trader.ConnectStatement
+import uk.ac.kcl.inf.trader.trader.CreateBotStatement
+import uk.ac.kcl.inf.trader.trader.LoopStatement
+import uk.ac.kcl.inf.trader.trader.StringVarExpression
+import uk.ac.kcl.inf.trader.trader.NumVarExpression
+import uk.ac.kcl.inf.trader.trader.ExecuteBotsStatement
+
+system uk.ac.kcl.inf.trader.typing.TraderTypeValidator
+
+validatorExtends AbstractTraderValidator 
+
+auxiliary {
+	typeExpression(Iterable<Expression> exps) : TraderType cached
+}
+
+judgments {
+	type |- Expression exp : output TraderType
+		cached
+		error "Cannot type " + stringRep(exp)
+		source exp
+	subType |- TraderType left <: TraderType right
+		error "Type mismatch: cannot convert from " + stringRep(left) + " to " + stringRep(right)
+}
+
+
+auxiliary typeExpression(Iterable<Expression> exps){
+	if (exps.forall[exp |
+		empty |- exp : var TraderType type
+		type === TraderType.INT]) {
+			return TraderType.INT
+		} 
+	else if (exps.exists[exp |
+		empty |- exp : var TraderType type
+		type === TraderType.STRING]) {
+			return TraderType.STRING
+		}
+	else {
+		return TraderType.REAL
+		}
+}
+
+axiom TIntLit
+	G |- IntValue exp : TraderType.INT
+	
+axiom TRealLit
+	G |- RealValue exp : TraderType.REAL
+	
+axiom TStringLit
+	G |- StringValue exp : TraderType.STRING
+
+axiom TStringVarExpression
+	G |- StringVarExpression exp : TraderType.STRING
+
+rule TNumVarExpression
+	G |- NumVarExpression exp : TraderType t
+from {
+	empty |- exp.^var.value : var TraderType type
+	if (type === TraderType.INT) {
+		t = TraderType.INT	
+	} else if (type === TraderType.REAL) {
+		t = TraderType.REAL
+	} else {		
+		t = TraderType.STRING
+	}
+}
+	
+rule TMultiplication
+	G |- Multiplication exp : TraderType t
+from {
+	t = (#[exp.left] + exp.right).typeExpression
+}
+
+rule TAddition
+	G |- Addition exp : TraderType t
+from {
+	t = (#[exp.left] + exp.right).typeExpression
+}
+
+rule SubTyping
+	G |- TraderType left <: TraderType right
+from {
+	(left === TraderType.INT && right === TraderType.REAL) 
+	or left === right
+}
+
+checkrule checkConnectStatement for
+	ConnectStatement stmt
+from {	
+	empty |- stmt.tickerName : var TraderType tickerNameTypes
+	empty |- tickerNameTypes <: TraderType.STRING
+	empty |- stmt.brokerName : var TraderType brokerNameTypes
+	empty |- brokerNameTypes <: TraderType.STRING
+	empty |- stmt.username : var TraderType usernameTypes
+	empty |- usernameTypes <: TraderType.STRING
+	empty |- stmt.password : var TraderType passwordTypes
+	empty |- passwordTypes <: TraderType.STRING
+}
+
+checkrule checkCreateBotStatement for
+	CreateBotStatement stmt
+from {
+	empty |- stmt.lotSize : var TraderType lotSizeTypes
+	empty |- lotSizeTypes <: TraderType.REAL	
+}
+
+checkrule checkExecuteBotsStatement for
+	ExecuteBotsStatement stmt
+from {
+	empty |- stmt.days : var TraderType dayTypes
+	empty |- dayTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for days, but a " + dayTypes + " value was provided"
+	 source stmt.days
+	empty |- stmt.hours : var TraderType hourTypes
+	empty |- hourTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for hours, but a " + hourTypes + " value was provided"
+	 source stmt.hours
+	empty |- stmt.minutes : var TraderType minuteTypes
+	empty |- minuteTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for minutes, but a " + minuteTypes + " value was provided"
+	 source stmt.minutes
+	empty |- stmt.seconds : var TraderType secondTypes
+	empty |- secondTypes <: TraderType.INT
+	or
+	fail 
+	 error "ExecuteBotsStatement expects an " + TraderType.INT + " for seconds, but a " + secondTypes + " value was provided"
+	 source stmt.seconds
+}
+
+checkrule checkLoopStatement for
+	LoopStatement stmt
+from {
+	empty |- stmt.count : var TraderType countTypes
+	empty |- countTypes <: TraderType.INT
+	or
+	fail 
+	 error "LoopStatement expects an " + TraderType.INT + " for count, but a " + countTypes + " value was provided"
+	 source stmt.count
+}
+

@@ -1,3 +1,6 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.execute.ExecuteTest END_SETUP */
 
-execute bots
+execute bots for 1 days 5 hours 2 minutes 10 seconds
+
+// XPECT warnings --> "ExecuteBotsStatement should only be called once" at "10"
+execute bots for 10 days 5 hours 2 minutes 10 seconds

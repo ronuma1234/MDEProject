@@ -1,17 +1,27 @@
 /* XPECT_SETUP uk.ac.kcl.inf.trader.tests.loop.LoopTest END_SETUP */
 
-connect to broker SwissBank with username "personA", password "passwordA", leverage 0.02, money 500.50, timeframe "1HR"
+connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe H6
 
-create bot with buyAndHold strategy using 60.15 from money
+var lotSize = 0.15
 
-create bot with meanReversion strategy using 40.05 from money
+// XPECT scope at lotSize --> lotSize, !secondLotSize, !thirdLotSize, ...
+create bot with strategy buyAndHold using lot size lotSize
 
-3 times do 
-	create bot with buyAndHold strategy using 100.10 from money
+loop 3 times do 
+	var secondLotSize = 0.10
+	// XPECT scope at secondLotSize --> secondLotSize, lotSize, !thirdLotSize, ...
+	create bot with strategy buyAndHold using lot size secondLotSize 
+	
+	// XPECT warnings --> "Cannot call ConnectStatement inside LoopStatement" at ""SwissBank""
+	connect to trade "EURUSD" on server "SwissBank" with login "personA", password "passwordA", timeframe M1
+	
+	// XPECT warnings --> "Name of the variable must be unique" at "secondLotSize"
+	var secondLotSize = 01.10
+
+	// XPECT warnings --> "Name of the variable must be unique" at "lotSize"	
+	var lotSize = 0.05
 end
 
-see registered bots
+var thirdLotSize = 20
 
-execute bots
-
-stop bots
+execute bots for 1 days 5 hours 2 minutes 10 seconds
