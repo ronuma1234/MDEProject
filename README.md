@@ -45,9 +45,16 @@ execute bots for 0 days 0 hours 3 minutes 09 seconds
 - scikit-learn 1.0.2
 - ta 0.11.0
 
-### Installation
+### Installation and Implementation
 
 1. Clone the repository:
 
 ```bash
-git clone https://your-repository-url.git
+git clone https://github.com/6ccs3mde-7ccsmmdd-2023-24/coursework-group-ab.git
+```
+2. Open Metatrader5 desktop app and connect to your account (you can quickly open a demo account through the MT5 app)
+3. Enable algo trading
+4. Open the project through the eclipse ide.
+5. Generate the xtext artefacts and then open the run the project as an eclipse application
+6. Create an xtext project and then create a .trader file
+7. Run the .py source code on any ide of your choice that supports python 
