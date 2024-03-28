@@ -45,7 +45,7 @@ execute bots for 0 days 0 hours 3 minutes 09 seconds
 - scikit-learn 1.0.2
 - ta 0.11.0
 
-### Installation and Implementation
+## Installation and Implementation
 
 1. Clone the repository:
 
